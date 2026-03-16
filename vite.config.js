@@ -32,7 +32,10 @@ export default defineConfig({
   ],
   build: {
     rollupOptions: {
-      input: getHtmlEntries(),
+      input: {
+        ...getHtmlEntries(),
+        'cena-main': resolve(__dirname, 'src/scripts/main.js'),
+      },
       output: {
         entryFileNames: 'assets/cena-health.js',
         assetFileNames: 'assets/cena-health.[ext]',

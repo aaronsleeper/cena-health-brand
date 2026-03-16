@@ -1,0 +1,237 @@
+<!--
+  @component-meta
+  name: Button
+  category: Primitives
+  file: button.html
+  classes: btn, btn--primary, btn--secondary, btn--ghost, btn--destructive, btn--sm, btn--default, btn--lg, btn--icon-only, btn--round, btn--full, btn-group, btn--loading
+  spec: components/ui/button.md
+  css: src/css/components/button.css
+  when-to-use: Use for any interactive action: form submission, navigation, triggering overlays. Primary for the single most important action. Secondary for complementary actions. Ghost for tertiary or toolbar actions. Destructive for irreversible operations.
+  do-not-use-when: The action is navigation only — use an anchor tag styled as a button, not a button element. Do not use more than one Primary button per action group.
+  @end-meta
+-->
+
+<!-- PL-only state simulation helpers — never add to src/css/ -->
+<style>
+  .btn--state-hover.btn--primary  { background-color: var(--color-primary-hover) !important; }
+  .btn--state-active.btn--primary { background-color: var(--color-primary-active) !important; transform: scale(0.98) !important; }
+  .btn--state-focus  { box-shadow: 0 0 0 2px var(--color-surface-page), 0 0 0 4px var(--color-border-focus) !important; }
+</style>
+
+
+<!-- =====================================================================
+     Section 1: Variants
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="variants">
+  <h2 class="pl-section-title">Variants</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center;">
+      <button class="btn btn--primary btn--default" type="button">Primary</button>
+      <button class="btn btn--secondary btn--default" type="button">Secondary</button>
+      <button class="btn btn--ghost btn--default" type="button">Ghost</button>
+      <button class="btn btn--destructive btn--default" type="button">Destructive</button>
+    </div>
+    <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; margin-top: var(--space-4);">
+      <button class="btn btn--primary btn--default" type="button">
+        <span class="btn__icon"></span> With icon
+      </button>
+      <button class="btn btn--secondary btn--default" type="button">
+        <span class="btn__icon"></span> With icon
+      </button>
+      <button class="btn btn--ghost btn--default" type="button">
+        <span class="btn__icon"></span> With icon
+      </button>
+      <button class="btn btn--destructive btn--default" type="button">
+        <span class="btn__icon"></span> With icon
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Sizes
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="sizes">
+  <h2 class="pl-section-title">Sizes</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center;">
+      <button class="btn btn--primary btn--sm" type="button">Small</button>
+      <button class="btn btn--primary btn--default" type="button">Default</button>
+      <button class="btn btn--primary btn--lg" type="button">Large</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: States — Primary
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="states">
+  <h2 class="pl-section-title">States — Primary</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="pl-grid-3">
+      <div>
+        <p class="pl-col-label">Default</p>
+        <button class="btn btn--primary btn--default" type="button" style="pointer-events: none;">Action</button>
+      </div>
+      <div>
+        <p class="pl-col-label">Hover</p>
+        <button class="btn btn--primary btn--default btn--state-hover" type="button" style="pointer-events: none;">Action</button>
+      </div>
+      <div>
+        <p class="pl-col-label">Active / Pressed</p>
+        <button class="btn btn--primary btn--default btn--state-active" type="button" style="pointer-events: none;">Action</button>
+      </div>
+      <div>
+        <p class="pl-col-label">Focus</p>
+        <button class="btn btn--primary btn--default btn--state-focus" type="button" style="pointer-events: none;">Action</button>
+      </div>
+      <div>
+        <p class="pl-col-label">Disabled</p>
+        <button class="btn btn--primary btn--default" type="button" disabled aria-disabled="true" style="pointer-events: none;">Action</button>
+      </div>
+      <div>
+        <p class="pl-col-label">Loading</p>
+        <button class="btn btn--primary btn--default btn--loading" type="button" aria-busy="true" aria-label="Saving…" style="pointer-events: none;">Action</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Icon-Only
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="icon-only">
+  <h2 class="pl-section-title">Icon-Only</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8) — all require aria-label</p>
+    <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center;">
+      <button class="btn btn--primary btn--sm btn--icon-only" type="button" aria-label="Add item">
+        <span class="btn__icon btn__icon--sm"></span>
+      </button>
+      <button class="btn btn--primary btn--default btn--icon-only" type="button" aria-label="Add item">
+        <span class="btn__icon"></span>
+      </button>
+      <button class="btn btn--primary btn--lg btn--icon-only" type="button" aria-label="Add item">
+        <span class="btn__icon btn__icon--lg"></span>
+      </button>
+      <button class="btn btn--primary btn--default btn--icon-only btn--round" type="button" aria-label="Add item">
+        <span class="btn__icon"></span>
+      </button>
+      <button class="btn btn--ghost btn--default btn--icon-only" type="button" aria-label="Settings">
+        <span class="btn__icon"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Button Group
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="button-group">
+  <h2 class="pl-section-title">Button Group</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="btn-group">
+      <button class="btn btn--secondary btn--default" type="button">Cancel</button>
+      <button class="btn btn--primary btn--default" type="button">Save changes</button>
+    </div>
+    <div class="btn-group" style="margin-top: var(--space-6);">
+      <button class="btn btn--ghost btn--default" type="button">Export</button>
+      <button class="btn btn--ghost btn--default" type="button">Print</button>
+      <button class="btn btn--ghost btn--default" type="button">Share</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 6: Density Tiers
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="density">
+  <h2 class="pl-section-title">Density Tiers</h2>
+  <p class="pl-section-description">Padding tokens scale automatically. Font size, weight, and color do not change.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <div class="pl-grid-3">
+      <div data-density="compact">
+        <p class="pl-col-label">Compact (0.75×)</p>
+        <button class="btn btn--primary btn--default" type="button">Save</button>
+      </div>
+      <div>
+        <p class="pl-col-label">Default (1.0×)</p>
+        <button class="btn btn--primary btn--default" type="button">Save</button>
+      </div>
+      <div data-density="comfortable">
+        <p class="pl-col-label">Comfortable (1.25×)</p>
+        <button class="btn btn--primary btn--default" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 7: Tinted Surfaces
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">Tinted Surfaces</h2>
+  <p class="pl-section-description">Secondary button border adjusts on surface-teal to maintain contrast. Other variants are unaffected.</p>
+
+  <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+    <div class="pl-canvas" style="background: var(--color-surface-teal);">
+      <p class="pl-canvas-label">surface-teal (#E9F5F2) — secondary border uses color-border-focus at rest</p>
+      <div style="display: flex; gap: var(--space-3);">
+        <button class="btn btn--primary btn--default" type="button">Primary</button>
+        <button class="btn btn--secondary btn--default surface-teal" type="button">Secondary</button>
+        <button class="btn btn--ghost btn--default surface-teal" type="button">Ghost</button>
+      </div>
+    </div>
+    <div class="pl-canvas" style="background: var(--color-surface-sage);">
+      <p class="pl-canvas-label">surface-sage (#E7F2E8) — no adjustment needed</p>
+      <div style="display: flex; gap: var(--space-3);">
+        <button class="btn btn--primary btn--default" type="button">Primary</button>
+        <button class="btn btn--secondary btn--default" type="button">Secondary</button>
+        <button class="btn btn--ghost btn--default" type="button">Ghost</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: inject SVG icons into .btn__icon spans -->
+<script>
+(function () {
+  var ICON_PLUS = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg>';
+  var ICON_PLUS_SM = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg>';
+  var ICON_PLUS_LG = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="10" y1="3" x2="10" y2="17"/><line x1="3" y1="10" x2="17" y2="10"/></svg>';
+
+  document.querySelectorAll('.btn__icon').forEach(function (span) {
+    if (span.classList.contains('btn__icon--sm')) {
+      span.innerHTML = ICON_PLUS_SM;
+    } else if (span.classList.contains('btn__icon--lg')) {
+      span.innerHTML = ICON_PLUS_LG;
+    } else {
+      span.innerHTML = ICON_PLUS;
+    }
+  });
+})();
+</script>

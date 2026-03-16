@@ -1,1 +1,12 @@
-<!-- No scripts required for initial components. Add here as needed. -->
+<script type="module" src="/src/scripts/main.js"></script>
+<script>
+(function () {
+  var current = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.pl-nav-link').forEach(function (link) {
+    var href = (link.getAttribute('href') || '').split('/').pop().split('#')[0];
+    if (href && href === current) {
+      link.classList.add('active');
+    }
+  });
+})();
+</script>

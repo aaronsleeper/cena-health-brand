@@ -15,16 +15,30 @@ Agent architecture for the Cena Health brand design system — living-system pro
 
 ## Skill Files
 
-| Agent | Skill file |
-|---|---|
-| Color Theorist | `.agents/skills/color-theorist/SKILL.md` |
-| Typographer | `.agents/skills/typographer/SKILL.md` |
-| Space Architect | `.agents/skills/space-architect/SKILL.md` |
-| Motion Designer | `.agents/skills/motion-designer/SKILL.md` |
-| Visual Language Curator | `.agents/skills/visual-language-curator/SKILL.md` |
-| Component Designer | `.agents/skills/component-designer/SKILL.md` |
-| Design System Synthesizer | `.agents/skills/design-system-synthesizer/SKILL.md` |
-| Accessibility Reviewer | `.agents/skills/accessibility-reviewer/SKILL.md` |
+| Agent | Skill file | Purpose |
+|---|---|---|
+| Color Theorist | `.agents/skills/color-theorist/SKILL.md` | Design governance |
+| Typographer | `.agents/skills/typographer/SKILL.md` | Design governance |
+| Space Architect | `.agents/skills/space-architect/SKILL.md` | Design governance |
+| Motion Designer | `.agents/skills/motion-designer/SKILL.md` | Design governance |
+| Visual Language Curator | `.agents/skills/visual-language-curator/SKILL.md` | Design governance |
+| Component Designer | `.agents/skills/component-designer/SKILL.md` | Design governance |
+| Design System Synthesizer | `.agents/skills/design-system-synthesizer/SKILL.md` | Design governance |
+| Accessibility Reviewer | `.agents/skills/accessibility-reviewer/SKILL.md` | Design governance |
+| PL Component Builder | `.agents/skills/pl-component-builder/SKILL.md` | Build workflow |
+| PL Component QA | `.agents/skills/pl-component-qa/SKILL.md` | Build workflow |
+
+---
+
+## Two Separate Workflows
+
+This project has two distinct agent workflows that must not be conflated:
+
+**Design governance workflow** — for changes to the design system itself (tokens, specs, principles). Uses the domain-specialist → synthesizer → accessibility-reviewer → Aaron chain. No file is modified without passing this chain. Roles: Color Theorist, Typographer, Space Architect, Motion Designer, Visual Language Curator, Component Designer, Design System Synthesizer, Accessibility Reviewer.
+
+**Pattern library build workflow** — for implementing the design system in the pattern library (building component pages from existing specs and CSS). Uses the PL Component Builder → PL Component QA → Aaron visual review → commit sequence. The design governance chain is NOT invoked for pattern library builds — the spec and CSS already exist and have already been approved. Roles: PL Component Builder, PL Component QA.
+
+The distinction matters: if Aaron asks to "build the button component page," that is a build workflow task, not a design governance task. If Aaron asks to "change the button hover color," that is a design governance task.
 
 ---
 
