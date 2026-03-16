@@ -1,0 +1,485 @@
+<!--
+  @component-meta
+  name: Card
+  category: Layout
+  file: card.html
+  classes: card, card-image, card-image-illustration, card-body, card-overline, card-title, card-text, card-actions, card-interactive, card-feature, card-feature-teal, card-feature-sage, card-stat, card-stat-number, card-stat-label, card-stat-source, card-stat-content, card-stat-illustration, card-stat-illustrated, card-stat-hero, card-stat-number-animate, card-stat-number-counting, card-stat-label-animate, card-stat-label-visible, card-grid, card-grid-2, card-grid-3, card-grid-4
+  spec: components/ui/card.md
+  css: src/css/components/card.css
+  when-to-use: Group related information into scannable units — care plan summaries, feature callouts, key metrics. Use Default for general content, Feature for brand moments, Stat Callout for impactful data.
+  do-not-use-when: Content is a single inline element — use a badge or tag. Do not place stat callout cards on surface-teal (teal-on-teal collapses).
+  @end-meta
+-->
+
+<!-- PL-only state simulation helpers — never add to src/css/ -->
+<style>
+  .card--state-hover {
+    box-shadow: var(--shadow-sm) !important;
+    border-color: var(--color-border-brand) !important;
+    transform: translateY(calc(-1 * var(--space-0-5))) !important;
+  }
+  .card--state-active {
+    box-shadow: var(--shadow-sm) !important;
+    border-color: var(--color-border-brand) !important;
+    transform: translateY(0) !important;
+  }
+  .card--state-focus {
+    outline: none !important;
+    border-color: var(--color-border-focus) !important;
+    box-shadow: 0 0 0 2px var(--color-surface-page), 0 0 0 4px var(--color-border-focus) !important;
+  }
+</style>
+
+<!-- SVG icon templates -->
+<template id="icon-card-feature-teal">
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="6" y="6" width="28" height="28" rx="6"/>
+    <path d="M14 20h12M20 14v12"/>
+  </svg>
+</template>
+
+<template id="icon-card-feature-sage">
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="20" cy="20" r="14"/>
+    <path d="M15 20c2-4 8-4 10 0M15 20c2 4 8 4 10 0"/>
+  </svg>
+</template>
+
+<template id="icon-card-stat-illustration">
+  <svg width="96" height="96" viewBox="0 0 96 96" fill="none" aria-hidden="true">
+    <rect x="8" y="56" width="16" height="32" rx="4" fill="var(--color-surface-sage)" stroke="var(--color-brand-sage)" stroke-width="1.5"/>
+    <rect x="32" y="36" width="16" height="52" rx="4" fill="var(--color-surface-teal)" stroke="var(--color-brand-primary)" stroke-width="1.5"/>
+    <rect x="56" y="16" width="16" height="72" rx="4" fill="var(--color-surface-teal)" stroke="var(--color-brand-primary)" stroke-width="1.5"/>
+    <rect x="80" y="44" width="8" height="44" rx="4" fill="var(--color-surface-sage)" stroke="var(--color-brand-sage)" stroke-width="1.5"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Default Card
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default Card</h2>
+  <p class="pl-section-description">The workhorse container. With and without image, overline, and action row.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); max-width: 56rem;">
+
+      <!-- With image -->
+      <div class="card">
+        <div class="card-image card-image-illustration" style="height: 10rem; display: flex; align-items: center; justify-content: center;">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--color-brand-sage)" stroke-width="1.5" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="8"/><circle cx="24" cy="24" r="8"/></svg>
+        </div>
+        <div class="card-body">
+          <p class="card-overline">Nutrition</p>
+          <h3 class="card-title">Mediterranean Plan</h3>
+          <p class="card-text">Heart-healthy meals tailored to Mrs. Rivera's dietary preferences and cultural background.</p>
+          <div class="card-actions">
+            <button class="btn btn-primary btn-sm" type="button">View plan</button>
+            <button class="btn btn-ghost btn-sm" type="button">Edit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Without image -->
+      <div class="card">
+        <div class="card-body">
+          <p class="card-overline">Care Plan</p>
+          <h3 class="card-title">Weekly Check-In</h3>
+          <p class="card-text">Scheduled call with care coordinator to review meal adherence and update goals.</p>
+          <div class="card-actions">
+            <button class="btn btn-secondary btn-sm" type="button">Reschedule</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Minimal (no overline, no actions) -->
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Lab Results</h3>
+          <p class="card-text">HbA1c dropped from 9.2% to 7.8% over the past quarter. Continue current nutrition plan.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Interactive Card States
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="interactive">
+  <h2 class="pl-section-title">Interactive Card — States</h2>
+  <p class="pl-section-description">When the entire card is a link. Border + shadow provide dual hover cues for reduced-motion contexts.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="pl-grid-3">
+      <div>
+        <p class="pl-col-label">Default</p>
+        <a class="card card-interactive" href="#" onclick="return false;" style="pointer-events: none;">
+          <div class="card-body">
+            <h3 class="card-title">Care Plan</h3>
+            <p class="card-text">Click to view the full care plan summary.</p>
+          </div>
+        </a>
+      </div>
+      <div>
+        <p class="pl-col-label">Hover</p>
+        <a class="card card-interactive card--state-hover" href="#" onclick="return false;" style="pointer-events: none;">
+          <div class="card-body">
+            <h3 class="card-title">Care Plan</h3>
+            <p class="card-text">Click to view the full care plan summary.</p>
+          </div>
+        </a>
+      </div>
+      <div>
+        <p class="pl-col-label">Focus</p>
+        <a class="card card-interactive card--state-focus" href="#" onclick="return false;" style="pointer-events: none;">
+          <div class="card-body">
+            <h3 class="card-title">Care Plan</h3>
+            <p class="card-text">Click to view the full care plan summary.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Feature Cards
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="feature">
+  <h2 class="pl-section-title">Feature Cards</h2>
+  <p class="pl-section-description">Larger border radius, generous inset, optional brand icon. Used for product highlights and marketing content.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); max-width: 56rem;">
+
+      <!-- Default surface -->
+      <div class="card card-feature">
+        <div class="card-body">
+          <span class="card-icon-svg card-icon-svg--teal"></span>
+          <p class="card-overline">Platform</p>
+          <h3 class="card-title">Care Coordination</h3>
+          <p class="card-text">Connect patients, providers, and community health workers in a unified care pipeline.</p>
+        </div>
+      </div>
+
+      <!-- Teal surface -->
+      <div class="card card-feature card-feature-teal">
+        <div class="card-body">
+          <span class="card-icon-svg card-icon-svg--teal"></span>
+          <p class="card-overline">Clinical</p>
+          <h3 class="card-title">Outcome Tracking</h3>
+          <p class="card-text">Monitor HbA1c, blood pressure, and nutrition adherence with automated threshold alerts.</p>
+        </div>
+      </div>
+
+      <!-- Sage surface -->
+      <div class="card card-feature card-feature-sage">
+        <div class="card-body">
+          <span class="card-icon-svg card-icon-svg--sage"></span>
+          <p class="card-overline">Nutrition</p>
+          <h3 class="card-title">Meal Planning</h3>
+          <p class="card-text">Culturally appropriate meal plans designed by registered dietitians with patient input.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Stat Callout Cards
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="stat">
+  <h2 class="pl-section-title">Stat Callout Cards</h2>
+  <p class="pl-section-description">The brand's most impactful data presentation. Reserved for core claims. Never place on surface-teal.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); max-width: 56rem;">
+
+      <!-- Basic stat -->
+      <div class="card card-stat">
+        <div class="card-body">
+          <p class="card-overline">Clinical Outcomes</p>
+          <p class="card-stat-number" aria-label="30 percent">30%</p>
+          <p class="card-stat-label">reduction in hospitalizations</p>
+          <p class="card-stat-source">Source: UConn Health, 2024</p>
+        </div>
+      </div>
+
+      <!-- Basic stat (hero radius) -->
+      <div class="card card-stat card-stat-hero">
+        <div class="card-body">
+          <p class="card-overline">Emergency Care</p>
+          <p class="card-stat-number" aria-label="40 percent">40%</p>
+          <p class="card-stat-label">fewer ER visits among enrolled patients</p>
+          <p class="card-stat-source">Source: UConn Health, 2024</p>
+        </div>
+      </div>
+
+      <!-- Basic stat (no source) -->
+      <div class="card card-stat">
+        <div class="card-body">
+          <p class="card-stat-number" aria-label="2.4 million dollars">$2.4M</p>
+          <p class="card-stat-label">in preventable costs saved annually</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Stat with Illustration
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="stat-illustrated">
+  <h2 class="pl-section-title">Stat Callout — With Illustration</h2>
+  <p class="pl-section-description">Content ~60% width, illustration ~40%. Illustration is static while stat number animates.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 36rem;">
+      <div class="card card-stat card-stat-illustrated">
+        <div class="card-body">
+          <div class="card-stat-content">
+            <p class="card-overline">Clinical Outcomes</p>
+            <p class="card-stat-number" aria-label="30 percent">30%</p>
+            <p class="card-stat-label">reduction in hospitalizations</p>
+            <p class="card-stat-source">Source: UConn Health, 2024</p>
+          </div>
+          <div class="card-stat-illustration">
+            <span class="card-illustration-svg"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 6: Card Grid
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="grid">
+  <h2 class="pl-section-title">Card Grid</h2>
+  <p class="pl-section-description">2, 3, and 4 column grids. Cards stretch to equal height; action rows align bottom.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8) — 3 column</p>
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-overline">Week 1</p>
+          <h3 class="card-title">Initial Assessment</h3>
+          <p class="card-text">Comprehensive dietary review and baseline lab work.</p>
+          <div class="card-actions">
+            <button class="btn btn-primary btn-sm" type="button">Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-overline">Week 4</p>
+          <h3 class="card-title">Plan Adjustment</h3>
+          <p class="card-text">Review adherence data and adjust caloric targets based on weight trend and patient feedback from biweekly check-ins.</p>
+          <div class="card-actions">
+            <button class="btn btn-primary btn-sm" type="button">Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-overline">Week 12</p>
+          <h3 class="card-title">Outcome Review</h3>
+          <p class="card-text">Full labs and care plan evaluation.</p>
+          <div class="card-actions">
+            <button class="btn btn-primary btn-sm" type="button">Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 7: Surface Variants
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">Surface Variants</h2>
+  <p class="pl-section-description">Card background and border adjust per surface context. Stat callout must never sit on surface-teal.</p>
+
+  <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+    <div class="pl-canvas" style="background: var(--color-surface-page);">
+      <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+      <div class="card" style="max-width: 20rem;">
+        <div class="card-body">
+          <h3 class="card-title">Default on Page</h3>
+          <p class="card-text">Standard surface-primary background with border-default.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pl-canvas surface-primary" style="background: var(--color-surface-primary);">
+      <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+      <div class="card" style="max-width: 20rem;">
+        <div class="card-body">
+          <h3 class="card-title">On Primary</h3>
+          <p class="card-text">Inverts to surface-page background for contrast.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pl-canvas surface-teal" style="background: var(--color-surface-teal);">
+      <p class="pl-canvas-label">surface-teal (#E9F5F2)</p>
+      <div class="card" style="max-width: 20rem;">
+        <div class="card-body">
+          <h3 class="card-title">On Teal</h3>
+          <p class="card-text">Uses surface-page background with border-strong for separation.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pl-canvas surface-sage" style="background: var(--color-surface-sage);">
+      <p class="pl-canvas-label">surface-sage (#E7F2E8)</p>
+      <div class="card" style="max-width: 20rem;">
+        <div class="card-body">
+          <h3 class="card-title">On Sage</h3>
+          <p class="card-text">Uses surface-page background with border-default.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 8: Count-Up Animation
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="animation">
+  <h2 class="pl-section-title">Count-Up Animation</h2>
+  <p class="pl-section-description">Stat number counts from 0 to final value on first viewport entry. Label fades in after 500ms delay.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <button id="trigger-count" style="
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-on-primary);
+      background: var(--color-primary);
+      border: none;
+      border-radius: var(--radius-md);
+      padding: var(--space-2) var(--space-4);
+      cursor: pointer;
+      margin-bottom: var(--space-4);
+    ">Trigger count-up</button>
+
+    <div style="max-width: 20rem;">
+      <div class="card card-stat" id="count-demo">
+        <div class="card-body">
+          <p class="card-overline">Clinical Outcomes</p>
+          <p class="card-stat-number card-stat-number-animate" data-count-target="30" data-count-suffix="%" id="count-number" aria-label="30 percent">30%</p>
+          <p class="card-stat-label card-stat-label-animate" id="count-label">reduction in hospitalizations</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: icon injection + count-up demo -->
+<script>
+(function () {
+  // Inject feature card icons
+  document.querySelectorAll('.card-icon-svg').forEach(function (span) {
+    var isTeal = span.classList.contains('card-icon-svg--teal');
+    var isSage = span.classList.contains('card-icon-svg--sage');
+    var tmplId = isSage ? 'icon-card-feature-sage' : 'icon-card-feature-teal';
+    var tmpl = document.getElementById(tmplId);
+    if (tmpl) {
+      span.appendChild(tmpl.content.cloneNode(true));
+      span.style.display = 'block';
+      span.style.width = '2.5rem';
+      span.style.height = '2.5rem';
+      span.style.color = isSage ? 'var(--color-brand-sage)' : 'var(--color-brand-primary)';
+      span.style.marginBottom = 'var(--space-4)';
+    }
+  });
+
+  // Inject stat illustration SVG
+  document.querySelectorAll('.card-illustration-svg').forEach(function (span) {
+    var tmpl = document.getElementById('icon-card-stat-illustration');
+    if (tmpl) span.appendChild(tmpl.content.cloneNode(true));
+  });
+
+  // Count-up animation demo
+  var triggerBtn = document.getElementById('trigger-count');
+  var countNumber = document.getElementById('count-number');
+  var countLabel = document.getElementById('count-label');
+
+  if (triggerBtn && countNumber && countLabel) {
+    triggerBtn.addEventListener('click', function () {
+      var target = parseInt(countNumber.getAttribute('data-count-target'), 10);
+      var suffix = countNumber.getAttribute('data-count-suffix') || '';
+
+      // Reset
+      countNumber.classList.remove('card-stat-number-counting');
+      countNumber.classList.add('card-stat-number-animate');
+      countLabel.classList.remove('card-stat-label-visible');
+      countLabel.classList.add('card-stat-label-animate');
+      countNumber.textContent = '0' + suffix;
+
+      // Start count after a frame
+      requestAnimationFrame(function () {
+        countNumber.classList.remove('card-stat-number-animate');
+        countNumber.classList.add('card-stat-number-counting');
+
+        var start = performance.now();
+        var duration = 800;
+
+        function step(now) {
+          var elapsed = now - start;
+          var progress = Math.min(elapsed / duration, 1);
+          // Emphasis easing approximation
+          var eased = progress < 0.5
+            ? 4 * progress * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+          var current = Math.round(eased * target);
+          countNumber.textContent = current + suffix;
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          }
+        }
+
+        requestAnimationFrame(step);
+
+        // Label fade-in after 500ms
+        setTimeout(function () {
+          countLabel.classList.remove('card-stat-label-animate');
+          countLabel.classList.add('card-stat-label-visible');
+        }, 500);
+      });
+    });
+  }
+})();
+</script>

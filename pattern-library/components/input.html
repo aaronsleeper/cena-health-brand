@@ -1,0 +1,407 @@
+<!--
+  @component-meta
+  name: Input
+  category: Primitives
+  file: input.html
+  classes: field, field-row, input-field, input-field-sm, input-field-error, input-field-error-pulse, input-field-success, input-label, input-label-required, input-label-sm, input-wrapper, input-wrapper-leading, input-wrapper-trailing, input-icon, input-icon-leading, input-icon-trailing, input-icon-success, input-helper, input-error-msg, input-success-msg
+  spec: components/ui/input.md
+  css: src/css/components/input.css
+  when-to-use: Any data entry point — clinical forms, enrollment flows, search, administrative interfaces. Every input must have a visible label.
+  do-not-use-when: The input is a toggle or binary choice — use a checkbox or switch. Do not use for rich text editing.
+  @end-meta
+-->
+
+<!-- PL-only state simulation helpers — never add to src/css/ -->
+<style>
+  .input--state-hover .input-field {
+    border-color: var(--color-border-focus) !important;
+  }
+  .input--state-focus .input-field {
+    border-color: var(--color-border-focus) !important;
+    box-shadow: 0 0 0 var(--space-0-5) oklch(56.3% 0.0762 181.3 / 15%) !important;
+  }
+</style>
+
+<!-- SVG icon templates -->
+<template id="icon-search">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <circle cx="9" cy="9" r="6"/>
+    <line x1="13.5" y1="13.5" x2="17" y2="17"/>
+  </svg>
+</template>
+
+<template id="icon-mail">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="3" y="5" width="14" height="10" rx="2"/>
+    <polyline points="3,5 10,11 17,5"/>
+  </svg>
+</template>
+
+<template id="icon-check-circle">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="10" cy="10" r="8"/>
+    <polyline points="7,10 9,12 13,8"/>
+  </svg>
+</template>
+
+<template id="icon-error-circle">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="10" cy="10" r="8"/>
+    <line x1="10" y1="7" x2="10" y2="11"/>
+    <line x1="10" y1="13.5" x2="10" y2="13.51"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Default Input
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default Input</h2>
+  <p class="pl-section-description">Label + input + optional helper text. Every input must have a visible label.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 24rem;">
+      <div class="field">
+        <label class="input-label" for="demo-default">Full name</label>
+        <input class="input-field" type="text" id="demo-default" placeholder="e.g. Maria Rivera">
+        <p class="input-helper">As it appears on the patient's insurance card.</p>
+      </div>
+
+      <div class="field">
+        <label class="input-label input-label-required" for="demo-required">Email address</label>
+        <input class="input-field" type="email" id="demo-required" placeholder="maria@example.com" aria-required="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Sizes
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="sizes">
+  <h2 class="pl-section-title">Sizes</h2>
+  <p class="pl-section-description">Default (44px) and Small (36px). No Large size — use comfortable density for generous spacing.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; gap: var(--space-8); max-width: 36rem;">
+      <div class="field" style="flex: 1;">
+        <label class="input-label" for="demo-size-default">Default</label>
+        <input class="input-field" type="text" id="demo-size-default" placeholder="44px height">
+      </div>
+      <div class="field" style="flex: 1;">
+        <label class="input-label input-label-sm" for="demo-size-sm">Small</label>
+        <input class="input-field input-field-sm" type="text" id="demo-size-sm" placeholder="36px height">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: States
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="states">
+  <h2 class="pl-section-title">States</h2>
+  <p class="pl-section-description">Eight states. Error and success use dual cues (border + icon/text) — never color alone.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); max-width: 36rem;">
+
+      <!-- Default -->
+      <div class="field">
+        <label class="input-label">Default</label>
+        <input class="input-field" type="text" placeholder="Placeholder text" readonly style="pointer-events: none;">
+      </div>
+
+      <!-- Hover -->
+      <div class="field input--state-hover">
+        <label class="input-label">Hover</label>
+        <input class="input-field" type="text" placeholder="Placeholder text" readonly style="pointer-events: none;">
+      </div>
+
+      <!-- Focus -->
+      <div class="field input--state-focus">
+        <label class="input-label">Focus</label>
+        <input class="input-field" type="text" value="Typing here..." readonly style="pointer-events: none;">
+      </div>
+
+      <!-- Filled -->
+      <div class="field">
+        <label class="input-label">Filled</label>
+        <input class="input-field" type="text" value="Maria Rivera" readonly style="pointer-events: none;">
+      </div>
+
+      <!-- Error -->
+      <div class="field">
+        <label class="input-label">Error</label>
+        <input class="input-field input-field-error" type="text" value="maria@" aria-invalid="true" readonly style="pointer-events: none;">
+        <p class="input-error-msg">Enter a valid email address</p>
+      </div>
+
+      <!-- Success -->
+      <div class="field">
+        <label class="input-label">Success</label>
+        <div class="input-wrapper input-wrapper-trailing">
+          <input class="input-field input-field-success" type="text" value="maria@example.com" readonly style="pointer-events: none;">
+          <span class="input-icon input-icon-trailing input-icon-success" data-icon="check-circle"></span>
+        </div>
+        <p class="input-success-msg">Email verified</p>
+      </div>
+
+      <!-- Disabled -->
+      <div class="field">
+        <label class="input-label">Disabled</label>
+        <input class="input-field" type="text" value="Cannot edit" disabled aria-disabled="true">
+      </div>
+
+      <!-- Read-only -->
+      <div class="field">
+        <label class="input-label">Read-only</label>
+        <input class="input-field" type="text" value="Maria Rivera" readonly>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: With Icons
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="icons">
+  <h2 class="pl-section-title">With Icons</h2>
+  <p class="pl-section-description">Leading icon for type indicators (search, email). Trailing icon for validation or actions.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 24rem;">
+      <!-- Leading icon -->
+      <div class="field">
+        <label class="input-label" for="demo-icon-leading">Search</label>
+        <div class="input-wrapper input-wrapper-leading">
+          <span class="input-icon input-icon-leading" data-icon="search"></span>
+          <input class="input-field" type="search" id="demo-icon-leading" placeholder="Search patients...">
+        </div>
+      </div>
+
+      <!-- Leading + trailing -->
+      <div class="field">
+        <label class="input-label" for="demo-icon-both">Email</label>
+        <div class="input-wrapper input-wrapper-leading input-wrapper-trailing">
+          <span class="input-icon input-icon-leading" data-icon="mail"></span>
+          <input class="input-field input-field-success" type="email" id="demo-icon-both" value="maria@example.com">
+          <span class="input-icon input-icon-trailing input-icon-success" data-icon="check-circle"></span>
+        </div>
+        <p class="input-success-msg">Email verified</p>
+      </div>
+
+      <!-- Error with trailing icon -->
+      <div class="field">
+        <label class="input-label" for="demo-icon-error">Email</label>
+        <div class="input-wrapper input-wrapper-leading input-wrapper-trailing">
+          <span class="input-icon input-icon-leading" data-icon="mail"></span>
+          <input class="input-field input-field-error" type="email" id="demo-icon-error" value="maria@" aria-invalid="true">
+          <span class="input-icon input-icon-trailing" data-icon="error-circle" style="color: var(--color-error-base);"></span>
+        </div>
+        <p class="input-error-msg">Enter a valid email address</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Textarea
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="textarea">
+  <h2 class="pl-section-title">Textarea</h2>
+  <p class="pl-section-description">Multi-line input for clinical notes and documentation. Minimum 3 lines, vertical resize only.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 30rem;">
+      <div class="field">
+        <label class="input-label" for="demo-textarea">Care plan notes</label>
+        <textarea class="input-field" id="demo-textarea" placeholder="Document observations, recommendations, and next steps..."></textarea>
+        <p class="input-helper">Visible to the care team. Do not include PHI beyond what is clinically relevant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 6: Side-by-Side Fields
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="field-row">
+  <h2 class="pl-section-title">Side-by-Side Fields</h2>
+  <p class="pl-section-description">Fields in a row stack vertically on mobile (&lt;600px).</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 36rem;">
+      <div class="field-row">
+        <div class="field">
+          <label class="input-label" for="demo-first">First name</label>
+          <input class="input-field" type="text" id="demo-first" placeholder="Maria">
+        </div>
+        <div class="field">
+          <label class="input-label" for="demo-last">Last name</label>
+          <input class="input-field" type="text" id="demo-last" placeholder="Rivera">
+        </div>
+      </div>
+      <div class="field">
+        <label class="input-label input-label-required" for="demo-email-row">Email address</label>
+        <input class="input-field" type="email" id="demo-email-row" placeholder="maria@example.com" aria-required="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 7: Surface Variants
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">Surface Variants</h2>
+  <p class="pl-section-description">Input always uses surface-page as its background — creating a recessed paper-white field on tinted surfaces.</p>
+
+  <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+    <div class="pl-canvas" style="background: var(--color-surface-page);">
+      <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+      <div style="max-width: 20rem;">
+        <div class="field">
+          <label class="input-label">On page</label>
+          <input class="input-field" type="text" placeholder="Default appearance">
+        </div>
+      </div>
+    </div>
+    <div class="pl-canvas surface-primary" style="background: var(--color-surface-primary);">
+      <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+      <div style="max-width: 20rem;">
+        <div class="field">
+          <label class="input-label">On primary</label>
+          <input class="input-field" type="text" placeholder="Recessed into surface">
+        </div>
+      </div>
+    </div>
+    <div class="pl-canvas surface-teal" style="background: var(--color-surface-teal);">
+      <p class="pl-canvas-label">surface-teal (#E9F5F2)</p>
+      <div style="max-width: 20rem;">
+        <div class="field">
+          <label class="input-label">On teal</label>
+          <input class="input-field" type="text" placeholder="Paper-white field on tint">
+        </div>
+      </div>
+    </div>
+    <div class="pl-canvas surface-sage" style="background: var(--color-surface-sage);">
+      <p class="pl-canvas-label">surface-sage (#E7F2E8)</p>
+      <div style="max-width: 20rem;">
+        <div class="field">
+          <label class="input-label">On sage</label>
+          <input class="input-field" type="text" placeholder="Paper-white field on tint">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 8: Error Pulse Animation
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="animation">
+  <h2 class="pl-section-title">Error Pulse Animation</h2>
+  <p class="pl-section-description">Brief background flash draws the eye on validation failure. Border + message + icon persist.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <button id="trigger-error-pulse" style="
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-on-primary);
+      background: var(--color-primary);
+      border: none;
+      border-radius: var(--radius-md);
+      padding: var(--space-2) var(--space-4);
+      cursor: pointer;
+      margin-bottom: var(--space-4);
+    ">Trigger error pulse</button>
+
+    <div style="max-width: 24rem;">
+      <div class="field">
+        <label class="input-label input-label-required" for="demo-pulse">Email address</label>
+        <input class="input-field" type="email" id="demo-pulse" value="maria@">
+        <p class="input-error-msg" id="demo-pulse-msg" style="visibility: hidden;">Enter a valid email address</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: icon injection + error pulse demo -->
+<script>
+(function () {
+  // Icon injection
+  var iconMap = {
+    'search': 'icon-search',
+    'mail': 'icon-mail',
+    'check-circle': 'icon-check-circle',
+    'error-circle': 'icon-error-circle'
+  };
+
+  document.querySelectorAll('[data-icon]').forEach(function (span) {
+    var iconName = span.getAttribute('data-icon');
+    var tmplId = iconMap[iconName];
+    if (!tmplId) return;
+    var tmpl = document.getElementById(tmplId);
+    if (tmpl && !span.querySelector('svg')) {
+      span.appendChild(tmpl.content.cloneNode(true));
+    }
+  });
+
+  // Error pulse demo
+  var triggerBtn = document.getElementById('trigger-error-pulse');
+  var pulseInput = document.getElementById('demo-pulse');
+  var pulseMsg = document.getElementById('demo-pulse-msg');
+
+  if (triggerBtn && pulseInput && pulseMsg) {
+    triggerBtn.addEventListener('click', function () {
+      // Reset
+      pulseInput.classList.remove('input-field-error', 'input-field-error-pulse');
+      pulseMsg.style.visibility = 'hidden';
+
+      // Trigger after a frame
+      requestAnimationFrame(function () {
+        pulseInput.classList.add('input-field-error', 'input-field-error-pulse');
+        pulseMsg.style.visibility = 'visible';
+
+        // Remove pulse class after animation completes
+        pulseInput.addEventListener('animationend', function () {
+          pulseInput.classList.remove('input-field-error-pulse');
+        }, { once: true });
+      });
+    });
+  }
+})();
+</script>
