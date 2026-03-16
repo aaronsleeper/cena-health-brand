@@ -1,0 +1,311 @@
+/* ==========================================================================
+   Cena Health — Alert Component
+   Source: components/ui/alert.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Base
+     -------------------------------------------------------------------------- */
+
+  .alert {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    border-left-width: 3px;
+    position: relative;
+  }
+
+  /* --------------------------------------------------------------------------
+     Variants
+     -------------------------------------------------------------------------- */
+
+  .alert--info {
+    background-color: var(--color-info-bg);
+    border-color: var(--color-info-border);
+    border-left-color: var(--color-info-base);
+  }
+
+  .alert--warning {
+    background-color: var(--color-warning-bg);
+    border-color: var(--color-warning-border);
+    border-left-color: var(--color-warning-base);
+  }
+
+  .alert--error {
+    background-color: var(--color-error-bg);
+    border-color: var(--color-error-border);
+    border-left-color: var(--color-error-base);
+  }
+
+  .alert--success {
+    background-color: var(--color-success-bg);
+    border-color: var(--color-success-border);
+    border-left-color: var(--color-success-base);
+  }
+
+  /* --------------------------------------------------------------------------
+     Icon
+     -------------------------------------------------------------------------- */
+
+  .alert__icon {
+    flex-shrink: 0;
+    width: var(--icon-md);
+    height: var(--icon-md);
+    /* Align icon to first line of message text */
+    margin-top: var(--space-px);
+  }
+
+  .alert--info .alert__icon {
+    color: var(--color-info-base);
+  }
+
+  .alert--warning .alert__icon {
+    color: var(--color-warning-base);
+  }
+
+  .alert--error .alert__icon {
+    color: var(--color-error-base);
+  }
+
+  .alert--success .alert__icon {
+    color: var(--color-success-base);
+  }
+
+  /* --------------------------------------------------------------------------
+     Content
+     -------------------------------------------------------------------------- */
+
+  .alert__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .alert__message {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: var(--leading-body-sm);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .alert--info .alert__message {
+    color: var(--color-info-text);
+  }
+
+  .alert--warning .alert__message {
+    color: var(--color-warning-text);
+  }
+
+  .alert--error .alert__message {
+    color: var(--color-error-text);
+  }
+
+  .alert--success .alert__message {
+    color: var(--color-success-text);
+  }
+
+  .alert__description {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: var(--leading-body-sm);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-primary);
+    margin-top: var(--space-1);
+  }
+
+  /* --------------------------------------------------------------------------
+     Dismiss Button
+     -------------------------------------------------------------------------- */
+
+  .alert--dismissible {
+    padding-right: var(--space-10);
+  }
+
+  .alert__dismiss {
+    position: absolute;
+    top: var(--space-1);
+    right: var(--space-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;   /* 44px — WCAG 2.5.8 touch target */
+    height: 2.75rem;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    cursor: pointer;
+    transition:
+      background-color var(--duration-fast) var(--ease-transition),
+      opacity var(--duration-fast) var(--ease-transition);
+  }
+
+  .alert__dismiss svg,
+  .alert__dismiss .alert__dismiss-icon {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+  }
+
+  /* Dismiss icon color per variant — 70% opacity at rest */
+  .alert--info .alert__dismiss {
+    color: var(--color-info-text);
+    opacity: 0.7;
+  }
+
+  .alert--warning .alert__dismiss {
+    color: var(--color-warning-text);
+    opacity: 0.7;
+  }
+
+  .alert--error .alert__dismiss {
+    color: var(--color-error-text);
+    opacity: 0.7;
+  }
+
+  .alert--success .alert__dismiss {
+    color: var(--color-success-text);
+    opacity: 0.7;
+  }
+
+  /* Hover */
+  .alert__dismiss:hover {
+    opacity: 1;
+  }
+
+  .alert--info .alert__dismiss:hover {
+    background-color: oklch(62.0% 0.080 235 / 12%);
+  }
+
+  .alert--warning .alert__dismiss:hover {
+    background-color: oklch(75.0% 0.100 82 / 12%);
+  }
+
+  .alert--error .alert__dismiss:hover {
+    background-color: oklch(68.0% 0.120 25 / 12%);
+  }
+
+  .alert--success .alert__dismiss:hover {
+    background-color: oklch(62.0% 0.090 160 / 12%);
+  }
+
+  /* Focus */
+  .alert__dismiss:focus-visible {
+    outline: none;
+    opacity: 1;
+  }
+
+  .alert--info .alert__dismiss:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--color-info-bg),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .alert--warning .alert__dismiss:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--color-warning-bg),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .alert--error .alert__dismiss:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--color-error-bg),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .alert--success .alert__dismiss:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--color-success-bg),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  /* Active */
+  .alert__dismiss:active {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+
+  /* --------------------------------------------------------------------------
+     Enter Animation
+     -------------------------------------------------------------------------- */
+
+  .alert--enter {
+    animation: alert-enter var(--duration-normal) var(--ease-enter) both;
+  }
+
+  @keyframes alert-enter {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-1));
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Exit Animation
+     -------------------------------------------------------------------------- */
+
+  .alert--exit {
+    animation: alert-exit var(--duration-fast) var(--ease-exit) both;
+  }
+
+  @keyframes alert-exit {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .alert--enter {
+      animation: alert-enter-reduced var(--duration-fast) var(--ease-transition) both;
+    }
+
+    @keyframes alert-enter-reduced {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .alert--exit {
+      animation-duration: 0ms;
+    }
+
+    .alert__dismiss {
+      transition-duration: 0ms;
+    }
+
+    .alert__dismiss:active {
+      transform: none;
+    }
+  }
+}
