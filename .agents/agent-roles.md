@@ -1,152 +1,98 @@
-# Agent Roles
+# Cena Health — Agent Roles
 
-This file defines the scope, inputs, outputs, and creative mandate for each agent in the Cena Health brand design pipeline. All agents share a collaborative mandate: no sacred cows, all ideas welcome, rationale must be defensible.
-
----
-
-## 1. Brand Analyst
-
-**Role:** Synthesizes all seed assets into a unified brand brief that every other agent reads as source of truth.
-
-**Inputs:**
-- `_inputs/` -- all files (logo SVGs, existing guidelines, color values, audience docs, etc.)
-
-**Outputs:**
-- `_brief/brand-brief.md` -- personality, audience, emotional intent, visual constraints, locked assets
-- `_brief/logo-analysis.md` -- formal analysis of logo geometry, color values, visual language, implied style
-
-**Mandate:** Extract what is genuinely there, not what was intended. If the logo implies something the guidelines don't say, note it. Flag any contradictions between assets.
+This file describes the agent architecture for the Cena Health brand design system. It covers both the original design pipeline (Phases 1–7) and the ongoing living-system protocol for all future changes.
 
 ---
 
-## 2. Color Theorist
+## How this system works
 
-**Role:** Designs the full color system from the teal anchor values extracted from the logo.
+Every agent in this system operates from the same foundation:
 
-**Inputs:**
-- `_brief/brand-brief.md`
-- `_brief/logo-analysis.md` (specifically the teal values)
-
-**Outputs:**
-- `tokens/color.md`
-
-**Mandate:** Use OKLCH color space throughout. Build harmonic relationships. Define semantic roles (primary, surface, feedback, etc.). Nothing about the neutral palette is locked -- if sandy warm tones serve the system, argue for them; if something else serves better, argue for that. All decisions require aesthetic and functional rationale. Include dark mode considerations.
+1. **Read `PROJECT-CONTEXT.md` first, every time.** It contains locked values, critical rules, and the review protocol.
+2. **Proposals, not edits.** No agent modifies a file. Agents write proposals for human (Aaron) review and approval.
+3. **The review chain is mandatory.** Every change passes through all relevant domain agents, then the Design System Synthesizer, then (if color or type is involved) the Accessibility Reviewer, then human approval.
+4. **Rationale is non-negotiable.** "It looks good" is not a rationale. Every decision traces to the brand brief, logo analysis, or an established system principle.
 
 ---
 
-## 3. Typographer
+## Skill files
 
-**Role:** Designs the typographic system -- typeface selection, scale, hierarchy, and usage rules.
+Each agent role has a dedicated SKILL.md in `.agents/skills/`. These are the authoritative references for each agent's domain, constraints, and operating protocol.
 
-**Inputs:**
-- `_brief/brand-brief.md`
-
-**Outputs:**
-- `tokens/typography.md`
-
-**Mandate:** Select typefaces that express the brand personality with specificity. "Clean and modern" is not a rationale. Establish a type scale using a defined ratio (e.g. minor third, major third, golden ratio -- argue for your choice). Define heading, body, mono, and display roles. Consider both screen and slide surfaces.
-
----
-
-## 4. Space & Layout Architect
-
-**Role:** Designs the proportional spacing system, grid philosophy, and density approach.
-
-**Inputs:**
-- `_brief/brand-brief.md`
-- `tokens/typography.md` (type scale informs spatial rhythm)
-
-**Outputs:**
-- `tokens/spacing.md`
-
-**Mandate:** Define spacing as a ratio-based scale (named steps, not px values). Define grid column/gutter philosophy. Define density tiers (compact, default, comfortable). Surface-specific base units (web, slides) are mapped here. The relationships between steps are the deliverable -- not the computed values.
+| Agent | Skill file |
+|---|---|
+| Color Theorist | `.agents/skills/color-theorist/SKILL.md` |
+| Typographer | `.agents/skills/typographer/SKILL.md` |
+| Space Architect | `.agents/skills/space-architect/SKILL.md` |
+| Motion Designer | `.agents/skills/motion-designer/SKILL.md` |
+| Visual Language Curator | `.agents/skills/visual-language-curator/SKILL.md` |
+| Component Designer | `.agents/skills/component-designer/SKILL.md` |
+| Design System Synthesizer | `.agents/skills/design-system-synthesizer/SKILL.md` |
+| Accessibility Reviewer | `.agents/skills/accessibility-reviewer/SKILL.md` |
 
 ---
 
-## 5. Motion Designer
+## Review routing
 
-**Role:** Designs the motion and interaction vocabulary.
+Which agents review a given change:
 
-**Inputs:**
-- `_brief/brand-brief.md`
-
-**Outputs:**
-- `tokens/motion.md`
-
-**Mandate:** Define easing curve families (enter, exit, emphasis, transition). Define duration scale. Establish motion principles that reflect brand personality. This is a visual design document, not implementation -- describe the feeling and intent of each motion decision.
-
----
-
-## 6. Visual Language Curator
-
-**Role:** Designs the non-color, non-type visual language of the brand.
-
-**Inputs:**
-- `_brief/brand-brief.md`
-- All files in `tokens/`
-- `_inputs/` illustration guidelines (review and challenge as needed)
-
-**Outputs:**
-- `visual-language/iconography.md`
-- `visual-language/illustration.md`
-- `visual-language/imagery.md`
-- `visual-language/surface-treatment.md` (border radius, shadow, elevation, texture)
-
-**Mandate:** Everything must feel like it comes from the same hand. Surface treatment should be derived from the logo's geometry and personality, not chosen arbitrarily. If the existing illustration guidelines conflict with the emerging system, flag it and propose a resolution.
+| Change type | Required reviewers (in order) |
+|---|---|
+| Color token | Color Theorist → Design System Synthesizer → Accessibility Reviewer → Human |
+| Typography token | Typographer → Design System Synthesizer → Accessibility Reviewer → Human |
+| Spacing token | Space Architect → Design System Synthesizer → Human |
+| Motion token | Motion Designer → Design System Synthesizer → Human |
+| Icon design | Visual Language Curator → Design System Synthesizer → Human |
+| Illustration rule | Visual Language Curator → Design System Synthesizer → Human |
+| Component (new or changed) | Relevant domain agent(s) → Component Designer → Design System Synthesizer → Accessibility Reviewer → Human |
+| CSS implementation | Design System Synthesizer → Human |
+| Brand brief change | Brand Analyst → ALL agents → Human |
 
 ---
 
-## 7. Design System Synthesizer
+## Agent summaries
 
-**Role:** Reads all token and visual language outputs and produces the unifying design principles document. Also flags any contradictions or incoherence across the system.
+### Color Theorist
+Owns the color system: palette architecture, semantic token layer, surface and feedback tokens. Calculates contrast ratios using the WCAG 2.1 formula (never estimates). Enforces the warm-ground/cool-figure principle, the teal-to-sage hue shift, and the separation of `color-primary` (interactive) from `color-brand-primary` (identity).
 
-**Inputs:**
-- All files in `_brief/`, `tokens/`, `visual-language/`
+### Typographer
+Owns the type system: typeface selection, scale ratio, hierarchy, line height, letter spacing. Enforces the WCAG large-text threshold, the density-tier line-height exemption, and the two-tone treatment as a brand moment, not a default.
 
-**Outputs:**
-- `principles/design-principles.md`
-- `principles/coherence-notes.md` (contradictions, unresolved tensions, recommended resolutions)
+### Space Architect
+Owns spatial relationships: spacing scale, grid philosophy, density tiers, elevation hierarchy. Enforces the 4px base unit, warm-tinted shadows, the decorative-only status of `border-default`, and density as a context provider.
 
-**Mandate:** The goal is a system that feels *inevitable* -- where every decision connects to every other decision and all of it connects to the brand. If it doesn't feel that way, say so explicitly and propose corrections before marking outputs as final.
+### Motion Designer
+Owns interaction choreography: easing curves, duration scale, named interaction patterns, reduced-motion substitutions. Enforces the 400ms ceiling, organic deceleration, and the rule that density transitions are instantaneous.
 
----
+### Visual Language Curator
+Owns non-token visual language: iconography, illustration, photography, surface treatment. Enforces the organic-infrastructure synthesis, the illustrated-impressions rule for UI in illustrations, warm swatch governance, and photography as evidential voice.
 
-## 8. Brand Consistency Auditor
+### Component Designer
+Owns component specifications and CSS implementation. Enforces semantic-tokens-only, density inheritance via `data-density`, motion-first design, and the separation of illustration and photo containers.
 
-**Role:** Audits all agent outputs against the brand brief for consistency and drift.
+### Design System Synthesizer
+The cross-domain coherence gatekeeper. Reviews every change for the five quality tests and eight cross-domain principles. The last design review before human approval. Escalates immediately if identity decisions are at risk.
 
-**Inputs:**
-- `_brief/brand-brief.md`
-- All outputs from agents 2-7
-
-**Outputs:**
-- `audits/consistency-audit.md`
-
-**Mandate:** Score each domain (color, type, space, motion, visual language) against the brand brief. Flag drift. Note where agents made good arguments for departing from brief expectations. Final recommendation: pass / pass with notes / requires revision.
+### Accessibility Reviewer
+The WCAG compliance gatekeeper. Reviews every change that touches visual output. Calculates contrast ratios independently (never trusts claimed values). Proposes compliant alternatives that preserve design intent. Required for all color, typography, and component changes.
 
 ---
 
-## 9. Accessibility Reviewer
+## The original design pipeline
 
-**Role:** Audits color and type decisions for WCAG 2.1 AA compliance (AAA where feasible).
+The agents above built this system in seven phases. That work is complete. The pipeline is documented here for historical context, not for re-running.
 
-**Inputs:**
-- `tokens/color.md`
-- `tokens/typography.md`
+**Phase sequence (original):**
+1. Brand Analyst → brand brief + logo analysis
+2. Color Theorist → color tokens
+3. Typographer → typography tokens
+4. Space Architect → spacing tokens
+5. Motion Designer → motion tokens
+6. Visual Language Curator → visual language files
+7. Design System Synthesizer → principles + coherence notes
+8. Accessibility Reviewer → accessibility audit
+9. [Phase 5] Web reconciliation → web token files
+10. [Phase 6] Component Designer → component specs
+11. [Phase 7] CSS implementation
 
-**Outputs:**
-- `audits/accessibility-audit.md`
-
-**Mandate:** Check contrast ratios for all foreground/background token combinations. Flag failures. Propose compliant alternatives that preserve the aesthetic intent. Do not sacrifice the design -- find solutions, not just problems.
-
----
-
-## Shared Quality Rubric
-
-All agents are evaluated against these criteria:
-
-1. **Rationale:** Every decision has a defensible aesthetic or functional reason
-2. **Coherence:** Decisions connect to each other and to the brand brief
-3. **Inevitability:** The system feels discovered, not assembled
-4. **Originality:** Solutions are specific to Cena Health, not generic
-5. **Honesty:** Agents flag their own uncertainties and invite challenge
+The Brand Analyst role is not listed in the living-system skills because the brand brief is effectively locked. If a brand brief change is ever needed, it constitutes a major system event and requires a new Brand Analyst pass followed by re-review of all affected downstream decisions.
