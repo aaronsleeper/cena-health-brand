@@ -1,13 +1,7 @@
 # Cena Health Brand Design System — Project Roadmap
 
-**Status: COMPLETE**
+**Status: Phase 7 Complete — Active Development**
 **Last updated:** 2026-03-16
-
----
-
-## Project Vision
-
-A collaboratively designed visual identity and design system for Cena Health, produced by a suite of specialist AI agents with deep, compatible expertise. The system serves two surfaces: product UI (web applications) and automated slide deck creation, from a single shared token foundation.
 
 ---
 
@@ -65,54 +59,119 @@ Every decision traces to this idea — from the logo's concentric rings to the c
 | `src/css/slides/stat-callout.css` | 7 | ✅ |
 | `dist/cena-health.css` | 7 | ✅ ~49KB minified |
 
+### Agent Infrastructure
+
+| File | Status |
+|---|---|
+| `.agents/PROJECT-CONTEXT.md` | ✅ |
+| `.agents/agent-roles.md` | ✅ |
+| `.agents/skills/color-theorist/SKILL.md` | ✅ |
+| `.agents/skills/typographer/SKILL.md` | ✅ |
+| `.agents/skills/space-architect/SKILL.md` | ✅ |
+| `.agents/skills/motion-designer/SKILL.md` | ✅ |
+| `.agents/skills/visual-language-curator/SKILL.md` | ✅ |
+| `.agents/skills/component-designer/SKILL.md` | ✅ |
+| `.agents/skills/design-system-synthesizer/SKILL.md` | ✅ |
+| `.agents/skills/accessibility-reviewer/SKILL.md` | ✅ |
+| `CLAUDE.md` | ✅ |
+
+---
+
+## Outstanding Work
+
+Items are grouped by type. All require agent review per `.agents/agent-roles.md` before implementation.
+
+### Blocking (gates other work)
+
+**1. Canonical illustration SVG assets**
+3–5 examples per type (spot, narrative, data, background texture, diagram). Blocks all illustration-adjacent components: empty states, hero sections, onboarding, anything requiring an illustration well.
+Spec: `visual-language/illustration.md §5`
+
+**2. Photography LUT / Lightroom preset**
+Operational version of the color treatment spec in `visual-language/imagery.md §2`. Required before partner photography or food documentation enters production. Without it, each photographer interprets the spec independently and results diverge.
+
+### Design gaps
+
+**3. Data visualization language**
+Charts, sparklines, heat maps, data tables with embedded visualization. Color-to-series mapping, axis styling, chart label typography, interaction states. Gap documented in `principles/coherence-notes.md §3.1`.
+
+**4. Expanded component library — UI track**
+Priority order (per coherence-notes §6 and component-designer skill):
+- `alert.md` / `alert.css` — info/warning/error/success banners
+- `badge.md` / `badge.css` — status indicators, tags
+- `modal.md` / `modal.css` — dialog overlay
+- `dropdown.md` / `dropdown.css` — menus, select panels
+- `toast.md` / `toast.css` — notification system
+- `form-group.md` — label + input + helper text layout
+- `table.md` — clinical data tables in compact density
+- `nav.md` — navigation bar, sidebar, tab bar
+
+**5. Expanded component library — Slides track**
+- `data-slide.md` — chart frame + annotation system
+- `quote-slide.md` — patient/partner testimonials
+- `section-divider.md` — branded section break slide
+
+### Implementation hardening
+
+**6. Tailwind config hardening**
+Embed system logic in architecture, not just documentation (per `principles/coherence-notes.md` final paragraph). Three specific changes to `src/css/main.css` and Tailwind config:
+- Remove `white` / `#ffffff` from the theme palette; alias `surface-page` as the "white" equivalent so `bg-white` is unavailable
+- Replace Tailwind's default shadow scale (cool gray) with warm-only shadow tokens exclusively
+- Gate teal-500 utilities behind a `brand-` prefix (`bg-brand-primary`) so `bg-teal-500` is not a usable class; interactive fill utilities exist only for teal-400 (`bg-primary`)
+
+**7. Figma variable architecture**
+Figma variables mapped to the token system, enabling design-to-code handoff without value drift. Token architecture (semantic referencing palette) maps cleanly to Figma variable collections. The Figma MCP connection is available. This is substantial work — likely a dedicated session.
+
+### Governance
+
+**8. Git history baseline commit**
+The existing project files predate the commit protocol. A baseline commit documenting the state at project completion would give the git log a clean starting point for the living-system phase.
+Suggested message:
+```
+[system] baseline commit — design system v1.0 complete
+
+Phases 0–7 complete. All tokens, visual language, component specs,
+CSS implementation, and agent infrastructure in place.
+
+Approved by: Aaron
+```
+
 ---
 
 ## Key Architectural Decisions
 
 **Color:**
-- Warm off-white `#FBFAF8` is the system's primary warmth mechanism. Non-overridable.
-- `color-primary` (interactive fill, teal-400 `#1B685E`) is distinct from `color-brand-primary` (identity, teal-500 `#3A8478`). Required for WCAG AA.
-- `color-text-brand` = teal-400 for AA compliance at normal text sizes.
-- All OKLCH values within sRGB gamut. OKLCH with hex fallback pattern used throughout.
+- `#FBFAF8` warm off-white is the primary warmth mechanism. Non-overridable.
+- `color-primary` (teal-400, interactive) ≠ `color-brand-primary` (teal-500, identity). WCAG AA required this separation.
+- `color-text-brand` = teal-400. Teal-500 fails AA at normal text sizes.
+- All OKLCH within sRGB gamut. Hex fallback via `@supports`.
 
 **Typography:**
-- Plus Jakarta Sans (display) + Source Sans 3 (body) + Source Code Pro (mono). All OFL.
-- Major third (1.250) scale, 16px base. All computed px values are clean integers.
-- Density tiers never modify line height — spacing between elements only.
+- Plus Jakarta Sans + Source Sans 3 + Source Code Pro. All OFL.
+- Major third (1.250), 16px base, 11 steps — all clean integers.
+- Density tiers never touch line height.
 
 **Spacing:**
-- 4px base unit. 9 of 15 steps align to 8px grid; 6 sub-grid values are intentional.
-- Density tiers via `data-density` attribute on the root container.
+- 4px base. 9/15 steps on 8px grid; 6 sub-grid values intentional.
+- Density via `data-density` attribute, context provider pattern.
 
 **Accessibility:**
-- WCAG AA floor, AAA for primary and secondary text.
-- Success states always use dual-cue (icon + label), not color alone.
-- `color-brand-secondary` and `color-brand-sage` are non-text-safe — graphical use only.
+- WCAG AA floor, AAA for primary/secondary text.
+- Dual-cue required for all success states.
+- `color-brand-secondary` and `color-brand-sage` are non-text-safe.
 
 **Illustration:**
-- Infrastructure depicted through natural metaphor, not technical diagram (Q5 resolution).
-- UI in illustrations = illustrated impressions (color blocks, no text) (Q6 resolution).
-- Photography = evidential voice. Illustration = emotional voice. Never composited.
-- Warm swatch governance: 25% surface-area rule, three-swatch maximum.
-
----
-
-## What's Still Needed
-
-1. **Canonical illustration SVG assets** (3–5 examples per type) — needed before illustration-adjacent components (empty states, hero sections, onboarding) can be implemented in Preline.
-
-2. **Photography LUT / Lightroom preset** — for consistent color treatment of partner and food photography. The spec exists in `visual-language/imagery.md §2`; the operational asset doesn't.
-
-3. **Data visualization language** — gap identified in `principles/coherence-notes.md §3.1`. Charts, sparklines, heat maps not yet specified.
-
-4. **Expanded component library** — current specs cover button, input, card, and slide templates. See `next-task.md` for priority list.
+- Infrastructure through natural metaphor, not diagram.
+- UI in illustrations = color blocks only, no text.
+- Photography proves; illustration expresses. Never composited.
+- 25% surface-area rule, three-swatch max for warm swatches.
 
 ---
 
 ## Build
 
 ```bash
-npm run build   # produces dist/cena-health.css (~49KB minified)
+npm run build   # dist/cena-health.css (~49KB minified)
 npm run dev     # watch mode
 ```
 
@@ -123,5 +182,5 @@ npm run dev     # watch mode
 | Date | Work Done |
 |---|---|
 | 2026-03-13 | Project structure, agent roles, roadmap |
-| 2026-03-15 | Phases 0–4: brand brief, all tokens, visual language, synthesis, coherence |
-| 2026-03-16 | Accessibility audit, corrections, Phase 5 web reconciliation, Phase 6 component specs, Phase 7 CSS implementation |
+| 2026-03-15 | Phases 0–4: brand brief, tokens, visual language, synthesis, coherence |
+| 2026-03-16 | Accessibility audit + corrections, Phase 5 web reconciliation, Phase 6 component specs, Phase 7 CSS implementation, agent skill infrastructure, CLAUDE.md, commit protocol |

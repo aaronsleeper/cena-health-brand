@@ -15,10 +15,11 @@
 /* Base styles */
 @import "./base.css";
 
-/* Components */
+/* Components — add new component imports here, alphabetically */
+@import "./components/alert.css";
 @import "./components/button.css";
-@import "./components/input.css";
 @import "./components/card.css";
+@import "./components/input.css";
 
 /* Slide templates */
 @import "./slides/cover-slide.css";

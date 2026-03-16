@@ -15,6 +15,18 @@ description: Design, extend, or review component specifications for the Cena Hea
 
 ---
 
+## The three implementation failure modes — never do these
+
+These are the most common ways implementation teams break this system without realizing it:
+
+1. **Pure white surfaces.** `background: white` or `background: #ffffff` anywhere. Always use `var(--color-surface-page)` (`#FBFAF8`) as the default. Every other surface is a named token above that (`surface-primary`, `surface-secondary`, etc.). There is no legitimate use of pure white in this system.
+
+2. **Box-shadow elevation before surface color and border.** The correct elevation sequence is: (1) different surface color, (2) `border: 1px solid var(--color-border-default)`, (3) warm shadow only for floating elements. Reaching for `box-shadow` on a static card is always wrong.
+
+3. **Brand color utilities on text or interactive fills without checking the token.** `color-brand-primary` (teal-500) fails WCAG AA with white text. `color-primary` (teal-400) is the interactive fill. `color-text-brand` (teal-400) is brand-colored text. These are different tokens for a reason — do not conflate them.
+
+---
+
 ## Domain expertise
 
 - Component anatomy: state matrix, density behavior, surface variants, motion behavior
@@ -44,13 +56,13 @@ description: Design, extend, or review component specifications for the Cena Hea
 Every component spec must include:
 
 1. **Purpose** — what problem this component solves, which surfaces it serves (web/slides/both)
-2. **Anatomy** — named parts (container, label, icon, etc.) with token references for each
+2. **Anatomy** — named parts with token references for each
 3. **Variants** — all named variants with their distinguishing token values
-4. **State matrix** — resting, hover, focus, active, disabled, (error/success if applicable)
+4. **State matrix** — resting, hover, focus, active, disabled, error/success if applicable
 5. **Density behavior** — how the component responds to compact/default/comfortable context
-6. **Surface variants** — behavior on `surface-page`, `surface-primary`, `surface-secondary`, `surface-teal`, `surface-sage`
+6. **Surface variants** — behavior on all five surfaces
 7. **Motion spec** — easing token, duration token, properties animated, reduced-motion substitution
-8. **Accessibility notes** — contrast ratios for text, WCAG touch target compliance, color-blind considerations
+8. **Accessibility notes** — contrast ratios, touch target compliance, color-blind considerations
 9. **CSS reference** — class names as implemented in `src/css/`
 
 ---
@@ -58,10 +70,9 @@ Every component spec must include:
 ## When proposing a new component
 
 1. Confirm no existing component already solves the problem
-2. Identify which token domains are involved — this determines which agent skills must review
+2. Identify which token domains are involved — determines which agents review
 3. Write the full spec following the structure above
-4. Identify the CSS implementation scope (new file in `src/css/components/` or `src/css/slides/`)
-5. Name which agents must review: always includes Design System Synthesizer; includes Accessibility Reviewer if color or type is involved
+4. Name which agents must review: always Design System Synthesizer; always Accessibility Reviewer if color or type is involved
 
 Do not modify any file. Write the proposal for human review.
 
@@ -69,4 +80,4 @@ Do not modify any file. Write the proposal for human review.
 
 ## When reviewing a component change
 
-Check token compliance (semantic tokens only), density inheritance correctness, motion spec completeness, accessibility requirements, and consistency with existing components. Return: **APPROVE / APPROVE WITH CONDITIONS / REJECT** with rationale.
+Check token compliance (semantic tokens only), density inheritance correctness, motion spec completeness, accessibility requirements, and consistency with existing components. Verify none of the three implementation failure modes above are present. Return: **APPROVE / APPROVE WITH CONDITIONS / REJECT** with rationale.

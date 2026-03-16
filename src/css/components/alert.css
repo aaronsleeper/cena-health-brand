@@ -83,6 +83,9 @@
   .alert__content {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
   }
 
   .alert__message {
@@ -116,7 +119,6 @@
     line-height: var(--leading-body-sm);
     letter-spacing: var(--tracking-wide);
     color: var(--color-text-primary);
-    margin-top: var(--space-1);
   }
 
   /* --------------------------------------------------------------------------
@@ -125,6 +127,10 @@
 
   .alert--dismissible {
     padding-right: var(--space-10);
+  }
+
+  .alert:not(.alert--dismissible) .alert__dismiss {
+    display: none;
   }
 
   .alert__dismiss {
@@ -231,6 +237,27 @@
   }
 
   /* --------------------------------------------------------------------------
+     Density
+     -------------------------------------------------------------------------- */
+
+  [data-density="compact"] .alert {
+    padding: var(--space-2) var(--space-3);
+  }
+
+  [data-density="compact"] .alert__content {
+    gap: var(--space-1);
+  }
+
+  [data-density="comfortable"] .alert {
+    padding: var(--space-4) var(--space-5);
+    gap: var(--space-3);
+  }
+
+  [data-density="comfortable"] .alert__content {
+    gap: var(--space-1-5);
+  }
+
+  /* --------------------------------------------------------------------------
      Enter Animation
      -------------------------------------------------------------------------- */
 
@@ -259,7 +286,7 @@
      Exit Animation
      -------------------------------------------------------------------------- */
 
-  .alert--exit {
+  .alert--exiting {
     animation: alert-exit var(--duration-fast) var(--ease-exit) both;
   }
 
@@ -296,7 +323,7 @@
       }
     }
 
-    .alert--exit {
+    .alert--exiting {
       animation-duration: 0ms;
     }
 
