@@ -1,0 +1,296 @@
+/* ==========================================================================
+   Cena Health — Button Component
+   Source: components/ui/button.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Base
+     -------------------------------------------------------------------------- */
+
+  .btn {
+    font-family: var(--font-body);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-wider);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    border: none;
+    text-decoration: none;
+    transition:
+      background-color var(--duration-fast) var(--ease-transition),
+      border-color var(--duration-fast) var(--ease-transition),
+      box-shadow var(--duration-fast) var(--ease-transition),
+      transform var(--duration-micro) var(--ease-transition);
+  }
+
+  /* --------------------------------------------------------------------------
+     Sizes
+     -------------------------------------------------------------------------- */
+
+  .btn--sm {
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-2);
+    min-height: 1.75rem;    /* 28px */
+    gap: var(--space-1);
+  }
+
+  .btn--default {
+    font-size: var(--text-sm);
+    padding: var(--space-1-5) var(--space-3);
+    min-height: 2.25rem;    /* 36px */
+  }
+
+  .btn--lg {
+    font-size: var(--text-base);
+    padding: var(--space-2) var(--space-4);
+    min-height: 2.75rem;    /* 44px */
+  }
+
+  /* --------------------------------------------------------------------------
+     Variant: Primary
+     -------------------------------------------------------------------------- */
+
+  .btn--primary {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  .btn--primary:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  .btn--primary:active {
+    background-color: var(--color-primary-active);
+    transform: scale(0.98);
+  }
+
+  .btn--primary:disabled,
+  .btn--primary[aria-disabled="true"] {
+    background-color: color-mix(in oklch, var(--color-primary) 40%, transparent);
+    color: color-mix(in oklch, var(--color-on-primary) 60%, transparent);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Variant: Secondary
+     -------------------------------------------------------------------------- */
+
+  .btn--secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border-strong);
+  }
+
+  .btn--secondary:hover {
+    background-color: color-mix(in oklch, var(--color-primary-subtle) 50%, transparent);
+    border-color: var(--color-border-focus);
+  }
+
+  .btn--secondary:active {
+    background-color: color-mix(in oklch, var(--color-primary-subtle) 70%, transparent);
+    border-color: var(--color-primary-hover);
+    color: var(--color-primary-hover);
+    transform: scale(0.98);
+  }
+
+  .btn--secondary:disabled,
+  .btn--secondary[aria-disabled="true"] {
+    color: var(--color-text-disabled);
+    border-color: var(--color-border-default);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Variant: Ghost
+     -------------------------------------------------------------------------- */
+
+  .btn--ghost {
+    background-color: transparent;
+    color: var(--color-text-primary);
+  }
+
+  .btn--ghost:hover {
+    background-color: var(--color-surface-secondary);
+  }
+
+  .btn--ghost:active {
+    background-color: color-mix(in oklch, var(--color-surface-secondary) 80%, transparent);
+    transform: scale(0.98);
+  }
+
+  .btn--ghost:disabled,
+  .btn--ghost[aria-disabled="true"] {
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Variant: Destructive
+     -------------------------------------------------------------------------- */
+
+  .btn--destructive {
+    background-color: var(--color-error-base);
+    color: var(--color-on-primary);
+  }
+
+  .btn--destructive:hover {
+    background-color: var(--color-error-text);
+  }
+
+  .btn--destructive:active {
+    background-color: var(--color-error-text);
+    transform: scale(0.98);
+  }
+
+  .btn--destructive:disabled,
+  .btn--destructive[aria-disabled="true"] {
+    background-color: color-mix(in oklch, var(--color-error-base) 40%, transparent);
+    color: color-mix(in oklch, var(--color-on-primary) 60%, transparent);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Focus Ring (all variants)
+     -------------------------------------------------------------------------- */
+
+  .btn:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .btn--destructive:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-error-border);
+  }
+
+  /* --------------------------------------------------------------------------
+     Icon-Only
+     -------------------------------------------------------------------------- */
+
+  .btn--icon-only.btn--sm {
+    padding: var(--space-1);
+  }
+
+  .btn--icon-only.btn--default {
+    padding: var(--space-2);
+  }
+
+  .btn--icon-only.btn--lg {
+    padding: var(--space-3);
+  }
+
+  .btn--icon-only.btn--round {
+    border-radius: var(--radius-full);
+  }
+
+  /* --------------------------------------------------------------------------
+     Full Width (mobile forms)
+     -------------------------------------------------------------------------- */
+
+  .btn--full {
+    width: 100%;
+  }
+
+  /* --------------------------------------------------------------------------
+     Button Group
+     -------------------------------------------------------------------------- */
+
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  @media (max-width: 599px) {
+    .btn-group--stack-mobile {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .btn-group--stack-mobile .btn {
+      width: 100%;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Loading State
+     -------------------------------------------------------------------------- */
+
+  .btn--loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+  }
+
+  .btn--loading::after {
+    content: "";
+    position: absolute;
+    width: var(--icon-md);
+    height: var(--icon-md);
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: var(--radius-full);
+    animation: btn-spin 600ms linear infinite;
+  }
+
+  .btn--primary.btn--loading::after,
+  .btn--destructive.btn--loading::after {
+    border-color: var(--color-on-primary);
+    border-right-color: transparent;
+  }
+
+  .btn--secondary.btn--loading::after {
+    border-color: var(--color-primary);
+    border-right-color: transparent;
+  }
+
+  .btn--ghost.btn--loading::after {
+    border-color: var(--color-text-primary);
+    border-right-color: transparent;
+  }
+
+  @keyframes btn-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* --------------------------------------------------------------------------
+     Tinted Surface Adjustments
+     -------------------------------------------------------------------------- */
+
+  .surface-teal .btn--secondary {
+    border-color: var(--color-border-focus);
+  }
+
+  .surface-teal .btn--ghost:hover,
+  .surface-sage .btn--ghost:hover {
+    background-color: var(--color-surface-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition-duration: 0ms;
+    }
+
+    .btn:active {
+      transform: none;
+    }
+  }
+}

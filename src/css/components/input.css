@@ -1,0 +1,288 @@
+/* ==========================================================================
+   Cena Health — Input Field Component
+   Source: components/ui/input.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Field Group (label + input + helper)
+     -------------------------------------------------------------------------- */
+
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .field + .field {
+    margin-top: var(--space-6);
+  }
+
+  .field-row {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  @media (max-width: 599px) {
+    .field-row {
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+  }
+
+  .field-row > .field {
+    flex: 1;
+  }
+
+  .field-row > .field + .field {
+    margin-top: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Label
+     -------------------------------------------------------------------------- */
+
+  .input-label {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .input-label--required::after {
+    content: " *";
+    color: var(--color-error-base);
+    margin-left: var(--space-1);
+  }
+
+  .input-label--sm {
+    font-size: var(--text-xs);
+  }
+
+  /* --------------------------------------------------------------------------
+     Input Base
+     -------------------------------------------------------------------------- */
+
+  .input-field {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--leading-body);
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    min-height: 2.75rem;    /* 44px */
+    width: 100%;
+    transition:
+      border-color var(--duration-fast) var(--ease-transition),
+      box-shadow var(--duration-fast) var(--ease-transition);
+  }
+
+  .input-field::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Input Sizes
+     -------------------------------------------------------------------------- */
+
+  .input-field--sm {
+    font-size: var(--text-sm);
+    padding: var(--space-2) var(--space-3);
+    min-height: 2.25rem;    /* 36px */
+  }
+
+  /* --------------------------------------------------------------------------
+     Input with Icons
+     -------------------------------------------------------------------------- */
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-wrapper .input-field {
+    width: 100%;
+  }
+
+  .input-wrapper--leading .input-field {
+    padding-left: calc(var(--space-4) + var(--icon-md) + var(--space-2));
+  }
+
+  .input-wrapper--trailing .input-field {
+    padding-right: calc(var(--space-4) + var(--icon-md) + var(--space-2));
+  }
+
+  .input-icon {
+    position: absolute;
+    width: var(--icon-md);
+    height: var(--icon-md);
+    color: var(--color-text-secondary);
+    pointer-events: none;
+  }
+
+  .input-icon--leading {
+    left: var(--space-4);
+  }
+
+  .input-icon--trailing {
+    right: var(--space-4);
+  }
+
+  /* --------------------------------------------------------------------------
+     States
+     -------------------------------------------------------------------------- */
+
+  /* Hover */
+  .input-field:hover:not(:disabled):not(:read-only):not(:focus) {
+    border-color: var(--color-border-focus);
+  }
+
+  /* Focus */
+  .input-field:focus {
+    outline: none;
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 var(--space-0-5) oklch(56.3% 0.0762 181.3 / 15%);
+  }
+
+  /* Error */
+  .input-field--error {
+    border-color: var(--color-error-border);
+    border-width: 2px;
+    padding: calc(var(--space-3) - 1px) calc(var(--space-4) - 1px); /* compensate for 2px border */
+  }
+
+  .input-field--error:focus {
+    box-shadow: 0 0 0 var(--space-0-5) oklch(55% 0.17 25 / 15%);
+  }
+
+  /* Success */
+  .input-field--success {
+    border-color: var(--color-success-border);
+  }
+
+  /* Disabled */
+  .input-field:disabled {
+    background-color: var(--color-surface-secondary);
+    border-color: var(--color-border-default);
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+  }
+
+  /* Read-only */
+  .input-field:read-only:not(:disabled) {
+    background-color: var(--color-surface-primary);
+    border-color: transparent;
+  }
+
+  /* --------------------------------------------------------------------------
+     Helper / Error / Success Text
+     -------------------------------------------------------------------------- */
+
+  .input-helper {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-top: var(--space-1);
+  }
+
+  .input-error-msg {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    line-height: var(--leading-relaxed);
+    color: var(--color-error-text);
+    margin-top: var(--space-1);
+  }
+
+  .input-success-msg {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    line-height: var(--leading-relaxed);
+    color: var(--color-success-text);
+    margin-top: var(--space-1);
+  }
+
+  /* --------------------------------------------------------------------------
+     Textarea
+     -------------------------------------------------------------------------- */
+
+  textarea.input-field {
+    min-height: calc(var(--text-base) * var(--leading-body) * 3 + var(--space-3) * 2); /* ~3 lines */
+    resize: vertical;
+    line-height: var(--leading-body);
+  }
+
+  /* --------------------------------------------------------------------------
+     Error Animation — Validation Pulse
+     -------------------------------------------------------------------------- */
+
+  @keyframes input-error-pulse {
+    0%   { background-color: var(--color-surface-page); }
+    30%  { background-color: color-mix(in oklch, var(--color-error-bg) 50%, var(--color-surface-page)); }
+    100% { background-color: var(--color-surface-page); }
+  }
+
+  .input-field--error-pulse {
+    animation: input-error-pulse var(--duration-normal) var(--ease-transition);
+  }
+
+  /* --------------------------------------------------------------------------
+     Success Icon Animation
+     -------------------------------------------------------------------------- */
+
+  @keyframes input-success-icon {
+    from {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .input-icon--success {
+    color: var(--color-success-base);
+    animation: input-success-icon var(--duration-normal) var(--ease-emphasis);
+  }
+
+  /* --------------------------------------------------------------------------
+     Tinted Surface Adjustments
+     -------------------------------------------------------------------------- */
+
+  .surface-primary .input-field,
+  .surface-teal .input-field,
+  .surface-sage .input-field {
+    background-color: var(--color-surface-page);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .input-field {
+      transition-duration: 0ms;
+    }
+
+    .input-field--error-pulse {
+      animation: none;
+    }
+
+    .input-icon--success {
+      animation: none;
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

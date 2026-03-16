@@ -1,0 +1,306 @@
+/* ==========================================================================
+   Cena Health — Stat Callout Block (Slides)
+   Source: components/slides/stat-callout.md
+   16:9 aspect ratio, comfortable density always
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Full-Slide Stat (stat IS the slide)
+     -------------------------------------------------------------------------- */
+
+  .slide-stat {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: var(--color-surface-teal);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-20);
+  }
+
+  .slide-stat__watermark {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 50%;
+    opacity: 0.04;
+    pointer-events: none;
+    color: var(--color-teal-300);
+  }
+
+  .slide-stat__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 60%;
+  }
+
+  /* --------------------------------------------------------------------------
+     Embedded Stat Block (within a content slide)
+     -------------------------------------------------------------------------- */
+
+  .stat-block {
+    background-color: var(--color-surface-teal);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8) var(--space-10);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --------------------------------------------------------------------------
+     Typography
+     -------------------------------------------------------------------------- */
+
+  .stat-block__overline,
+  .slide-stat__overline {
+    font-family: var(--font-body);
+    font-size: var(--text-2xs);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-text-brand);
+    margin-bottom: var(--space-3);
+  }
+
+  .stat-block__number,
+  .slide-stat__number {
+    font-family: var(--font-display);
+    font-size: var(--text-display);
+    font-weight: 700;
+    line-height: var(--leading-none);
+    letter-spacing: var(--tracking-tightest);
+    color: var(--color-brand-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-block__label,
+  .slide-stat__label {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--leading-body);
+    color: var(--color-text-primary);
+  }
+
+  .stat-block__source,
+  .slide-stat__source {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-tertiary);
+    margin-top: var(--space-6);
+  }
+
+  /* --------------------------------------------------------------------------
+     Stat with Data Illustration
+     -------------------------------------------------------------------------- */
+
+  .stat-block--illustrated {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .stat-block__content {
+    flex: 3;
+  }
+
+  .stat-block__illustration {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stat-block__illustration img,
+  .stat-block__illustration svg {
+    max-height: 7.5rem; /* 120px embedded */
+    width: auto;
+  }
+
+  /* Slide-level illustration (larger) */
+  .slide-stat--illustrated .slide-stat__inner {
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+    gap: var(--space-8);
+    max-width: 80%;
+  }
+
+  .slide-stat__illustration img,
+  .slide-stat__illustration svg {
+    max-height: 11.25rem; /* 180px */
+    width: auto;
+  }
+
+  /* --------------------------------------------------------------------------
+     Triple Stat Row
+     -------------------------------------------------------------------------- */
+
+  .stat-row {
+    display: flex;
+    gap: var(--space-8);
+    padding: var(--space-6) var(--space-8);
+    background-color: var(--color-surface-teal);
+    border-radius: var(--radius-xl);
+  }
+
+  .stat-row--page-surface {
+    background-color: var(--color-surface-page);
+  }
+
+  .stat-row__item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  /* Optional dividers */
+  .stat-row--dividers .stat-row__item + .stat-row__item::before {
+    content: "";
+    position: absolute;
+    left: calc(-1 * var(--space-4));
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--color-border-default);
+  }
+
+  .stat-row__number {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    line-height: var(--leading-none);
+    letter-spacing: var(--tracking-tightest);
+    color: var(--color-brand-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-row__label {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: var(--leading-body-sm);
+    color: var(--color-text-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Count-Up Animation
+     -------------------------------------------------------------------------- */
+
+  /* Single stat count-up */
+  .stat-block__number--animate,
+  .slide-stat__number--animate,
+  .stat-row__number--animate {
+    opacity: 0;
+  }
+
+  .stat-block__number--counting,
+  .slide-stat__number--counting,
+  .stat-row__number--counting {
+    opacity: 1;
+  }
+
+  /* Label fade-in (delayed) */
+  .stat-block__label--animate,
+  .slide-stat__label--animate {
+    opacity: 0;
+    transform: translateY(var(--space-2));
+  }
+
+  .stat-block__label--visible,
+  .slide-stat__label--visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity var(--duration-moderate) var(--ease-enter),
+      transform var(--duration-moderate) var(--ease-enter);
+    transition-delay: 500ms;
+  }
+
+  /* Source citation fade-in (further delayed) */
+  .stat-block__source--animate,
+  .slide-stat__source--animate {
+    opacity: 0;
+  }
+
+  .stat-block__source--visible,
+  .slide-stat__source--visible {
+    opacity: 1;
+    transition: opacity var(--duration-normal) var(--ease-enter);
+    transition-delay: 750ms;
+  }
+
+  /* Triple row stagger */
+  .stat-row__number--stagger-1 { transition-delay: 0ms; }
+  .stat-row__number--stagger-2 { transition-delay: 200ms; }
+  .stat-row__number--stagger-3 { transition-delay: 400ms; }
+
+  .stat-row__label--animate {
+    opacity: 0;
+    transform: translateY(var(--space-2));
+  }
+
+  .stat-row__label--visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity var(--duration-moderate) var(--ease-enter),
+      transform var(--duration-moderate) var(--ease-enter);
+    transition-delay: 700ms;
+  }
+
+  /* --------------------------------------------------------------------------
+     Color on Different Surfaces
+     -------------------------------------------------------------------------- */
+
+  /* On sage slide: stat block uses teal (complementary moment) */
+  .slide-content--sage .stat-block {
+    background-color: var(--color-surface-teal);
+  }
+
+  /* On gradient slide: stat block uses page surface for contrast */
+  .slide-content--gradient .stat-block {
+    background-color: var(--color-surface-page);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .stat-block__number--animate,
+    .slide-stat__number--animate,
+    .stat-row__number--animate {
+      opacity: 1;
+    }
+
+    .stat-block__label--animate,
+    .slide-stat__label--animate,
+    .stat-row__label--animate {
+      opacity: 1;
+      transform: none;
+    }
+
+    .stat-block__source--animate,
+    .slide-stat__source--animate {
+      opacity: 1;
+    }
+
+    .stat-block__label--visible,
+    .slide-stat__label--visible,
+    .stat-block__source--visible,
+    .slide-stat__source--visible,
+    .stat-row__label--visible {
+      transition: none;
+    }
+  }
+}

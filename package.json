@@ -1,0 +1,16 @@
+{
+  "name": "cena-health-brand",
+  "version": "1.0.0",
+  "description": "A collaborative, agent-driven visual design system for Cena Health -- built to serve both product UI and slide deck creation from a single shared token foundation.",
+  "scripts": {
+    "build": "npx @tailwindcss/cli -i ./src/css/main.css -o ./dist/cena-health.css --minify",
+    "dev": "npx @tailwindcss/cli -i ./src/css/main.css -o ./dist/cena-health.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "tailwindcss": "^4.2.1"
+  }
+}
