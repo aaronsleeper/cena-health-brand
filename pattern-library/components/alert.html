@@ -3,7 +3,7 @@
   name: Alert
   category: Primitives
   file: alert.html
-  classes: alert, alert--info, alert--warning, alert--error, alert--success, alert--dismissible, alert__icon, alert__content, alert__message, alert__description, alert__dismiss
+  classes: alert, alert-info, alert-warning, alert-error, alert-success, alert-dismissible, alert-icon, alert-dismiss, alert-dismiss-icon, alert-enter, alert-exiting
   spec: components/ui/alert.md
   css: src/css/components/alert.css
   when-to-use: Inline feedback messages after form submissions, API responses, or page-level notices. Place at the top of the content area or directly above the relevant section.
@@ -63,42 +63,42 @@
 
     <div class="pl-stack">
 
-      <!-- @component: alert--info -->
-      <div class="alert alert--info" role="status" aria-live="polite">
-        <span class="alert__icon"></span>
-        <div class="alert__content">
-          <p class="alert__message">Info — Your session will expire in 10 minutes.</p>
-          <p class="alert__description">Save your work to avoid losing any unsaved changes.</p>
+      <!-- @component: alert-info -->
+      <div class="alert alert-info" role="status" aria-live="polite">
+        <span class="alert-icon"></span>
+        <div>
+          <p>Info — Your session will expire in 10 minutes.</p>
+          <p>Save your work to avoid losing any unsaved changes.</p>
         </div>
       </div>
       <!-- /component -->
 
-      <!-- @component: alert--warning -->
-      <div class="alert alert--warning" role="alert" aria-live="assertive">
-        <span class="alert__icon"></span>
-        <div class="alert__content">
-          <p class="alert__message">Warning — Lab values are outside expected range.</p>
-          <p class="alert__description">HbA1c 9.2% exceeds the 8.0% threshold for this care plan.</p>
+      <!-- @component: alert-warning -->
+      <div class="alert alert-warning" role="alert" aria-live="assertive">
+        <span class="alert-icon"></span>
+        <div>
+          <p>Warning — Lab values are outside expected range.</p>
+          <p>HbA1c 9.2% exceeds the 8.0% threshold for this care plan.</p>
         </div>
       </div>
       <!-- /component -->
 
-      <!-- @component: alert--error -->
-      <div class="alert alert--error" role="alert" aria-live="assertive">
-        <span class="alert__icon"></span>
-        <div class="alert__content">
-          <p class="alert__message">Error — Unable to save care plan changes.</p>
-          <p class="alert__description">The server returned a 503 error. Try again in a moment.</p>
+      <!-- @component: alert-error -->
+      <div class="alert alert-error" role="alert" aria-live="assertive">
+        <span class="alert-icon"></span>
+        <div>
+          <p>Error — Unable to save care plan changes.</p>
+          <p>The server returned a 503 error. Try again in a moment.</p>
         </div>
       </div>
       <!-- /component -->
 
-      <!-- @component: alert--success -->
-      <div class="alert alert--success" role="status" aria-live="polite">
-        <span class="alert__icon"></span>
-        <div class="alert__content">
-          <p class="alert__message">Success — Care plan updated.</p>
-          <p class="alert__description">Changes to Mrs. Rivera's nutrition targets have been saved.</p>
+      <!-- @component: alert-success -->
+      <div class="alert alert-success" role="status" aria-live="polite">
+        <span class="alert-icon"></span>
+        <div>
+          <p>Success — Care plan updated.</p>
+          <p>Changes to Mrs. Rivera's nutrition targets have been saved.</p>
         </div>
       </div>
       <!-- /component -->
@@ -119,36 +119,36 @@
     <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
     <div class="pl-stack" id="dismissible-demo">
 
-      <div class="alert alert--info alert--dismissible" role="status" aria-live="polite">
-        <span class="alert__icon"></span>
-        <div class="alert__content">
-          <p class="alert__message">Info — Quarterly report is ready to view.</p>
+      <div class="alert alert-info alert-dismissible" role="status" aria-live="polite">
+        <span class="alert-icon"></span>
+        <div>
+          <p>Info — Quarterly report is ready to view.</p>
         </div>
-        <button class="alert__dismiss" aria-label="Dismiss"><span class="alert__dismiss-icon"></span></button>
+        <button class="alert-dismiss" aria-label="Dismiss"><span class="alert-dismiss-icon"></span></button>
       </div>
 
-      <div class="alert alert--warning alert--dismissible" role="alert" aria-live="assertive">
-        <span class="alert__icon"></span>
-        <div class="alert__content">
-          <p class="alert__message">Warning — Two patients have missed scheduled check-ins.</p>
+      <div class="alert alert-warning alert-dismissible" role="alert" aria-live="assertive">
+        <span class="alert-icon"></span>
+        <div>
+          <p>Warning — Two patients have missed scheduled check-ins.</p>
         </div>
-        <button class="alert__dismiss" aria-label="Dismiss"><span class="alert__dismiss-icon"></span></button>
+        <button class="alert-dismiss" aria-label="Dismiss"><span class="alert-dismiss-icon"></span></button>
       </div>
 
-      <div class="alert alert--error alert--dismissible" role="alert" aria-live="assertive">
-        <span class="alert__icon"></span>
-        <div class="alert__content">
-          <p class="alert__message">Error — Form submission failed. Check required fields.</p>
+      <div class="alert alert-error alert-dismissible" role="alert" aria-live="assertive">
+        <span class="alert-icon"></span>
+        <div>
+          <p>Error — Form submission failed. Check required fields.</p>
         </div>
-        <button class="alert__dismiss" aria-label="Dismiss"><span class="alert__dismiss-icon"></span></button>
+        <button class="alert-dismiss" aria-label="Dismiss"><span class="alert-dismiss-icon"></span></button>
       </div>
 
-      <div class="alert alert--success alert--dismissible" role="status" aria-live="polite">
-        <span class="alert__icon"></span>
-        <div class="alert__content">
-          <p class="alert__message">Success — Patient enrolled in nutrition program.</p>
+      <div class="alert alert-success alert-dismissible" role="status" aria-live="polite">
+        <span class="alert-icon"></span>
+        <div>
+          <p>Success — Patient enrolled in nutrition program.</p>
         </div>
-        <button class="alert__dismiss" aria-label="Dismiss"><span class="alert__dismiss-icon"></span></button>
+        <button class="alert-dismiss" aria-label="Dismiss"><span class="alert-dismiss-icon"></span></button>
       </div>
 
     </div>
@@ -171,23 +171,23 @@
   <div class="pl-stack">
     <div class="pl-canvas" style="background: var(--color-surface-page);">
       <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
-      <div class="alert alert--success" role="status"><span class="alert__icon"></span><div class="alert__content"><p class="alert__message">Success — Meal plan submitted for review.</p></div></div>
+      <div class="alert alert-success" role="status"><span class="alert-icon"></span><div><p>Success — Meal plan submitted for review.</p></div></div>
     </div>
     <div class="pl-canvas" style="background: var(--color-surface-primary);">
       <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
-      <div class="alert alert--success" role="status"><span class="alert__icon"></span><div class="alert__content"><p class="alert__message">Success — Meal plan submitted for review.</p></div></div>
+      <div class="alert alert-success" role="status"><span class="alert-icon"></span><div><p>Success — Meal plan submitted for review.</p></div></div>
     </div>
     <div class="pl-canvas" style="background: var(--color-surface-secondary);">
       <p class="pl-canvas-label">surface-secondary (#E7E4DF)</p>
-      <div class="alert alert--success" role="status"><span class="alert__icon"></span><div class="alert__content"><p class="alert__message">Success — Meal plan submitted for review.</p></div></div>
+      <div class="alert alert-success" role="status"><span class="alert-icon"></span><div><p>Success — Meal plan submitted for review.</p></div></div>
     </div>
     <div class="pl-canvas" style="background: var(--color-surface-teal);">
       <p class="pl-canvas-label">surface-teal (#E9F5F2)</p>
-      <div class="alert alert--success" role="status"><span class="alert__icon"></span><div class="alert__content"><p class="alert__message">Success — Meal plan submitted for review.</p></div></div>
+      <div class="alert alert-success" role="status"><span class="alert-icon"></span><div><p>Success — Meal plan submitted for review.</p></div></div>
     </div>
     <div class="pl-canvas" style="background: var(--color-surface-sage);">
       <p class="pl-canvas-label">surface-sage (#E7F2E8) — highest risk</p>
-      <div class="alert alert--success" role="status"><span class="alert__icon"></span><div class="alert__content"><p class="alert__message">Success — Meal plan submitted for review.</p></div></div>
+      <div class="alert alert-success" role="status"><span class="alert-icon"></span><div><p>Success — Meal plan submitted for review.</p></div></div>
     </div>
   </div>
 </section>
@@ -207,31 +207,31 @@
     <div class="pl-grid-3">
       <div data-density="compact">
         <p class="pl-col-label">Compact (0.75×)</p>
-        <div class="alert alert--info" role="status">
-          <span class="alert__icon"></span>
-          <div class="alert__content">
-            <p class="alert__message">New lab results available.</p>
-            <p class="alert__description">Received from UConn Health Lab.</p>
+        <div class="alert alert-info" role="status">
+          <span class="alert-icon"></span>
+          <div>
+            <p>New lab results available.</p>
+            <p>Received from UConn Health Lab.</p>
           </div>
         </div>
       </div>
       <div data-density="default">
         <p class="pl-col-label">Default (1.0×)</p>
-        <div class="alert alert--info" role="status">
-          <span class="alert__icon"></span>
-          <div class="alert__content">
-            <p class="alert__message">New lab results available.</p>
-            <p class="alert__description">Received from UConn Health Lab.</p>
+        <div class="alert alert-info" role="status">
+          <span class="alert-icon"></span>
+          <div>
+            <p>New lab results available.</p>
+            <p>Received from UConn Health Lab.</p>
           </div>
         </div>
       </div>
       <div data-density="comfortable">
         <p class="pl-col-label">Comfortable (1.25×)</p>
-        <div class="alert alert--info" role="status">
-          <span class="alert__icon"></span>
-          <div class="alert__content">
-            <p class="alert__message">New lab results available.</p>
-            <p class="alert__description">Received from UConn Health Lab.</p>
+        <div class="alert alert-info" role="status">
+          <span class="alert-icon"></span>
+          <div>
+            <p>New lab results available.</p>
+            <p>Received from UConn Health Lab.</p>
           </div>
         </div>
       </div>
@@ -267,28 +267,28 @@
 <!-- Component JS: dismiss + animation demo -->
 <script>
 (function() {
-  // Inject SVG icons into .alert__icon and .alert__dismiss-icon spans
-  const iconMap = {
-    'alert--info':    'icon-info',
-    'alert--warning': 'icon-warning',
-    'alert--error':   'icon-error',
-    'alert--success': 'icon-success',
+  // Inject SVG icons into .alert-icon and .alert-dismiss-icon spans
+  var iconMap = {
+    'alert-info':    'icon-info',
+    'alert-warning': 'icon-warning',
+    'alert-error':   'icon-error',
+    'alert-success': 'icon-success',
   };
 
   function injectIcons(root) {
-    root.querySelectorAll('.alert').forEach(alert => {
-      const variant = Object.keys(iconMap).find(k => alert.classList.contains(k));
+    root.querySelectorAll('.alert').forEach(function(alert) {
+      var variant = Object.keys(iconMap).find(function(k) { return alert.classList.contains(k); });
       if (!variant) return;
 
-      const iconSpan = alert.querySelector('.alert__icon');
+      var iconSpan = alert.querySelector('.alert-icon');
       if (iconSpan && !iconSpan.querySelector('svg')) {
-        const tmpl = document.getElementById(iconMap[variant]);
+        var tmpl = document.getElementById(iconMap[variant]);
         if (tmpl) iconSpan.appendChild(tmpl.content.cloneNode(true));
       }
 
-      const dismissIconSpan = alert.querySelector('.alert__dismiss-icon');
+      var dismissIconSpan = alert.querySelector('.alert-dismiss-icon');
       if (dismissIconSpan && !dismissIconSpan.querySelector('svg')) {
-        const tmpl = document.getElementById('icon-dismiss');
+        var tmpl = document.getElementById('icon-dismiss');
         if (tmpl) dismissIconSpan.appendChild(tmpl.content.cloneNode(true));
       }
     });
@@ -299,28 +299,28 @@
 
   // Dismiss
   document.addEventListener('click', function(e) {
-    const btn = e.target.closest('.alert__dismiss');
+    var btn = e.target.closest('.alert-dismiss');
     if (!btn) return;
-    const alert = btn.closest('.alert');
+    var alert = btn.closest('.alert');
     if (!alert) return;
-    alert.classList.add('alert--exiting');
-    alert.addEventListener('animationend', () => alert.remove(), { once: true });
+    alert.classList.add('alert-exiting');
+    alert.addEventListener('animationend', function() { alert.remove(); }, { once: true });
   });
 
   // Enter animation demo
-  const triggerBtn = document.getElementById('trigger-enter');
-  const enterDemo  = document.getElementById('enter-demo');
+  var triggerBtn = document.getElementById('trigger-enter');
+  var enterDemo  = document.getElementById('enter-demo');
   if (triggerBtn && enterDemo) {
     triggerBtn.addEventListener('click', function() {
       enterDemo.innerHTML = '';
-      const alert = document.createElement('div');
-      alert.className = 'alert alert--success alert--enter';
+      var alert = document.createElement('div');
+      alert.className = 'alert alert-success alert-enter';
       alert.setAttribute('role', 'status');
-      alert.innerHTML = `
-        <span class="alert__icon"></span>
-        <div class="alert__content">
-          <p class="alert__message">Success — Care plan updated successfully.</p>
-        </div>`;
+      alert.innerHTML =
+        '<span class="alert-icon"></span>' +
+        '<div>' +
+          '<p>Success — Care plan updated successfully.</p>' +
+        '</div>';
       enterDemo.appendChild(alert);
       injectIcons(enterDemo);
     });

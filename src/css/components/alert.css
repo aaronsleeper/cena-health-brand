@@ -24,25 +24,25 @@
      Variants
      -------------------------------------------------------------------------- */
 
-  .alert--info {
+  .alert-info {
     background-color: var(--color-info-bg);
     border-color: var(--color-info-border);
     border-left-color: var(--color-info-base);
   }
 
-  .alert--warning {
+  .alert-warning {
     background-color: var(--color-warning-bg);
     border-color: var(--color-warning-border);
     border-left-color: var(--color-warning-base);
   }
 
-  .alert--error {
+  .alert-error {
     background-color: var(--color-error-bg);
     border-color: var(--color-error-border);
     border-left-color: var(--color-error-base);
   }
 
-  .alert--success {
+  .alert-success {
     background-color: var(--color-success-bg);
     border-color: var(--color-success-border);
     border-left-color: var(--color-success-base);
@@ -52,7 +52,7 @@
      Icon
      -------------------------------------------------------------------------- */
 
-  .alert__icon {
+  .alert-icon {
     flex-shrink: 0;
     width: var(--icon-md);
     height: var(--icon-md);
@@ -60,27 +60,28 @@
     margin-top: var(--space-px);
   }
 
-  .alert--info .alert__icon {
+  .alert-info .alert-icon {
     color: var(--color-info-base);
   }
 
-  .alert--warning .alert__icon {
+  .alert-warning .alert-icon {
     color: var(--color-warning-base);
   }
 
-  .alert--error .alert__icon {
+  .alert-error .alert-icon {
     color: var(--color-error-base);
   }
 
-  .alert--success .alert__icon {
+  .alert-success .alert-icon {
     color: var(--color-success-base);
   }
 
   /* --------------------------------------------------------------------------
-     Content
+     Content — plain div wrapper, no class needed
      -------------------------------------------------------------------------- */
 
-  .alert__content {
+  /* Content wrapper — plain div inside .alert, no class */
+  .alert > div {
     flex: 1;
     min-width: 0;
     display: flex;
@@ -88,7 +89,8 @@
     gap: var(--space-1);
   }
 
-  .alert__message {
+  /* Message text — first p inside the content div */
+  .alert > div > p:first-child {
     font-family: var(--font-body);
     font-size: var(--text-sm);
     font-weight: 500;
@@ -96,23 +98,14 @@
     letter-spacing: var(--tracking-wide);
   }
 
-  .alert--info .alert__message {
-    color: var(--color-info-text);
-  }
+  /* Message text color per variant */
+  .alert-info > div > p:first-child    { color: var(--color-info-text); }
+  .alert-warning > div > p:first-child { color: var(--color-warning-text); }
+  .alert-error > div > p:first-child   { color: var(--color-error-text); }
+  .alert-success > div > p:first-child { color: var(--color-success-text); }
 
-  .alert--warning .alert__message {
-    color: var(--color-warning-text);
-  }
-
-  .alert--error .alert__message {
-    color: var(--color-error-text);
-  }
-
-  .alert--success .alert__message {
-    color: var(--color-success-text);
-  }
-
-  .alert__description {
+  /* Description text — second p inside the content div */
+  .alert > div > p:last-child {
     font-family: var(--font-body);
     font-size: var(--text-sm);
     font-weight: 400;
@@ -125,15 +118,15 @@
      Dismiss Button
      -------------------------------------------------------------------------- */
 
-  .alert--dismissible {
+  .alert-dismissible {
     padding-right: var(--space-10);
   }
 
-  .alert:not(.alert--dismissible) .alert__dismiss {
+  .alert:not(.alert-dismissible) .alert-dismiss {
     display: none;
   }
 
-  .alert__dismiss {
+  .alert-dismiss {
     position: absolute;
     top: var(--space-1);
     right: var(--space-1);
@@ -152,86 +145,86 @@
       opacity var(--duration-fast) var(--ease-transition);
   }
 
-  .alert__dismiss svg,
-  .alert__dismiss .alert__dismiss-icon {
+  .alert-dismiss svg,
+  .alert-dismiss .alert-dismiss-icon {
     width: var(--icon-sm);
     height: var(--icon-sm);
   }
 
   /* Dismiss icon color per variant — 70% opacity at rest */
-  .alert--info .alert__dismiss {
+  .alert-info .alert-dismiss {
     color: var(--color-info-text);
     opacity: 0.7;
   }
 
-  .alert--warning .alert__dismiss {
+  .alert-warning .alert-dismiss {
     color: var(--color-warning-text);
     opacity: 0.7;
   }
 
-  .alert--error .alert__dismiss {
+  .alert-error .alert-dismiss {
     color: var(--color-error-text);
     opacity: 0.7;
   }
 
-  .alert--success .alert__dismiss {
+  .alert-success .alert-dismiss {
     color: var(--color-success-text);
     opacity: 0.7;
   }
 
   /* Hover */
-  .alert__dismiss:hover {
+  .alert-dismiss:hover {
     opacity: 1;
   }
 
-  .alert--info .alert__dismiss:hover {
+  .alert-info .alert-dismiss:hover {
     background-color: oklch(62.0% 0.080 235 / 12%);
   }
 
-  .alert--warning .alert__dismiss:hover {
+  .alert-warning .alert-dismiss:hover {
     background-color: oklch(75.0% 0.100 82 / 12%);
   }
 
-  .alert--error .alert__dismiss:hover {
+  .alert-error .alert-dismiss:hover {
     background-color: oklch(68.0% 0.120 25 / 12%);
   }
 
-  .alert--success .alert__dismiss:hover {
+  .alert-success .alert-dismiss:hover {
     background-color: oklch(62.0% 0.090 160 / 12%);
   }
 
   /* Focus */
-  .alert__dismiss:focus-visible {
+  .alert-dismiss:focus-visible {
     outline: none;
     opacity: 1;
   }
 
-  .alert--info .alert__dismiss:focus-visible {
+  .alert-info .alert-dismiss:focus-visible {
     box-shadow:
       0 0 0 2px var(--color-info-bg),
       0 0 0 4px var(--color-border-focus);
   }
 
-  .alert--warning .alert__dismiss:focus-visible {
+  .alert-warning .alert-dismiss:focus-visible {
     box-shadow:
       0 0 0 2px var(--color-warning-bg),
       0 0 0 4px var(--color-border-focus);
   }
 
-  .alert--error .alert__dismiss:focus-visible {
+  .alert-error .alert-dismiss:focus-visible {
     box-shadow:
       0 0 0 2px var(--color-error-bg),
       0 0 0 4px var(--color-border-focus);
   }
 
-  .alert--success .alert__dismiss:focus-visible {
+  .alert-success .alert-dismiss:focus-visible {
     box-shadow:
       0 0 0 2px var(--color-success-bg),
       0 0 0 4px var(--color-border-focus);
   }
 
   /* Active */
-  .alert__dismiss:active {
+  .alert-dismiss:active {
     opacity: 1;
     transform: scale(0.95);
   }
@@ -244,7 +237,7 @@
     padding: var(--space-2) var(--space-3);
   }
 
-  [data-density="compact"] .alert__content {
+  [data-density="compact"] .alert > div {
     gap: var(--space-1);
   }
 
@@ -253,7 +246,7 @@
     gap: var(--space-3);
   }
 
-  [data-density="comfortable"] .alert__content {
+  [data-density="comfortable"] .alert > div {
     gap: var(--space-1-5);
   }
 
@@ -261,7 +254,7 @@
      Enter Animation
      -------------------------------------------------------------------------- */
 
-  .alert--enter {
+  .alert-enter {
     animation: alert-enter var(--duration-normal) var(--ease-enter) both;
   }
 
@@ -286,7 +279,7 @@
      Exit Animation
      -------------------------------------------------------------------------- */
 
-  .alert--exiting {
+  .alert-exiting {
     animation: alert-exit var(--duration-fast) var(--ease-exit) both;
   }
 
@@ -310,7 +303,7 @@
      -------------------------------------------------------------------------- */
 
   @media (prefers-reduced-motion: reduce) {
-    .alert--enter {
+    .alert-enter {
       animation: alert-enter-reduced var(--duration-fast) var(--ease-transition) both;
     }
 
@@ -323,15 +316,15 @@
       }
     }
 
-    .alert--exiting {
+    .alert-exiting {
       animation-duration: 0ms;
     }
 
-    .alert__dismiss {
+    .alert-dismiss {
       transition-duration: 0ms;
     }
 
-    .alert__dismiss:active {
+    .alert-dismiss:active {
       transform: none;
     }
   }

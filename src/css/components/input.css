@@ -52,13 +52,13 @@
     margin-bottom: var(--space-2);
   }
 
-  .input-label--required::after {
+  .input-label-required::after {
     content: " *";
     color: var(--color-error-base);
     margin-left: var(--space-1);
   }
 
-  .input-label--sm {
+  .input-label-sm {
     font-size: var(--text-xs);
   }
 
@@ -91,7 +91,7 @@
      Input Sizes
      -------------------------------------------------------------------------- */
 
-  .input-field--sm {
+  .input-field-sm {
     font-size: var(--text-sm);
     padding: var(--space-2) var(--space-3);
     min-height: 2.25rem;    /* 36px */
@@ -111,11 +111,11 @@
     width: 100%;
   }
 
-  .input-wrapper--leading .input-field {
+  .input-wrapper-leading .input-field {
     padding-left: calc(var(--space-4) + var(--icon-md) + var(--space-2));
   }
 
-  .input-wrapper--trailing .input-field {
+  .input-wrapper-trailing .input-field {
     padding-right: calc(var(--space-4) + var(--icon-md) + var(--space-2));
   }
 
@@ -127,11 +127,11 @@
     pointer-events: none;
   }
 
-  .input-icon--leading {
+  .input-icon-leading {
     left: var(--space-4);
   }
 
-  .input-icon--trailing {
+  .input-icon-trailing {
     right: var(--space-4);
   }
 
@@ -152,18 +152,18 @@
   }
 
   /* Error */
-  .input-field--error {
+  .input-field-error {
     border-color: var(--color-error-border);
     border-width: 2px;
     padding: calc(var(--space-3) - 1px) calc(var(--space-4) - 1px); /* compensate for 2px border */
   }
 
-  .input-field--error:focus {
+  .input-field-error:focus {
     box-shadow: 0 0 0 var(--space-0-5) oklch(55% 0.17 25 / 15%);
   }
 
   /* Success */
-  .input-field--success {
+  .input-field-success {
     border-color: var(--color-success-border);
   }
 
@@ -232,7 +232,7 @@
     100% { background-color: var(--color-surface-page); }
   }
 
-  .input-field--error-pulse {
+  .input-field-error-pulse {
     animation: input-error-pulse var(--duration-normal) var(--ease-transition);
   }
 
@@ -251,7 +251,7 @@
     }
   }
 
-  .input-icon--success {
+  .input-icon-success {
     color: var(--color-success-base);
     animation: input-success-icon var(--duration-normal) var(--ease-emphasis);
   }
@@ -275,11 +275,11 @@
       transition-duration: 0ms;
     }
 
-    .input-field--error-pulse {
+    .input-field-error-pulse {
       animation: none;
     }
 
-    .input-icon--success {
+    .input-icon-success {
       animation: none;
       opacity: 1;
       transform: scale(1);
