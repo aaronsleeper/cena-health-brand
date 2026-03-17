@@ -200,6 +200,72 @@
     font-style: italic;
   }
 
+  /* ---- Layout helpers for component examples ---- */
+
+  /* Inline row of components — wraps on overflow */
+  .pl-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  /* Inline row with tighter gap */
+  .pl-row-sm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+  }
+
+  /* Stacked column — gap-4 (use .pl-stack for gap-3) */
+  .pl-stack-lg {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* Constrained demo containers — center within canvas */
+  .pl-demo-sm  { max-width: 25rem; margin: 0 auto; }
+  .pl-demo-md  { max-width: 32.5rem; margin: 0 auto; }
+  .pl-demo-lg  { max-width: 40rem; margin: 0 auto; }
+  .pl-demo-xl  { max-width: 36rem; }
+
+  /* Canvas that needs extra height for overlays (dropdowns, tooltips) */
+  .pl-canvas-tall { min-height: 16rem; }
+  .pl-canvas-xl   { min-height: 20rem; }
+
+  /* Right-aligned trigger — pushes a single child to the right */
+  .pl-align-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Inline demo text — body copy used in context examples */
+  .pl-demo-text {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 400;
+    color: var(--color-text-primary);
+  }
+
+  .pl-demo-text-medium {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  /* Static menu panel replica — for item state documentation */
+  .pl-menu-demo {
+    max-width: 14rem;
+    background: var(--color-surface-page);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-1) 0;
+  }
+
   /* Index page cards */
   .pl-index-grid {
     display: grid;

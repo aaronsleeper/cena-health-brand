@@ -18,8 +18,7 @@
      -------------------------------------------------------------------------- */
 
   .table {
-    @apply w-full font-sans text-sm leading-body-sm tracking-wide text-gray-900;
-    border-collapse: collapse;
+    @apply w-full font-sans text-sm leading-body-sm tracking-wide text-gray-900 border-collapse;
   }
 
   /* --------------------------------------------------------------------------

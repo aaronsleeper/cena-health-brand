@@ -18,14 +18,13 @@
      -------------------------------------------------------------------------- */
 
   .dropdown-menu {
-    @apply absolute hidden flex-col overflow-y-auto rounded-md shadow-md z-40;
+    @apply absolute hidden flex-col overflow-y-auto rounded-md shadow-md z-40 bg-surface-page;
     top: calc(100% + var(--space-1));
     left: 0;
     min-width: 12rem;
     max-width: 20rem;
     max-height: 20rem;
     padding: var(--space-1) 0;
-    background-color: var(--color-surface-page);
     border: 1px solid var(--color-border-default);
     transform-origin: top left;
   }

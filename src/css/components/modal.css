@@ -10,9 +10,8 @@
      -------------------------------------------------------------------------- */
 
   .modal-backdrop {
-    @apply fixed inset-0 flex items-center justify-center p-6;
+    @apply fixed inset-0 flex items-center justify-center p-6 z-50;
     background-color: oklch(20% 0.01 70 / 50%);
-    z-index: 50;
   }
 
   @media (max-width: 599px) {

@@ -62,7 +62,7 @@
   <div class="pl-canvas" style="background: var(--color-surface-secondary);">
     <p class="pl-canvas-label">Shown inline — normally fixed to viewport top-right</p>
 
-    <div style="display: flex; flex-direction: column; gap: var(--space-3); max-width: 22rem; margin: 0 auto;">
+    <div class="pl-stack pl-demo-sm">
 
       <div class="toast toast-info" style="position: relative;" role="status">
         <span class="toast-icon" data-toast-icon="info"></span>
@@ -116,7 +116,7 @@
   <div class="pl-canvas" style="background: var(--color-surface-secondary);">
     <p class="pl-canvas-label">Progress bar at ~60% remaining</p>
 
-    <div style="max-width: 22rem; margin: 0 auto;">
+    <div class="pl-demo-sm">
       <div class="toast toast-success" style="position: relative;" role="status">
         <span class="toast-icon" data-toast-icon="success"></span>
         <div class="toast-content">
@@ -142,7 +142,7 @@
   <div class="pl-canvas" style="background: var(--color-surface-secondary);">
     <p class="pl-canvas-label">Shown inline</p>
 
-    <div style="display: flex; flex-direction: column; gap: var(--space-3); max-width: 22rem; margin: 0 auto;">
+    <div class="pl-stack pl-demo-sm">
 
       <!-- Title only -->
       <div class="toast toast-success" style="position: relative;" role="status">
@@ -177,7 +177,7 @@
 
   <div class="pl-canvas" style="background: var(--color-surface-page);">
     <p class="pl-canvas-label">Click to trigger — toasts appear top-right of viewport</p>
-    <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+    <div class="pl-row">
       <button class="btn btn-secondary btn-default" type="button" data-toast-trigger="info">Info toast</button>
       <button class="btn btn-secondary btn-default" type="button" data-toast-trigger="warning">Warning toast</button>
       <button class="btn btn-danger btn-default" type="button" data-toast-trigger="error">Error toast</button>

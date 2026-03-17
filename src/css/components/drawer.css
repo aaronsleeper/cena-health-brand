@@ -20,6 +20,14 @@
     justify-content: flex-start;
   }
 
+  /* PL-context: left drawer starts from content edge, not viewport edge.
+     In real app use the app sidebar sits above the backdrop (z-index: 100
+     vs z-index: 50), so the drawer correctly overlays only the content area.
+     .drawer-backdrop-pl-offset is a PL-only helper — never use in app pages. */
+  .drawer-backdrop-pl-offset {
+    left: 240px;
+  }
+
   /* --------------------------------------------------------------------------
      Panel
      -------------------------------------------------------------------------- */

@@ -84,6 +84,13 @@
 
 <section class="pl-section" data-pl-section="live-demo-left">
   <h2 class="pl-section-title">Live Drawer (Left)</h2>
+  <p class="pl-section-description">
+    In production the app sidebar sits at <code>z-index: 100</code> above the
+    drawer backdrop at <code>z-index: 50</code>, so the drawer correctly
+    overlays only the content area. In this pattern library the PL sidebar is
+    the same chrome, so the demo offsets the backdrop by 240px to match that
+    real-app boundary. The component itself needs no modification.
+  </p>
 
   <div class="pl-canvas" style="background: var(--color-surface-page);">
     <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
@@ -103,7 +110,7 @@
   function createDrawer(side) {
     var isLeft = side === 'left';
     var backdrop = document.createElement('div');
-    backdrop.className = 'drawer-backdrop drawer-backdrop-enter' + (isLeft ? ' drawer-backdrop-left' : '');
+    backdrop.className = 'drawer-backdrop drawer-backdrop-enter' + (isLeft ? ' drawer-backdrop-left drawer-backdrop-pl-offset' : '');
     backdrop.innerHTML =
       '<div class="drawer drawer-enter">' +
         '<div class="drawer-header">' +

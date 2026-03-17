@@ -11,6 +11,15 @@
   @end-meta
 -->
 
+<style>
+  /* PL-only state simulation — never add to src/css/ */
+  .tab--state-hover {
+    color: var(--color-text-primary) !important;
+    background-color: var(--color-surface-primary) !important;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
+    pointer-events: none;
+  }
+</style>
 
 <!-- =====================================================================
      Section 1: Tab Bar
@@ -64,11 +73,13 @@
 
   <div class="pl-canvas" style="background: var(--color-surface-page);">
     <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
-    <div class="tabs" role="tablist" style="pointer-events: none;">
-      <button class="tab" role="tab">Default</button>
-      <button class="tab" role="tab" style="color: var(--color-text-primary); background-color: var(--color-surface-primary); border-radius: var(--radius-sm) var(--radius-sm) 0 0;">Hover</button>
-      <button class="tab tab-active" role="tab" aria-selected="true">Active</button>
-      <button class="tab" role="tab" disabled aria-disabled="true">Disabled</button>
+    <div style="pointer-events: none;">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab">Default</button>
+        <button class="tab tab--state-hover" role="tab">Hover</button>
+        <button class="tab tab-active" role="tab" aria-selected="true">Active</button>
+        <button class="tab" role="tab" disabled aria-disabled="true">Disabled</button>
+      </div>
     </div>
   </div>
 </section>
@@ -85,7 +96,7 @@
   <div class="pl-canvas" style="background: var(--color-surface-page);">
     <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
 
-    <div style="display: flex; flex-direction: column; gap: var(--space-6);">
+    <div class="pl-stack-lg">
 
       <!-- Short -->
       <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -121,13 +132,15 @@
 <section class="pl-section" data-pl-section="surfaces">
   <h2 class="pl-section-title">Surface Variants</h2>
 
-  <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+  <div class="pl-stack-lg">
     <div class="pl-canvas" style="background: var(--color-surface-primary);">
       <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
-      <div class="tabs" role="tablist" style="pointer-events: none;">
-        <button class="tab tab-active" role="tab" aria-selected="true">Overview</button>
-        <button class="tab" role="tab">Meals</button>
-        <button class="tab" role="tab">Labs</button>
+      <div style="pointer-events: none;">
+        <div class="tabs" role="tablist">
+          <button class="tab tab-active" role="tab" aria-selected="true">Overview</button>
+          <button class="tab" role="tab">Meals</button>
+          <button class="tab" role="tab">Labs</button>
+        </div>
       </div>
     </div>
     <div class="pl-canvas" style="background: var(--color-surface-teal);">

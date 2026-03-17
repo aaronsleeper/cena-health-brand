@@ -29,7 +29,7 @@
 
   <div class="pl-canvas" style="background: var(--color-surface-page);">
     <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
-    <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center;">
+    <div class="pl-row">
       <span class="badge badge-info">Info</span>
       <span class="badge badge-warning">Warning</span>
       <span class="badge badge-error">Error</span>
@@ -52,7 +52,7 @@
 
   <div class="pl-canvas" style="background: var(--color-surface-page);">
     <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
-    <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center;">
+    <div class="pl-row">
       <span class="badge badge-info badge-dot">Scheduled</span>
       <span class="badge badge-warning badge-dot">At Risk</span>
       <span class="badge badge-error badge-dot">Overdue</span>
@@ -74,7 +74,7 @@
 
   <div class="pl-canvas" style="background: var(--color-surface-page);">
     <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
-    <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center;">
+    <div class="pl-row">
       <span class="badge badge-info badge-pill">Info</span>
       <span class="badge badge-warning badge-pill badge-dot">At Risk</span>
       <span class="badge badge-success badge-pill badge-dot">Active</span>
@@ -97,21 +97,21 @@
     <div class="pl-grid-3">
       <div>
         <p class="pl-col-label">Default (24px)</p>
-        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+        <div class="pl-row-sm">
           <span class="badge badge-info badge-dot">Scheduled</span>
           <span class="badge badge-success">Enrolled</span>
         </div>
       </div>
       <div>
         <p class="pl-col-label">Small (20px)</p>
-        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+        <div class="pl-row-sm">
           <span class="badge badge-info badge-dot badge-sm">Scheduled</span>
           <span class="badge badge-success badge-sm">Enrolled</span>
         </div>
       </div>
       <div>
         <p class="pl-col-label">Small Pill</p>
-        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+        <div class="pl-row-sm">
           <span class="badge badge-info badge-pill badge-sm">3</span>
           <span class="badge badge-error badge-pill badge-sm">!</span>
           <span class="badge badge-neutral badge-pill badge-sm">12</span>
@@ -132,7 +132,7 @@
 
   <div class="pl-canvas" style="background: var(--color-surface-page);">
     <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
-    <div id="tag-demo" style="display: flex; gap: var(--space-2); flex-wrap: wrap; align-items: center;">
+    <div id="tag-demo" class="pl-row-sm">
       <span class="badge badge-info">Diabetes <button class="badge-dismiss" aria-label="Remove Diabetes"></button></span>
       <span class="badge badge-teal">Hypertension <button class="badge-dismiss" aria-label="Remove Hypertension"></button></span>
       <span class="badge badge-sage">Mediterranean Diet <button class="badge-dismiss" aria-label="Remove Mediterranean Diet"></button></span>
@@ -154,16 +154,16 @@
   <div class="pl-canvas" style="background: var(--color-surface-page);">
     <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
 
-    <div style="max-width: 30rem; display: flex; flex-direction: column; gap: var(--space-4);">
+    <div class="pl-stack-lg" style="max-width: 30rem;">
       <!-- Name + status -->
-      <div style="display: flex; align-items: center; gap: var(--space-2);">
-        <span style="font-family: var(--font-body); font-size: var(--text-base); font-weight: 500; color: var(--color-text-primary);">Maria Rivera</span>
+      <div class="pl-row-sm">
+        <span class="pl-demo-text-medium">Maria Rivera</span>
         <span class="badge badge-success badge-dot badge-sm">Enrolled</span>
       </div>
 
       <!-- Name + multiple badges -->
-      <div style="display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap;">
-        <span style="font-family: var(--font-body); font-size: var(--text-base); font-weight: 500; color: var(--color-text-primary);">James Chen</span>
+      <div class="pl-row-sm">
+        <span class="pl-demo-text-medium">James Chen</span>
         <span class="badge badge-warning badge-dot badge-sm">At Risk</span>
         <span class="badge badge-teal badge-sm">Diabetes</span>
         <span class="badge badge-sage badge-sm">Nutrition</span>
@@ -187,10 +187,10 @@
   <h2 class="pl-section-title">Surface Variants</h2>
   <p class="pl-section-description">Avoid teal badge on surface-teal and success/sage badges on surface-sage.</p>
 
-  <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+  <div class="pl-stack-lg">
     <div class="pl-canvas" style="background: var(--color-surface-page);">
       <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
-      <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+      <div class="pl-row-sm">
         <span class="badge badge-info badge-dot">Scheduled</span>
         <span class="badge badge-success badge-dot">Enrolled</span>
         <span class="badge badge-neutral">Draft</span>
@@ -199,7 +199,7 @@
     </div>
     <div class="pl-canvas" style="background: var(--color-surface-primary);">
       <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
-      <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+      <div class="pl-row-sm">
         <span class="badge badge-info badge-dot">Scheduled</span>
         <span class="badge badge-success badge-dot">Enrolled</span>
         <span class="badge badge-neutral">Draft</span>
@@ -208,7 +208,7 @@
     </div>
     <div class="pl-canvas" style="background: var(--color-surface-teal);">
       <p class="pl-canvas-label">surface-teal (#E9F5F2) — avoid teal badge here</p>
-      <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+      <div class="pl-row-sm">
         <span class="badge badge-info badge-dot">Scheduled</span>
         <span class="badge badge-success badge-dot">Enrolled</span>
         <span class="badge badge-neutral">Draft</span>
@@ -217,7 +217,7 @@
     </div>
     <div class="pl-canvas" style="background: var(--color-surface-sage);">
       <p class="pl-canvas-label">surface-sage (#E7F2E8) — avoid success/sage badges here</p>
-      <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+      <div class="pl-row-sm">
         <span class="badge badge-info badge-dot">Scheduled</span>
         <span class="badge badge-warning badge-dot">At Risk</span>
         <span class="badge badge-neutral">Draft</span>
