@@ -10,11 +10,7 @@
      -------------------------------------------------------------------------- */
 
   .table-wrapper {
-    display: block;
-    overflow-x: auto;
-    border: 1px solid var(--color-border-default);
-    border-radius: var(--radius-md);
-    background-color: var(--color-surface-page);
+    @apply block overflow-x-auto border border-gray-300 rounded-md bg-white;
   }
 
   /* --------------------------------------------------------------------------
@@ -22,13 +18,8 @@
      -------------------------------------------------------------------------- */
 
   .table {
-    width: 100%;
+    @apply w-full font-sans text-sm leading-body-sm tracking-wide text-gray-900;
     border-collapse: collapse;
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    line-height: var(--leading-body-sm);
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-text-primary);
   }
 
   /* --------------------------------------------------------------------------
@@ -36,14 +27,7 @@
      -------------------------------------------------------------------------- */
 
   .table thead th {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: var(--tracking-wider);
-    color: var(--color-text-secondary);
-    background-color: var(--color-surface-primary);
-    padding: var(--space-2) var(--space-4);
-    text-align: left;
-    white-space: nowrap;
+    @apply text-xs font-semibold tracking-wider text-gray-600 bg-gray-100 py-2 px-4 text-left whitespace-nowrap;
     border-bottom: 1px solid var(--color-border-strong);
   }
 
@@ -52,8 +36,7 @@
      -------------------------------------------------------------------------- */
 
   .table tbody td {
-    padding: var(--space-2) var(--space-4);
-    vertical-align: middle;
+    @apply py-2 px-4 align-middle;
     border-bottom: 1px solid var(--color-border-default);
   }
 
@@ -66,7 +49,7 @@
      -------------------------------------------------------------------------- */
 
   .table-striped tbody tr:nth-child(odd) {
-    background-color: var(--color-surface-primary);
+    @apply bg-gray-100;
   }
 
   /* --------------------------------------------------------------------------
@@ -87,7 +70,7 @@
   }
 
   .table-hover tbody tr:hover {
-    background-color: var(--color-surface-secondary);
+    @apply bg-gray-200;
   }
 
   /* --------------------------------------------------------------------------
@@ -95,13 +78,12 @@
      -------------------------------------------------------------------------- */
 
   .table-sort {
-    cursor: pointer;
-    user-select: none;
+    @apply cursor-pointer select-none;
     transition: color var(--duration-fast) var(--ease-transition);
   }
 
   .table-sort:hover {
-    color: var(--color-text-primary);
+    @apply text-gray-900;
   }
 
   .table-sort-asc::after {
@@ -121,9 +103,7 @@
      -------------------------------------------------------------------------- */
 
   .table-sticky thead th {
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    @apply sticky top-0 z-10;
     box-shadow: 0 1px 0 var(--color-border-default);
   }
 

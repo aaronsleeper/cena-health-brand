@@ -10,8 +10,7 @@
      -------------------------------------------------------------------------- */
 
   .dropdown {
-    position: relative;
-    display: inline-flex;
+    @apply relative inline-flex;
   }
 
   /* --------------------------------------------------------------------------
@@ -19,26 +18,20 @@
      -------------------------------------------------------------------------- */
 
   .dropdown-menu {
-    position: absolute;
+    @apply absolute hidden flex-col overflow-y-auto rounded-md shadow-md z-40;
     top: calc(100% + var(--space-1));
     left: 0;
-    display: none;
-    flex-direction: column;
     min-width: 12rem;
     max-width: 20rem;
     max-height: 20rem;
-    overflow-y: auto;
     padding: var(--space-1) 0;
     background-color: var(--color-surface-page);
     border: 1px solid var(--color-border-default);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    z-index: 40;
     transform-origin: top left;
   }
 
   .dropdown-menu.open {
-    display: flex;
+    @apply flex;
   }
 
   /* Right-aligned */
@@ -53,23 +46,9 @@
      -------------------------------------------------------------------------- */
 
   .dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-2) var(--space-3);
-    margin: 0 var(--space-1);
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 400;
-    line-height: var(--leading-body-sm);
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-text-primary);
-    background: transparent;
-    border: none;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    text-decoration: none;
-    text-align: left;
+    @apply flex items-center gap-2 py-2 px-3 mx-1;
+    @apply font-sans text-sm font-normal leading-body-sm tracking-wide text-gray-900;
+    @apply bg-transparent border-none rounded-sm cursor-pointer no-underline text-left;
     width: calc(100% - var(--space-2));
     transition:
       background-color var(--duration-fast) var(--ease-transition),
@@ -78,19 +57,17 @@
 
   .dropdown-item:hover,
   .dropdown-item:focus-visible {
-    background-color: var(--color-surface-primary);
-    outline: none;
+    @apply bg-gray-100 outline-none;
   }
 
   .dropdown-item:active {
-    background-color: var(--color-surface-secondary);
+    @apply bg-gray-200;
   }
 
   .dropdown-item[aria-disabled="true"],
   .dropdown-item:disabled {
+    @apply cursor-not-allowed pointer-events-none;
     color: var(--color-text-disabled);
-    cursor: not-allowed;
-    pointer-events: none;
   }
 
   /* --------------------------------------------------------------------------
@@ -98,13 +75,12 @@
      -------------------------------------------------------------------------- */
 
   .dropdown-item-danger {
-    color: var(--color-error-text);
+    @apply text-error-800;
   }
 
   .dropdown-item-danger:hover,
   .dropdown-item-danger:focus-visible {
-    background-color: var(--color-error-bg);
-    color: var(--color-error-text);
+    @apply bg-error-50 text-error-800;
   }
 
   /* --------------------------------------------------------------------------
@@ -112,7 +88,7 @@
      -------------------------------------------------------------------------- */
 
   .dropdown-item-icon {
-    flex-shrink: 0;
+    @apply shrink-0;
     width: var(--icon-sm);
     height: var(--icon-sm);
     color: var(--color-text-secondary);
@@ -120,11 +96,11 @@
 
   .dropdown-item:hover .dropdown-item-icon,
   .dropdown-item:focus-visible .dropdown-item-icon {
-    color: var(--color-text-primary);
+    @apply text-gray-900;
   }
 
   .dropdown-item-danger .dropdown-item-icon {
-    color: var(--color-error-base);
+    @apply text-error-600;
   }
 
   .dropdown-item[aria-disabled="true"] .dropdown-item-icon {
@@ -136,16 +112,7 @@
      -------------------------------------------------------------------------- */
 
   .dropdown-header {
-    display: block;
-    padding: var(--space-2) var(--space-3);
-    margin: 0 var(--space-1);
-    font-family: var(--font-body);
-    font-size: var(--text-2xs);
-    font-weight: 600;
-    line-height: var(--leading-snug);
-    letter-spacing: var(--tracking-widest);
-    text-transform: uppercase;
-    color: var(--color-text-tertiary);
+    @apply block py-2 px-3 mx-1 font-sans text-2xs font-semibold leading-snug tracking-widest uppercase text-gray-500;
   }
 
   /* --------------------------------------------------------------------------
@@ -153,10 +120,9 @@
      -------------------------------------------------------------------------- */
 
   .dropdown-divider {
+    @apply my-1 border-none;
     height: 1px;
-    margin: var(--space-1) 0;
     background-color: var(--color-border-default);
-    border: none;
   }
 
   /* --------------------------------------------------------------------------

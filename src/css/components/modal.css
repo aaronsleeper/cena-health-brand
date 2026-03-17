@@ -10,19 +10,14 @@
      -------------------------------------------------------------------------- */
 
   .modal-backdrop {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @apply fixed inset-0 flex items-center justify-center p-6;
     background-color: oklch(20% 0.01 70 / 50%);
     z-index: 50;
-    padding: var(--space-6);
   }
 
   @media (max-width: 599px) {
     .modal-backdrop {
-      padding: var(--space-4);
+      @apply p-4;
     }
   }
 
@@ -31,16 +26,9 @@
      -------------------------------------------------------------------------- */
 
   .modal {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    @apply flex flex-col w-full bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden;
     max-width: 32.5rem; /* 520px — default */
     max-height: calc(100vh - var(--space-12));
-    background-color: var(--color-surface-page);
-    border: 1px solid var(--color-border-default);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    overflow: hidden;
   }
 
   /* --------------------------------------------------------------------------
@@ -60,41 +48,20 @@
      -------------------------------------------------------------------------- */
 
   .modal-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--space-4);
-    padding: var(--space-4) var(--space-5);
+    @apply flex items-start justify-between gap-4 py-4 px-5 shrink-0;
     border-bottom: 1px solid var(--color-border-default);
-    flex-shrink: 0;
   }
 
   .modal-header > div {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    min-width: 0;
-    flex: 1;
+    @apply flex flex-col gap-1 min-w-0 flex-1;
   }
 
   .modal-title {
-    font-family: var(--font-display);
-    font-size: var(--text-lg);
-    font-weight: 600;
-    line-height: var(--leading-heading);
-    letter-spacing: var(--tracking-snug);
-    color: var(--color-text-primary);
-    margin: 0;
+    @apply font-display text-lg font-semibold leading-heading tracking-snug text-gray-900 m-0;
   }
 
   .modal-description {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 400;
-    line-height: var(--leading-body-sm);
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-text-secondary);
-    margin: 0;
+    @apply font-sans text-sm font-normal leading-body-sm tracking-wide text-gray-600 m-0;
   }
 
   /* --------------------------------------------------------------------------
@@ -102,19 +69,11 @@
      -------------------------------------------------------------------------- */
 
   .modal-close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @apply flex items-center justify-center p-0 border-none rounded-md bg-transparent cursor-pointer shrink-0;
     width: 2.75rem;  /* 44px — WCAG touch target */
     height: 2.75rem;
-    padding: 0;
-    border: none;
-    border-radius: var(--radius-md);
-    background: transparent;
     color: var(--color-text-secondary);
     opacity: 0.7;
-    cursor: pointer;
-    flex-shrink: 0;
     margin: calc(-1 * var(--space-1)) calc(-1 * var(--space-1)) 0 0;
     transition:
       opacity var(--duration-fast) var(--ease-transition),
@@ -127,12 +86,12 @@
   }
 
   .modal-close:hover {
+    @apply bg-gray-200;
     opacity: 1;
-    background-color: var(--color-surface-secondary);
   }
 
   .modal-close:focus-visible {
-    outline: none;
+    @apply outline-none;
     opacity: 1;
     box-shadow:
       0 0 0 2px var(--color-surface-page),
@@ -148,25 +107,15 @@
      -------------------------------------------------------------------------- */
 
   .modal-body {
-    display: block;
-    padding: var(--space-4) var(--space-5);
-    overflow-y: auto;
-    flex: 1;
-    min-height: 0;
+    @apply block py-4 px-5 overflow-y-auto flex-1 min-h-0;
   }
 
   .modal-body p {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 400;
-    line-height: var(--leading-body-sm);
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-text-primary);
-    margin: 0;
+    @apply font-sans text-sm font-normal leading-body-sm tracking-wide text-gray-900 m-0;
   }
 
   .modal-body p + p {
-    margin-top: var(--space-3);
+    @apply mt-3;
   }
 
   /* --------------------------------------------------------------------------
@@ -174,13 +123,8 @@
      -------------------------------------------------------------------------- */
 
   .modal-footer {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: var(--space-3);
-    padding: var(--space-4) var(--space-5);
+    @apply flex items-center justify-end gap-3 py-4 px-5 shrink-0;
     border-top: 1px solid var(--color-border-default);
-    flex-shrink: 0;
   }
 
   /* --------------------------------------------------------------------------
@@ -192,7 +136,7 @@
   }
 
   .modal-danger .modal-title {
-    color: var(--color-error-text);
+    @apply text-error-800;
   }
 
   /* --------------------------------------------------------------------------

@@ -10,9 +10,7 @@
      -------------------------------------------------------------------------- */
 
   .form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
+    @apply flex flex-col gap-8;
   }
 
   /* --------------------------------------------------------------------------
@@ -20,11 +18,7 @@
      -------------------------------------------------------------------------- */
 
   .form-section {
-    display: flex;
-    flex-direction: column;
-    border: none;
-    padding: 0;
-    margin: 0;
+    @apply flex flex-col border-none p-0 m-0;
   }
 
   /* --------------------------------------------------------------------------
@@ -32,18 +26,8 @@
      -------------------------------------------------------------------------- */
 
   .form-legend {
-    font-family: var(--font-body);
-    font-size: var(--text-2xs);
-    font-weight: 600;
-    line-height: var(--leading-snug);
-    letter-spacing: var(--tracking-widest);
-    text-transform: uppercase;
-    color: var(--color-text-tertiary);
-    padding: 0;
-    padding-bottom: var(--space-4);
+    @apply p-0 pb-4 mb-4 w-full font-sans text-2xs font-semibold leading-snug tracking-widest uppercase text-gray-500;
     border-bottom: 1px solid var(--color-border-default);
-    margin-bottom: var(--space-4);
-    width: 100%;
   }
 
   /* --------------------------------------------------------------------------
@@ -51,21 +35,17 @@
      -------------------------------------------------------------------------- */
 
   .form-actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: var(--space-3);
-    padding-top: var(--space-6);
+    @apply flex items-center justify-end gap-3 pt-6;
     border-top: 1px solid var(--color-border-default);
   }
 
   @media (max-width: 599px) {
     .form-actions {
-      flex-direction: column-reverse;
+      @apply flex-col-reverse;
     }
 
     .form-actions .btn {
-      width: 100%;
+      @apply w-full;
     }
   }
 
@@ -74,52 +54,29 @@
      -------------------------------------------------------------------------- */
 
   .form-error-summary {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-4);
-    background-color: var(--color-error-bg);
-    border: 1px solid var(--color-error-border);
+    @apply flex flex-col gap-2 py-3 px-4 bg-error-50 border border-error-200 rounded-md;
     border-left-width: 3px;
     border-left-color: var(--color-error-base);
-    border-radius: var(--radius-md);
   }
 
   .form-error-summary p {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    line-height: var(--leading-body-sm);
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-error-text);
-    margin: 0;
+    @apply font-sans text-sm font-semibold leading-body-sm tracking-wide text-error-800 m-0;
   }
 
   .form-error-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    @apply flex flex-col gap-1 list-none p-0 m-0;
   }
 
   .form-error-list li {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 400;
-    line-height: var(--leading-body-sm);
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-error-text);
+    @apply font-sans text-sm font-normal leading-body-sm tracking-wide text-error-800;
   }
 
   .form-error-list a {
-    color: var(--color-error-text);
-    text-decoration: underline;
+    @apply text-error-800 underline;
     text-underline-offset: 2px;
   }
 
   .form-error-list a:hover {
-    color: var(--color-error-base);
+    @apply text-error-600;
   }
 }

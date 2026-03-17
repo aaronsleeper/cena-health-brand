@@ -10,29 +10,18 @@
      -------------------------------------------------------------------------- */
 
   .tabs {
-    display: flex;
-    gap: var(--space-1);
+    @apply flex gap-1 overflow-x-auto;
     border-bottom: 1px solid var(--color-border-default);
-    overflow-x: auto;
   }
 
   .tab {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-1-5);
-    padding: var(--space-2) var(--space-4);
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    line-height: var(--leading-body-sm);
-    letter-spacing: var(--tracking-wide);
+    @apply inline-flex items-center gap-1-5 py-2 px-4;
+    @apply font-sans text-sm font-medium leading-body-sm tracking-wide;
+    @apply bg-transparent cursor-pointer whitespace-nowrap;
     color: var(--color-text-secondary);
-    background: transparent;
     border: none;
     border-bottom: 2px solid transparent;
     margin-bottom: -1px; /* overlap container border */
-    cursor: pointer;
-    white-space: nowrap;
     transition:
       color var(--duration-fast) var(--ease-transition),
       border-color var(--duration-fast) var(--ease-transition),
@@ -40,8 +29,7 @@
   }
 
   .tab:hover {
-    color: var(--color-text-primary);
-    background-color: var(--color-surface-primary);
+    @apply text-gray-900 bg-gray-100;
     border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   }
 
@@ -51,33 +39,30 @@
   }
 
   .tab-active:hover {
-    background: transparent;
+    @apply bg-transparent;
     color: var(--color-text-brand);
   }
 
   .tab:disabled,
   .tab[aria-disabled="true"] {
+    @apply cursor-not-allowed pointer-events-none;
     color: var(--color-text-disabled);
-    cursor: not-allowed;
-    pointer-events: none;
   }
 
   .tab:focus-visible {
-    outline: none;
+    @apply outline-none rounded-sm;
     box-shadow:
       0 0 0 2px var(--color-surface-page),
       0 0 0 4px var(--color-border-focus);
-    border-radius: var(--radius-sm);
   }
 
   /* Tab Panel */
   .tab-panel {
-    display: none;
-    padding: var(--space-4) 0;
+    @apply hidden py-4;
   }
 
   .tab-panel.active {
-    display: block;
+    @apply block;
   }
 
   /* --------------------------------------------------------------------------
@@ -85,33 +70,19 @@
      -------------------------------------------------------------------------- */
 
   .breadcrumb {
-    display: flex;
-    align-items: center;
+    @apply flex items-center;
   }
 
   .breadcrumb-list {
-    display: flex;
-    align-items: center;
-    gap: var(--space-1);
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-wrap: wrap;
+    @apply flex items-center gap-1 list-none p-0 m-0 flex-wrap;
   }
 
   .breadcrumb-item {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-1);
+    @apply inline-flex items-center gap-1;
   }
 
   .breadcrumb-item a {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 400;
-    line-height: var(--leading-body-sm);
-    color: var(--color-text-secondary);
-    text-decoration: none;
+    @apply font-sans text-sm font-normal leading-body-sm text-gray-600 no-underline;
     transition: color var(--duration-fast) var(--ease-transition);
   }
 
@@ -120,26 +91,18 @@
   }
 
   .breadcrumb-item a:focus-visible {
-    outline: none;
-    border-radius: var(--radius-sm);
+    @apply outline-none rounded-sm;
     box-shadow:
       0 0 0 2px var(--color-surface-page),
       0 0 0 4px var(--color-border-focus);
   }
 
   .breadcrumb-separator {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    color: var(--color-text-tertiary);
-    user-select: none;
+    @apply font-sans text-sm text-gray-500 select-none;
   }
 
   .breadcrumb-current {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    line-height: var(--leading-body-sm);
-    color: var(--color-text-primary);
+    @apply font-sans text-sm font-medium leading-body-sm text-gray-900;
   }
 
   /* --------------------------------------------------------------------------
