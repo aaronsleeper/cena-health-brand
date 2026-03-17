@@ -1,0 +1,388 @@
+<!--
+  @component-meta
+  name: Time Picker
+  category: Primitives
+  file: timepicker.html
+  classes: timepicker, timepicker-panel, timepicker-columns, timepicker-col, timepicker-col-label, timepicker-option, timepicker-option-active, timepicker-ampm, timepicker-ampm-btn, timepicker-footer
+  spec: components/ui/timepicker.md
+  css: src/css/components/timepicker.css
+  when-to-use: Time selection for scheduling appointments, setting reminders, and time-based inputs.
+  do-not-use-when: You need a date — use Datepicker. Do not use for duration input — use a number input.
+  @end-meta
+-->
+
+<!-- SVG icon template -->
+<template id="icon-tp-clock">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="10" cy="10" r="8"/>
+    <polyline points="10,5 10,10 13,12"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Default (static open)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+  <p class="pl-section-description">Time picker panel open below the input. Hour and minute columns with AM/PM toggle.</p>
+
+  <div class="pl-canvas pl-canvas-xl" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="timepicker">
+      <div class="input-wrapper input-wrapper-trailing">
+        <input type="text" class="input-field" value="9:30 AM" readonly>
+        <span class="input-icon input-icon-trailing" data-icon="tp-clock"></span>
+      </div>
+      <div class="timepicker-panel open" role="dialog" aria-label="Choose time" style="animation: none;">
+        <div class="timepicker-columns">
+          <div class="timepicker-col" role="listbox" aria-label="Hour">
+            <span class="timepicker-col-label">Hour</span>
+            <button class="timepicker-option" role="option">1</button>
+            <button class="timepicker-option" role="option">2</button>
+            <button class="timepicker-option" role="option">3</button>
+            <button class="timepicker-option" role="option">4</button>
+            <button class="timepicker-option" role="option">5</button>
+            <button class="timepicker-option" role="option">6</button>
+            <button class="timepicker-option" role="option">7</button>
+            <button class="timepicker-option" role="option">8</button>
+            <button class="timepicker-option timepicker-option-active" role="option" aria-selected="true">9</button>
+            <button class="timepicker-option" role="option">10</button>
+            <button class="timepicker-option" role="option">11</button>
+            <button class="timepicker-option" role="option">12</button>
+          </div>
+          <div class="timepicker-col" role="listbox" aria-label="Minute">
+            <span class="timepicker-col-label">Min</span>
+            <button class="timepicker-option" role="option">00</button>
+            <button class="timepicker-option" role="option">05</button>
+            <button class="timepicker-option" role="option">10</button>
+            <button class="timepicker-option" role="option">15</button>
+            <button class="timepicker-option" role="option">20</button>
+            <button class="timepicker-option" role="option">25</button>
+            <button class="timepicker-option timepicker-option-active" role="option" aria-selected="true">30</button>
+            <button class="timepicker-option" role="option">35</button>
+            <button class="timepicker-option" role="option">40</button>
+            <button class="timepicker-option" role="option">45</button>
+            <button class="timepicker-option" role="option">50</button>
+            <button class="timepicker-option" role="option">55</button>
+          </div>
+        </div>
+        <div class="timepicker-ampm">
+          <button class="timepicker-ampm-btn active" aria-pressed="true">AM</button>
+          <button class="timepicker-ampm-btn" aria-pressed="false">PM</button>
+        </div>
+        <div class="timepicker-footer">
+          <button class="btn btn-primary btn-sm" style="width: 100%;" disabled>Set</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: With Seconds
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="with-seconds">
+  <h2 class="pl-section-title">With Seconds</h2>
+  <p class="pl-section-description">Optional seconds column for precise time entry.</p>
+
+  <div class="pl-canvas pl-canvas-xl" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="timepicker">
+      <div class="input-wrapper input-wrapper-trailing">
+        <input type="text" class="input-field" value="9:30:15 AM" readonly>
+        <span class="input-icon input-icon-trailing" data-icon="tp-clock"></span>
+      </div>
+      <div class="timepicker-panel open" role="dialog" aria-label="Choose time" style="animation: none; width: 16rem;">
+        <div class="timepicker-columns">
+          <div class="timepicker-col" role="listbox" aria-label="Hour">
+            <span class="timepicker-col-label">Hour</span>
+            <button class="timepicker-option" role="option">8</button>
+            <button class="timepicker-option timepicker-option-active" role="option" aria-selected="true">9</button>
+            <button class="timepicker-option" role="option">10</button>
+            <button class="timepicker-option" role="option">11</button>
+            <button class="timepicker-option" role="option">12</button>
+          </div>
+          <div class="timepicker-col" role="listbox" aria-label="Minute">
+            <span class="timepicker-col-label">Min</span>
+            <button class="timepicker-option" role="option">25</button>
+            <button class="timepicker-option timepicker-option-active" role="option" aria-selected="true">30</button>
+            <button class="timepicker-option" role="option">35</button>
+            <button class="timepicker-option" role="option">40</button>
+            <button class="timepicker-option" role="option">45</button>
+          </div>
+          <div class="timepicker-col" role="listbox" aria-label="Second">
+            <span class="timepicker-col-label">Sec</span>
+            <button class="timepicker-option" role="option">00</button>
+            <button class="timepicker-option" role="option">05</button>
+            <button class="timepicker-option" role="option">10</button>
+            <button class="timepicker-option timepicker-option-active" role="option" aria-selected="true">15</button>
+            <button class="timepicker-option" role="option">20</button>
+            <button class="timepicker-option" role="option">25</button>
+            <button class="timepicker-option" role="option">30</button>
+          </div>
+        </div>
+        <div class="timepicker-ampm">
+          <button class="timepicker-ampm-btn active" aria-pressed="true">AM</button>
+          <button class="timepicker-ampm-btn" aria-pressed="false">PM</button>
+        </div>
+        <div class="timepicker-footer">
+          <button class="btn btn-primary btn-sm" style="width: 100%;" disabled>Set</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Live Demo
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="live-demo">
+  <h2 class="pl-section-title">Live Demo</h2>
+  <p class="pl-section-description">Click the input to open. Select hour and minute, toggle AM/PM, click Set to apply.</p>
+
+  <div class="pl-canvas pl-canvas-xl" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="timepicker" data-timepicker>
+      <div class="input-wrapper input-wrapper-trailing">
+        <input type="text" class="input-field" placeholder="Select time" readonly data-timepicker-input>
+        <span class="input-icon input-icon-trailing" data-icon="tp-clock"></span>
+      </div>
+      <div class="timepicker-panel" role="dialog" aria-label="Choose time" data-timepicker-panel>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: In a Form
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="in-form">
+  <h2 class="pl-section-title">In a Form</h2>
+  <p class="pl-section-description">Time picker inside a field group with label.</p>
+
+  <div class="pl-canvas pl-canvas-xl" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="max-width: 20rem;">
+      <div class="field">
+        <label class="input-label">Appointment Time</label>
+        <div class="timepicker" data-timepicker>
+          <div class="input-wrapper input-wrapper-trailing">
+            <input type="text" class="input-field" placeholder="Select time" readonly data-timepicker-input>
+            <span class="input-icon input-icon-trailing" data-icon="tp-clock"></span>
+          </div>
+          <div class="timepicker-panel" role="dialog" aria-label="Choose time" data-timepicker-panel>
+          </div>
+        </div>
+        <p class="input-helper">Choose a time for the patient check-in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: icon injection + live time picker -->
+<script>
+(function() {
+  // Inject clock icon
+  var clockTmpl = document.getElementById('icon-tp-clock');
+  if (clockTmpl) {
+    document.querySelectorAll('[data-icon="tp-clock"]').forEach(function(span) {
+      if (!span.querySelector('svg')) span.appendChild(clockTmpl.content.cloneNode(true));
+    });
+  }
+
+  // Scroll active option into view for static demos
+  document.querySelectorAll('.timepicker-panel.open .timepicker-col').forEach(function(col) {
+    var active = col.querySelector('.timepicker-option-active');
+    if (active) {
+      setTimeout(function() { active.scrollIntoView({ block: 'center' }); }, 50);
+    }
+  });
+
+  // --- Live Time Picker ---
+  document.querySelectorAll('[data-timepicker]').forEach(function(picker) {
+    var input = picker.querySelector('[data-timepicker-input]');
+    var panel = picker.querySelector('[data-timepicker-panel]');
+    if (!input || !panel) return;
+
+    var now = new Date();
+    var selectedHour = now.getHours() % 12 || 12;
+    var selectedMinute = Math.floor(now.getMinutes() / 5) * 5;
+    var selectedAmPm = now.getHours() >= 12 ? 'PM' : 'AM';
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function renderPanel() {
+      panel.innerHTML = '';
+
+      // Columns
+      var columns = document.createElement('div');
+      columns.className = 'timepicker-columns';
+
+      // Hour column
+      var hourCol = document.createElement('div');
+      hourCol.className = 'timepicker-col';
+      hourCol.setAttribute('role', 'listbox');
+      hourCol.setAttribute('aria-label', 'Hour');
+
+      var hourLabel = document.createElement('span');
+      hourLabel.className = 'timepicker-col-label';
+      hourLabel.textContent = 'Hour';
+      hourCol.appendChild(hourLabel);
+
+      for (var h = 1; h <= 12; h++) {
+        var hBtn = document.createElement('button');
+        hBtn.className = 'timepicker-option';
+        hBtn.type = 'button';
+        hBtn.setAttribute('role', 'option');
+        hBtn.textContent = h;
+        hBtn.setAttribute('data-hour', h);
+        if (h === selectedHour) {
+          hBtn.classList.add('timepicker-option-active');
+          hBtn.setAttribute('aria-selected', 'true');
+        }
+        hBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          selectedHour = parseInt(this.getAttribute('data-hour'));
+          renderPanel();
+        });
+        hourCol.appendChild(hBtn);
+      }
+      columns.appendChild(hourCol);
+
+      // Minute column
+      var minCol = document.createElement('div');
+      minCol.className = 'timepicker-col';
+      minCol.setAttribute('role', 'listbox');
+      minCol.setAttribute('aria-label', 'Minute');
+
+      var minLabel = document.createElement('span');
+      minLabel.className = 'timepicker-col-label';
+      minLabel.textContent = 'Min';
+      minCol.appendChild(minLabel);
+
+      for (var m = 0; m < 60; m += 5) {
+        var mBtn = document.createElement('button');
+        mBtn.className = 'timepicker-option';
+        mBtn.type = 'button';
+        mBtn.setAttribute('role', 'option');
+        mBtn.textContent = pad(m);
+        mBtn.setAttribute('data-minute', m);
+        if (m === selectedMinute) {
+          mBtn.classList.add('timepicker-option-active');
+          mBtn.setAttribute('aria-selected', 'true');
+        }
+        mBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          selectedMinute = parseInt(this.getAttribute('data-minute'));
+          renderPanel();
+        });
+        minCol.appendChild(mBtn);
+      }
+      columns.appendChild(minCol);
+      panel.appendChild(columns);
+
+      // AM/PM toggle
+      var ampm = document.createElement('div');
+      ampm.className = 'timepicker-ampm';
+
+      var amBtn = document.createElement('button');
+      amBtn.className = 'timepicker-ampm-btn';
+      amBtn.type = 'button';
+      amBtn.textContent = 'AM';
+      amBtn.setAttribute('aria-pressed', selectedAmPm === 'AM' ? 'true' : 'false');
+      if (selectedAmPm === 'AM') amBtn.classList.add('active');
+      amBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        selectedAmPm = 'AM';
+        renderPanel();
+      });
+
+      var pmBtn = document.createElement('button');
+      pmBtn.className = 'timepicker-ampm-btn';
+      pmBtn.type = 'button';
+      pmBtn.textContent = 'PM';
+      pmBtn.setAttribute('aria-pressed', selectedAmPm === 'PM' ? 'true' : 'false');
+      if (selectedAmPm === 'PM') pmBtn.classList.add('active');
+      pmBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        selectedAmPm = 'PM';
+        renderPanel();
+      });
+
+      ampm.appendChild(amBtn);
+      ampm.appendChild(pmBtn);
+      panel.appendChild(ampm);
+
+      // Footer with Set button
+      var footer = document.createElement('div');
+      footer.className = 'timepicker-footer';
+
+      var setBtn = document.createElement('button');
+      setBtn.className = 'btn btn-primary btn-sm';
+      setBtn.type = 'button';
+      setBtn.style.width = '100%';
+      setBtn.textContent = 'Set';
+      setBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        input.value = selectedHour + ':' + pad(selectedMinute) + ' ' + selectedAmPm;
+        closePanel();
+      });
+
+      footer.appendChild(setBtn);
+      panel.appendChild(footer);
+
+      // Scroll active items into view
+      setTimeout(function() {
+        panel.querySelectorAll('.timepicker-col').forEach(function(col) {
+          var active = col.querySelector('.timepicker-option-active');
+          if (active) active.scrollIntoView({ block: 'center' });
+        });
+      }, 10);
+    }
+
+    function openPanel() {
+      if (panel.classList.contains('open')) return;
+      renderPanel();
+      panel.classList.add('open');
+    }
+
+    function closePanel() {
+      panel.classList.remove('open');
+      input.focus();
+    }
+
+    input.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (panel.classList.contains('open')) {
+        closePanel();
+      } else {
+        openPanel();
+      }
+    });
+
+    // Keyboard
+    panel.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closePanel();
+      }
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+      if (!picker.contains(e.target) && panel.classList.contains('open')) {
+        closePanel();
+      }
+    });
+  });
+})();
+</script>

@@ -1,0 +1,530 @@
+<!--
+  @component-meta
+  name: Datepicker
+  category: Primitives
+  file: datepicker.html
+  classes: datepicker, datepicker-panel, datepicker-header, datepicker-header-label, datepicker-nav-btn, datepicker-grid, datepicker-weekday, datepicker-day, datepicker-day-today, datepicker-day-selected, datepicker-day-other-month, datepicker-day-disabled
+  spec: components/ui/datepicker.md
+  css: src/css/components/datepicker.css
+  when-to-use: Single date selection for scheduling, due dates, and date-based filtering.
+  do-not-use-when: You need a date range — build a range picker. Do not use for time-only input — use Time Picker.
+  @end-meta
+-->
+
+<!-- SVG icon templates -->
+<template id="icon-dp-chevron-left">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="12,4 6,10 12,16"/>
+  </svg>
+</template>
+
+<template id="icon-dp-chevron-right">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="8,4 14,10 8,16"/>
+  </svg>
+</template>
+
+<template id="icon-dp-calendar">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="3" y="4" width="14" height="14" rx="2"/>
+    <line x1="3" y1="8" x2="17" y2="8"/>
+    <line x1="7" y1="2" x2="7" y2="5"/>
+    <line x1="13" y1="2" x2="13" y2="5"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Default (static open)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+  <p class="pl-section-description">Calendar panel open below the input. Shows current month with today highlighted.</p>
+
+  <div class="pl-canvas pl-canvas-xl" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="datepicker" id="dp-static-default">
+      <div class="input-wrapper input-wrapper-trailing">
+        <input type="text" class="input-field" placeholder="Select date" value="March 17, 2026" readonly>
+        <span class="input-icon input-icon-trailing" data-icon="dp-calendar"></span>
+      </div>
+      <div class="datepicker-panel open" role="dialog" aria-label="Choose date" style="animation: none;">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Today Selected
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="today-selected">
+  <h2 class="pl-section-title">Today Selected</h2>
+  <p class="pl-section-description">Today's date shown with the teal outline indicator and filled selection state combined.</p>
+
+  <div class="pl-canvas pl-canvas-xl" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="datepicker" id="dp-static-today">
+      <div class="input-wrapper input-wrapper-trailing">
+        <input type="text" class="input-field" value="March 17, 2026" readonly>
+        <span class="input-icon input-icon-trailing" data-icon="dp-calendar"></span>
+      </div>
+      <div class="datepicker-panel open" role="dialog" aria-label="Choose date" style="animation: none;" data-static-month="2" data-static-year="2026" data-static-selected="17" data-static-today="17">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: A Past Date Selected
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="past-date-selected">
+  <h2 class="pl-section-title">Past Date Selected</h2>
+  <p class="pl-section-description">A date other than today is selected. Today still shows its outline indicator.</p>
+
+  <div class="pl-canvas pl-canvas-xl" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="datepicker" id="dp-static-past">
+      <div class="input-wrapper input-wrapper-trailing">
+        <input type="text" class="input-field" value="March 5, 2026" readonly>
+        <span class="input-icon input-icon-trailing" data-icon="dp-calendar"></span>
+      </div>
+      <div class="datepicker-panel open" role="dialog" aria-label="Choose date" style="animation: none;" data-static-month="2" data-static-year="2026" data-static-selected="5" data-static-today="17">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Disabled Dates
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="disabled-dates">
+  <h2 class="pl-section-title">Disabled Dates</h2>
+  <p class="pl-section-description">Weekends shown as disabled. Past dates can also be disabled depending on context.</p>
+
+  <div class="pl-canvas pl-canvas-xl" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="datepicker" id="dp-static-disabled">
+      <div class="input-wrapper input-wrapper-trailing">
+        <input type="text" class="input-field" placeholder="Select a weekday" readonly>
+        <span class="input-icon input-icon-trailing" data-icon="dp-calendar"></span>
+      </div>
+      <div class="datepicker-panel open" role="dialog" aria-label="Choose date" style="animation: none;" data-static-month="2" data-static-year="2026" data-static-today="17" data-static-disable-weekends="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Live Demo
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="live-demo">
+  <h2 class="pl-section-title">Live Demo</h2>
+  <p class="pl-section-description">Click the input to open. Select a date, use arrow keys to navigate, Escape to close.</p>
+
+  <div class="pl-canvas pl-canvas-xl" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="datepicker" data-datepicker>
+      <div class="input-wrapper input-wrapper-trailing">
+        <input type="text" class="input-field" placeholder="Select date" readonly data-datepicker-input>
+        <span class="input-icon input-icon-trailing" data-icon="dp-calendar"></span>
+      </div>
+      <div class="datepicker-panel" role="dialog" aria-label="Choose date" data-datepicker-panel>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 6: In a Form
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="in-form">
+  <h2 class="pl-section-title">In a Form</h2>
+  <p class="pl-section-description">Datepicker inside a field group with label and helper text.</p>
+
+  <div class="pl-canvas pl-canvas-xl" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="max-width: 20rem;">
+      <div class="field">
+        <label class="input-label">Appointment Date</label>
+        <div class="datepicker" data-datepicker>
+          <div class="input-wrapper input-wrapper-trailing">
+            <input type="text" class="input-field" placeholder="Select date" readonly data-datepicker-input>
+            <span class="input-icon input-icon-trailing" data-icon="dp-calendar"></span>
+          </div>
+          <div class="datepicker-panel" role="dialog" aria-label="Choose date" data-datepicker-panel>
+          </div>
+        </div>
+        <p class="input-helper">Choose a date for the patient check-in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: static rendering + live datepicker -->
+<script>
+(function() {
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DAYS = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+  // Inject calendar icon
+  var calTmpl = document.getElementById('icon-dp-calendar');
+  if (calTmpl) {
+    document.querySelectorAll('[data-icon="dp-calendar"]').forEach(function(span) {
+      if (!span.querySelector('svg')) span.appendChild(calTmpl.content.cloneNode(true));
+    });
+  }
+
+  // --- Static calendar rendering for demo sections ---
+  function renderStaticGrid(panel, month, year, selectedDay, todayDay, disableWeekends) {
+    var firstDay = new Date(year, month, 1).getDay();
+    var daysInMonth = new Date(year, month + 1, 0).getDate();
+    var daysInPrev = new Date(year, month, 0).getDate();
+
+    var header = document.createElement('div');
+    header.className = 'datepicker-header';
+
+    var leftTmpl = document.getElementById('icon-dp-chevron-left');
+    var rightTmpl = document.getElementById('icon-dp-chevron-right');
+
+    var prevBtn = document.createElement('button');
+    prevBtn.className = 'datepicker-nav-btn';
+    prevBtn.setAttribute('aria-label', 'Previous month');
+    prevBtn.disabled = true;
+    prevBtn.style.pointerEvents = 'none';
+    if (leftTmpl) prevBtn.appendChild(leftTmpl.content.cloneNode(true));
+
+    var label = document.createElement('span');
+    label.className = 'datepicker-header-label';
+    label.textContent = MONTHS[month] + ' ' + year;
+
+    var nextBtn = document.createElement('button');
+    nextBtn.className = 'datepicker-nav-btn';
+    nextBtn.setAttribute('aria-label', 'Next month');
+    nextBtn.disabled = true;
+    nextBtn.style.pointerEvents = 'none';
+    if (rightTmpl) nextBtn.appendChild(rightTmpl.content.cloneNode(true));
+
+    header.appendChild(prevBtn);
+    header.appendChild(label);
+    header.appendChild(nextBtn);
+    panel.appendChild(header);
+
+    var grid = document.createElement('div');
+    grid.className = 'datepicker-grid';
+    grid.setAttribute('role', 'grid');
+
+    // Weekday headers
+    DAYS.forEach(function(d) {
+      var wd = document.createElement('span');
+      wd.className = 'datepicker-weekday';
+      wd.textContent = d;
+      grid.appendChild(wd);
+    });
+
+    // Previous month fill
+    for (var p = firstDay - 1; p >= 0; p--) {
+      var pb = document.createElement('button');
+      pb.className = 'datepicker-day datepicker-day-other-month';
+      pb.textContent = daysInPrev - p;
+      pb.disabled = true;
+      pb.style.pointerEvents = 'none';
+      grid.appendChild(pb);
+    }
+
+    // Current month
+    for (var d = 1; d <= daysInMonth; d++) {
+      var btn = document.createElement('button');
+      btn.className = 'datepicker-day';
+      btn.textContent = d;
+      btn.style.pointerEvents = 'none';
+
+      var dayOfWeek = new Date(year, month, d).getDay();
+      var isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+
+      if (d === todayDay && d === selectedDay) {
+        btn.classList.add('datepicker-day-today', 'datepicker-day-selected');
+      } else if (d === todayDay) {
+        btn.classList.add('datepicker-day-today');
+      } else if (d === selectedDay) {
+        btn.classList.add('datepicker-day-selected');
+      }
+
+      if (disableWeekends && isWeekend) {
+        btn.classList.add('datepicker-day-disabled');
+        btn.disabled = true;
+      }
+
+      grid.appendChild(btn);
+    }
+
+    // Next month fill
+    var totalCells = firstDay + daysInMonth;
+    var remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+    for (var n = 1; n <= remaining; n++) {
+      var nb = document.createElement('button');
+      nb.className = 'datepicker-day datepicker-day-other-month';
+      nb.textContent = n;
+      nb.disabled = true;
+      nb.style.pointerEvents = 'none';
+      grid.appendChild(nb);
+    }
+
+    panel.appendChild(grid);
+  }
+
+  // Render static demos
+  var today = new Date();
+
+  // Default: current month, today selected
+  var defaultPanel = document.querySelector('#dp-static-default .datepicker-panel');
+  if (defaultPanel) {
+    renderStaticGrid(defaultPanel, today.getMonth(), today.getFullYear(), today.getDate(), today.getDate(), false);
+  }
+
+  // Today selected
+  document.querySelectorAll('[data-static-month]').forEach(function(panel) {
+    var month = parseInt(panel.getAttribute('data-static-month'));
+    var year = parseInt(panel.getAttribute('data-static-year'));
+    var selected = panel.getAttribute('data-static-selected') ? parseInt(panel.getAttribute('data-static-selected')) : null;
+    var todayD = panel.getAttribute('data-static-today') ? parseInt(panel.getAttribute('data-static-today')) : null;
+    var disableWeekends = panel.getAttribute('data-static-disable-weekends') === 'true';
+    renderStaticGrid(panel, month, year, selected, todayD, disableWeekends);
+  });
+
+  // --- Live Datepicker ---
+  document.querySelectorAll('[data-datepicker]').forEach(function(picker) {
+    var input = picker.querySelector('[data-datepicker-input]');
+    var panel = picker.querySelector('[data-datepicker-panel]');
+    if (!input || !panel) return;
+
+    var currentMonth = today.getMonth();
+    var currentYear = today.getFullYear();
+    var selectedDate = null;
+    var focusedDay = null;
+
+    function renderGrid() {
+      panel.innerHTML = '';
+      var firstDay = new Date(currentYear, currentMonth, 1).getDay();
+      var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      var daysInPrev = new Date(currentYear, currentMonth, 0).getDate();
+
+      // Header
+      var header = document.createElement('div');
+      header.className = 'datepicker-header';
+
+      var leftTmpl = document.getElementById('icon-dp-chevron-left');
+      var rightTmpl = document.getElementById('icon-dp-chevron-right');
+
+      var prevBtn = document.createElement('button');
+      prevBtn.className = 'datepicker-nav-btn';
+      prevBtn.setAttribute('aria-label', 'Previous month');
+      prevBtn.type = 'button';
+      if (leftTmpl) prevBtn.appendChild(leftTmpl.content.cloneNode(true));
+      prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentMonth--;
+        if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+        focusedDay = null;
+        renderGrid();
+      });
+
+      var label = document.createElement('span');
+      label.className = 'datepicker-header-label';
+      label.textContent = MONTHS[currentMonth] + ' ' + currentYear;
+
+      var nextBtn = document.createElement('button');
+      nextBtn.className = 'datepicker-nav-btn';
+      nextBtn.setAttribute('aria-label', 'Next month');
+      nextBtn.type = 'button';
+      if (rightTmpl) nextBtn.appendChild(rightTmpl.content.cloneNode(true));
+      nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentMonth++;
+        if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+        focusedDay = null;
+        renderGrid();
+      });
+
+      header.appendChild(prevBtn);
+      header.appendChild(label);
+      header.appendChild(nextBtn);
+      panel.appendChild(header);
+
+      // Grid
+      var grid = document.createElement('div');
+      grid.className = 'datepicker-grid';
+      grid.setAttribute('role', 'grid');
+
+      DAYS.forEach(function(d) {
+        var wd = document.createElement('span');
+        wd.className = 'datepicker-weekday';
+        wd.textContent = d;
+        grid.appendChild(wd);
+      });
+
+      // Prev month fill
+      for (var p = firstDay - 1; p >= 0; p--) {
+        var pb = document.createElement('button');
+        pb.className = 'datepicker-day datepicker-day-other-month';
+        pb.textContent = daysInPrev - p;
+        pb.type = 'button';
+        pb.tabIndex = -1;
+        grid.appendChild(pb);
+      }
+
+      // Current month days
+      for (var d = 1; d <= daysInMonth; d++) {
+        var btn = document.createElement('button');
+        btn.className = 'datepicker-day';
+        btn.textContent = d;
+        btn.type = 'button';
+        btn.setAttribute('data-day', d);
+
+        var isToday = d === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear();
+        var isSelected = selectedDate && d === selectedDate.getDate() && currentMonth === selectedDate.getMonth() && currentYear === selectedDate.getFullYear();
+
+        if (isToday) {
+          btn.classList.add('datepicker-day-today');
+          btn.setAttribute('aria-current', 'date');
+        }
+        if (isSelected) {
+          btn.classList.add('datepicker-day-selected');
+          btn.setAttribute('aria-selected', 'true');
+        }
+
+        if (focusedDay === d) {
+          btn.tabIndex = 0;
+        } else {
+          btn.tabIndex = -1;
+        }
+
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var day = parseInt(this.getAttribute('data-day'));
+          selectedDate = new Date(currentYear, currentMonth, day);
+          input.value = MONTHS[currentMonth] + ' ' + day + ', ' + currentYear;
+          closePanel();
+        });
+
+        grid.appendChild(btn);
+      }
+
+      // Next month fill
+      var totalCells = firstDay + daysInMonth;
+      var remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+      for (var n = 1; n <= remaining; n++) {
+        var nb = document.createElement('button');
+        nb.className = 'datepicker-day datepicker-day-other-month';
+        nb.textContent = n;
+        nb.type = 'button';
+        nb.tabIndex = -1;
+        grid.appendChild(nb);
+      }
+
+      panel.appendChild(grid);
+
+      // Focus the focused day if set
+      if (focusedDay) {
+        var focusBtn = grid.querySelector('[data-day="' + focusedDay + '"]');
+        if (focusBtn) focusBtn.focus();
+      }
+    }
+
+    function openPanel() {
+      if (panel.classList.contains('open')) return;
+      currentMonth = selectedDate ? selectedDate.getMonth() : today.getMonth();
+      currentYear = selectedDate ? selectedDate.getFullYear() : today.getFullYear();
+      focusedDay = selectedDate ? selectedDate.getDate() : today.getDate();
+      renderGrid();
+      panel.classList.add('open');
+    }
+
+    function closePanel() {
+      panel.classList.remove('open');
+      input.focus();
+    }
+
+    input.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (panel.classList.contains('open')) {
+        closePanel();
+      } else {
+        openPanel();
+      }
+    });
+
+    // Keyboard navigation
+    panel.addEventListener('keydown', function(e) {
+      if (!panel.classList.contains('open')) return;
+      var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closePanel();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        closePanel();
+        return;
+      }
+
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (focusedDay) {
+          selectedDate = new Date(currentYear, currentMonth, focusedDay);
+          input.value = MONTHS[currentMonth] + ' ' + focusedDay + ', ' + currentYear;
+          closePanel();
+        }
+        return;
+      }
+
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (!focusedDay) focusedDay = 1;
+        else if (focusedDay < daysInMonth) focusedDay++;
+        else { currentMonth++; if (currentMonth > 11) { currentMonth = 0; currentYear++; } focusedDay = 1; }
+        renderGrid();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (!focusedDay) focusedDay = 1;
+        else if (focusedDay > 1) focusedDay--;
+        else { currentMonth--; if (currentMonth < 0) { currentMonth = 11; currentYear--; } focusedDay = new Date(currentYear, currentMonth + 1, 0).getDate(); }
+        renderGrid();
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (!focusedDay) focusedDay = 1;
+        else if (focusedDay + 7 <= daysInMonth) focusedDay += 7;
+        else { var overflow = focusedDay + 7 - daysInMonth; currentMonth++; if (currentMonth > 11) { currentMonth = 0; currentYear++; } focusedDay = overflow; }
+        renderGrid();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (!focusedDay) focusedDay = 1;
+        else if (focusedDay - 7 >= 1) focusedDay -= 7;
+        else { currentMonth--; if (currentMonth < 0) { currentMonth = 11; currentYear--; } var prevDays = new Date(currentYear, currentMonth + 1, 0).getDate(); focusedDay = prevDays + (focusedDay - 7); }
+        renderGrid();
+      }
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+      if (!picker.contains(e.target) && panel.classList.contains('open')) {
+        closePanel();
+      }
+    });
+  });
+})();
+</script>
