@@ -1,0 +1,64 @@
+<!--
+  @component-meta
+  name: Section Divider Slide
+  category: Slides
+  file: slide-divider.html
+  classes: slide-divider, slide-divider--teal, slide-divider--sage, slide-divider__content, slide-divider__number, slide-divider__title, slide-divider__subtitle
+  spec: components/slides/section-divider.md
+  css: src/css/slides/section-divider.css
+  when-to-use: Transitioning between major sections in a presentation deck.
+  do-not-use-when: Opening or closing a deck — use cover slide instead.
+  @end-meta
+-->
+
+
+<section class="pl-section" data-pl-section="gradient">
+  <h2 class="pl-section-title">Gradient (Default)</h2>
+  <p class="pl-section-description">Teal-to-sage gradient. Maximum one per deck.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-divider">
+      <div class="slide-divider__content">
+        <span class="slide-divider__number">Section 02</span>
+        <h2 class="slide-divider__title">Clinical Integration</h2>
+        <p class="slide-divider__subtitle">How medically tailored meals become part of the care plan — from referral to delivery to outcomes tracking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="teal">
+  <h2 class="pl-section-title">Teal Surface</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-divider slide-divider--teal">
+      <div class="slide-divider__content">
+        <span class="slide-divider__number">Section 03</span>
+        <h2 class="slide-divider__title">Outcomes & Impact</h2>
+        <p class="slide-divider__subtitle">Measurable results across readmission rates, HbA1c improvement, and patient satisfaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="sage">
+  <h2 class="pl-section-title">Sage Surface</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-divider slide-divider--sage">
+      <div class="slide-divider__content">
+        <span class="slide-divider__number">Section 04</span>
+        <h2 class="slide-divider__title">Patient Stories</h2>
+        <p class="slide-divider__subtitle">Real experiences from patients, caregivers, and clinical partners.</p>
+      </div>
+    </div>
+  </div>
+</section>

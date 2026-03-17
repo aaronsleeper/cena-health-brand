@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Cena Health — Section Divider Slide Template
+   Source: components/slides/section-divider.md
+   16:9 aspect ratio, comfortable density always
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Container
+     -------------------------------------------------------------------------- */
+
+  .slide-divider {
+    @apply relative w-full overflow-hidden;
+    aspect-ratio: 16 / 9;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-6);
+    padding: var(--space-20);
+    align-items: center;
+    justify-items: center;
+    background: linear-gradient(to right, var(--color-teal-900), var(--color-sage-950));
+  }
+
+  /* Surface variants */
+  .slide-divider--teal {
+    background: var(--color-surface-teal);
+  }
+
+  .slide-divider--sage {
+    background: var(--color-surface-sage);
+  }
+
+  /* --------------------------------------------------------------------------
+     Content Block
+     -------------------------------------------------------------------------- */
+
+  .slide-divider__content {
+    grid-column: 2 / 6;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  /* --------------------------------------------------------------------------
+     Typography
+     -------------------------------------------------------------------------- */
+
+  .slide-divider__number {
+    @apply font-sans text-2xs font-semibold uppercase tracking-widest;
+    color: var(--color-text-brand);
+  }
+
+  .slide-divider__title {
+    @apply font-display text-2xl font-semibold;
+    color: var(--color-text-primary);
+    letter-spacing: var(--tracking-tightest);
+    line-height: var(--leading-heading);
+    margin: 0;
+  }
+
+  .slide-divider__subtitle {
+    @apply font-sans text-base font-normal;
+    color: var(--color-text-secondary);
+    line-height: var(--leading-body);
+    max-width: 32rem;
+  }
+
+  /* --------------------------------------------------------------------------
+     Entrance Animation
+     -------------------------------------------------------------------------- */
+
+  .slide-divider--animate .slide-divider__number,
+  .slide-divider--animate .slide-divider__title,
+  .slide-divider--animate .slide-divider__subtitle {
+    animation: slide-divider-fade var(--duration-slow) var(--ease-enter) both;
+  }
+
+  .slide-divider--animate .slide-divider__title {
+    animation-delay: 100ms;
+  }
+
+  .slide-divider--animate .slide-divider__subtitle {
+    animation-delay: 200ms;
+  }
+
+  @keyframes slide-divider-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide-divider--animate .slide-divider__number,
+    .slide-divider--animate .slide-divider__title,
+    .slide-divider--animate .slide-divider__subtitle {
+      animation: none;
+      opacity: 1;
+    }
+  }
+}

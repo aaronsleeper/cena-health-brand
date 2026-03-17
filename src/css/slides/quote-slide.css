@@ -1,0 +1,131 @@
+/* ==========================================================================
+   Cena Health — Quote Slide Template
+   Source: components/slides/quote-slide.md
+   16:9 aspect ratio, comfortable density always
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Container
+     -------------------------------------------------------------------------- */
+
+  .slide-quote {
+    @apply relative w-full overflow-hidden;
+    aspect-ratio: 16 / 9;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-6);
+    padding: var(--space-20);
+    align-items: center;
+    background-color: var(--color-surface-page);
+  }
+
+  /* Surface variants */
+  .slide-quote--teal {
+    background-color: var(--color-surface-teal);
+  }
+
+  .slide-quote--sage {
+    background-color: var(--color-surface-sage);
+  }
+
+  /* --------------------------------------------------------------------------
+     Content Block
+     -------------------------------------------------------------------------- */
+
+  .slide-quote__content {
+    grid-column: 2 / 6;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  /* --------------------------------------------------------------------------
+     Quote Mark
+     -------------------------------------------------------------------------- */
+
+  .slide-quote__mark {
+    @apply font-display font-bold;
+    font-size: var(--text-display);
+    line-height: 0.8;
+    color: var(--color-brand-primary);
+    opacity: 0.2;
+    user-select: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Quote Text
+     -------------------------------------------------------------------------- */
+
+  .slide-quote__text {
+    @apply font-display text-xl font-medium m-0;
+    color: var(--color-text-primary);
+    line-height: var(--leading-relaxed);
+    letter-spacing: var(--tracking-snug);
+  }
+
+  /* --------------------------------------------------------------------------
+     Attribution
+     -------------------------------------------------------------------------- */
+
+  .slide-quote__attribution {
+    @apply flex flex-col gap-1;
+    padding-top: var(--space-4);
+    border-top: 2px solid var(--color-primary);
+    max-width: 16rem;
+  }
+
+  .slide-quote__name {
+    @apply font-sans text-sm font-semibold m-0;
+    color: var(--color-text-primary);
+  }
+
+  .slide-quote__role {
+    @apply font-sans text-sm font-normal m-0;
+    color: var(--color-text-secondary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Entrance Animation
+     -------------------------------------------------------------------------- */
+
+  .slide-quote--animate .slide-quote__mark,
+  .slide-quote--animate .slide-quote__text,
+  .slide-quote--animate .slide-quote__attribution {
+    animation: slide-quote-fade var(--duration-slow) var(--ease-enter) both;
+  }
+
+  .slide-quote--animate .slide-quote__text {
+    animation-delay: 150ms;
+  }
+
+  .slide-quote--animate .slide-quote__attribution {
+    animation-delay: 400ms;
+  }
+
+  @keyframes slide-quote-fade {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-2));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide-quote--animate .slide-quote__mark,
+    .slide-quote--animate .slide-quote__text,
+    .slide-quote--animate .slide-quote__attribution {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
