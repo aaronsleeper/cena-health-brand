@@ -113,9 +113,14 @@
   --color-zinc-900: var(--color-warm-100);
   --color-zinc-950: var(--color-warm-50);
 
-  /* White / black */
+  /* White / black — safety net: even accidental bg-white is warm */
   --color-white: var(--color-warm-950);   /* warm off-white, not pure #fff */
   --color-black: var(--color-warm-50);    /* near-black */
+
+  /* Semantic surface utilities — prefer these over bg-white/bg-gray-* */
+  --color-surface-page:      var(--color-warm-950);  /* #FBFAF8 — page background */
+  --color-surface-primary:   var(--color-warm-900);  /* #F3F1EE — card/panel fill */
+  --color-surface-secondary: var(--color-warm-800);  /* #E7E4DF — recessed/hover */
 
   /* Feedback — success, error, warning, info.
      Maps semantic *-50 (light bg) through *-900 (dark text) to the

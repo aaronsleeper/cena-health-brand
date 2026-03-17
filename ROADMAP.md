@@ -218,12 +218,11 @@ Wrappers that constrain Chart.js canvas sizing. No pie/donut charts (Tufte princ
 
 ### Group E — Implementation Hardening (Priority: Lower)
 
-**E1. Tailwind config hardening**
-Three specific changes (per `principles/coherence-notes.md` final paragraph):
-- Alias `surface-page` as the system white; make raw `bg-white` unavailable
-- Replace Tailwind's default cool-gray shadow scale with warm-only shadows
-- Gate `bg-teal-500` behind a `brand-` prefix so interactive fill utilities
-  only exist for teal-400 (`bg-primary-600` in the remapped scale)
+~~**E1. Tailwind config hardening**~~ ✅
+- ✅ Surface tokens (`surface-page`, `surface-primary`, `surface-secondary`) added to @theme as utilities
+- ✅ `bg-white` still maps to warm off-white (safety net); components migrated to `bg-surface-page`
+- ✅ Shadows already warm-only via @theme (rgba(91, 84, 76) base)
+- ✅ Teal-500 not used in @apply anywhere — all components use semantic tokens
 
 ~~**E2. BEM → flat convergence for agent-built components**~~ ✅ Already flat as-built.
 
@@ -254,8 +253,10 @@ Done:      E2 + E3  — ✅ audit and fix agent-built components
 Done:      A1–A8    — ✅ sidebar, stat card, empty state, skeleton, pagination,
                        toolbar, filter pills, segmented control
 
-Now:       A9–A18   — page header, tag group, section nav, accordion, KV table,
+Done:      A9–A18   — ✅ page header, tag group, section nav, accordion, KV table,
                        activity feed, timeline, prompt input, chat bubbles, pipeline bar
+Done:      B2–B3    — ✅ quote slide, section divider slide
+Done:      E1       — ✅ Tailwind config hardening
 
 Then:      B1–B3    — slides expansion
            D1–D2    — data visualization
@@ -327,3 +328,4 @@ npm run build      # full Vite build
 | 2026-03-16 | Accessibility audit + corrections, Phase 5 web reconciliation, Phase 6 component specs, Phase 7 CSS implementation, agent skill infrastructure, CLAUDE.md |
 | 2026-03-16 | Phase 8: Preline integration (INFRA-01), BEM→flat rename (INFRA-02), agent built full UI component track (alert, badge, button, card, dropdown, form-group, input, modal, nav, table, toast), BRAND.md, BRAND-ROADMAP.md, pl-component-builder + pl-component-qa skills, pattern library chrome fixed |
 | 2026-03-16 | INFRA-03: @apply migration (7 files), A1–A8: sidebar, empty-state, skeleton, pagination, toolbar, filter-pill, segmented-control (specs, CSS, PL pages) |
+| 2026-03-17 | A9–A18: page-header, tag-group, section-nav, accordion, kv-table, activity-feed, timeline, prompt-input, chat, pipeline-bar; B2–B3: quote slide, section divider slide; E1: Tailwind config hardening |
