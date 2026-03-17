@@ -1,0 +1,331 @@
+<!--
+  @component-meta
+  name: Input Group
+  category: Primitives
+  file: input-group.html
+  classes: input-group, input-group-addon, input-group-addon-leading, input-group-addon-trailing, input-group-btn, input-group-sm
+  spec: components/ui/input-group.md
+  css: src/css/components/input-group.css
+  when-to-use: When an input needs a static label, unit indicator, or action button visually attached to the field.
+  do-not-use-when: The icon is purely decorative — use the standard input-wrapper with input-icon instead.
+  @end-meta
+-->
+
+<!-- PL-only state simulation helpers -->
+<style>
+  .input-group--state-hover .input-field {
+    border-color: var(--color-border-focus) !important;
+  }
+  .input-group--state-focus .input-field {
+    border-color: var(--color-border-focus) !important;
+    box-shadow: 0 0 0 var(--space-0-5) oklch(56.3% 0.0762 181.3 / 15%) !important;
+  }
+</style>
+
+<!-- SVG icon templates -->
+<template id="ig-icon-search">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <circle cx="7" cy="7" r="5"/>
+    <line x1="11" y1="11" x2="14" y2="14"/>
+  </svg>
+</template>
+
+<template id="ig-icon-mail">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="2" y="4" width="12" height="9" rx="2"/>
+    <polyline points="2,4 8,9 14,4"/>
+  </svg>
+</template>
+
+<template id="ig-icon-lock">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="3" y="7" width="10" height="7" rx="2"/>
+    <path d="M5 7V5a3 3 0 0 1 6 0v2"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Text Prefix
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="text-prefix">
+  <h2 class="pl-section-title">Text Prefix</h2>
+  <p class="pl-section-description">Static text labels on the leading end — currency symbols, units, protocol prefixes.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="pl-stack" style="max-width: 24rem;">
+      <div class="field">
+        <label class="input-label" for="ig-price">Price</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading">$</span>
+          <input class="input-field" type="text" id="ig-price" placeholder="0.00" inputmode="decimal">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="input-label" for="ig-weight">Patient weight</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading">kg</span>
+          <input class="input-field" type="text" id="ig-weight" placeholder="e.g. 72.5" inputmode="decimal">
+        </div>
+        <p class="input-helper">Last recorded weight from intake assessment.</p>
+      </div>
+
+      <div class="field">
+        <label class="input-label" for="ig-url">Website</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading">https://</span>
+          <input class="input-field" type="text" id="ig-url" placeholder="example.com">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Text Suffix
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="text-suffix">
+  <h2 class="pl-section-title">Text Suffix</h2>
+  <p class="pl-section-description">Static text labels on the trailing end — domains, units, percentages.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="pl-stack" style="max-width: 24rem;">
+      <div class="field">
+        <label class="input-label" for="ig-domain">Subdomain</label>
+        <div class="input-group">
+          <input class="input-field" type="text" id="ig-domain" placeholder="yourorg">
+          <span class="input-group-addon input-group-addon-trailing">.cenahealth.com</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="input-label" for="ig-calories">Daily caloric target</label>
+        <div class="input-group">
+          <input class="input-field" type="text" id="ig-calories" placeholder="2000" inputmode="numeric">
+          <span class="input-group-addon input-group-addon-trailing">kcal</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="input-label" for="ig-bp">Systolic blood pressure</label>
+        <div class="input-group">
+          <input class="input-field" type="text" id="ig-bp" placeholder="120" inputmode="numeric">
+          <span class="input-group-addon input-group-addon-trailing">mmHg</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Icon Prefix
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="icon-prefix">
+  <h2 class="pl-section-title">Icon Prefix</h2>
+  <p class="pl-section-description">SVG icon addons for type indication — search, email, security.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="pl-stack" style="max-width: 24rem;">
+      <div class="field">
+        <label class="input-label" for="ig-search">Patient search</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading" data-ig-icon="search"></span>
+          <input class="input-field" type="search" id="ig-search" placeholder="Search by name or MRN...">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="input-label" for="ig-email">Email address</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading" data-ig-icon="mail"></span>
+          <input class="input-field" type="email" id="ig-email" placeholder="maria@example.com">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="input-label" for="ig-password">Password</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading" data-ig-icon="lock"></span>
+          <input class="input-field" type="password" id="ig-password" placeholder="Enter password">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Button Suffix
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="button-suffix">
+  <h2 class="pl-section-title">Button Suffix</h2>
+  <p class="pl-section-description">Action buttons attached to the trailing end of the input.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="pl-stack" style="max-width: 28rem;">
+      <div class="field">
+        <label class="input-label" for="ig-search-btn">Patient search</label>
+        <div class="input-group">
+          <input class="input-field" type="search" id="ig-search-btn" placeholder="Search by name or MRN...">
+          <button class="input-group-btn" type="button">Search</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="input-label" for="ig-mrn">Medical record number</label>
+        <div class="input-group">
+          <input class="input-field" type="text" id="ig-mrn" value="MRN-2024-00847" readonly>
+          <button class="input-group-btn" type="button">Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Combined — Icon Prefix + Button Suffix
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="combined">
+  <h2 class="pl-section-title">Combined</h2>
+  <p class="pl-section-description">Icon prefix paired with a button suffix — the search bar pattern.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 28rem;">
+      <div class="field">
+        <label class="input-label" for="ig-combined">Patient lookup</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading" data-ig-icon="search"></span>
+          <input class="input-field" type="search" id="ig-combined" placeholder="Name, MRN, or DOB...">
+          <button class="input-group-btn" type="button">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 6: States
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="states">
+  <h2 class="pl-section-title">States</h2>
+  <p class="pl-section-description">Focus, error, and disabled states on grouped inputs. Addons inherit the state visually.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); max-width: 36rem;">
+
+      <!-- Default -->
+      <div class="field">
+        <label class="input-label">Default</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading">kg</span>
+          <input class="input-field" type="text" placeholder="72.5" readonly style="pointer-events: none;">
+        </div>
+      </div>
+
+      <!-- Focus -->
+      <div class="field input-group--state-focus">
+        <label class="input-label">Focus</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading">kg</span>
+          <input class="input-field" type="text" value="72.5" readonly style="pointer-events: none;">
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div class="field">
+        <label class="input-label">Error</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading">kg</span>
+          <input class="input-field input-field-error" type="text" value="-5" aria-invalid="true" readonly style="pointer-events: none;">
+        </div>
+        <p class="input-error-msg">Weight must be a positive number</p>
+      </div>
+
+      <!-- Disabled -->
+      <div class="field">
+        <label class="input-label">Disabled</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading">kg</span>
+          <input class="input-field" type="text" value="72.5" disabled>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 7: Sizes
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="sizes">
+  <h2 class="pl-section-title">Sizes</h2>
+  <p class="pl-section-description">Default (44px) and Small (36px) input groups.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; gap: var(--space-8); max-width: 36rem;">
+      <div class="field" style="flex: 1;">
+        <label class="input-label">Default</label>
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-leading">$</span>
+          <input class="input-field" type="text" placeholder="0.00">
+        </div>
+      </div>
+      <div class="field" style="flex: 1;">
+        <label class="input-label input-label-sm">Small</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-addon input-group-addon-leading">$</span>
+          <input class="input-field input-field-sm" type="text" placeholder="0.00">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: icon injection -->
+<script>
+(function () {
+  var iconMap = {
+    'search': 'ig-icon-search',
+    'mail': 'ig-icon-mail',
+    'lock': 'ig-icon-lock'
+  };
+
+  document.querySelectorAll('[data-ig-icon]').forEach(function (span) {
+    var iconName = span.getAttribute('data-ig-icon');
+    var tmplId = iconMap[iconName];
+    if (!tmplId) return;
+    var tmpl = document.getElementById(tmplId);
+    if (tmpl && !span.querySelector('svg')) {
+      span.appendChild(tmpl.content.cloneNode(true));
+    }
+  });
+})();
+</script>

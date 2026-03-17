@@ -1,0 +1,177 @@
+/* ==========================================================================
+   Cena Health — Input Group Component
+   Source: components/ui/input-group.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Wrapper
+     -------------------------------------------------------------------------- */
+
+  .input-group {
+    display: inline-flex;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  /* --------------------------------------------------------------------------
+     Text / Icon Addon
+     -------------------------------------------------------------------------- */
+
+  .input-group-addon {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--leading-body);
+    color: var(--color-text-secondary);
+    background-color: var(--color-surface-primary);
+    border: 1px solid var(--color-border-strong);
+    padding: var(--space-3) var(--space-4);
+    white-space: nowrap;
+  }
+
+  .input-group-addon svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+    flex-shrink: 0;
+  }
+
+  /* Leading addon — left cap */
+  .input-group-addon-leading {
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    border-right: none;
+  }
+
+  /* Trailing addon — right cap */
+  .input-group-addon-trailing {
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    border-left: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Button Addon
+     -------------------------------------------------------------------------- */
+
+  .input-group-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-on-primary);
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    padding: var(--space-3) var(--space-5);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      background-color var(--duration-fast) var(--ease-transition),
+      border-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .input-group-btn:hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+  }
+
+  .input-group-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-surface-page), 0 0 0 4px var(--color-border-focus);
+  }
+
+  /* --------------------------------------------------------------------------
+     Input inside a group — strip adjacent border-radius
+     -------------------------------------------------------------------------- */
+
+  .input-group .input-field {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .input-group-addon-leading + .input-field {
+    border-left: none;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .input-field:has(+ .input-group-addon-trailing) {
+    border-right: none;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  }
+
+  .input-field:has(+ .input-group-btn) {
+    border-right: none;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  }
+
+  /* Both leading addon and trailing addon/button — center input has no radius */
+  .input-group-addon-leading + .input-field:has(+ .input-group-addon-trailing),
+  .input-group-addon-leading + .input-field:has(+ .input-group-btn) {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Small size
+     -------------------------------------------------------------------------- */
+
+  .input-group-sm .input-group-addon {
+    font-size: var(--text-sm);
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .input-group-sm .input-group-btn {
+    font-size: var(--text-xs);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  /* --------------------------------------------------------------------------
+     States — error on grouped input
+     -------------------------------------------------------------------------- */
+
+  .input-group .input-field-error {
+    border-color: var(--color-error-border);
+    border-width: 2px;
+  }
+
+  .input-group .input-field-error + .input-group-addon-trailing {
+    border-color: var(--color-error-border);
+    border-width: 2px;
+    border-left: none;
+  }
+
+  .input-group:has(.input-field-error) .input-group-addon-leading {
+    border-color: var(--color-error-border);
+    border-width: 2px;
+    border-right: none;
+  }
+
+  /* Disabled */
+  .input-group .input-field:disabled + .input-group-addon-trailing {
+    background-color: var(--color-surface-secondary);
+    border-color: var(--color-border-default);
+    color: var(--color-text-disabled);
+  }
+
+  .input-group:has(.input-field:disabled) .input-group-addon-leading {
+    background-color: var(--color-surface-secondary);
+    border-color: var(--color-border-default);
+    color: var(--color-text-disabled);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .input-group-btn {
+      transition-duration: 0ms;
+    }
+  }
+
+}

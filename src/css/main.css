@@ -51,6 +51,8 @@
 @import "./components/form-group.css";
 @import "./components/indicator.css";
 @import "./components/input.css";
+@import "./components/input-group.css";
+@import "./components/input-number.css";
 @import "./components/kv-table.css";
 @import "./components/list-group.css";
 @import "./components/modal.css";

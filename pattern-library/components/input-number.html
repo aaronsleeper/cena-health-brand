@@ -1,0 +1,273 @@
+<!--
+  @component-meta
+  name: Input Number
+  category: Primitives
+  file: input-number.html
+  classes: input-number, input-number-input, input-number-btn, input-number-btn-decrement, input-number-btn-increment, input-number-sm, input-number-error
+  spec: components/ui/input-number.md
+  css: src/css/components/input-number.css
+  when-to-use: Bounded numeric values where users benefit from incremental adjustment — quantities, doses, targets.
+  do-not-use-when: The number has no meaningful bounds — use a standard text input with inputmode="numeric" instead.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Default
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+  <p class="pl-section-description">Basic integer stepper for quantities.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 16rem;">
+      <div class="field">
+        <label class="input-label" for="in-qty">Quantity</label>
+        <div class="input-number" data-min="1" data-max="99" data-step="1">
+          <button class="input-number-btn input-number-btn-decrement" type="button" aria-label="Decrease quantity">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/></svg>
+          </button>
+          <input class="input-number-input" type="number" id="in-qty" value="1" min="1" max="99" step="1">
+          <button class="input-number-btn input-number-btn-increment" type="button" aria-label="Increase quantity">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/><line x1="8" y1="4" x2="8" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: With Label + Unit
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="with-label">
+  <h2 class="pl-section-title">With Label + Unit</h2>
+  <p class="pl-section-description">Labeled field with a unit indicator for clinical targets.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 20rem;">
+      <div class="field">
+        <label class="input-label" for="in-kcal">Daily caloric target</label>
+        <div style="display: flex; gap: var(--space-3); align-items: center;">
+          <div class="input-number" data-min="800" data-max="4000" data-step="50">
+            <button class="input-number-btn input-number-btn-decrement" type="button" aria-label="Decrease calories">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/></svg>
+            </button>
+            <input class="input-number-input" type="number" id="in-kcal" value="2000" min="800" max="4000" step="50">
+            <button class="input-number-btn input-number-btn-increment" type="button" aria-label="Increase calories">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/><line x1="8" y1="4" x2="8" y2="12"/></svg>
+            </button>
+          </div>
+          <span style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">kcal</span>
+        </div>
+        <p class="input-helper">Recommended range: 1200–3500 kcal for adults.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Decimal
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="decimal">
+  <h2 class="pl-section-title">Decimal</h2>
+  <p class="pl-section-description">Fractional step for precise clinical values like HbA1c targets.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 20rem;">
+      <div class="field">
+        <label class="input-label" for="in-hba1c">HbA1c target</label>
+        <div style="display: flex; gap: var(--space-3); align-items: center;">
+          <div class="input-number" data-min="4.0" data-max="14.0" data-step="0.1">
+            <button class="input-number-btn input-number-btn-decrement" type="button" aria-label="Decrease HbA1c target">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/></svg>
+            </button>
+            <input class="input-number-input" type="number" id="in-hba1c" value="7.0" min="4.0" max="14.0" step="0.1">
+            <button class="input-number-btn input-number-btn-increment" type="button" aria-label="Increase HbA1c target">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/><line x1="8" y1="4" x2="8" y2="12"/></svg>
+            </button>
+          </div>
+          <span style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">%</span>
+        </div>
+        <p class="input-helper">ADA recommends &lt;7.0% for most adults with diabetes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Min / Max — Bounded Range
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="min-max">
+  <h2 class="pl-section-title">Min / Max Bounds</h2>
+  <p class="pl-section-description">Stepper buttons disable at min and max limits. Try clicking to see disabled state.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; gap: var(--space-8); flex-wrap: wrap;">
+      <div class="field">
+        <label class="input-label" for="in-min">At minimum (0)</label>
+        <div class="input-number" data-min="0" data-max="100" data-step="1">
+          <button class="input-number-btn input-number-btn-decrement" type="button" aria-label="Decrease" disabled>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/></svg>
+          </button>
+          <input class="input-number-input" type="number" id="in-min" value="0" min="0" max="100" step="1">
+          <button class="input-number-btn input-number-btn-increment" type="button" aria-label="Increase">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/><line x1="8" y1="4" x2="8" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="input-label" for="in-max">At maximum (100)</label>
+        <div class="input-number" data-min="0" data-max="100" data-step="1">
+          <button class="input-number-btn input-number-btn-decrement" type="button" aria-label="Decrease">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/></svg>
+          </button>
+          <input class="input-number-input" type="number" id="in-max" value="100" min="0" max="100" step="1">
+          <button class="input-number-btn input-number-btn-increment" type="button" aria-label="Increase" disabled>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/><line x1="8" y1="4" x2="8" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Sizes
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="sizes">
+  <h2 class="pl-section-title">Sizes</h2>
+  <p class="pl-section-description">Default (44px) and Small (36px) number inputs.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; gap: var(--space-8); flex-wrap: wrap; align-items: flex-end;">
+      <div class="field">
+        <label class="input-label">Default</label>
+        <div class="input-number" data-min="0" data-max="99" data-step="1">
+          <button class="input-number-btn input-number-btn-decrement" type="button" aria-label="Decrease">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/></svg>
+          </button>
+          <input class="input-number-input" type="number" value="5" min="0" max="99" step="1">
+          <button class="input-number-btn input-number-btn-increment" type="button" aria-label="Increase">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/><line x1="8" y1="4" x2="8" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="input-label input-label-sm">Small</label>
+        <div class="input-number input-number-sm" data-min="0" data-max="99" data-step="1">
+          <button class="input-number-btn input-number-btn-decrement" type="button" aria-label="Decrease">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/></svg>
+          </button>
+          <input class="input-number-input" type="number" value="5" min="0" max="99" step="1">
+          <button class="input-number-btn input-number-btn-increment" type="button" aria-label="Increase">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/><line x1="8" y1="4" x2="8" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 6: Error State
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="states">
+  <h2 class="pl-section-title">Error State</h2>
+  <p class="pl-section-description">Validation error with message — borders turn error-red across all three elements.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 20rem;">
+      <div class="field">
+        <label class="input-label" for="in-error">Protein target (g)</label>
+        <div class="input-number input-number-error" data-min="10" data-max="300" data-step="5">
+          <button class="input-number-btn input-number-btn-decrement" type="button" aria-label="Decrease protein target">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/></svg>
+          </button>
+          <input class="input-number-input" type="number" id="in-error" value="5" min="10" max="300" step="5" aria-invalid="true">
+          <button class="input-number-btn input-number-btn-increment" type="button" aria-label="Increase protein target">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="12" y2="8"/><line x1="8" y1="4" x2="8" y2="12"/></svg>
+          </button>
+        </div>
+        <p class="input-error-msg">Minimum protein target is 10g</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: stepper behavior -->
+<script>
+(function () {
+  document.querySelectorAll('.input-number').forEach(function (wrapper) {
+    var input = wrapper.querySelector('.input-number-input');
+    var decBtn = wrapper.querySelector('.input-number-btn-decrement');
+    var incBtn = wrapper.querySelector('.input-number-btn-increment');
+    if (!input || !decBtn || !incBtn) return;
+
+    var step = parseFloat(wrapper.getAttribute('data-step')) || parseFloat(input.getAttribute('step')) || 1;
+    var min = parseFloat(wrapper.getAttribute('data-min'));
+    var max = parseFloat(wrapper.getAttribute('data-max'));
+    if (isNaN(min)) min = parseFloat(input.getAttribute('min'));
+    if (isNaN(max)) max = parseFloat(input.getAttribute('max'));
+
+    var decimals = (step.toString().split('.')[1] || '').length;
+
+    function updateButtons() {
+      var val = parseFloat(input.value);
+      decBtn.disabled = !isNaN(min) && val <= min;
+      incBtn.disabled = !isNaN(max) && val >= max;
+    }
+
+    decBtn.addEventListener('click', function () {
+      var val = parseFloat(input.value) || 0;
+      var next = parseFloat((val - step).toFixed(decimals));
+      if (!isNaN(min) && next < min) next = min;
+      input.value = next;
+      updateButtons();
+    });
+
+    incBtn.addEventListener('click', function () {
+      var val = parseFloat(input.value) || 0;
+      var next = parseFloat((val + step).toFixed(decimals));
+      if (!isNaN(max) && next > max) next = max;
+      input.value = next;
+      updateButtons();
+    });
+
+    input.addEventListener('change', function () {
+      var val = parseFloat(input.value);
+      if (!isNaN(min) && val < min) input.value = min;
+      if (!isNaN(max) && val > max) input.value = max;
+      updateButtons();
+    });
+
+    updateButtons();
+  });
+})();
+</script>
