@@ -1,0 +1,406 @@
+<!--
+  @component-meta
+  name: Navbar
+  category: Navigation
+  file: navbar.html
+  classes: navbar, navbar-inner, navbar-brand, navbar-nav, navbar-nav-item, navbar-actions, navbar-divider, navbar-mobile-toggle, navbar-collapse, navbar--elevated
+  spec: components/ui/navbar.md
+  css: src/css/components/navbar.css
+  when-to-use: Top-level application navigation that persists across all pages.
+  do-not-use-when: You need in-page section navigation — use tabs or section nav instead.
+  @end-meta
+-->
+
+<style>
+  /* PL-only: make navbar static for demo */
+  .demo--navbar-static .navbar {
+    position: static !important;
+  }
+  /* PL-only: show collapse for demo */
+  .demo--collapse-open .navbar-collapse {
+    display: block !important;
+    max-height: 20rem !important;
+    position: static !important;
+  }
+  /* PL-only: show mobile toggle */
+  .demo--show-toggle .navbar-mobile-toggle {
+    display: flex !important;
+  }
+  /* PL-only: hide desktop nav for mobile sim */
+  .demo--hide-desktop-nav .navbar-nav {
+    display: none !important;
+  }
+  /* PL-only: frozen hover state */
+  .demo--nav-hover {
+    color: var(--color-text-primary) !important;
+  }
+  /* PL-only: notification dot */
+  .navbar-notification-dot {
+    position: absolute;
+    top: var(--space-1);
+    right: var(--space-1);
+    min-width: 1rem;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-size: var(--text-3xs);
+    font-weight: 600;
+    color: white;
+    background-color: var(--color-error-500);
+    border-radius: var(--radius-full);
+    padding: 0 var(--space-0-5);
+    line-height: 1;
+  }
+</style>
+
+<!-- SVG icon templates -->
+<template id="icon-navbar-search">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="8.5" cy="8.5" r="5.5"/>
+    <line x1="13" y1="13" x2="17" y2="17"/>
+  </svg>
+</template>
+
+<template id="icon-navbar-bell">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M10 2C7.2 2 5 4.2 5 7V11L3 14H17L15 11V7C15 4.2 12.8 2 10 2Z"/>
+    <path d="M8 14V15C8 16.1 8.9 17 10 17C11.1 17 12 16.1 12 15V14"/>
+  </svg>
+</template>
+
+<template id="icon-navbar-menu">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <line x1="3" y1="5" x2="17" y2="5"/>
+    <line x1="3" y1="10" x2="17" y2="10"/>
+    <line x1="3" y1="15" x2="17" y2="15"/>
+  </svg>
+</template>
+
+<template id="icon-navbar-avatar">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <circle cx="16" cy="16" r="16" fill="var(--color-surface-primary)"/>
+    <circle cx="16" cy="12" r="5" stroke="var(--color-text-tertiary)" stroke-width="1.5" fill="none"/>
+    <path d="M6 28C6 22.5 10.5 18 16 18C21.5 18 26 22.5 26 28" stroke="var(--color-text-tertiary)" stroke-width="1.5" fill="none"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Default
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">DEFAULT</h2>
+  <p class="pl-section-description">
+    Full navbar with brand, navigation links (one active), and action icons.
+  </p>
+
+  <div class="pl-canvas demo--navbar-static" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="navbar-inner">
+        <a href="#" class="navbar-brand">
+          <svg class="navbar-brand-logo"></svg>
+          Cena Health
+        </a>
+
+        <ul class="navbar-nav">
+          <li><a href="#" class="navbar-nav-item active">Dashboard</a></li>
+          <li><a href="#" class="navbar-nav-item">Patients</a></li>
+          <li><a href="#" class="navbar-nav-item">Care Plans</a></li>
+          <li><a href="#" class="navbar-nav-item">Reports</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="Search">
+            <svg class="navbar-search-icon"></svg>
+          </button>
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="Notifications">
+            <svg class="navbar-bell-icon"></svg>
+          </button>
+          <span class="navbar-divider"></span>
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="User menu" style="padding: var(--space-1);">
+            <svg class="navbar-avatar-icon"></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Brand Only
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="brand-only">
+  <h2 class="pl-section-title">BRAND ONLY</h2>
+  <p class="pl-section-description">
+    Minimal navbar with brand and actions — no center navigation links.
+  </p>
+
+  <div class="pl-canvas demo--navbar-static" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <nav class="navbar" role="navigation" aria-label="Brand navigation">
+      <div class="navbar-inner">
+        <a href="#" class="navbar-brand">
+          <svg class="navbar-brand-logo"></svg>
+          Cena Health
+        </a>
+
+        <div class="navbar-actions">
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="Search">
+            <svg class="navbar-search-icon"></svg>
+          </button>
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="Notifications">
+            <svg class="navbar-bell-icon"></svg>
+          </button>
+          <span class="navbar-divider"></span>
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="User menu" style="padding: var(--space-1);">
+            <svg class="navbar-avatar-icon"></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Notification Badge
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="notification-badge">
+  <h2 class="pl-section-title">WITH NOTIFICATION BADGE</h2>
+  <p class="pl-section-description">
+    Action icons with an unread count indicator on the notifications bell.
+  </p>
+
+  <div class="pl-canvas demo--navbar-static" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation with notifications">
+      <div class="navbar-inner">
+        <a href="#" class="navbar-brand">
+          <svg class="navbar-brand-logo"></svg>
+          Cena Health
+        </a>
+
+        <ul class="navbar-nav">
+          <li><a href="#" class="navbar-nav-item active">Dashboard</a></li>
+          <li><a href="#" class="navbar-nav-item">Patients</a></li>
+          <li><a href="#" class="navbar-nav-item">Care Plans</a></li>
+          <li><a href="#" class="navbar-nav-item">Reports</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="Search">
+            <svg class="navbar-search-icon"></svg>
+          </button>
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="3 unread notifications" style="position: relative;">
+            <svg class="navbar-bell-icon"></svg>
+            <span class="navbar-notification-dot">3</span>
+          </button>
+          <span class="navbar-divider"></span>
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="User menu" style="padding: var(--space-1);">
+            <svg class="navbar-avatar-icon"></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Mobile (Simulated)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="mobile">
+  <h2 class="pl-section-title">MOBILE (SIMULATED)</h2>
+  <p class="pl-section-description">
+    Left: collapsed state with hamburger visible. Right: expanded state showing nav links.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; gap: var(--space-6); flex-wrap: wrap; align-items: flex-start;">
+
+      <!-- Collapsed -->
+      <div style="flex: 1; min-width: 18rem; max-width: 24rem;">
+        <p class="pl-col-label">Collapsed</p>
+        <div class="demo--navbar-static demo--show-toggle demo--hide-desktop-nav" style="border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
+          <nav class="navbar" role="navigation" aria-label="Mobile collapsed demo">
+            <div class="navbar-inner">
+              <button type="button" class="navbar-mobile-toggle" aria-label="Open menu">
+                <svg class="navbar-menu-icon"></svg>
+              </button>
+              <a href="#" class="navbar-brand">
+                <svg class="navbar-brand-logo"></svg>
+                Cena Health
+              </a>
+              <div class="navbar-actions">
+                <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="Search">
+                  <svg class="navbar-search-icon"></svg>
+                </button>
+                <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="User menu" style="padding: var(--space-1);">
+                  <svg class="navbar-avatar-icon"></svg>
+                </button>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Expanded -->
+      <div style="flex: 1; min-width: 18rem; max-width: 24rem;">
+        <p class="pl-col-label">Expanded</p>
+        <div class="demo--navbar-static demo--show-toggle demo--hide-desktop-nav demo--collapse-open" style="border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
+          <nav class="navbar" role="navigation" aria-label="Mobile expanded demo">
+            <div class="navbar-inner">
+              <button type="button" class="navbar-mobile-toggle" aria-label="Close menu">
+                <svg class="navbar-menu-icon"></svg>
+              </button>
+              <a href="#" class="navbar-brand">
+                <svg class="navbar-brand-logo"></svg>
+                Cena Health
+              </a>
+              <div class="navbar-actions">
+                <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="Search">
+                  <svg class="navbar-search-icon"></svg>
+                </button>
+                <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="User menu" style="padding: var(--space-1);">
+                  <svg class="navbar-avatar-icon"></svg>
+                </button>
+              </div>
+            </div>
+            <div class="navbar-collapse open">
+              <ul class="navbar-nav">
+                <li><a href="#" class="navbar-nav-item active">Dashboard</a></li>
+                <li><a href="#" class="navbar-nav-item">Patients</a></li>
+                <li><a href="#" class="navbar-nav-item">Care Plans</a></li>
+                <li><a href="#" class="navbar-nav-item">Reports</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Surface Variants
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">SURFACE VARIANTS</h2>
+  <p class="pl-section-description">
+    Navbar on an elevated surface using the <code>.navbar--elevated</code> modifier.
+  </p>
+
+  <div class="pl-canvas demo--navbar-static" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8) — elevated navbar on surface-primary</p>
+
+    <nav class="navbar navbar--elevated" role="navigation" aria-label="Elevated navigation">
+      <div class="navbar-inner">
+        <a href="#" class="navbar-brand">
+          <svg class="navbar-brand-logo"></svg>
+          Cena Health
+        </a>
+
+        <ul class="navbar-nav">
+          <li><a href="#" class="navbar-nav-item active">Dashboard</a></li>
+          <li><a href="#" class="navbar-nav-item">Patients</a></li>
+          <li><a href="#" class="navbar-nav-item">Care Plans</a></li>
+          <li><a href="#" class="navbar-nav-item">Reports</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="Search">
+            <svg class="navbar-search-icon"></svg>
+          </button>
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="Notifications">
+            <svg class="navbar-bell-icon"></svg>
+          </button>
+          <span class="navbar-divider"></span>
+          <button type="button" class="btn btn-ghost btn-icon-only btn-default" aria-label="User menu" style="padding: var(--space-1);">
+            <svg class="navbar-avatar-icon"></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+
+<!-- Component JS: icon injection -->
+<script>
+(function() {
+  var tmplSearch = document.getElementById('icon-navbar-search');
+  var tmplBell   = document.getElementById('icon-navbar-bell');
+  var tmplMenu   = document.getElementById('icon-navbar-menu');
+  var tmplAvatar = document.getElementById('icon-navbar-avatar');
+
+  function inject(selector, tmpl) {
+    if (!tmpl) return;
+    document.querySelectorAll(selector).forEach(function(el) {
+      if (el.hasChildNodes()) return;
+      var svg = tmpl.content.cloneNode(true).querySelector('svg');
+      if (svg) el.parentNode.replaceChild(svg, el);
+    });
+  }
+
+  inject('.navbar-search-icon', tmplSearch);
+  inject('.navbar-bell-icon', tmplBell);
+  inject('.navbar-menu-icon', tmplMenu);
+  inject('.navbar-avatar-icon', tmplAvatar);
+
+  // Brand logo — simple Cena "C" mark
+  document.querySelectorAll('.navbar-brand-logo').forEach(function(el) {
+    if (el.hasChildNodes()) return;
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '32');
+    svg.setAttribute('height', '32');
+    svg.setAttribute('viewBox', '0 0 32 32');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('aria-hidden', 'true');
+    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', '16');
+    circle.setAttribute('cy', '16');
+    circle.setAttribute('r', '14');
+    circle.setAttribute('fill', 'var(--color-primary)');
+    var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', '16');
+    text.setAttribute('y', '21');
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('fill', 'white');
+    text.setAttribute('font-family', 'var(--font-display)');
+    text.setAttribute('font-size', '16');
+    text.setAttribute('font-weight', '700');
+    text.textContent = 'C';
+    svg.appendChild(circle);
+    svg.appendChild(text);
+    el.parentNode.replaceChild(svg, el);
+  });
+
+  // Mobile toggle demo — wire up hamburger buttons
+  document.querySelectorAll('.navbar-mobile-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var nav = btn.closest('.navbar');
+      if (!nav) return;
+      var collapse = nav.querySelector('.navbar-collapse');
+      if (collapse) {
+        collapse.classList.toggle('open');
+      }
+    });
+  });
+})();
+</script>

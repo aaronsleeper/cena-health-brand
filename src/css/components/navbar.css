@@ -1,0 +1,283 @@
+/* ==========================================================================
+   Cena Health — Navbar Component
+   Source: components/ui/navbar.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Base
+     -------------------------------------------------------------------------- */
+
+  .navbar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 4rem;
+    background-color: var(--color-surface-page);
+    border-bottom: 1px solid var(--color-border-default);
+    z-index: 40;
+  }
+
+  .navbar-inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .navbar-inner {
+      padding: 0 var(--space-6);
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Brand
+     -------------------------------------------------------------------------- */
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .navbar-brand:hover {
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  .navbar-brand svg,
+  .navbar-brand img {
+    width: var(--icon-xl);
+    height: var(--icon-xl);
+    flex-shrink: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Nav Links
+     -------------------------------------------------------------------------- */
+
+  .navbar-nav {
+    display: none;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+  }
+
+  @media (min-width: 768px) {
+    .navbar-nav {
+      display: flex;
+    }
+  }
+
+  .navbar-nav-item {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 2px solid transparent;
+    min-height: 4rem;
+    white-space: nowrap;
+    transition:
+      color var(--duration-fast) var(--ease-transition),
+      border-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .navbar-nav-item:hover {
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  .navbar-nav-item.active {
+    color: var(--color-text-brand);
+    border-bottom-color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .navbar-nav-item:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+    border-radius: var(--radius-sm);
+  }
+
+  /* --------------------------------------------------------------------------
+     Actions
+     -------------------------------------------------------------------------- */
+
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Divider
+     -------------------------------------------------------------------------- */
+
+  .navbar-divider {
+    display: block;
+    width: 1px;
+    height: 1.5rem;
+    background-color: var(--color-border-default);
+    flex-shrink: 0;
+    margin: 0 var(--space-1);
+  }
+
+  /* --------------------------------------------------------------------------
+     Mobile Toggle
+     -------------------------------------------------------------------------- */
+
+  .navbar-mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition:
+      color var(--duration-fast) var(--ease-transition),
+      background-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .navbar-mobile-toggle:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-primary);
+  }
+
+  .navbar-mobile-toggle:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .navbar-mobile-toggle svg {
+    width: var(--icon-md);
+    height: var(--icon-md);
+  }
+
+  @media (min-width: 768px) {
+    .navbar-mobile-toggle {
+      display: none;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Mobile Collapse
+     -------------------------------------------------------------------------- */
+
+  .navbar-collapse {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-surface-page);
+    border-bottom: 1px solid var(--color-border-default);
+    padding: var(--space-2) var(--space-4);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height var(--duration-normal) var(--ease-enter);
+  }
+
+  .navbar-collapse.open {
+    display: block;
+    max-height: 20rem;
+  }
+
+  @media (min-width: 768px) {
+    .navbar-collapse {
+      display: none !important;
+    }
+  }
+
+  .navbar-collapse .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .navbar-collapse .navbar-nav-item {
+    min-height: 2.75rem;
+    border-bottom: none;
+    border-left: 2px solid transparent;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+  }
+
+  .navbar-collapse .navbar-nav-item.active {
+    border-left-color: var(--color-primary);
+    background-color: var(--color-surface-teal);
+  }
+
+  /* --------------------------------------------------------------------------
+     Surface variant — on surface-primary
+     -------------------------------------------------------------------------- */
+
+  .navbar--elevated {
+    background-color: var(--color-surface-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Density
+     -------------------------------------------------------------------------- */
+
+  [data-density="compact"] .navbar {
+    min-height: 3rem;
+  }
+
+  [data-density="compact"] .navbar-nav-item {
+    min-height: 3rem;
+    padding: var(--space-1) var(--space-2);
+  }
+
+  [data-density="comfortable"] .navbar {
+    min-height: 4.5rem;
+  }
+
+  [data-density="comfortable"] .navbar-nav-item {
+    min-height: 4.5rem;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .navbar-nav-item,
+    .navbar-mobile-toggle,
+    .navbar-collapse {
+      transition-duration: 0ms;
+    }
+  }
+}
