@@ -1,0 +1,277 @@
+/* ==========================================================================
+   Cena Health — Sidebar Navigation Component
+   Source: components/ui/sidebar.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Sidebar Container
+     -------------------------------------------------------------------------- */
+
+  .app-sidebar {
+    @apply fixed top-0 left-0 bottom-0 w-64 overflow-y-auto;
+    background-color: color-mix(in srgb, var(--sidebar) 42%, transparent);
+    border-right: 1px solid var(--color-border-default);
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-10);
+    z-index: 60;
+    /* Mobile: off-screen left. Preline .open or lg+ slides it in. */
+    transform: translateX(-100%);
+    transition: transform var(--duration-normal) var(--ease-transition);
+  }
+
+  @media (min-width: 1024px) {
+    .app-sidebar {
+      transform: translateX(0);
+    }
+  }
+
+  .app-sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Scrollbar styling */
+  .app-sidebar::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  .app-sidebar::-webkit-scrollbar-thumb {
+    @apply rounded-full;
+    background-color: var(--color-warm-600);
+  }
+
+  .app-sidebar::-webkit-scrollbar-track {
+    background-color: var(--color-surface-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Sidebar Header
+     -------------------------------------------------------------------------- */
+
+  .app-sidebar-header {
+    padding: 0 var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .app-sidebar-brand {
+    @apply font-display text-xl font-semibold no-underline;
+    color: var(--color-text-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Navigation Container
+     -------------------------------------------------------------------------- */
+
+  .app-sidebar-nav {
+    @apply w-full flex flex-col;
+    padding: var(--space-6);
+  }
+
+  /* --------------------------------------------------------------------------
+     Navigation List
+     -------------------------------------------------------------------------- */
+
+  .sidebar-nav-list {
+    @apply list-none m-0 p-0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Navigation Item
+     -------------------------------------------------------------------------- */
+
+  .sidebar-nav-item {
+    @apply flex items-center gap-3 font-sans text-sm font-normal no-underline rounded-md cursor-pointer;
+    padding: var(--space-1-5) var(--space-3);
+    min-height: 2.75rem; /* 44px — WCAG touch target */
+    color: var(--color-text-secondary);
+    transition:
+      background-color var(--duration-fast) var(--ease-transition),
+      color var(--duration-fast) var(--ease-transition);
+  }
+
+  .sidebar-nav-item:hover {
+    @apply bg-gray-100;
+    color: var(--color-text-primary);
+  }
+
+  .sidebar-nav-item.active,
+  .sidebar-nav-item[aria-current="page"] {
+    @apply bg-gray-100 font-medium;
+    color: var(--color-text-primary);
+  }
+
+  .sidebar-nav-item.disabled,
+  .sidebar-nav-item[aria-disabled="true"] {
+    @apply pointer-events-none;
+    opacity: 0.5;
+  }
+
+  .sidebar-nav-item:focus-visible {
+    @apply outline-none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  /* Nav item icon */
+  .sidebar-nav-item svg {
+    @apply shrink-0;
+    width: var(--icon-md);
+    height: var(--icon-md);
+  }
+
+  /* --------------------------------------------------------------------------
+     Section Label
+     -------------------------------------------------------------------------- */
+
+  .sidebar-nav-section {
+    @apply font-sans text-2xs font-semibold leading-snug tracking-widest uppercase m-0;
+    color: var(--color-text-tertiary);
+    margin: var(--space-5) 0 var(--space-2) var(--space-3);
+  }
+
+  /* No top margin on first section */
+  .sidebar-nav-list li:first-child .sidebar-nav-section {
+    margin-top: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Sub-Navigation List (Accordion)
+     -------------------------------------------------------------------------- */
+
+  .sidebar-subnav-list {
+    @apply list-none p-0;
+    margin: var(--space-1) 0 0 var(--space-4);
+    border-left: 3px solid var(--color-border-default);
+  }
+
+  .sidebar-subnav-item {
+    @apply flex items-center no-underline cursor-pointer;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    background: transparent;
+    border-left: 3px solid transparent;
+    margin-left: -3px;
+    padding: var(--space-1-5) var(--space-3);
+    padding-left: var(--space-4);
+    min-height: 2.25rem; /* 36px — compact touch target */
+    transition:
+      background-color var(--duration-fast) var(--ease-transition),
+      color var(--duration-fast) var(--ease-transition),
+      border-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .sidebar-subnav-item:hover {
+    @apply bg-gray-100;
+    color: var(--color-text-primary);
+    border-left-color: var(--color-border-strong);
+  }
+
+  .sidebar-subnav-item.active {
+    @apply font-medium;
+    background-color: var(--color-surface-teal);
+    color: var(--color-text-brand);
+    border-left-color: var(--color-primary);
+  }
+
+  .sidebar-subnav-item:focus-visible {
+    @apply outline-none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  /* --------------------------------------------------------------------------
+     Accordion Toggle (Preline integration)
+     -------------------------------------------------------------------------- */
+
+  .hs-accordion-toggle.sidebar-nav-item {
+    @apply w-full text-left border-none bg-transparent;
+  }
+
+  .hs-accordion.active > .hs-accordion-toggle.sidebar-nav-item {
+    color: var(--color-text-brand);
+  }
+
+  .hs-accordion.active > .hs-accordion-toggle.sidebar-nav-item:hover {
+    @apply bg-transparent;
+  }
+
+  /* Chevron icons */
+  .accordion-chevron-up {
+    display: none !important;
+    opacity: 0.6;
+  }
+
+  .accordion-chevron-down {
+    display: block !important;
+    opacity: 0.6;
+  }
+
+  .hs-accordion.active .accordion-chevron-up {
+    display: block !important;
+  }
+
+  .hs-accordion.active .accordion-chevron-down {
+    display: none !important;
+  }
+
+  /* --------------------------------------------------------------------------
+     Mobile Toggle Bar
+     -------------------------------------------------------------------------- */
+
+  .sidebar-toggle-bar {
+    @apply sticky top-0 left-0 right-0 z-20;
+    background-color: var(--color-surface-page);
+    border-bottom: 1px solid var(--color-border-default);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  @media (min-width: 1024px) {
+    .sidebar-toggle-bar {
+      @apply hidden;
+    }
+  }
+
+  .sidebar-toggle-btn {
+    @apply flex items-center gap-2 font-sans text-sm bg-transparent border-none cursor-pointer p-0;
+    color: var(--color-text-secondary);
+    transition: color var(--duration-fast) var(--ease-transition);
+  }
+
+  .sidebar-toggle-btn:hover {
+    color: var(--color-text-primary);
+  }
+
+  .sidebar-toggle-btn:focus-visible {
+    @apply outline-none rounded-sm;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .sidebar-toggle-btn svg {
+    width: var(--icon-md);
+    height: var(--icon-md);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .app-sidebar {
+      transition-duration: 0ms;
+    }
+
+    .sidebar-nav-item,
+    .sidebar-subnav-item,
+    .sidebar-toggle-btn {
+      transition-duration: 0ms;
+    }
+  }
+}

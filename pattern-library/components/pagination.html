@@ -1,0 +1,129 @@
+<!--
+  @component-meta
+  name: Pagination
+  category: Data
+  file: pagination.html
+  classes: pagination, pagination-info, pagination-controls, pagination-btn
+  spec: components/ui/pagination.md
+  css: src/css/components/pagination.css
+  when-to-use: Below data tables and list views that show paginated results.
+  do-not-use-when: All data fits on one page — omit pagination entirely.
+  @end-meta
+-->
+
+<!-- SVG icon templates -->
+<template id="icon-chevron-left">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="10,3 5,8 10,13"/>
+  </svg>
+</template>
+
+<template id="icon-chevron-right">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="6,3 11,8 6,13"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Default Pagination
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 36rem;">
+      <nav class="pagination" aria-label="Pagination">
+        <span class="pagination-info">Showing 1–10 of 128 results</span>
+        <div class="pagination-controls">
+          <button class="pagination-btn" disabled aria-label="Previous page"><svg class="pg-icon-left"></svg></button>
+          <button class="pagination-btn active" aria-current="page">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn" style="pointer-events: none;">…</button>
+          <button class="pagination-btn">13</button>
+          <button class="pagination-btn" aria-label="Next page"><svg class="pg-icon-right"></svg></button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Middle Page
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="middle-page">
+  <h2 class="pl-section-title">Middle Page</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 36rem;">
+      <nav class="pagination" aria-label="Pagination">
+        <span class="pagination-info">Showing 51–60 of 128 results</span>
+        <div class="pagination-controls">
+          <button class="pagination-btn" aria-label="Previous page"><svg class="pg-icon-left"></svg></button>
+          <button class="pagination-btn">1</button>
+          <button class="pagination-btn" style="pointer-events: none;">…</button>
+          <button class="pagination-btn">5</button>
+          <button class="pagination-btn active" aria-current="page">6</button>
+          <button class="pagination-btn">7</button>
+          <button class="pagination-btn" style="pointer-events: none;">…</button>
+          <button class="pagination-btn">13</button>
+          <button class="pagination-btn" aria-label="Next page"><svg class="pg-icon-right"></svg></button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Few Pages
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="few-pages">
+  <h2 class="pl-section-title">Few Pages</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 36rem;">
+      <nav class="pagination" aria-label="Pagination">
+        <span class="pagination-info">Showing 1–10 of 24 results</span>
+        <div class="pagination-controls">
+          <button class="pagination-btn" disabled aria-label="Previous page"><svg class="pg-icon-left"></svg></button>
+          <button class="pagination-btn active" aria-current="page">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn" aria-label="Next page"><svg class="pg-icon-right"></svg></button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: icon injection -->
+<script>
+(function() {
+  var map = {
+    'pg-icon-left': 'icon-chevron-left',
+    'pg-icon-right': 'icon-chevron-right'
+  };
+  Object.keys(map).forEach(function(cls) {
+    document.querySelectorAll('.' + cls).forEach(function(el) {
+      var tmpl = document.getElementById(map[cls]);
+      if (tmpl) {
+        var svg = tmpl.content.cloneNode(true).querySelector('svg');
+        if (svg) el.parentNode.replaceChild(svg, el);
+      }
+    });
+  });
+})();
+</script>

@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Cena Health — Toolbar Component
+   Source: components/ui/toolbar.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Toolbar Container
+     -------------------------------------------------------------------------- */
+
+  .toolbar {
+    @apply flex items-center gap-3;
+    margin-bottom: var(--space-4);
+  }
+
+  @media (max-width: 599px) {
+    .toolbar {
+      @apply flex-col items-stretch;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Toolbar Search (flex-1 wrapper)
+     -------------------------------------------------------------------------- */
+
+  .toolbar-search {
+    @apply flex-1;
+  }
+
+  /* --------------------------------------------------------------------------
+     Search Input
+     -------------------------------------------------------------------------- */
+
+  .search-input {
+    @apply relative flex-1;
+  }
+
+  .search-input-icon {
+    @apply absolute pointer-events-none;
+    left: var(--space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--icon-md);
+    height: var(--icon-md);
+    color: var(--color-text-tertiary);
+  }
+
+  .search-input .input-field {
+    padding-left: var(--space-10);
+  }
+}

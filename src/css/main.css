@@ -36,12 +36,19 @@
 @import "./components/button.css";
 @import "./components/card.css";
 @import "./components/dropdown.css";
+@import "./components/empty-state.css";
+@import "./components/filter-pill.css";
 @import "./components/form-group.css";
 @import "./components/input.css";
 @import "./components/modal.css";
 @import "./components/nav.css";
+@import "./components/pagination.css";
+@import "./components/segmented-control.css";
+@import "./components/sidebar.css";
+@import "./components/skeleton.css";
 @import "./components/table.css";
 @import "./components/toast.css";
+@import "./components/toolbar.css";
 
 /* Slide templates */
 @import "./slides/cover-slide.css";

@@ -1,0 +1,155 @@
+<!--
+  @component-meta
+  name: Segmented Control
+  category: Primitives
+  file: segmented-control.html
+  classes: segmented-control, segmented-control-btn, view-toggle, view-toggle-btn
+  spec: components/ui/segmented-control.md
+  css: src/css/components/segmented-control.css
+  when-to-use: Switching between mutually exclusive views or modes (day/week/month, list/grid).
+  do-not-use-when: Filtering by multiple criteria — use filter pills instead.
+  @end-meta
+-->
+
+<style>
+  .demo--seg-hover {
+    background-color: var(--color-surface-primary) !important;
+  }
+</style>
+
+<!-- SVG icon templates -->
+<template id="icon-list">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <line x1="3" y1="4" x2="13" y2="4"/>
+    <line x1="3" y1="8" x2="13" y2="8"/>
+    <line x1="3" y1="12" x2="13" y2="12"/>
+  </svg>
+</template>
+
+<template id="icon-grid">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="2" y="2" width="5" height="5" rx="1"/>
+    <rect x="9" y="2" width="5" height="5" rx="1"/>
+    <rect x="2" y="9" width="5" height="5" rx="1"/>
+    <rect x="9" y="9" width="5" height="5" rx="1"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Segmented Control (text)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="segmented-control">
+  <h2 class="pl-section-title">Segmented Control</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; gap: var(--space-6); flex-wrap: wrap; align-items: center;">
+      <div id="seg-demo-1" role="group" aria-label="Time range">
+        <div class="segmented-control">
+          <button class="segmented-control-btn active" aria-pressed="true">Day</button>
+          <button class="segmented-control-btn" aria-pressed="false">Week</button>
+          <button class="segmented-control-btn" aria-pressed="false">Month</button>
+        </div>
+      </div>
+
+      <div id="seg-demo-2" role="group" aria-label="Status filter">
+        <div class="segmented-control">
+          <button class="segmented-control-btn active" aria-pressed="true">All</button>
+          <button class="segmented-control-btn" aria-pressed="false">Active</button>
+          <button class="segmented-control-btn" aria-pressed="false">Archived</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: View Toggle (icons)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="view-toggle">
+  <h2 class="pl-section-title">View Toggle</h2>
+  <p class="pl-section-description">Icon-only variant for switching between view modes. Each button requires an aria-label.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div id="view-toggle-demo" role="group" aria-label="View mode">
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" aria-label="List view" aria-pressed="true"><svg class="vt-icon-list"></svg></button>
+        <button class="view-toggle-btn" aria-label="Grid view" aria-pressed="false"><svg class="vt-icon-grid"></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: States
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="states">
+  <h2 class="pl-section-title">States</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center;">
+      <div>
+        <p class="pl-col-label">Default</p>
+        <div class="segmented-control" style="pointer-events: none;">
+          <button class="segmented-control-btn">Option</button>
+        </div>
+      </div>
+      <div>
+        <p class="pl-col-label">Hover</p>
+        <div class="segmented-control" style="pointer-events: none;">
+          <button class="segmented-control-btn demo--seg-hover">Option</button>
+        </div>
+      </div>
+      <div>
+        <p class="pl-col-label">Active</p>
+        <div class="segmented-control" style="pointer-events: none;">
+          <button class="segmented-control-btn active">Option</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: toggle + icon injection -->
+<script>
+(function() {
+  // Icon injection
+  document.querySelectorAll('.vt-icon-list').forEach(function(el) {
+    var tmpl = document.getElementById('icon-list');
+    if (tmpl) { var svg = tmpl.content.cloneNode(true).querySelector('svg'); if (svg) el.parentNode.replaceChild(svg, el); }
+  });
+  document.querySelectorAll('.vt-icon-grid').forEach(function(el) {
+    var tmpl = document.getElementById('icon-grid');
+    if (tmpl) { var svg = tmpl.content.cloneNode(true).querySelector('svg'); if (svg) el.parentNode.replaceChild(svg, el); }
+  });
+
+  // Radio toggle for all segmented controls and view toggles
+  ['seg-demo-1', 'seg-demo-2', 'view-toggle-demo'].forEach(function(id) {
+    var container = document.getElementById(id);
+    if (!container) return;
+    container.addEventListener('click', function(e) {
+      var btn = e.target.closest('.segmented-control-btn, .view-toggle-btn');
+      if (!btn) return;
+      var group = btn.closest('.segmented-control, .view-toggle');
+      group.querySelectorAll('.segmented-control-btn, .view-toggle-btn').forEach(function(b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+    });
+  });
+})();
+</script>

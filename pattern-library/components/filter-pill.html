@@ -1,0 +1,147 @@
+<!--
+  @component-meta
+  name: Filter Pill
+  category: Primitives
+  file: filter-pill.html
+  classes: filter-pill
+  spec: components/ui/filter-pill.md
+  css: src/css/components/filter-pill.css
+  when-to-use: Filtering data views by category, status, or other discrete criteria.
+  do-not-use-when: You need a segmented control for view switching — use segmented-control instead.
+  @end-meta
+-->
+
+<style>
+  .demo--pill-hover {
+    background-color: var(--color-surface-primary) !important;
+  }
+  .demo--pill-focus {
+    box-shadow: 0 0 0 2px var(--color-surface-page), 0 0 0 4px var(--color-border-focus) !important;
+  }
+</style>
+
+
+<!-- =====================================================================
+     Section 1: Default + Active
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="variants">
+  <h2 class="pl-section-title">Default &amp; Active States</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+      <button class="filter-pill active" aria-pressed="true">All</button>
+      <button class="filter-pill" aria-pressed="false">Active</button>
+      <button class="filter-pill" aria-pressed="false">Pending</button>
+      <button class="filter-pill" aria-pressed="false">Discharged</button>
+      <button class="filter-pill" aria-pressed="false">High Risk</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Interactive States
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="states">
+  <h2 class="pl-section-title">States</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center;">
+      <div>
+        <p class="pl-col-label">Default</p>
+        <button class="filter-pill" style="pointer-events: none;">Filter</button>
+      </div>
+      <div>
+        <p class="pl-col-label">Hover</p>
+        <button class="filter-pill demo--pill-hover" style="pointer-events: none;">Filter</button>
+      </div>
+      <div>
+        <p class="pl-col-label">Active</p>
+        <button class="filter-pill active" style="pointer-events: none;">Filter</button>
+      </div>
+      <div>
+        <p class="pl-col-label">Focus</p>
+        <button class="filter-pill demo--pill-focus" style="pointer-events: none;">Filter</button>
+      </div>
+      <div>
+        <p class="pl-col-label">Disabled</p>
+        <button class="filter-pill" disabled>Filter</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Interactive Demo
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="interactive">
+  <h2 class="pl-section-title">Interactive Demo</h2>
+  <p class="pl-section-description">Click pills to toggle active state (radio behavior).</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div id="pill-demo" style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+      <button class="filter-pill active" aria-pressed="true">All Patients</button>
+      <button class="filter-pill" aria-pressed="false">Active</button>
+      <button class="filter-pill" aria-pressed="false">Flagged</button>
+      <button class="filter-pill" aria-pressed="false">Inactive</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Surface Variants
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">Surface Variants</h2>
+
+  <div class="pl-stack">
+    <div class="pl-canvas" style="background: var(--color-surface-page);">
+      <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+      <div style="display: flex; gap: var(--space-2);">
+        <button class="filter-pill active">Active</button>
+        <button class="filter-pill">Default</button>
+      </div>
+    </div>
+    <div class="pl-canvas" style="background: var(--color-surface-primary);">
+      <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+      <div style="display: flex; gap: var(--space-2);">
+        <button class="filter-pill active">Active</button>
+        <button class="filter-pill">Default</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: radio toggle -->
+<script>
+(function() {
+  var demo = document.getElementById('pill-demo');
+  if (!demo) return;
+
+  demo.addEventListener('click', function(e) {
+    var pill = e.target.closest('.filter-pill');
+    if (!pill) return;
+
+    demo.querySelectorAll('.filter-pill').forEach(function(p) {
+      p.classList.remove('active');
+      p.setAttribute('aria-pressed', 'false');
+    });
+
+    pill.classList.add('active');
+    pill.setAttribute('aria-pressed', 'true');
+  });
+})();
+</script>

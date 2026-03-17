@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Cena Health — Pagination Component
+   Source: components/ui/pagination.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Container
+     -------------------------------------------------------------------------- */
+
+  .pagination {
+    @apply flex items-center justify-between;
+    padding: var(--space-3) var(--space-6);
+  }
+
+  @media (max-width: 599px) {
+    .pagination {
+      @apply flex-col gap-3;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Info Text
+     -------------------------------------------------------------------------- */
+
+  .pagination-info {
+    @apply font-sans text-sm font-normal;
+    color: var(--color-text-tertiary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Controls
+     -------------------------------------------------------------------------- */
+
+  .pagination-controls {
+    @apply flex items-center gap-1;
+  }
+
+  /* --------------------------------------------------------------------------
+     Page Button
+     -------------------------------------------------------------------------- */
+
+  .pagination-btn {
+    @apply inline-flex items-center justify-center font-sans text-sm rounded-md cursor-pointer border-none bg-transparent;
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-text-secondary);
+    transition:
+      background-color var(--duration-fast) var(--ease-transition),
+      color var(--duration-fast) var(--ease-transition);
+  }
+
+  .pagination-btn:hover {
+    @apply bg-gray-100;
+  }
+
+  .pagination-btn.active {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  .pagination-btn.active:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  .pagination-btn:disabled {
+    @apply pointer-events-none;
+    opacity: 0.5;
+  }
+
+  .pagination-btn:focus-visible {
+    @apply outline-none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  /* Nav icon sizing */
+  .pagination-btn svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .pagination-btn {
+      transition-duration: 0ms;
+    }
+  }
+}

@@ -1,0 +1,128 @@
+<!--
+  @component-meta
+  name: Skeleton
+  category: Data
+  file: skeleton.html
+  classes: skeleton, skeleton-text, skeleton-text-sm
+  spec: components/ui/skeleton.md
+  css: src/css/components/skeleton.css
+  when-to-use: Placeholder content during data loading inside cards, tables, or content areas.
+  do-not-use-when: The loading state is brief (under 300ms) — avoid layout shift. Use a spinner for full-page loads.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Text Lines
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="text-lines">
+  <h2 class="pl-section-title">Text Line Skeletons</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 24rem;" aria-busy="true" aria-label="Loading">
+      <div class="card-body" style="display: flex; flex-direction: column; gap: var(--space-3);">
+        <div class="skeleton skeleton-text" style="width: 33%;"></div>
+        <div class="skeleton skeleton-text" style="width: 100%;"></div>
+        <div class="skeleton skeleton-text" style="width: 85%;"></div>
+        <div class="skeleton skeleton-text" style="width: 66%;"></div>
+        <div class="skeleton skeleton-text-sm" style="width: 25%; margin-top: var(--space-2);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Card Skeleton
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="card-skeleton">
+  <h2 class="pl-section-title">Card Skeleton</h2>
+  <p class="pl-section-description">Simulates a card with image, heading, body text, and action.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 20rem;" aria-busy="true" aria-label="Loading">
+      <div class="skeleton" style="height: 10rem; border-radius: 0;"></div>
+      <div class="card-body" style="display: flex; flex-direction: column; gap: var(--space-3);">
+        <div class="skeleton skeleton-text-sm" style="width: 30%;"></div>
+        <div class="skeleton skeleton-text" style="width: 70%;"></div>
+        <div class="skeleton skeleton-text" style="width: 100%;"></div>
+        <div class="skeleton skeleton-text" style="width: 50%;"></div>
+        <div class="skeleton" style="width: 6rem; height: 2.25rem; border-radius: var(--radius-md); margin-top: var(--space-2);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Table Row Skeleton
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="table-skeleton">
+  <h2 class="pl-section-title">Table Row Skeleton</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="table-wrapper" style="max-width: 32rem;" aria-busy="true" aria-label="Loading">
+      <table class="table">
+        <thead>
+          <th style="width: 40%;">Name</th>
+          <th style="width: 30%;">Status</th>
+          <th style="width: 30%;">Date</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="skeleton skeleton-text" style="width: 80%;"></div></td>
+            <td><div class="skeleton skeleton-text-sm" style="width: 60%;"></div></td>
+            <td><div class="skeleton skeleton-text-sm" style="width: 50%;"></div></td>
+          </tr>
+          <tr>
+            <td><div class="skeleton skeleton-text" style="width: 65%;"></div></td>
+            <td><div class="skeleton skeleton-text-sm" style="width: 45%;"></div></td>
+            <td><div class="skeleton skeleton-text-sm" style="width: 55%;"></div></td>
+          </tr>
+          <tr>
+            <td><div class="skeleton skeleton-text" style="width: 90%;"></div></td>
+            <td><div class="skeleton skeleton-text-sm" style="width: 50%;"></div></td>
+            <td><div class="skeleton skeleton-text-sm" style="width: 40%;"></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Surface Variants
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">Surface Variants</h2>
+
+  <div class="pl-stack">
+    <div class="pl-canvas" style="background: var(--color-surface-page);">
+      <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+      <div style="display: flex; flex-direction: column; gap: var(--space-2); max-width: 16rem;">
+        <div class="skeleton skeleton-text" style="width: 60%;"></div>
+        <div class="skeleton skeleton-text" style="width: 100%;"></div>
+        <div class="skeleton skeleton-text-sm" style="width: 40%;"></div>
+      </div>
+    </div>
+    <div class="pl-canvas" style="background: var(--color-surface-primary);">
+      <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+      <div style="display: flex; flex-direction: column; gap: var(--space-2); max-width: 16rem;">
+        <div class="skeleton skeleton-text" style="width: 60%;"></div>
+        <div class="skeleton skeleton-text" style="width: 100%;"></div>
+        <div class="skeleton skeleton-text-sm" style="width: 40%;"></div>
+      </div>
+    </div>
+  </div>
+</section>

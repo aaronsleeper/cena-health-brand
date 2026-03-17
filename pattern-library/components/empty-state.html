@@ -1,0 +1,155 @@
+<!--
+  @component-meta
+  name: Empty State
+  category: Data
+  file: empty-state.html
+  classes: empty-state, empty-state-icon
+  spec: components/ui/empty-state.md
+  css: src/css/components/empty-state.css
+  when-to-use: A data view, table, or content area has no results to display.
+  do-not-use-when: Content is loading — use skeleton loaders instead.
+  @end-meta
+-->
+
+<!-- SVG icon templates -->
+<template id="icon-empty-folder">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 8C4 6.9 4.9 6 6 6H12L15 9H26C27.1 9 28 9.9 28 11V24C28 25.1 27.1 26 26 26H6C4.9 26 4 25.1 4 24V8Z"/>
+    <line x1="12" y1="17" x2="20" y2="17"/>
+  </svg>
+</template>
+
+<template id="icon-empty-search">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="14" cy="14" r="8"/>
+    <line x1="20" y1="20" x2="27" y2="27"/>
+    <line x1="11" y1="14" x2="17" y2="14"/>
+  </svg>
+</template>
+
+<template id="icon-empty-chart">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="4" y="18" width="5" height="10" rx="1"/>
+    <rect x="13.5" y="12" width="5" height="16" rx="1"/>
+    <rect x="23" y="6" width="5" height="22" rx="1"/>
+    <line x1="4" y1="4" x2="4" y2="28"/>
+    <line x1="4" y1="28" x2="28" y2="28"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Default Empty State
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default Empty State</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 28rem;">
+      <div class="empty-state">
+        <div class="empty-state-icon"><svg class="es-icon-folder"></svg></div>
+        <h3>No patients found</h3>
+        <p>Try adjusting your filters or enroll a new patient to get started.</p>
+        <button class="btn btn-primary btn-default">Enroll Patient</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Search Empty State
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="search">
+  <h2 class="pl-section-title">Search — No Results</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 28rem;">
+      <div class="empty-state">
+        <div class="empty-state-icon"><svg class="es-icon-search"></svg></div>
+        <h3>No results for "Rivera"</h3>
+        <p>Check your spelling or try a different search term.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Data Empty State
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="data">
+  <h2 class="pl-section-title">Data — Nothing Yet</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 28rem;">
+      <div class="empty-state">
+        <div class="empty-state-icon"><svg class="es-icon-chart"></svg></div>
+        <h3>No reports yet</h3>
+        <p>Reports will appear here once patients have completed their first check-in cycle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Surface Variants
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">Surface Variants</h2>
+
+  <div class="pl-stack">
+    <div class="pl-canvas" style="background: var(--color-surface-page);">
+      <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+      <div class="card" style="max-width: 24rem;">
+        <div class="empty-state">
+          <div class="empty-state-icon"><svg class="es-icon-folder"></svg></div>
+          <h3>Nothing here</h3>
+          <p>This area is empty.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pl-canvas" style="background: var(--color-surface-primary);">
+      <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+      <div class="card" style="max-width: 24rem;">
+        <div class="empty-state">
+          <div class="empty-state-icon"><svg class="es-icon-folder"></svg></div>
+          <h3>Nothing here</h3>
+          <p>This area is empty.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: icon injection -->
+<script>
+(function() {
+  var map = {
+    'es-icon-folder': 'icon-empty-folder',
+    'es-icon-search': 'icon-empty-search',
+    'es-icon-chart': 'icon-empty-chart'
+  };
+  Object.keys(map).forEach(function(cls) {
+    document.querySelectorAll('.' + cls).forEach(function(el) {
+      var tmpl = document.getElementById(map[cls]);
+      if (tmpl) {
+        var svg = tmpl.content.cloneNode(true).querySelector('svg');
+        if (svg) el.parentNode.replaceChild(svg, el);
+      }
+    });
+  });
+})();
+</script>

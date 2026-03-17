@@ -1,0 +1,159 @@
+<!--
+  @component-meta
+  name: Toolbar
+  category: Primitives
+  file: toolbar.html
+  classes: toolbar, toolbar-search, search-input, search-input-icon
+  spec: components/ui/toolbar.md
+  css: src/css/components/toolbar.css
+  when-to-use: Above data tables and list views to provide search, filtering, and primary actions.
+  do-not-use-when: A simple heading or breadcrumb suffices — do not add a toolbar if there are no actions.
+  @end-meta
+-->
+
+<!-- SVG icon templates -->
+<template id="icon-toolbar-search">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="9" cy="9" r="6"/>
+    <line x1="14" y1="14" x2="18" y2="18"/>
+  </svg>
+</template>
+
+<template id="icon-toolbar-plus">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <line x1="8" y1="3" x2="8" y2="13"/>
+    <line x1="3" y1="8" x2="13" y2="8"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Full Toolbar
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="full-toolbar">
+  <h2 class="pl-section-title">Full Toolbar</h2>
+  <p class="pl-section-description">Search input, filter pills, and action button in a single row.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="toolbar" style="margin-bottom: 0;">
+      <div class="toolbar-search">
+        <div class="search-input">
+          <span class="search-input-icon"><svg class="tb-icon-search"></svg></span>
+          <input type="search" class="input-field" placeholder="Search patients..." aria-label="Search patients">
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap;">
+        <button class="filter-pill active" aria-pressed="true">All</button>
+        <button class="filter-pill" aria-pressed="false">Active</button>
+        <button class="filter-pill" aria-pressed="false">Flagged</button>
+      </div>
+
+      <button class="btn btn-primary btn-default">
+        <svg class="tb-icon-plus" style="width: var(--icon-sm); height: var(--icon-sm);"></svg>
+        Add Patient
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Search Only
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="search-only">
+  <h2 class="pl-section-title">Search Input Only</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 24rem;">
+      <div class="search-input">
+        <span class="search-input-icon"><svg class="tb-icon-search"></svg></span>
+        <input type="search" class="input-field" placeholder="Search..." aria-label="Search">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Toolbar with Segmented Control
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="with-segmented">
+  <h2 class="pl-section-title">With Segmented Control</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="toolbar" style="margin-bottom: 0;">
+      <div class="toolbar-search">
+        <div class="search-input">
+          <span class="search-input-icon"><svg class="tb-icon-search"></svg></span>
+          <input type="search" class="input-field" placeholder="Search care plans..." aria-label="Search care plans">
+        </div>
+      </div>
+
+      <div class="segmented-control" role="group" aria-label="View period">
+        <button class="segmented-control-btn active" aria-pressed="true">Day</button>
+        <button class="segmented-control-btn" aria-pressed="false">Week</button>
+        <button class="segmented-control-btn" aria-pressed="false">Month</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Surface Variants
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">Surface Variants</h2>
+
+  <div class="pl-stack">
+    <div class="pl-canvas" style="background: var(--color-surface-page);">
+      <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+      <div style="max-width: 20rem;">
+        <div class="search-input">
+          <span class="search-input-icon"><svg class="tb-icon-search"></svg></span>
+          <input type="search" class="input-field" placeholder="Search..." aria-label="Search">
+        </div>
+      </div>
+    </div>
+    <div class="pl-canvas" style="background: var(--color-surface-primary);">
+      <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+      <div style="max-width: 20rem;">
+        <div class="search-input">
+          <span class="search-input-icon"><svg class="tb-icon-search"></svg></span>
+          <input type="search" class="input-field" placeholder="Search..." aria-label="Search">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: icon injection -->
+<script>
+(function() {
+  var map = {
+    'tb-icon-search': 'icon-toolbar-search',
+    'tb-icon-plus': 'icon-toolbar-plus'
+  };
+  Object.keys(map).forEach(function(cls) {
+    document.querySelectorAll('.' + cls).forEach(function(el) {
+      var tmpl = document.getElementById(map[cls]);
+      if (tmpl) {
+        var svg = tmpl.content.cloneNode(true).querySelector('svg');
+        if (svg) el.parentNode.replaceChild(svg, el);
+      }
+    });
+  });
+})();
+</script>
