@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <load src="../partials/pl-head.html" />
+  <title>Colors — Cena Health</title>
+  <style>
+    .color-swatch-row { display: flex; gap: var(--space-1); }
+    .color-swatch { flex: 1; min-width: 0; border-radius: var(--radius-sm); overflow: hidden; }
+    .color-swatch-block { height: 80px; }
+    .color-swatch-info { padding: var(--space-2) var(--space-2) var(--space-3); background: var(--color-surface-page); }
+    .color-swatch-step { font-family: var(--font-mono); font-size: var(--text-2xs); font-weight: 600; color: var(--color-text-primary); }
+    .color-swatch-hex { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--color-text-secondary); }
+    .color-swatch-oklch { font-family: var(--font-mono); font-size: 9px; color: var(--color-text-tertiary); margin-top: 2px; }
+    .color-swatch-locked { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-text-brand); margin-top: var(--space-1); }
+    .color-token-row { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-default); }
+    .color-token-swatch { width: 2.5rem; height: 2.5rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border-default); flex-shrink: 0; }
+    .color-token-name { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 500; color: var(--color-text-primary); }
+    .color-token-value { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-secondary); }
+    .color-token-note { font-size: var(--text-xs); color: var(--color-text-tertiary); font-style: italic; }
+
+    .color-surface-block {
+      flex: 1;
+      min-width: 0;
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      border: 1px solid var(--color-border-default);
+      min-height: 120px;
+    }
+    .color-surface-label { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 500; color: inherit; margin: 0 0 var(--space-1); }
+    .color-surface-hex { font-family: var(--font-mono); font-size: var(--text-2xs); color: inherit; opacity: 0.7; margin: 0 0 var(--space-3); }
+    .color-surface-card {
+      background: var(--color-surface-primary);
+      border-radius: var(--radius-sm);
+      padding: var(--space-3);
+      font-size: var(--text-xs);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border-default);
+    }
+
+    .color-border-box {
+      width: 100%;
+      height: 3rem;
+      border-radius: var(--radius-md);
+      background: var(--color-surface-page);
+    }
+
+    .color-feedback-group {
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+    .color-feedback-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: var(--radius-full); }
+    .color-feedback-body { flex: 1; min-width: 0; }
+    .color-feedback-title { font-weight: 600; font-size: var(--text-sm); margin: 0 0 var(--space-1); }
+    .color-feedback-text { font-size: var(--text-xs); margin: 0; }
+    .color-feedback-tokens { margin-top: var(--space-2); display: flex; gap: var(--space-2); flex-wrap: wrap; }
+    .color-feedback-chip { font-family: var(--font-mono); font-size: 9px; padding: var(--space-0-5) var(--space-1); border-radius: var(--radius-sm); background: rgba(255,255,255,0.5); }
+  </style>
+</head>
+<body>
+  <div style="display: flex; min-height: 100vh;">
+    <load src="../partials/pl-nav.html" />
+    <main class="pl-main">
+
+      <header class="pl-page-header">
+        <h1 class="pl-page-title">Colors</h1>
+        <p class="pl-page-description">The Cena Health color system: three palette families, semantic token layer, and functional feedback colors. Source: <code>src/css/tokens-color.css</code></p>
+      </header>
+
+      <!-- ===== 1. Palette — Teal Family ===== -->
+      <section class="pl-section" data-pl-section="palette-teal">
+        <h2 class="pl-section-title">Palette — Teal Family</h2>
+        <div class="color-swatch-row">
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #010F0C;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">50</div>
+              <div class="color-swatch-hex">#010F0C</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #04201C;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">100</div>
+              <div class="color-swatch-hex">#04201C</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #0D322D;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">200</div>
+              <div class="color-swatch-hex">#0D322D</div>
+              <div class="color-swatch-locked">Locked — logo anchor</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #124D45;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">300</div>
+              <div class="color-swatch-hex">#124D45</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #1B685E;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">400</div>
+              <div class="color-swatch-hex">#1B685E</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #3A8478;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">500</div>
+              <div class="color-swatch-hex">#3A8478</div>
+              <div class="color-swatch-locked">Locked — logo primary</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #52A395;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">600</div>
+              <div class="color-swatch-hex">#52A395</div>
+              <div class="color-swatch-locked">Locked — logo secondary</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #7CB9AD;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">700</div>
+              <div class="color-swatch-hex">#7CB9AD</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #A8D1C9;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">800</div>
+              <div class="color-swatch-hex">#A8D1C9</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #D0E7E2;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">900</div>
+              <div class="color-swatch-hex">#D0E7E2</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #E9F5F2;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">950</div>
+              <div class="color-swatch-hex">#E9F5F2</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 2. Palette — Sage Family ===== -->
+      <section class="pl-section" data-pl-section="palette-sage">
+        <h2 class="pl-section-title">Palette — Sage Family</h2>
+        <div class="color-swatch-row">
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #060D07;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">50</div>
+              <div class="color-swatch-hex">#060D07</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #0F1F11;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">100</div>
+              <div class="color-swatch-hex">#0F1F11</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #1C351F;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">200</div>
+              <div class="color-swatch-hex">#1C351F</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #2A4C2D;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">300</div>
+              <div class="color-swatch-hex">#2A4C2D</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #3A643D;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">400</div>
+              <div class="color-swatch-hex">#3A643D</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #507F53;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">500</div>
+              <div class="color-swatch-hex">#507F53</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #689B6A;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">600</div>
+              <div class="color-swatch-hex">#689B6A</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #81B983;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">700</div>
+              <div class="color-swatch-hex">#81B983</div>
+              <div class="color-swatch-locked">Locked — logo sage</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #ACCFAD;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">800</div>
+              <div class="color-swatch-hex">#ACCFAD</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #D0E5D1;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">900</div>
+              <div class="color-swatch-hex">#D0E5D1</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #E7F2E8;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">950</div>
+              <div class="color-swatch-hex">#E7F2E8</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 3. Palette — Warm Neutral Family ===== -->
+      <section class="pl-section" data-pl-section="palette-warm">
+        <h2 class="pl-section-title">Palette — Warm Neutral Family</h2>
+        <p class="pl-note">Note: 50 = darkest, 950 = lightest (inverted convention).</p>
+        <div class="color-swatch-row">
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #0E0A08;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">50</div>
+              <div class="color-swatch-hex">#0E0A08</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #25211D;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">100</div>
+              <div class="color-swatch-hex">#25211D</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #3F3933;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">200</div>
+              <div class="color-swatch-hex">#3F3933</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #5B544C;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">300</div>
+              <div class="color-swatch-hex">#5B544C</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #787066;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">400</div>
+              <div class="color-swatch-hex">#787066</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #958E85;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">500</div>
+              <div class="color-swatch-hex">#958E85</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #B3ADA4;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">600</div>
+              <div class="color-swatch-hex">#B3ADA4</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #D1CDC6;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">700</div>
+              <div class="color-swatch-hex">#D1CDC6</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #E7E4DF;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">800</div>
+              <div class="color-swatch-hex">#E7E4DF</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #F3F1EE;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">900</div>
+              <div class="color-swatch-hex">#F3F1EE</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-block" style="background: #FBFAF8;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-step">950</div>
+              <div class="color-swatch-hex">#FBFAF8</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 4. Semantic — Brand ===== -->
+      <section class="pl-section" data-pl-section="semantic-brand">
+        <h2 class="pl-section-title">Semantic — Brand</h2>
+        <div class="pl-stack">
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: #0D322D;"></div>
+            <div>
+              <div class="color-token-name">--color-brand-anchor</div>
+              <div class="color-token-value">teal-200 · #0D322D</div>
+              <div class="color-token-note">Deepest teal — logo anchor mark</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: #3A8478;"></div>
+            <div>
+              <div class="color-token-name">--color-brand-primary</div>
+              <div class="color-token-value">teal-500 · #3A8478</div>
+              <div class="color-token-note">Logo primary — not for interactive fill (fails AA with light text)</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: #52A395;"></div>
+            <div>
+              <div class="color-token-name">--color-brand-secondary</div>
+              <div class="color-token-value">teal-600 · #52A395</div>
+              <div class="color-token-note">Logo secondary accent</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: #81B983;"></div>
+            <div>
+              <div class="color-token-name">--color-brand-sage</div>
+              <div class="color-token-value">sage-700 · #81B983</div>
+              <div class="color-token-note">Logo sage leaf accent</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 5. Semantic — Primary Action ===== -->
+      <section class="pl-section" data-pl-section="semantic-primary">
+        <h2 class="pl-section-title">Semantic — Primary Action</h2>
+        <div class="pl-stack">
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: #1B685E;"></div>
+            <div>
+              <div class="color-token-name">--color-primary</div>
+              <div class="color-token-value">teal-400 · #1B685E</div>
+              <div class="color-token-note">Interactive fill — buttons, links, active states</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: #124D45;"></div>
+            <div>
+              <div class="color-token-name">--color-primary-hover</div>
+              <div class="color-token-value">teal-300 · #124D45</div>
+              <div class="color-token-note">Hover state for primary interactive elements</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: #124D45;"></div>
+            <div>
+              <div class="color-token-name">--color-primary-active</div>
+              <div class="color-token-value">teal-300 · #124D45</div>
+              <div class="color-token-note">Active/pressed state</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: #D0E7E2;"></div>
+            <div>
+              <div class="color-token-name">--color-primary-subtle</div>
+              <div class="color-token-value">teal-900 · #D0E7E2</div>
+              <div class="color-token-note">Light teal for subtle backgrounds, selection highlights</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: #1B685E; display: flex; align-items: center; justify-content: center;">
+              <span style="color: #FBFAF8; font-size: var(--text-2xs); font-weight: 600;">Aa</span>
+            </div>
+            <div>
+              <div class="color-token-name">--color-on-primary</div>
+              <div class="color-token-value">warm-950 · #FBFAF8</div>
+              <div class="color-token-note">Text on primary background</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 6. Semantic — Text ===== -->
+      <section class="pl-section" data-pl-section="semantic-text">
+        <h2 class="pl-section-title">Semantic — Text</h2>
+        <div class="pl-stack">
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: var(--color-surface-page);">
+              <span style="display: block; text-align: center; line-height: 2.5rem; color: #0D322D; font-weight: 600; font-size: var(--text-xs);">Aa</span>
+            </div>
+            <div>
+              <div class="color-token-name">--color-text-primary</div>
+              <div class="color-token-value">teal-200 · #0D322D</div>
+              <div class="color-token-note">Primary body text on surface-page</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: var(--color-surface-page);">
+              <span style="display: block; text-align: center; line-height: 2.5rem; color: #5B544C; font-weight: 600; font-size: var(--text-xs);">Aa</span>
+            </div>
+            <div>
+              <div class="color-token-name">--color-text-secondary</div>
+              <div class="color-token-value">warm-300 · #5B544C</div>
+              <div class="color-token-note">Secondary/supporting text</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: var(--color-surface-page);">
+              <span style="display: block; text-align: center; line-height: 2.5rem; color: #6B645C; font-weight: 600; font-size: var(--text-xs);">Aa</span>
+            </div>
+            <div>
+              <div class="color-token-name">--color-text-tertiary</div>
+              <div class="color-token-value">#6B645C (adjusted)</div>
+              <div class="color-token-note">Tertiary/placeholder text</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: var(--color-surface-page);">
+              <span style="display: block; text-align: center; line-height: 2.5rem; color: #958E85; font-weight: 600; font-size: var(--text-xs);">Aa</span>
+            </div>
+            <div>
+              <div class="color-token-name">--color-text-disabled</div>
+              <div class="color-token-value">warm-500 · #958E85</div>
+              <div class="color-token-note">Disabled/inactive text</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: #0D322D;">
+              <span style="display: block; text-align: center; line-height: 2.5rem; color: #FBFAF8; font-weight: 600; font-size: var(--text-xs);">Aa</span>
+            </div>
+            <div>
+              <div class="color-token-name">--color-text-inverse</div>
+              <div class="color-token-value">warm-950 · #FBFAF8</div>
+              <div class="color-token-note">Light text on dark backgrounds</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-token-swatch" style="background: var(--color-surface-page);">
+              <span style="display: block; text-align: center; line-height: 2.5rem; color: #1B685E; font-weight: 600; font-size: var(--text-xs);">Aa</span>
+            </div>
+            <div>
+              <div class="color-token-name">--color-text-brand</div>
+              <div class="color-token-value">teal-400 · #1B685E</div>
+              <div class="color-token-note">Brand-colored text and links</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 7. Semantic — Surfaces ===== -->
+      <section class="pl-section" data-pl-section="semantic-surfaces">
+        <h2 class="pl-section-title">Semantic — Surfaces</h2>
+        <div class="pl-row" style="gap: var(--space-3); align-items: stretch;">
+          <div class="color-surface-block" style="background: #FBFAF8; color: var(--color-text-primary);">
+            <p class="color-surface-label">--color-surface-page</p>
+            <p class="color-surface-hex">#FBFAF8 · warm-950</p>
+            <div class="color-surface-card">Sample card</div>
+          </div>
+          <div class="color-surface-block" style="background: #F3F1EE; color: var(--color-text-primary);">
+            <p class="color-surface-label">--color-surface-primary</p>
+            <p class="color-surface-hex">#F3F1EE · warm-900</p>
+            <div class="color-surface-card">Sample card</div>
+          </div>
+          <div class="color-surface-block" style="background: #E7E4DF; color: var(--color-text-primary);">
+            <p class="color-surface-label">--color-surface-secondary</p>
+            <p class="color-surface-hex">#E7E4DF · warm-800</p>
+            <div class="color-surface-card">Sample card</div>
+          </div>
+          <div class="color-surface-block" style="background: #E9F5F2; color: var(--color-text-primary);">
+            <p class="color-surface-label">--color-surface-teal</p>
+            <p class="color-surface-hex">#E9F5F2 · teal-950</p>
+            <div class="color-surface-card">Sample card</div>
+          </div>
+          <div class="color-surface-block" style="background: #E7F2E8; color: var(--color-text-primary);">
+            <p class="color-surface-label">--color-surface-sage</p>
+            <p class="color-surface-hex">#E7F2E8 · sage-950</p>
+            <div class="color-surface-card">Sample card</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 8. Semantic — Borders ===== -->
+      <section class="pl-section" data-pl-section="semantic-borders">
+        <h2 class="pl-section-title">Semantic — Borders</h2>
+        <div class="pl-stack">
+          <div class="color-token-row">
+            <div class="color-border-box" style="border: 2px solid #D1CDC6;"></div>
+            <div>
+              <div class="color-token-name">--color-border-default</div>
+              <div class="color-token-value">warm-700 · #D1CDC6</div>
+              <div class="color-token-note">Decorative only — does not pass 3:1 contrast</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-border-box" style="border: 2px solid #857E75;"></div>
+            <div>
+              <div class="color-token-name">--color-border-strong</div>
+              <div class="color-token-value">#857E75 (adjusted)</div>
+              <div class="color-token-note">Passes WCAG 3:1 — use for meaningful boundaries</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-border-box" style="border: 2px solid #52A395;"></div>
+            <div>
+              <div class="color-token-name">--color-border-brand</div>
+              <div class="color-token-value">teal-600 · #52A395</div>
+              <div class="color-token-note">Brand-colored border for emphasis</div>
+            </div>
+          </div>
+          <div class="color-token-row">
+            <div class="color-border-box" style="border: 2px solid #3A8478; box-shadow: 0 0 0 2px var(--color-surface-page), 0 0 0 4px #3A8478;"></div>
+            <div>
+              <div class="color-token-name">--color-border-focus</div>
+              <div class="color-token-value">teal-500 · #3A8478</div>
+              <div class="color-token-note">Focus ring color — used with double-ring pattern</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 9. Functional — Feedback Colors ===== -->
+      <section class="pl-section" data-pl-section="feedback">
+        <h2 class="pl-section-title">Functional — Feedback Colors</h2>
+        <div class="pl-grid-3" style="grid-template-columns: repeat(2, 1fr); gap: var(--space-4);">
+
+          <!-- Error -->
+          <div>
+            <div class="color-feedback-group" style="background: #FCE5E3; border: 1px solid #D87972;">
+              <div class="color-feedback-icon" style="background: #C13C3B;"></div>
+              <div class="color-feedback-body">
+                <p class="color-feedback-title" style="color: #932B2A;">Error</p>
+                <p class="color-feedback-text" style="color: #932B2A;">Patient record failed validation — required fields missing.</p>
+                <div class="color-feedback-tokens">
+                  <span class="color-feedback-chip">bg: #FCE5E3</span>
+                  <span class="color-feedback-chip">border: #D87972</span>
+                  <span class="color-feedback-chip">base: #C13C3B</span>
+                  <span class="color-feedback-chip">text: #932B2A</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Warning -->
+          <div>
+            <div class="color-feedback-group" style="background: #F4EAD5; border: 1px solid #CEA861;">
+              <div class="color-feedback-icon" style="background: #B58B20;"></div>
+              <div class="color-feedback-body">
+                <p class="color-feedback-title" style="color: #754B00;">Warning</p>
+                <p class="color-feedback-text" style="color: #754B00;">Insurance authorization expires in 3 days.</p>
+                <div class="color-feedback-tokens">
+                  <span class="color-feedback-chip">bg: #F4EAD5</span>
+                  <span class="color-feedback-chip">border: #CEA861</span>
+                  <span class="color-feedback-chip">base: #B58B20</span>
+                  <span class="color-feedback-chip">text: #754B00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Success -->
+          <div>
+            <div class="color-feedback-group" style="background: #DCF0E5; border: 1px solid #4F9870;">
+              <div class="color-feedback-icon" style="background: #3A8E64;"></div>
+              <div class="color-feedback-body">
+                <p class="color-feedback-title" style="color: #174430;">Success</p>
+                <p class="color-feedback-text" style="color: #174430;">Care plan submitted and approved.</p>
+                <div class="color-feedback-tokens">
+                  <span class="color-feedback-chip">bg: #DCF0E5</span>
+                  <span class="color-feedback-chip">border: #4F9870</span>
+                  <span class="color-feedback-chip">base: #3A8E64</span>
+                  <span class="color-feedback-chip">text: #174430</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div>
+            <div class="color-feedback-group" style="background: #DFEEF7; border: 1px solid #538EB0;">
+              <div class="color-feedback-icon" style="background: #287AA3;"></div>
+              <div class="color-feedback-body">
+                <p class="color-feedback-title" style="color: #0B4E6C;">Info</p>
+                <p class="color-feedback-text" style="color: #0B4E6C;">New compliance guidelines effective March 2026.</p>
+                <div class="color-feedback-tokens">
+                  <span class="color-feedback-chip">bg: #DFEEF7</span>
+                  <span class="color-feedback-chip">border: #538EB0</span>
+                  <span class="color-feedback-chip">base: #287AA3</span>
+                  <span class="color-feedback-chip">text: #0B4E6C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <load src="../partials/pl-scripts.html" />
+</body>
+</html>

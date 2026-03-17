@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <load src="../partials/pl-head.html" />
+  <title>Spacing — Cena Health</title>
+  <style>
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-border-default);
+    }
+    .spacing-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-tertiary);
+      width: 6rem;
+      flex-shrink: 0;
+    }
+    .spacing-px {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-secondary);
+      width: 3rem;
+      flex-shrink: 0;
+    }
+    .spacing-bar {
+      height: 1rem;
+      background: var(--color-primary);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .radius-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .radius-shape {
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary);
+    }
+    .radius-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-tertiary);
+      text-align: center;
+    }
+    .radius-value {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--color-text-secondary);
+      text-align: center;
+    }
+
+    .icon-size-demo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-border-default);
+    }
+    .icon-size-shape {
+      background: var(--color-primary);
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+    .icon-size-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-tertiary);
+    }
+
+    .shadow-card {
+      background: var(--color-surface-primary);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      min-height: 5rem;
+    }
+    .shadow-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-tertiary);
+      margin: 0 0 var(--space-1);
+    }
+    .shadow-value {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--color-text-secondary);
+      margin: 0;
+      word-break: break-all;
+    }
+
+    .density-card {
+      background: var(--color-surface-primary);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+    }
+    .density-card-title {
+      font-family: var(--font-display);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin: 0 0 var(--space-2);
+    }
+    .density-card-text {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      margin: 0 0 var(--space-3);
+      line-height: var(--leading-body);
+    }
+    .density-card-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-2) var(--space-4);
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      cursor: pointer;
+      min-height: 44px;
+    }
+
+    .density-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+    }
+    .density-table th {
+      text-align: left;
+      padding: var(--space-2) var(--space-3);
+      border-bottom: 2px solid var(--color-border-strong);
+      color: var(--color-text-primary);
+      font-weight: 600;
+    }
+    .density-table td {
+      padding: var(--space-2) var(--space-3);
+      border-bottom: 1px solid var(--color-border-default);
+      color: var(--color-text-secondary);
+    }
+    .density-table td:first-child {
+      color: var(--color-text-tertiary);
+    }
+
+    .width-indicator {
+      background: var(--color-primary-subtle);
+      border: 1px dashed var(--color-border-brand);
+      border-radius: var(--radius-sm);
+      padding: var(--space-3);
+      text-align: center;
+    }
+    .width-indicator-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-brand);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div style="display: flex; min-height: 100vh;">
+    <load src="../partials/pl-nav.html" />
+    <main class="pl-main">
+
+      <header class="pl-page-header">
+        <h1 class="pl-page-title">Spacing</h1>
+        <p class="pl-page-description">Spacing scale, border radius, icon sizes, shadows, and density tiers. Source: <code>src/css/tokens-spacing.css</code></p>
+      </header>
+
+      <!-- ===== 1. Spacing Scale ===== -->
+      <section class="pl-section" data-pl-section="spacing-scale">
+        <h2 class="pl-section-title">Spacing Scale</h2>
+        <div class="pl-stack">
+          <div class="spacing-row">
+            <span class="spacing-label">--space-px</span>
+            <span class="spacing-px">1px</span>
+            <div class="spacing-bar" style="width: var(--space-px);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-0-5</span>
+            <span class="spacing-px">2px</span>
+            <div class="spacing-bar" style="width: var(--space-0-5);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-1</span>
+            <span class="spacing-px">4px</span>
+            <div class="spacing-bar" style="width: var(--space-1);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-1-5</span>
+            <span class="spacing-px">6px</span>
+            <div class="spacing-bar" style="width: var(--space-1-5);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-2</span>
+            <span class="spacing-px">8px</span>
+            <div class="spacing-bar" style="width: var(--space-2);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-3</span>
+            <span class="spacing-px">12px</span>
+            <div class="spacing-bar" style="width: var(--space-3);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-4</span>
+            <span class="spacing-px">16px</span>
+            <div class="spacing-bar" style="width: var(--space-4);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-5</span>
+            <span class="spacing-px">20px</span>
+            <div class="spacing-bar" style="width: var(--space-5);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-6</span>
+            <span class="spacing-px">24px</span>
+            <div class="spacing-bar" style="width: var(--space-6);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-8</span>
+            <span class="spacing-px">32px</span>
+            <div class="spacing-bar" style="width: var(--space-8);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-10</span>
+            <span class="spacing-px">40px</span>
+            <div class="spacing-bar" style="width: var(--space-10);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-12</span>
+            <span class="spacing-px">48px</span>
+            <div class="spacing-bar" style="width: var(--space-12);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-16</span>
+            <span class="spacing-px">64px</span>
+            <div class="spacing-bar" style="width: var(--space-16);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-20</span>
+            <span class="spacing-px">80px</span>
+            <div class="spacing-bar" style="width: var(--space-20);"></div>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--space-24</span>
+            <span class="spacing-px">96px</span>
+            <div class="spacing-bar" style="width: var(--space-24);"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 2. Border Radius ===== -->
+      <section class="pl-section" data-pl-section="border-radius">
+        <h2 class="pl-section-title">Border Radius</h2>
+        <div class="pl-row" style="gap: var(--space-6);">
+          <div class="radius-box">
+            <div class="radius-shape" style="border-radius: var(--radius-sm);"></div>
+            <div class="radius-label">--radius-sm</div>
+            <div class="radius-value">4px</div>
+          </div>
+          <div class="radius-box">
+            <div class="radius-shape" style="border-radius: var(--radius-md);"></div>
+            <div class="radius-label">--radius-md</div>
+            <div class="radius-value">8px</div>
+          </div>
+          <div class="radius-box">
+            <div class="radius-shape" style="border-radius: var(--radius-lg);"></div>
+            <div class="radius-label">--radius-lg</div>
+            <div class="radius-value">12px</div>
+          </div>
+          <div class="radius-box">
+            <div class="radius-shape" style="border-radius: var(--radius-xl);"></div>
+            <div class="radius-label">--radius-xl</div>
+            <div class="radius-value">20px</div>
+          </div>
+          <div class="radius-box">
+            <div class="radius-shape" style="border-radius: var(--radius-full);"></div>
+            <div class="radius-label">--radius-full</div>
+            <div class="radius-value">9999px</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 3. Icon Sizes ===== -->
+      <section class="pl-section" data-pl-section="icon-sizes">
+        <h2 class="pl-section-title">Icon Sizes</h2>
+        <div class="pl-stack">
+          <div class="icon-size-demo">
+            <div class="icon-size-shape" style="width: var(--icon-sm); height: var(--icon-sm);"></div>
+            <span class="icon-size-label">--icon-sm · 16px</span>
+          </div>
+          <div class="icon-size-demo">
+            <div class="icon-size-shape" style="width: var(--icon-md); height: var(--icon-md);"></div>
+            <span class="icon-size-label">--icon-md · 20px</span>
+          </div>
+          <div class="icon-size-demo">
+            <div class="icon-size-shape" style="width: var(--icon-lg); height: var(--icon-lg);"></div>
+            <span class="icon-size-label">--icon-lg · 24px</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 4. Shadows ===== -->
+      <section class="pl-section" data-pl-section="shadows">
+        <h2 class="pl-section-title">Shadows</h2>
+        <div class="pl-canvas" style="background: var(--color-surface-secondary);">
+          <div class="pl-grid-3">
+            <div class="shadow-card" style="box-shadow: var(--shadow-sm);">
+              <p class="shadow-label">--shadow-sm</p>
+              <p class="shadow-value">0 2px 8px 0</p>
+            </div>
+            <div class="shadow-card" style="box-shadow: var(--shadow-md);">
+              <p class="shadow-label">--shadow-md</p>
+              <p class="shadow-value">0 4px 16px 0</p>
+            </div>
+            <div class="shadow-card" style="box-shadow: var(--shadow-lg);">
+              <p class="shadow-label">--shadow-lg</p>
+              <p class="shadow-value">0 8px 24px 2px</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 5. Density Tiers ===== -->
+      <section class="pl-section" data-pl-section="density-tiers">
+        <h2 class="pl-section-title">Density Tiers</h2>
+        <div class="pl-grid-3">
+          <div>
+            <p class="pl-col-label">Compact (0.75×)</p>
+            <div data-density="compact">
+              <div class="density-card">
+                <p class="density-card-title">Patient Summary</p>
+                <p class="density-card-text">Maria Rivera, 68. Last visit March 12. Blood pressure within normal range.</p>
+                <button class="density-card-btn" type="button">View Details</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="pl-col-label">Default (1.0×)</p>
+            <div>
+              <div class="density-card">
+                <p class="density-card-title">Patient Summary</p>
+                <p class="density-card-text">Maria Rivera, 68. Last visit March 12. Blood pressure within normal range.</p>
+                <button class="density-card-btn" type="button">View Details</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="pl-col-label">Comfortable (1.25×)</p>
+            <div data-density="comfortable">
+              <div class="density-card">
+                <p class="density-card-title">Patient Summary</p>
+                <p class="density-card-text">Maria Rivera, 68. Last visit March 12. Blood pressure within normal range.</p>
+                <button class="density-card-btn" type="button">View Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: var(--space-6);">
+          <table class="density-table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Compact</th>
+                <th>Default</th>
+                <th>Comfortable</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>--space-1-5</td><td>4px</td><td>6px</td><td>8px</td></tr>
+              <tr><td>--space-2</td><td>6px</td><td>8px</td><td>10px</td></tr>
+              <tr><td>--space-3</td><td>8px</td><td>12px</td><td>16px</td></tr>
+              <tr><td>--space-4</td><td>12px</td><td>16px</td><td>20px</td></tr>
+              <tr><td>--space-5</td><td>16px</td><td>20px</td><td>24px</td></tr>
+              <tr><td>--space-6</td><td>16px</td><td>24px</td><td>32px</td></tr>
+              <tr><td>--space-8</td><td>24px</td><td>32px</td><td>40px</td></tr>
+              <tr><td>--space-10</td><td>32px</td><td>40px</td><td>48px</td></tr>
+              <tr><td>--space-12</td><td>36px</td><td>48px</td><td>64px</td></tr>
+              <tr><td>--space-16</td><td>48px</td><td>64px</td><td>80px</td></tr>
+              <tr><td>--space-20</td><td>60px</td><td>80px</td><td>96px</td></tr>
+              <tr><td>--space-24</td><td>72px</td><td>96px</td><td>120px</td></tr>
+              <tr><td>--leading-body</td><td>1.45</td><td>1.55</td><td>1.65</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== 6. Content Width Constraints ===== -->
+      <section class="pl-section" data-pl-section="content-widths">
+        <h2 class="pl-section-title">Content Width Constraints</h2>
+        <div class="pl-stack" style="gap: var(--space-4);">
+          <div class="width-indicator" style="max-width: 80rem;">
+            <p class="width-indicator-label">--max-content · 1280px (80rem)</p>
+          </div>
+          <div class="width-indicator" style="max-width: 40rem;">
+            <p class="width-indicator-label">--max-prose · 640px (40rem)</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <load src="../partials/pl-scripts.html" />
+</body>
+</html>

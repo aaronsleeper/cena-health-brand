@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <load src="../partials/pl-head.html" />
+  <title>Typography — Cena Health</title>
+  <style>
+    .type-specimen {
+      border-bottom: 1px solid var(--color-border-default);
+      padding: var(--space-4) 0;
+    }
+    .type-specimen-meta {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-tertiary);
+      margin: 0 0 var(--space-2);
+    }
+    .type-specimen-sample {
+      margin: 0;
+    }
+
+    .type-scale-row {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-4);
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--color-border-default);
+    }
+    .type-scale-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-tertiary);
+      width: 7rem;
+      flex-shrink: 0;
+    }
+    .type-scale-px {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-secondary);
+      width: 3.5rem;
+      flex-shrink: 0;
+    }
+    .type-scale-sample {
+      font-family: var(--font-body);
+      color: var(--color-text-primary);
+      margin: 0;
+      line-height: var(--leading-heading);
+    }
+
+    .leading-row {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-4);
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--color-border-default);
+    }
+    .leading-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-tertiary);
+      width: 8.5rem;
+      flex-shrink: 0;
+    }
+    .leading-value {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-secondary);
+      width: 3rem;
+      flex-shrink: 0;
+    }
+    .leading-sample {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      margin: 0;
+      max-width: 30rem;
+    }
+
+    .tracking-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--color-border-default);
+    }
+    .tracking-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-tertiary);
+      width: 9rem;
+      flex-shrink: 0;
+    }
+    .tracking-value {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-secondary);
+      width: 4rem;
+      flex-shrink: 0;
+    }
+    .tracking-sample {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+      margin: 0;
+    }
+
+    .utility-demo {
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--color-border-default);
+    }
+    .utility-demo-class {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-brand);
+      margin: 0 0 var(--space-2);
+    }
+
+    .weight-row {
+      display: inline-flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      margin-top: var(--space-2);
+    }
+    .weight-sample {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div style="display: flex; min-height: 100vh;">
+    <load src="../partials/pl-nav.html" />
+    <main class="pl-main">
+
+      <header class="pl-page-header">
+        <h1 class="pl-page-title">Typography</h1>
+        <p class="pl-page-description">Type scale, font families, line heights, letter spacing, and semantic utility classes. Source: <code>src/css/tokens-typography.css</code> and <code>src/css/base.css</code></p>
+      </header>
+
+      <!-- ===== 1. Font Families ===== -->
+      <section class="pl-section" data-pl-section="font-families">
+        <h2 class="pl-section-title">Font Families</h2>
+        <div class="pl-stack">
+          <div class="type-specimen">
+            <p class="type-specimen-meta">--font-display · Plus Jakarta Sans · 400 / 500 / 600 / 700</p>
+            <p class="type-specimen-sample" style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600;">The quick brown fox jumps over the lazy dog</p>
+            <div class="weight-row">
+              <span class="weight-sample" style="font-family: var(--font-display); font-weight: 400;">Regular 400</span>
+              <span class="weight-sample" style="font-family: var(--font-display); font-weight: 500;">Medium 500</span>
+              <span class="weight-sample" style="font-family: var(--font-display); font-weight: 600;">SemiBold 600</span>
+              <span class="weight-sample" style="font-family: var(--font-display); font-weight: 700;">Bold 700</span>
+            </div>
+          </div>
+          <div class="type-specimen">
+            <p class="type-specimen-meta">--font-body · Source Sans 3 · 300 / 400 / 500 / 600 / 700</p>
+            <p class="type-specimen-sample" style="font-family: var(--font-body); font-size: var(--text-xl); font-weight: 400;">The quick brown fox jumps over the lazy dog</p>
+            <div class="weight-row">
+              <span class="weight-sample" style="font-family: var(--font-body); font-weight: 300;">Light 300</span>
+              <span class="weight-sample" style="font-family: var(--font-body); font-weight: 400;">Regular 400</span>
+              <span class="weight-sample" style="font-family: var(--font-body); font-weight: 500;">Medium 500</span>
+              <span class="weight-sample" style="font-family: var(--font-body); font-weight: 600;">SemiBold 600</span>
+              <span class="weight-sample" style="font-family: var(--font-body); font-weight: 700;">Bold 700</span>
+            </div>
+          </div>
+          <div class="type-specimen">
+            <p class="type-specimen-meta">--font-mono · Source Code Pro · 400 / 500</p>
+            <p class="type-specimen-sample" style="font-family: var(--font-mono); font-size: var(--text-xl); font-weight: 400;">The quick brown fox jumps over the lazy dog</p>
+            <div class="weight-row">
+              <span class="weight-sample" style="font-family: var(--font-mono); font-weight: 400;">Regular 400</span>
+              <span class="weight-sample" style="font-family: var(--font-mono); font-weight: 500;">Medium 500</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 2. Type Scale ===== -->
+      <section class="pl-section" data-pl-section="type-scale">
+        <h2 class="pl-section-title">Type Scale</h2>
+        <div class="pl-stack">
+          <div class="type-scale-row">
+            <span class="type-scale-label">--text-3xs</span>
+            <span class="type-scale-px">8px</span>
+            <p class="type-scale-sample" style="font-size: var(--text-3xs);">Patient care coordination</p>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">--text-2xs</span>
+            <span class="type-scale-px">10px</span>
+            <p class="type-scale-sample" style="font-size: var(--text-2xs);">Patient care coordination</p>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">--text-xs</span>
+            <span class="type-scale-px">13px</span>
+            <p class="type-scale-sample" style="font-size: var(--text-xs);">Patient care coordination</p>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">--text-sm</span>
+            <span class="type-scale-px">14px</span>
+            <p class="type-scale-sample" style="font-size: var(--text-sm);">Patient care coordination</p>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">--text-base</span>
+            <span class="type-scale-px">16px</span>
+            <p class="type-scale-sample" style="font-size: var(--text-base);">Patient care coordination</p>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">--text-md</span>
+            <span class="type-scale-px">20px</span>
+            <p class="type-scale-sample" style="font-size: var(--text-md);">Patient care coordination</p>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">--text-lg</span>
+            <span class="type-scale-px">25px</span>
+            <p class="type-scale-sample" style="font-size: var(--text-lg);">Patient care coordination</p>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">--text-xl</span>
+            <span class="type-scale-px">31px</span>
+            <p class="type-scale-sample" style="font-size: var(--text-xl);">Patient care coordination</p>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">--text-2xl</span>
+            <span class="type-scale-px">39px</span>
+            <p class="type-scale-sample" style="font-size: var(--text-2xl);">Patient care coordination</p>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">--text-3xl</span>
+            <span class="type-scale-px">49px</span>
+            <p class="type-scale-sample" style="font-size: var(--text-3xl);">Patient care coordination</p>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">--text-display</span>
+            <span class="type-scale-px">61px</span>
+            <p class="type-scale-sample" style="font-size: var(--text-display);">Patient care coordination</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 3. Line Heights ===== -->
+      <section class="pl-section" data-pl-section="line-heights">
+        <h2 class="pl-section-title">Line Heights</h2>
+        <div class="pl-stack">
+          <div class="leading-row">
+            <span class="leading-label">--leading-none</span>
+            <span class="leading-value">1.00</span>
+            <p class="leading-sample" style="line-height: 1.00;">Quarterly HbA1c monitoring results show improvement across the patient cohort.</p>
+          </div>
+          <div class="leading-row">
+            <span class="leading-label">--leading-tight</span>
+            <span class="leading-value">1.05</span>
+            <p class="leading-sample" style="line-height: 1.05;">Quarterly HbA1c monitoring results show improvement across the patient cohort.</p>
+          </div>
+          <div class="leading-row">
+            <span class="leading-label">--leading-heading</span>
+            <span class="leading-value">1.15</span>
+            <p class="leading-sample" style="line-height: 1.15;">Quarterly HbA1c monitoring results show improvement across the patient cohort.</p>
+          </div>
+          <div class="leading-row">
+            <span class="leading-label">--leading-snug</span>
+            <span class="leading-value">1.20</span>
+            <p class="leading-sample" style="line-height: 1.20;">Quarterly HbA1c monitoring results show improvement across the patient cohort.</p>
+          </div>
+          <div class="leading-row">
+            <span class="leading-label">--leading-normal</span>
+            <span class="leading-value">1.25</span>
+            <p class="leading-sample" style="line-height: 1.25;">Quarterly HbA1c monitoring results show improvement across the patient cohort.</p>
+          </div>
+          <div class="leading-row">
+            <span class="leading-label">--leading-relaxed</span>
+            <span class="leading-value">1.45</span>
+            <p class="leading-sample" style="line-height: 1.45;">Quarterly HbA1c monitoring results show improvement across the patient cohort.</p>
+          </div>
+          <div class="leading-row">
+            <span class="leading-label">--leading-body-sm</span>
+            <span class="leading-value">1.50</span>
+            <p class="leading-sample" style="line-height: 1.50;">Quarterly HbA1c monitoring results show improvement across the patient cohort.</p>
+          </div>
+          <div class="leading-row">
+            <span class="leading-label">--leading-body</span>
+            <span class="leading-value">1.55</span>
+            <p class="leading-sample" style="line-height: 1.55;">Quarterly HbA1c monitoring results show improvement across the patient cohort.</p>
+          </div>
+          <div class="leading-row">
+            <span class="leading-label">--leading-loose</span>
+            <span class="leading-value">1.65</span>
+            <p class="leading-sample" style="line-height: 1.65;">Quarterly HbA1c monitoring results show improvement across the patient cohort.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 4. Letter Spacing ===== -->
+      <section class="pl-section" data-pl-section="letter-spacing">
+        <h2 class="pl-section-title">Letter Spacing</h2>
+        <div class="pl-stack">
+          <div class="tracking-row">
+            <span class="tracking-label">--tracking-tightest</span>
+            <span class="tracking-value">-0.02em</span>
+            <p class="tracking-sample" style="letter-spacing: -0.02em;">PATIENT ENROLLMENT</p>
+          </div>
+          <div class="tracking-row">
+            <span class="tracking-label">--tracking-tight</span>
+            <span class="tracking-value">-0.01em</span>
+            <p class="tracking-sample" style="letter-spacing: -0.01em;">PATIENT ENROLLMENT</p>
+          </div>
+          <div class="tracking-row">
+            <span class="tracking-label">--tracking-snug</span>
+            <span class="tracking-value">-0.005em</span>
+            <p class="tracking-sample" style="letter-spacing: -0.005em;">PATIENT ENROLLMENT</p>
+          </div>
+          <div class="tracking-row">
+            <span class="tracking-label">--tracking-normal</span>
+            <span class="tracking-value">0</span>
+            <p class="tracking-sample" style="letter-spacing: 0;">PATIENT ENROLLMENT</p>
+          </div>
+          <div class="tracking-row">
+            <span class="tracking-label">--tracking-wide</span>
+            <span class="tracking-value">0.005em</span>
+            <p class="tracking-sample" style="letter-spacing: 0.005em;">PATIENT ENROLLMENT</p>
+          </div>
+          <div class="tracking-row">
+            <span class="tracking-label">--tracking-wider</span>
+            <span class="tracking-value">0.01em</span>
+            <p class="tracking-sample" style="letter-spacing: 0.01em;">PATIENT ENROLLMENT</p>
+          </div>
+          <div class="tracking-row">
+            <span class="tracking-label">--tracking-widest</span>
+            <span class="tracking-value">0.08em</span>
+            <p class="tracking-sample" style="letter-spacing: 0.08em;">PATIENT ENROLLMENT</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 5. Semantic Type Utilities ===== -->
+      <section class="pl-section" data-pl-section="semantic-utilities">
+        <h2 class="pl-section-title">Semantic Type Utilities</h2>
+        <div class="pl-stack">
+          <div class="utility-demo">
+            <p class="utility-demo-class">.hero-heading</p>
+            <p class="hero-heading" style="margin: 0;">Transforming post-acute care</p>
+          </div>
+          <div class="utility-demo">
+            <p class="utility-demo-class">.h1</p>
+            <p class="h1" style="margin: 0;">Quarterly HbA1c monitoring</p>
+          </div>
+          <div class="utility-demo">
+            <p class="utility-demo-class">.h2</p>
+            <p class="h2" style="margin: 0;">Care plan updated</p>
+          </div>
+          <div class="utility-demo">
+            <p class="utility-demo-class">.h3</p>
+            <p class="h3" style="margin: 0;">Maria Rivera, 68</p>
+          </div>
+          <div class="utility-demo">
+            <p class="utility-demo-class">.body-sm</p>
+            <p class="body-sm" style="margin: 0;">Last vitals recorded on March 12, 2026. Blood pressure within normal range.</p>
+          </div>
+          <div class="utility-demo">
+            <p class="utility-demo-class">.ui-label</p>
+            <p class="ui-label" style="margin: 0;">Patient Name</p>
+          </div>
+          <div class="utility-demo">
+            <p class="utility-demo-class">.caption</p>
+            <p class="caption" style="margin: 0;">Updated 2 hours ago by Dr. Chen</p>
+          </div>
+          <div class="utility-demo">
+            <p class="utility-demo-class">.overline</p>
+            <p class="overline" style="margin: 0;">ENROLLED</p>
+          </div>
+          <div class="utility-demo">
+            <p class="utility-demo-class">.stat-display</p>
+            <p class="stat-display" style="margin: 0;">2,847</p>
+          </div>
+          <div class="utility-demo">
+            <p class="utility-demo-class">.quote</p>
+            <p class="quote" style="margin: 0;">"The care coordination has completely changed how we manage transitions."</p>
+          </div>
+          <div class="utility-demo">
+            <p class="utility-demo-class">.mono-inline</p>
+            <p style="margin: 0;">Patient ID: <span class="mono-inline">PAT-2024-08172</span></p>
+          </div>
+          <div class="utility-demo">
+            <p class="utility-demo-class">.mono-block</p>
+            <pre class="mono-block" style="margin: 0; white-space: pre-wrap;">GET /api/v1/patients/:id/care-plans
+Authorization: Bearer {token}
+Content-Type: application/json</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 6. Density and Line Height ===== -->
+      <section class="pl-section" data-pl-section="density-line-height">
+        <h2 class="pl-section-title">Density and Line Height</h2>
+        <div class="pl-canvas" style="background: var(--color-surface-primary);">
+          <div class="pl-stack">
+            <p style="font-size: var(--text-sm); color: var(--color-text-primary); margin: 0; font-weight: 500;">How density affects line height</p>
+            <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin: 0;"><code style="font-family: var(--font-mono); font-size: var(--text-xs);">--leading-body</code> re-maps under <code style="font-family: var(--font-mono); font-size: var(--text-xs);">data-density</code>:</p>
+            <ul style="font-size: var(--text-sm); color: var(--color-text-secondary); margin: 0; padding-left: var(--space-5);">
+              <li><strong>Compact:</strong> <code style="font-family: var(--font-mono); font-size: var(--text-xs);">--leading-body: 1.45</code></li>
+              <li><strong>Default:</strong> <code style="font-family: var(--font-mono); font-size: var(--text-xs);">--leading-body: 1.55</code></li>
+              <li><strong>Comfortable:</strong> <code style="font-family: var(--font-mono); font-size: var(--text-xs);">--leading-body: 1.65</code></li>
+            </ul>
+            <p style="font-size: var(--text-sm); color: var(--color-text-tertiary); margin: 0; font-style: italic;">Heading and display line heights (leading-tight, leading-heading, etc.) are not affected by density tier.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <load src="../partials/pl-scripts.html" />
+</body>
+</html>
