@@ -1,0 +1,198 @@
+<!--
+  @component-meta
+  name: Form Group
+  category: Layout
+  file: form-group.html
+  classes: form, form-section, form-legend, form-actions, form-error-summary, form-error-list
+  spec: components/ui/form-group.md
+  css: src/css/components/form-group.css
+  when-to-use: Organize multiple fields into logical sections within a form. Use for care plan entry, patient enrollment, assessment questionnaires.
+  do-not-use-when: A single field is needed — use the field primitive directly. Do not use for non-form content grouping — use a card.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Complete Form
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="complete">
+  <h2 class="pl-section-title">Complete Form</h2>
+  <p class="pl-section-description">Two sections with legend headings, side-by-side fields, and action row.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 36rem;">
+      <div class="form">
+
+        <fieldset class="form-section">
+          <legend class="form-legend">Patient Information</legend>
+          <div class="field-row">
+            <div class="field">
+              <label class="input-label input-label-required" for="fg-first">First name</label>
+              <input class="input-field" type="text" id="fg-first" placeholder="Maria" aria-required="true">
+            </div>
+            <div class="field">
+              <label class="input-label input-label-required" for="fg-last">Last name</label>
+              <input class="input-field" type="text" id="fg-last" placeholder="Rivera" aria-required="true">
+            </div>
+          </div>
+          <div class="field">
+            <label class="input-label input-label-required" for="fg-email">Email address</label>
+            <input class="input-field" type="email" id="fg-email" placeholder="maria@example.com" aria-required="true">
+            <p class="input-helper">We'll send enrollment confirmation to this address.</p>
+          </div>
+          <div class="field">
+            <label class="input-label input-label-required" for="fg-dob">Date of birth</label>
+            <input class="input-field" type="date" id="fg-dob" aria-required="true">
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend class="form-legend">Clinical Details</legend>
+          <div class="field">
+            <label class="input-label" for="fg-condition">Primary condition</label>
+            <input class="input-field" type="text" id="fg-condition" placeholder="e.g. Type 2 Diabetes">
+          </div>
+          <div class="field">
+            <label class="input-label" for="fg-notes">Notes</label>
+            <textarea class="input-field" id="fg-notes" placeholder="Any relevant clinical context..."></textarea>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary btn-default" type="button">Cancel</button>
+          <button class="btn btn-primary btn-default" type="button">Enroll patient</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Error Summary
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="error-summary">
+  <h2 class="pl-section-title">Error Summary</h2>
+  <p class="pl-section-description">Appears at the top of the form on validation failure. Each error links to the corresponding field.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 36rem;">
+      <div class="form">
+
+        <div class="form-error-summary" role="alert">
+          <p>3 errors need your attention:</p>
+          <ul class="form-error-list">
+            <li><a href="#fg2-email">Enter a valid email address</a></li>
+            <li><a href="#fg2-dob">Date of birth is required</a></li>
+            <li><a href="#fg2-condition">Select at least one condition</a></li>
+          </ul>
+        </div>
+
+        <fieldset class="form-section">
+          <legend class="form-legend">Patient Information</legend>
+          <div class="field-row">
+            <div class="field">
+              <label class="input-label input-label-required" for="fg2-first">First name</label>
+              <input class="input-field" type="text" id="fg2-first" value="Maria" aria-required="true">
+            </div>
+            <div class="field">
+              <label class="input-label input-label-required" for="fg2-last">Last name</label>
+              <input class="input-field" type="text" id="fg2-last" value="Rivera" aria-required="true">
+            </div>
+          </div>
+          <div class="field">
+            <label class="input-label input-label-required" for="fg2-email">Email address</label>
+            <input class="input-field input-field-error" type="email" id="fg2-email" value="maria@" aria-required="true" aria-invalid="true" aria-describedby="fg2-email-err">
+            <p class="input-error-msg" id="fg2-email-err">Enter a valid email address</p>
+          </div>
+          <div class="field">
+            <label class="input-label input-label-required" for="fg2-dob">Date of birth</label>
+            <input class="input-field input-field-error" type="date" id="fg2-dob" aria-required="true" aria-invalid="true" aria-describedby="fg2-dob-err">
+            <p class="input-error-msg" id="fg2-dob-err">Date of birth is required</p>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary btn-default" type="button">Cancel</button>
+          <button class="btn btn-primary btn-default" type="button">Enroll patient</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Single Section (no legend)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="single-section">
+  <h2 class="pl-section-title">Single Section</h2>
+  <p class="pl-section-description">Simple forms with one section may omit the legend heading.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 24rem;">
+      <div class="form">
+        <fieldset class="form-section">
+          <div class="field">
+            <label class="input-label input-label-required" for="fg3-name">Full name</label>
+            <input class="input-field" type="text" id="fg3-name" placeholder="Maria Rivera" aria-required="true">
+          </div>
+          <div class="field">
+            <label class="input-label input-label-required" for="fg3-email">Email</label>
+            <input class="input-field" type="email" id="fg3-email" placeholder="maria@example.com" aria-required="true">
+          </div>
+        </fieldset>
+        <div class="form-actions">
+          <button class="btn btn-secondary btn-default" type="button">Cancel</button>
+          <button class="btn btn-primary btn-default" type="button">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: On Surfaces
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">Surface Variants</h2>
+  <p class="pl-section-description">Forms on elevated surfaces. Inputs use surface-page background for recessed appearance.</p>
+
+  <div class="pl-canvas surface-primary" style="background: var(--color-surface-primary);">
+    <p class="pl-canvas-label">surface-primary (#F3F1EE) — e.g. inside a card</p>
+
+    <div style="max-width: 24rem;">
+      <div class="form">
+        <fieldset class="form-section">
+          <legend class="form-legend">Quick Edit</legend>
+          <div class="field">
+            <label class="input-label" for="fg4-target">Caloric target</label>
+            <input class="input-field" type="number" id="fg4-target" value="2000">
+            <p class="input-helper">Daily kcal target</p>
+          </div>
+          <div class="field">
+            <label class="input-label" for="fg4-protein">Protein target</label>
+            <input class="input-field" type="number" id="fg4-protein" value="75">
+            <p class="input-helper">Daily grams</p>
+          </div>
+        </fieldset>
+        <div class="form-actions">
+          <button class="btn btn-primary btn-default" type="button">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

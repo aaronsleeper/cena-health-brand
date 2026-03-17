@@ -1,0 +1,189 @@
+<!--
+  @component-meta
+  name: Nav
+  category: Navigation
+  file: nav.html
+  classes: tabs, tab, tab-active, tab-panel, breadcrumb, breadcrumb-list, breadcrumb-item, breadcrumb-separator, breadcrumb-current
+  spec: components/ui/nav.md
+  css: src/css/components/nav.css
+  when-to-use: Tab bars for switching views within a context. Breadcrumbs for hierarchical wayfinding. Use tabs when views are peers; breadcrumbs when views are nested.
+  do-not-use-when: Navigation is between top-level sections — use the application nav bar. Do not use tabs for sequential steps — use a stepper.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Tab Bar
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="tabs">
+  <h2 class="pl-section-title">Tab Bar</h2>
+  <p class="pl-section-description">Switch between views within a context. Active tab has a teal bottom indicator.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div id="tab-demo-1">
+      <div class="tabs" role="tablist" aria-label="Care plan sections">
+        <button class="tab tab-active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="meals">Meal Plan</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="labs">Lab Results</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="checkins">Check-Ins</button>
+      </div>
+      <div class="tab-panel active" role="tabpanel" data-panel="overview">
+        <p style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">
+          Overview content — care plan summary, goals, and key metrics.
+        </p>
+      </div>
+      <div class="tab-panel" role="tabpanel" data-panel="meals">
+        <p style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">
+          Meal plan content — weekly schedule, caloric targets, dietary restrictions.
+        </p>
+      </div>
+      <div class="tab-panel" role="tabpanel" data-panel="labs">
+        <p style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">
+          Lab results content — HbA1c trend, lipid panel, metabolic panel.
+        </p>
+      </div>
+      <div class="tab-panel" role="tabpanel" data-panel="checkins">
+        <p style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">
+          Check-in history — dates, notes, adherence scores.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Tab States
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="tab-states">
+  <h2 class="pl-section-title">Tab States</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="tabs" role="tablist" style="pointer-events: none;">
+      <button class="tab" role="tab">Default</button>
+      <button class="tab" role="tab" style="color: var(--color-text-primary); background-color: var(--color-surface-primary); border-radius: var(--radius-sm) var(--radius-sm) 0 0;">Hover</button>
+      <button class="tab tab-active" role="tab" aria-selected="true">Active</button>
+      <button class="tab" role="tab" disabled aria-disabled="true">Disabled</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Breadcrumbs
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="breadcrumbs">
+  <h2 class="pl-section-title">Breadcrumbs</h2>
+  <p class="pl-section-description">Hierarchical position indicator. Last item is the current page (not linked).</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; flex-direction: column; gap: var(--space-6);">
+
+      <!-- Short -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="#" onclick="return false;">Patients</a></li>
+          <li class="breadcrumb-separator" aria-hidden="true">/</li>
+          <li class="breadcrumb-item"><span class="breadcrumb-current" aria-current="page">Maria Rivera</span></li>
+        </ol>
+      </nav>
+
+      <!-- Long -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="#" onclick="return false;">Home</a></li>
+          <li class="breadcrumb-separator" aria-hidden="true">/</li>
+          <li class="breadcrumb-item"><a href="#" onclick="return false;">Patients</a></li>
+          <li class="breadcrumb-separator" aria-hidden="true">/</li>
+          <li class="breadcrumb-item"><a href="#" onclick="return false;">Maria Rivera</a></li>
+          <li class="breadcrumb-separator" aria-hidden="true">/</li>
+          <li class="breadcrumb-item"><span class="breadcrumb-current" aria-current="page">Care Plan</span></li>
+        </ol>
+      </nav>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Surfaces
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">Surface Variants</h2>
+
+  <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+    <div class="pl-canvas" style="background: var(--color-surface-primary);">
+      <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+      <div class="tabs" role="tablist" style="pointer-events: none;">
+        <button class="tab tab-active" role="tab" aria-selected="true">Overview</button>
+        <button class="tab" role="tab">Meals</button>
+        <button class="tab" role="tab">Labs</button>
+      </div>
+    </div>
+    <div class="pl-canvas" style="background: var(--color-surface-teal);">
+      <p class="pl-canvas-label">surface-teal (#E9F5F2)</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="#" onclick="return false;">Home</a></li>
+          <li class="breadcrumb-separator" aria-hidden="true">/</li>
+          <li class="breadcrumb-item"><a href="#" onclick="return false;">Patients</a></li>
+          <li class="breadcrumb-separator" aria-hidden="true">/</li>
+          <li class="breadcrumb-item"><span class="breadcrumb-current" aria-current="page">Maria Rivera</span></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: tab switching -->
+<script>
+(function () {
+  document.querySelectorAll('[id^="tab-demo"]').forEach(function (container) {
+    var tabs = container.querySelectorAll('.tab');
+    var panels = container.querySelectorAll('.tab-panel');
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = tab.getAttribute('data-tab');
+
+        tabs.forEach(function (t) {
+          t.classList.remove('tab-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        panels.forEach(function (p) { p.classList.remove('active'); });
+
+        tab.classList.add('tab-active');
+        tab.setAttribute('aria-selected', 'true');
+        var panel = container.querySelector('[data-panel="' + target + '"]');
+        if (panel) panel.classList.add('active');
+      });
+    });
+
+    // Arrow key navigation
+    container.querySelector('.tabs').addEventListener('keydown', function (e) {
+      var enabledTabs = Array.from(tabs).filter(function (t) { return !t.disabled; });
+      var idx = enabledTabs.indexOf(document.activeElement);
+      if (idx < 0) return;
+
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        enabledTabs[(idx + 1) % enabledTabs.length].focus();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        enabledTabs[(idx - 1 + enabledTabs.length) % enabledTabs.length].focus();
+      }
+    });
+  });
+})();
+</script>

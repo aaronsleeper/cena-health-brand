@@ -1,0 +1,288 @@
+<!--
+  @component-meta
+  name: Table
+  category: Data
+  file: table.html
+  classes: table-wrapper, table, table-striped, table-bordered, table-hover, table-sticky, table-sort, table-sort-asc, table-sort-desc, table-row-selected
+  spec: components/ui/table.md
+  css: src/css/components/table.css
+  when-to-use: Structured data display — patient lists, lab results, enrollment reports, care plan histories. Default to compact density for data-heavy views.
+  do-not-use-when: Data is a simple key-value list — use a description list. Fewer than 3 columns — consider cards instead.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Default Table
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default Table</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="table-wrapper">
+      <table class="table table-hover" aria-label="Patient list">
+        <thead>
+          <tr>
+            <th scope="col">Patient</th>
+            <th scope="col">Condition</th>
+            <th scope="col">Care Plan</th>
+            <th scope="col">Last Check-In</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Maria Rivera</td>
+            <td>Type 2 Diabetes</td>
+            <td>Mediterranean Diet</td>
+            <td>Mar 14, 2026</td>
+            <td><span class="badge badge-success badge-dot badge-sm">Enrolled</span></td>
+          </tr>
+          <tr>
+            <td>James Chen</td>
+            <td>Hypertension</td>
+            <td>DASH Diet</td>
+            <td>Mar 12, 2026</td>
+            <td><span class="badge badge-warning badge-dot badge-sm">At Risk</span></td>
+          </tr>
+          <tr>
+            <td>Fatima Al-Rashid</td>
+            <td>CKD Stage 3</td>
+            <td>Renal Diet</td>
+            <td>Mar 10, 2026</td>
+            <td><span class="badge badge-success badge-dot badge-sm">Enrolled</span></td>
+          </tr>
+          <tr>
+            <td>Robert Johnson</td>
+            <td>CHF</td>
+            <td>Low-Sodium Plan</td>
+            <td>Mar 8, 2026</td>
+            <td><span class="badge badge-error badge-dot badge-sm">Overdue</span></td>
+          </tr>
+          <tr>
+            <td>Ana Gutierrez</td>
+            <td>Type 2 Diabetes</td>
+            <td>Culturally Adapted</td>
+            <td>Mar 15, 2026</td>
+            <td><span class="badge badge-info badge-dot badge-sm">In Review</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Striped
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="striped">
+  <h2 class="pl-section-title">Striped</h2>
+  <p class="pl-section-description">Alternating row backgrounds for improved scanability in long tables.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="table-wrapper">
+      <table class="table table-striped table-hover" aria-label="Lab results">
+        <thead>
+          <tr>
+            <th scope="col">Test</th>
+            <th scope="col">Result</th>
+            <th scope="col">Reference</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HbA1c</td>
+            <td>7.8%</td>
+            <td>&lt; 7.0%</td>
+            <td>Mar 14, 2026</td>
+          </tr>
+          <tr>
+            <td>Fasting Glucose</td>
+            <td>126 mg/dL</td>
+            <td>70–100 mg/dL</td>
+            <td>Mar 14, 2026</td>
+          </tr>
+          <tr>
+            <td>Total Cholesterol</td>
+            <td>195 mg/dL</td>
+            <td>&lt; 200 mg/dL</td>
+            <td>Mar 14, 2026</td>
+          </tr>
+          <tr>
+            <td>LDL</td>
+            <td>118 mg/dL</td>
+            <td>&lt; 100 mg/dL</td>
+            <td>Mar 14, 2026</td>
+          </tr>
+          <tr>
+            <td>HDL</td>
+            <td>52 mg/dL</td>
+            <td>&gt; 40 mg/dL</td>
+            <td>Mar 14, 2026</td>
+          </tr>
+          <tr>
+            <td>Triglycerides</td>
+            <td>145 mg/dL</td>
+            <td>&lt; 150 mg/dL</td>
+            <td>Mar 14, 2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Bordered
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="bordered">
+  <h2 class="pl-section-title">Bordered</h2>
+  <p class="pl-section-description">All cells have visible borders. Use for dense data where column alignment is critical.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="table-wrapper">
+      <table class="table table-bordered" aria-label="Weekly meal plan">
+        <thead>
+          <tr>
+            <th scope="col">Day</th>
+            <th scope="col">Breakfast</th>
+            <th scope="col">Lunch</th>
+            <th scope="col">Dinner</th>
+            <th scope="col">kcal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monday</td>
+            <td>Oatmeal w/ berries</td>
+            <td>Grilled chicken salad</td>
+            <td>Baked salmon, quinoa</td>
+            <td>1,850</td>
+          </tr>
+          <tr>
+            <td>Tuesday</td>
+            <td>Greek yogurt parfait</td>
+            <td>Black bean soup</td>
+            <td>Turkey stir-fry</td>
+            <td>1,920</td>
+          </tr>
+          <tr>
+            <td>Wednesday</td>
+            <td>Whole grain toast, avocado</td>
+            <td>Lentil bowl</td>
+            <td>Chicken fajitas</td>
+            <td>2,010</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Sortable Headers
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="sortable">
+  <h2 class="pl-section-title">Sortable Headers</h2>
+  <p class="pl-section-description">Click column headers to sort. Arrow indicators show direction.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="table-wrapper">
+      <table class="table table-hover" id="sortable-demo" aria-label="Sortable patient list">
+        <thead>
+          <tr>
+            <th scope="col" class="table-sort table-sort-asc" aria-sort="ascending" data-sort="name">Patient</th>
+            <th scope="col" class="table-sort" aria-sort="none" data-sort="hba1c">HbA1c</th>
+            <th scope="col" class="table-sort" aria-sort="none" data-sort="date">Last Visit</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Ana Gutierrez</td><td>6.8%</td><td>Mar 15, 2026</td><td><span class="badge badge-success badge-sm">On Track</span></td></tr>
+          <tr><td>James Chen</td><td>8.1%</td><td>Mar 12, 2026</td><td><span class="badge badge-warning badge-sm">At Risk</span></td></tr>
+          <tr><td>Maria Rivera</td><td>7.8%</td><td>Mar 14, 2026</td><td><span class="badge badge-info badge-sm">In Review</span></td></tr>
+          <tr><td>Robert Johnson</td><td>9.2%</td><td>Mar 8, 2026</td><td><span class="badge badge-error badge-sm">Critical</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Row Selection
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="selection">
+  <h2 class="pl-section-title">Row Selection</h2>
+  <p class="pl-section-description">Selected rows have a left teal border and tinted background.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="table-wrapper">
+      <table class="table table-hover" aria-label="Selectable patient list">
+        <thead>
+          <tr>
+            <th scope="col">Patient</th>
+            <th scope="col">Condition</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Maria Rivera</td>
+            <td>Type 2 Diabetes</td>
+            <td><span class="badge badge-success badge-dot badge-sm">Enrolled</span></td>
+          </tr>
+          <tr class="table-row-selected" aria-selected="true">
+            <td>James Chen</td>
+            <td>Hypertension</td>
+            <td><span class="badge badge-warning badge-dot badge-sm">At Risk</span></td>
+          </tr>
+          <tr>
+            <td>Fatima Al-Rashid</td>
+            <td>CKD Stage 3</td>
+            <td><span class="badge badge-success badge-dot badge-sm">Enrolled</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: sort demo -->
+<script>
+(function () {
+  var table = document.getElementById('sortable-demo');
+  if (!table) return;
+
+  table.querySelectorAll('.table-sort').forEach(function (th) {
+    th.addEventListener('click', function () {
+      // Clear all sort indicators
+      table.querySelectorAll('.table-sort').forEach(function (h) {
+        h.classList.remove('table-sort-asc', 'table-sort-desc');
+        h.setAttribute('aria-sort', 'none');
+      });
+
+      // Toggle sort direction
+      var dir = th.getAttribute('data-dir') === 'asc' ? 'desc' : 'asc';
+      th.setAttribute('data-dir', dir);
+      th.classList.add(dir === 'asc' ? 'table-sort-asc' : 'table-sort-desc');
+      th.setAttribute('aria-sort', dir === 'asc' ? 'ascending' : 'descending');
+    });
+  });
+})();
+</script>

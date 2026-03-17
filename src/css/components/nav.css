@@ -1,0 +1,158 @@
+/* ==========================================================================
+   Cena Health — Nav Component (Tabs + Breadcrumbs)
+   Source: components/ui/nav.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Tab Bar
+     -------------------------------------------------------------------------- */
+
+  .tabs {
+    display: flex;
+    gap: var(--space-1);
+    border-bottom: 1px solid var(--color-border-default);
+    overflow-x: auto;
+  }
+
+  .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    padding: var(--space-2) var(--space-4);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: var(--leading-body-sm);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px; /* overlap container border */
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      color var(--duration-fast) var(--ease-transition),
+      border-color var(--duration-fast) var(--ease-transition),
+      background-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .tab:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-primary);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+
+  .tab-active {
+    color: var(--color-text-brand);
+    border-bottom-color: var(--color-primary);
+  }
+
+  .tab-active:hover {
+    background: transparent;
+    color: var(--color-text-brand);
+  }
+
+  .tab:disabled,
+  .tab[aria-disabled="true"] {
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .tab:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Tab Panel */
+  .tab-panel {
+    display: none;
+    padding: var(--space-4) 0;
+  }
+
+  .tab-panel.active {
+    display: block;
+  }
+
+  /* --------------------------------------------------------------------------
+     Breadcrumbs
+     -------------------------------------------------------------------------- */
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .breadcrumb-item a {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: var(--leading-body-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-transition);
+  }
+
+  .breadcrumb-item a:hover {
+    color: var(--color-text-brand);
+  }
+
+  .breadcrumb-item a:focus-visible {
+    outline: none;
+    border-radius: var(--radius-sm);
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .breadcrumb-separator {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    user-select: none;
+  }
+
+  .breadcrumb-current {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: var(--leading-body-sm);
+    color: var(--color-text-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .tab {
+      transition-duration: 0ms;
+    }
+
+    .breadcrumb-item a {
+      transition-duration: 0ms;
+    }
+  }
+}
