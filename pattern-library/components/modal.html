@@ -1,0 +1,320 @@
+<!--
+  @component-meta
+  name: Modal
+  category: Overlays
+  file: modal.html
+  classes: modal-backdrop, modal, modal-sm, modal-lg, modal-danger, modal-header, modal-title, modal-description, modal-close, modal-body, modal-footer, modal-enter, modal-exiting, modal-backdrop-enter, modal-backdrop-exiting
+  spec: components/ui/modal.md
+  css: src/css/components/modal.css
+  when-to-use: Interrupt the current task for critical information, destructive confirmations, or required input that cannot be deferred. Every modal is an interruption — use sparingly.
+  do-not-use-when: Content can live inline or in a side panel. Do not use for non-critical notifications — use a toast. Do not stack modals.
+  @end-meta
+-->
+
+<template id="icon-modal-close">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <line x1="4" y1="4" x2="12" y2="12"/>
+    <line x1="12" y1="4" x2="4" y2="12"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Default Modal (static)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default Modal</h2>
+  <p class="pl-section-description">Title, optional description, body content, and action footer. Close button always present.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary);">
+    <p class="pl-canvas-label">Shown inline for documentation — normally centered over a backdrop</p>
+
+    <div style="max-width: 32.5rem; margin: 0 auto;">
+      <div class="modal" style="position: relative;">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title" id="demo-modal-title">Update Care Plan</h3>
+            <p class="modal-description">Review the proposed changes before saving.</p>
+          </div>
+          <button class="modal-close" aria-label="Close"><span class="modal-close-icon"></span></button>
+        </div>
+        <div class="modal-body">
+          <p>The following changes will be applied to Mrs. Rivera's nutrition plan:</p>
+          <p>Caloric target adjusted from 1,800 to 2,000 kcal/day based on recent lab results and increased activity level. Protein target increased to 75g/day.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-default" type="button">Cancel</button>
+          <button class="btn btn-primary btn-default" type="button">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Sizes
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="sizes">
+  <h2 class="pl-section-title">Sizes</h2>
+  <p class="pl-section-description">Small (400px) for confirmations, Default (520px) for standard dialogs, Large (640px) for complex content.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary);">
+    <p class="pl-canvas-label">Small (25rem / 400px)</p>
+    <div style="max-width: 25rem; margin: 0 auto;">
+      <div class="modal modal-sm" style="position: relative;">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">Confirm Action</h3>
+          </div>
+          <button class="modal-close" aria-label="Close"><span class="modal-close-icon"></span></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to mark this check-in as complete?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-default" type="button">Cancel</button>
+          <button class="btn btn-primary btn-default" type="button">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary);">
+    <p class="pl-canvas-label">Large (40rem / 640px)</p>
+    <div style="max-width: 40rem; margin: 0 auto;">
+      <div class="modal modal-lg" style="position: relative;">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">Add New Patient</h3>
+            <p class="modal-description">Enter patient demographics and insurance information.</p>
+          </div>
+          <button class="modal-close" aria-label="Close"><span class="modal-close-icon"></span></button>
+        </div>
+        <div class="modal-body">
+          <div class="field-row">
+            <div class="field">
+              <label class="input-label" for="modal-first">First name</label>
+              <input class="input-field" type="text" id="modal-first" placeholder="Maria">
+            </div>
+            <div class="field">
+              <label class="input-label" for="modal-last">Last name</label>
+              <input class="input-field" type="text" id="modal-last" placeholder="Rivera">
+            </div>
+          </div>
+          <div class="field">
+            <label class="input-label input-label-required" for="modal-email">Email</label>
+            <input class="input-field" type="email" id="modal-email" placeholder="maria@example.com">
+          </div>
+          <div class="field">
+            <label class="input-label" for="modal-notes">Notes</label>
+            <textarea class="input-field" id="modal-notes" placeholder="Any relevant clinical notes..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-default" type="button">Cancel</button>
+          <button class="btn btn-primary btn-default" type="button">Add patient</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Danger Variant
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="danger">
+  <h2 class="pl-section-title">Danger Variant</h2>
+  <p class="pl-section-description">For destructive confirmations. Only the header signals danger — body and footer stay neutral. Backdrop click does not dismiss.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary);">
+    <p class="pl-canvas-label">Danger — destructive confirmation</p>
+    <div style="max-width: 25rem; margin: 0 auto;">
+      <div class="modal modal-sm modal-danger" style="position: relative;">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">Delete Care Plan</h3>
+            <p class="modal-description">This action cannot be undone.</p>
+          </div>
+          <button class="modal-close" aria-label="Close"><span class="modal-close-icon"></span></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to permanently delete the Mediterranean Diet care plan for Mrs. Rivera? All associated meal plans, check-in records, and progress data will be removed.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-default" type="button">Cancel</button>
+          <button class="btn btn-danger btn-default" type="button">Delete care plan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Header Variations
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="header-variations">
+  <h2 class="pl-section-title">Header Variations</h2>
+  <p class="pl-section-description">Title only, title with description, and no-footer (informational).</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary);">
+    <p class="pl-canvas-label">Title only — no description</p>
+    <div style="max-width: 32.5rem; margin: 0 auto;">
+      <div class="modal" style="position: relative;">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">Session Expiring</h3>
+          </div>
+          <button class="modal-close" aria-label="Close"><span class="modal-close-icon"></span></button>
+        </div>
+        <div class="modal-body">
+          <p>Your session will expire in 5 minutes. Save your work to avoid losing unsaved changes.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-default" type="button">Keep me signed in</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Live Demo
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="live-demo">
+  <h2 class="pl-section-title">Live Demo</h2>
+  <p class="pl-section-description">Opens a real modal with backdrop, enter/exit animation, and keyboard dismiss (Escape).</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">Click to trigger</p>
+    <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+      <button class="btn btn-primary btn-default" type="button" id="trigger-modal-default">Open default modal</button>
+      <button class="btn btn-danger btn-default" type="button" id="trigger-modal-danger">Open danger modal</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: icon injection + live demo -->
+<script>
+(function () {
+  // Inject close icons
+  var tmpl = document.getElementById('icon-modal-close');
+  if (tmpl) {
+    document.querySelectorAll('.modal-close-icon').forEach(function (span) {
+      if (!span.querySelector('svg')) {
+        span.appendChild(tmpl.content.cloneNode(true));
+      }
+    });
+  }
+
+  // Modal demo helper
+  function openModal(options) {
+    var backdrop = document.createElement('div');
+    backdrop.className = 'modal-backdrop modal-backdrop-enter';
+    backdrop.setAttribute('role', 'presentation');
+
+    var isDanger = options.danger || false;
+
+    var modal = document.createElement('div');
+    modal.className = 'modal modal-sm modal-enter' + (isDanger ? ' modal-danger' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'live-modal-title');
+
+    modal.innerHTML =
+      '<div class="modal-header">' +
+        '<div>' +
+          '<h3 class="modal-title" id="live-modal-title">' + options.title + '</h3>' +
+          (options.description ? '<p class="modal-description">' + options.description + '</p>' : '') +
+        '</div>' +
+        '<button class="modal-close" aria-label="Close">' +
+          '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>' +
+        '</button>' +
+      '</div>' +
+      '<div class="modal-body">' +
+        '<p>' + options.body + '</p>' +
+      '</div>' +
+      '<div class="modal-footer">' +
+        '<button class="btn btn-secondary btn-default" type="button" data-modal-close>Cancel</button>' +
+        '<button class="btn ' + (isDanger ? 'btn-danger' : 'btn-primary') + ' btn-default" type="button" data-modal-close>' + options.action + '</button>' +
+      '</div>';
+
+    backdrop.appendChild(modal);
+    document.body.appendChild(backdrop);
+
+    // Focus the close button
+    var closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) closeBtn.focus();
+
+    function closeModal() {
+      modal.classList.remove('modal-enter');
+      modal.classList.add('modal-exiting');
+      backdrop.classList.remove('modal-backdrop-enter');
+      backdrop.classList.add('modal-backdrop-exiting');
+
+      modal.addEventListener('animationend', function () {
+        backdrop.remove();
+        if (options.trigger) options.trigger.focus();
+      }, { once: true });
+    }
+
+    // Close on close button, cancel, or action
+    backdrop.addEventListener('click', function (e) {
+      if (e.target.closest('.modal-close') || e.target.closest('[data-modal-close]')) {
+        closeModal();
+      }
+      // Backdrop click closes non-danger modals
+      if (!isDanger && e.target === backdrop) {
+        closeModal();
+      }
+    });
+
+    // Close on Escape
+    function onKeydown(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+        document.removeEventListener('keydown', onKeydown);
+      }
+    }
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  // Default modal trigger
+  var triggerDefault = document.getElementById('trigger-modal-default');
+  if (triggerDefault) {
+    triggerDefault.addEventListener('click', function () {
+      openModal({
+        title: 'Update Care Plan',
+        description: 'Review the proposed changes before saving.',
+        body: 'Caloric target adjusted from 1,800 to 2,000 kcal/day based on recent lab results. Protein target increased to 75g/day.',
+        action: 'Save changes',
+        trigger: triggerDefault
+      });
+    });
+  }
+
+  // Danger modal trigger
+  var triggerDanger = document.getElementById('trigger-modal-danger');
+  if (triggerDanger) {
+    triggerDanger.addEventListener('click', function () {
+      openModal({
+        title: 'Delete Care Plan',
+        description: 'This action cannot be undone.',
+        body: 'Are you sure you want to permanently delete the Mediterranean Diet care plan for Mrs. Rivera? All associated data will be removed.',
+        action: 'Delete care plan',
+        danger: true,
+        trigger: triggerDanger
+      });
+    });
+  }
+})();
+</script>

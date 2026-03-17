@@ -1,0 +1,277 @@
+/* ==========================================================================
+   Cena Health — Modal Component
+   Source: components/ui/modal.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Backdrop
+     -------------------------------------------------------------------------- */
+
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: oklch(20% 0.01 70 / 50%);
+    z-index: 50;
+    padding: var(--space-6);
+  }
+
+  @media (max-width: 599px) {
+    .modal-backdrop {
+      padding: var(--space-4);
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Container
+     -------------------------------------------------------------------------- */
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 32.5rem; /* 520px — default */
+    max-height: calc(100vh - var(--space-12));
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+  /* --------------------------------------------------------------------------
+     Sizes
+     -------------------------------------------------------------------------- */
+
+  .modal-sm {
+    max-width: 25rem; /* 400px */
+  }
+
+  .modal-lg {
+    max-width: 40rem; /* 640px */
+  }
+
+  /* --------------------------------------------------------------------------
+     Header
+     -------------------------------------------------------------------------- */
+
+  .modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border-default);
+    flex-shrink: 0;
+  }
+
+  .modal-header > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+    flex: 1;
+  }
+
+  .modal-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-snug);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .modal-description {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: var(--leading-body-sm);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Close Button
+     -------------------------------------------------------------------------- */
+
+  .modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;  /* 44px — WCAG touch target */
+    height: 2.75rem;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-text-secondary);
+    opacity: 0.7;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin: calc(-1 * var(--space-1)) calc(-1 * var(--space-1)) 0 0;
+    transition:
+      opacity var(--duration-fast) var(--ease-transition),
+      background-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .modal-close svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+  }
+
+  .modal-close:hover {
+    opacity: 1;
+    background-color: var(--color-surface-secondary);
+  }
+
+  .modal-close:focus-visible {
+    outline: none;
+    opacity: 1;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .modal-close:active {
+    transform: scale(0.95);
+  }
+
+  /* --------------------------------------------------------------------------
+     Body
+     -------------------------------------------------------------------------- */
+
+  .modal-body {
+    display: block;
+    padding: var(--space-4) var(--space-5);
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .modal-body p {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: var(--leading-body-sm);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .modal-body p + p {
+    margin-top: var(--space-3);
+  }
+
+  /* --------------------------------------------------------------------------
+     Footer
+     -------------------------------------------------------------------------- */
+
+  .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--color-border-default);
+    flex-shrink: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Variant: Danger
+     -------------------------------------------------------------------------- */
+
+  .modal-danger .modal-header {
+    border-bottom-color: var(--color-error-border);
+  }
+
+  .modal-danger .modal-title {
+    color: var(--color-error-text);
+  }
+
+  /* --------------------------------------------------------------------------
+     Enter Animation
+     -------------------------------------------------------------------------- */
+
+  .modal-enter {
+    animation: modal-enter var(--duration-normal) var(--ease-enter) both;
+  }
+
+  @keyframes modal-enter {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-4));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-backdrop-enter {
+    animation: modal-backdrop-enter var(--duration-normal) var(--ease-transition) both;
+  }
+
+  @keyframes modal-backdrop-enter {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* --------------------------------------------------------------------------
+     Exit Animation
+     -------------------------------------------------------------------------- */
+
+  .modal-exiting {
+    animation: modal-exit var(--duration-fast) var(--ease-exit) both;
+  }
+
+  @keyframes modal-exit {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+  }
+
+  .modal-backdrop-exiting {
+    animation: modal-backdrop-exit var(--duration-fast) var(--ease-exit) both;
+  }
+
+  @keyframes modal-backdrop-exit {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .modal-enter,
+    .modal-exiting {
+      animation-duration: 0ms;
+    }
+
+    .modal-backdrop-enter,
+    .modal-backdrop-exiting {
+      animation-duration: 0ms;
+    }
+
+    .modal-close {
+      transition-duration: 0ms;
+    }
+
+    .modal-close:active {
+      transform: none;
+    }
+  }
+}
