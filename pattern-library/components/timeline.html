@@ -1,0 +1,99 @@
+<!--
+  @component-meta
+  name: Timeline
+  category: Data
+  file: timeline.html
+  classes: timeline-list, timeline-event, timeline-left, timeline-connector, timeline-icon-circle, timeline-icon-circle-enrollment, timeline-icon-circle-clinical, timeline-icon-circle-alert, timeline-icon-circle-careplan, timeline-event-body, timeline-event-header, timeline-event-actor, timeline-event-preview, timeline-event-detail
+  spec: components/ui/timeline.md
+  css: src/css/components/timeline.css
+  when-to-use: Patient care history, enrollment journey, or any chronological event log needing visual hierarchy.
+  do-not-use-when: Simple event list suffices — use activity feed instead.
+  @end-meta
+-->
+
+<template id="icon-tl-user">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="8" cy="5" r="3"/><path d="M2 15C2 12.2 4.7 10 8 10C11.3 10 14 12.2 14 15"/>
+  </svg>
+</template>
+<template id="icon-tl-flask">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M6 2V6L2 13H14L10 6V2"/><line x1="5" y1="2" x2="11" y2="2"/>
+  </svg>
+</template>
+<template id="icon-tl-alert">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M8 2L14 13H2L8 2Z"/><line x1="8" y1="7" x2="8" y2="9"/><line x1="8" y1="11" x2="8" y2="11.01"/>
+  </svg>
+</template>
+
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 32rem;">
+      <div class="card-body">
+        <div class="timeline-list">
+
+          <div class="timeline-event">
+            <div class="timeline-left">
+              <div class="timeline-icon-circle timeline-icon-circle-enrollment"><svg class="tl-icon-user"></svg></div>
+              <div class="timeline-connector"></div>
+            </div>
+            <div class="timeline-event-body">
+              <div class="timeline-event-header">
+                <span class="badge badge-sm badge-neutral">Enrollment</span>
+                <span class="timeline-event-actor">Care Coordinator Lisa Park</span>
+              </div>
+              <p class="timeline-event-preview">Patient enrolled in Diabetes Management program — referred by Dr. Chen</p>
+            </div>
+          </div>
+
+          <div class="timeline-event">
+            <div class="timeline-left">
+              <div class="timeline-icon-circle timeline-icon-circle-clinical"><svg class="tl-icon-flask"></svg></div>
+              <div class="timeline-connector"></div>
+            </div>
+            <div class="timeline-event-body">
+              <div class="timeline-event-header">
+                <span class="badge badge-sm badge-neutral">Clinical</span>
+                <span class="timeline-event-actor">Dr. Michael Chen</span>
+              </div>
+              <p class="timeline-event-preview">Lab result received — HbA1c at 7.4%, down from 8.1% at enrollment</p>
+            </div>
+          </div>
+
+          <div class="timeline-event">
+            <div class="timeline-left">
+              <div class="timeline-icon-circle timeline-icon-circle-alert"><svg class="tl-icon-alert"></svg></div>
+            </div>
+            <div class="timeline-event-body">
+              <div class="timeline-event-header">
+                <span class="badge badge-sm badge-neutral">Alert</span>
+                <span class="timeline-event-actor">System</span>
+              </div>
+              <p class="timeline-event-preview">Missed delivery window — patient not home for scheduled drop-off</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  var map = { 'tl-icon-user': 'icon-tl-user', 'tl-icon-flask': 'icon-tl-flask', 'tl-icon-alert': 'icon-tl-alert' };
+  Object.keys(map).forEach(function(cls) {
+    document.querySelectorAll('.' + cls).forEach(function(el) {
+      var tmpl = document.getElementById(map[cls]);
+      if (tmpl) { var svg = tmpl.content.cloneNode(true).querySelector('svg'); if (svg) el.parentNode.replaceChild(svg, el); }
+    });
+  });
+})();
+</script>

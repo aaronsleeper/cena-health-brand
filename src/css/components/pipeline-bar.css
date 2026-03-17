@@ -1,0 +1,19 @@
+/* ==========================================================================
+   Cena Health — Pipeline Bar Component
+   Source: components/ui/pipeline-bar.md
+   ========================================================================== */
+
+@layer components {
+
+  .pipeline-bar {
+    @apply flex w-full rounded-md overflow-hidden;
+    height: 2.5rem;
+  }
+
+  .pipeline-segment {
+    @apply flex items-center justify-center overflow-hidden whitespace-nowrap font-sans text-xs font-medium;
+    padding: 0 var(--space-2);
+    color: var(--color-on-primary);
+    min-width: 3rem;
+  }
+}

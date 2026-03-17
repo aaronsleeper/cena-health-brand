@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Cena Health — Timeline Component
+   Source: components/ui/timeline.md
+   ========================================================================== */
+
+@layer components {
+
+  .timeline-list {
+    @apply relative;
+  }
+
+  .timeline-event {
+    @apply relative flex gap-4;
+    padding-bottom: var(--space-6);
+  }
+
+  .timeline-event:last-child {
+    padding-bottom: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Left Column (icon + connector)
+     -------------------------------------------------------------------------- */
+
+  .timeline-left {
+    @apply flex flex-col items-center shrink-0;
+    width: 2rem;
+  }
+
+  .timeline-connector {
+    @apply flex-1;
+    width: 1px;
+    background-color: var(--color-border-default);
+    margin-top: var(--space-1);
+  }
+
+  .timeline-event:last-child .timeline-connector {
+    @apply hidden;
+  }
+
+  /* --------------------------------------------------------------------------
+     Icon Circle
+     -------------------------------------------------------------------------- */
+
+  .timeline-icon-circle {
+    @apply flex items-center justify-center shrink-0 rounded-full;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .timeline-icon-circle svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+  }
+
+  /* Variants */
+  .timeline-icon-circle-enrollment {
+    background-color: var(--color-surface-teal);
+    color: var(--color-primary);
+  }
+
+  .timeline-icon-circle-clinical {
+    background-color: var(--color-info-bg);
+    color: var(--color-info-base);
+  }
+
+  .timeline-icon-circle-delivery {
+    background-color: var(--color-info-bg);
+    color: var(--color-info-base);
+  }
+
+  .timeline-icon-circle-alert {
+    background-color: var(--color-warning-bg);
+    color: var(--color-warning-base);
+  }
+
+  .timeline-icon-circle-careplan {
+    @apply bg-gray-100;
+    color: var(--color-text-tertiary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Event Body
+     -------------------------------------------------------------------------- */
+
+  .timeline-event-body {
+    @apply flex-1 min-w-0;
+  }
+
+  .timeline-event-header {
+    @apply flex items-center flex-wrap gap-2;
+    margin-bottom: var(--space-1);
+  }
+
+  .timeline-event-actor {
+    @apply font-sans text-xs;
+    color: var(--color-text-tertiary);
+  }
+
+  .timeline-event-preview {
+    @apply font-sans text-sm;
+    color: var(--color-text-secondary);
+  }
+
+  .timeline-event-detail {
+    @apply font-sans text-sm;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-2);
+  }
+}

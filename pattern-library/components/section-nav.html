@@ -1,0 +1,64 @@
+<!--
+  @component-meta
+  name: Section Nav
+  category: Navigation
+  file: section-nav.html
+  classes: section-nav, section-nav-item
+  spec: components/ui/section-nav.md
+  css: src/css/components/section-nav.css
+  when-to-use: In-page anchor navigation between sections on detail or settings pages.
+  do-not-use-when: Switching between separate views — use tabs instead.
+  @end-meta
+-->
+
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <nav class="section-nav" id="section-nav-demo" style="max-width: 32rem;">
+      <a href="#" class="section-nav-item active">Overview</a>
+      <a href="#" class="section-nav-item">Clinical</a>
+      <a href="#" class="section-nav-item">Meals</a>
+      <a href="#" class="section-nav-item">Alerts</a>
+      <a href="#" class="section-nav-item">Notes</a>
+    </nav>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">On Card</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 32rem;">
+      <nav class="section-nav">
+        <a href="#" class="section-nav-item active">Details</a>
+        <a href="#" class="section-nav-item">History</a>
+        <a href="#" class="section-nav-item">Documents</a>
+      </nav>
+      <div class="card-body">
+        <p style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">Content for the selected section appears here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  var demo = document.getElementById('section-nav-demo');
+  if (!demo) return;
+  demo.addEventListener('click', function(e) {
+    e.preventDefault();
+    var item = e.target.closest('.section-nav-item');
+    if (!item) return;
+    demo.querySelectorAll('.section-nav-item').forEach(function(i) { i.classList.remove('active'); });
+    item.classList.add('active');
+  });
+})();
+</script>

@@ -1,0 +1,51 @@
+/* ==========================================================================
+   Cena Health — Section Nav Component
+   Source: components/ui/section-nav.md
+   ========================================================================== */
+
+@layer components {
+
+  .section-nav {
+    @apply flex flex-wrap gap-1;
+    padding: var(--space-2);
+    background-color: var(--color-surface-page);
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  .section-nav-item {
+    @apply font-sans text-sm font-medium rounded-md whitespace-nowrap no-underline cursor-pointer;
+    padding: var(--space-1-5) var(--space-3);
+    color: var(--color-text-tertiary);
+    background: transparent;
+    border: none;
+    transition:
+      background-color var(--duration-fast) var(--ease-transition),
+      color var(--duration-fast) var(--ease-transition);
+  }
+
+  .section-nav-item:hover {
+    @apply bg-gray-100 text-gray-900;
+  }
+
+  .section-nav-item.active {
+    background-color: var(--color-surface-teal);
+    color: var(--color-text-brand);
+  }
+
+  .section-nav-item:focus-visible {
+    @apply outline-none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .section-nav-item {
+      transition-duration: 0ms;
+    }
+  }
+}

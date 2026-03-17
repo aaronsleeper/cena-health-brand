@@ -1,0 +1,94 @@
+<!--
+  @component-meta
+  name: Chat Bubbles
+  category: Layout
+  file: chat.html
+  classes: chat-bubble-user, chat-bubble-ai, chat-avatar-ai, message-sender-label, message-date-sep, message-timestamp
+  spec: components/ui/chat.md
+  css: src/css/components/chat.css
+  when-to-use: AI chat interfaces and messaging views showing a conversation thread.
+  do-not-use-when: Displaying static content — use cards or content blocks instead.
+  @end-meta
+-->
+
+
+<section class="pl-section" data-pl-section="conversation">
+  <h2 class="pl-section-title">Conversation Thread</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-primary);">
+    <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+
+    <div class="card" style="max-width: 32rem;">
+      <div class="card-body" style="display: flex; flex-direction: column; gap: var(--space-4);">
+
+        <p class="message-date-sep">Today</p>
+
+        <!-- User message -->
+        <div style="display: flex; justify-content: flex-end;">
+          <div>
+            <p class="message-sender-label" style="text-align: right;">You</p>
+            <div class="chat-bubble-user">
+              <p>What are the dietary restrictions for this patient?</p>
+            </div>
+            <p class="message-timestamp" style="text-align: right;">2:34 PM</p>
+          </div>
+        </div>
+
+        <!-- AI message -->
+        <div style="display: flex; align-items: flex-start; gap: var(--space-2);">
+          <div class="chat-avatar-ai">H</div>
+          <div>
+            <p class="message-sender-label">Haven AI</p>
+            <div class="chat-bubble-ai">
+              <p>Based on the patient's chart, they have a low-sodium diet order with no added salt. They are also lactose intolerant and should avoid dairy products. Their current meal plan was last updated on February 12.</p>
+            </div>
+            <p class="message-timestamp">2:34 PM</p>
+          </div>
+        </div>
+
+        <!-- User follow-up -->
+        <div style="display: flex; justify-content: flex-end;">
+          <div>
+            <div class="chat-bubble-user">
+              <p>Are there any recent changes to their meal plan?</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI response -->
+        <div style="display: flex; align-items: flex-start; gap: var(--space-2);">
+          <div class="chat-avatar-ai">H</div>
+          <div>
+            <div class="chat-bubble-ai">
+              <p>Yes — their dietitian increased protein targets on Feb 12 based on recent lab results showing improved kidney function. The updated plan includes an additional 15g protein per day.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="bubbles-isolated">
+  <h2 class="pl-section-title">Bubble Variants</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; flex-direction: column; gap: var(--space-4); max-width: 24rem;">
+      <div>
+        <p class="pl-col-label">User Bubble</p>
+        <div class="chat-bubble-user"><p>Example user message</p></div>
+      </div>
+      <div>
+        <p class="pl-col-label">AI Bubble</p>
+        <div style="display: flex; align-items: flex-start; gap: var(--space-2);">
+          <div class="chat-avatar-ai">H</div>
+          <div class="chat-bubble-ai"><p>Example AI response</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

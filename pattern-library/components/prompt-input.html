@@ -1,0 +1,67 @@
+<!--
+  @component-meta
+  name: Prompt Input
+  category: Primitives
+  file: prompt-input.html
+  classes: prompt-input-container, prompt-textarea, prompt-toolbar
+  spec: components/ui/prompt-input.md
+  css: src/css/components/prompt-input.css
+  when-to-use: AI chat input, clinical note entry, or any multi-line textarea needing a toolbar.
+  do-not-use-when: Simple single-line input — use the standard input component instead.
+  @end-meta
+-->
+
+<template id="icon-prompt-send">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <line x1="8" y1="12" x2="8" y2="4"/>
+    <polyline points="4,7 8,3 12,7"/>
+  </svg>
+</template>
+
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 32rem;">
+      <div class="prompt-input-container">
+        <textarea class="prompt-textarea" rows="3" placeholder="Ask a clinical question..."></textarea>
+        <div class="prompt-toolbar">
+          <button class="filter-pill active" aria-pressed="true">Nutrition</button>
+          <button class="filter-pill" aria-pressed="false">Medications</button>
+          <button class="filter-pill" aria-pressed="false">Lab Results</button>
+          <button class="btn btn-primary btn-sm" style="margin-left: auto;" aria-label="Send">
+            <svg class="prompt-send-icon" style="width: var(--icon-sm); height: var(--icon-sm);"></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="minimal">
+  <h2 class="pl-section-title">Minimal (No Toolbar)</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 32rem;">
+      <div class="prompt-input-container">
+        <textarea class="prompt-textarea" rows="2" placeholder="Add a note..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  document.querySelectorAll('.prompt-send-icon').forEach(function(el) {
+    var tmpl = document.getElementById('icon-prompt-send');
+    if (tmpl) { var svg = tmpl.content.cloneNode(true).querySelector('svg'); if (svg) el.parentNode.replaceChild(svg, el); }
+  });
+})();
+</script>

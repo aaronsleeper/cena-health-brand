@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Cena Health — Prompt Input Component
+   Source: components/ui/prompt-input.md
+   ========================================================================== */
+
+@layer components {
+
+  .prompt-input-container {
+    @apply overflow-hidden;
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-surface-page);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--duration-fast) var(--ease-transition),
+                border-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .prompt-input-container:focus-within {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 var(--space-0-5) oklch(56.3% 0.0762 181.3 / 15%);
+  }
+
+  .prompt-textarea {
+    @apply w-full font-sans text-sm font-normal;
+    padding: var(--space-4);
+    border: none;
+    background: transparent;
+    color: var(--color-text-primary);
+    resize: none;
+    overflow: hidden;
+    max-height: 18.75rem; /* 300px */
+    outline: none;
+    field-sizing: content;
+  }
+
+  .prompt-textarea::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  /* Strip any inherited focus styles from the textarea */
+  .prompt-textarea:focus {
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .prompt-toolbar {
+    @apply flex items-center gap-2;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .prompt-input-container {
+      transition-duration: 0ms;
+    }
+  }
+}

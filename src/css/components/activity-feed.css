@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Cena Health — Activity Feed Component
+   Source: components/ui/activity-feed.md
+   ========================================================================== */
+
+@layer components {
+
+  .activity-feed-row {
+    @apply flex items-center gap-3;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border-default);
+    transition: background-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .activity-feed-row:last-child {
+    border-bottom: none;
+  }
+
+  .activity-feed-row:hover {
+    @apply bg-gray-100;
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .activity-feed-row {
+      transition-duration: 0ms;
+    }
+  }
+}

@@ -1,0 +1,83 @@
+<!--
+  @component-meta
+  name: Tag Group
+  category: Data
+  file: tag-group.html
+  classes: tag-group, tag-group-label
+  spec: components/ui/tag-group.md
+  css: src/css/components/tag-group.css
+  when-to-use: Detail pages showing categorized multi-value fields (allergens, diagnoses, diet orders).
+  do-not-use-when: Displaying a single badge — use badge directly.
+  @end-meta
+-->
+
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 32rem;">
+      <div class="card-body">
+        <div class="tag-group">
+          <span class="tag-group-label">Allergens</span>
+          <span class="badge badge-pill badge-teal">Dairy</span>
+          <span class="badge badge-pill badge-teal">Gluten</span>
+          <span class="badge badge-pill badge-teal">Shellfish</span>
+        </div>
+
+        <div class="tag-group">
+          <span class="tag-group-label">Diet Orders</span>
+          <span class="badge badge-pill badge-teal">Low Sodium</span>
+          <span class="badge badge-pill badge-teal">Diabetic</span>
+        </div>
+
+        <div class="tag-group">
+          <span class="tag-group-label">Conditions</span>
+          <span class="badge badge-pill badge-neutral">Type 2 Diabetes</span>
+          <span class="badge badge-pill badge-neutral">Hypertension</span>
+          <span class="badge badge-pill badge-neutral">CKD Stage 3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="removable">
+  <h2 class="pl-section-title">Removable Tags</h2>
+  <p class="pl-section-description">Uses badge dismiss button for removable tags.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 32rem;">
+      <div class="card-body">
+        <div class="tag-group" id="tag-group-demo">
+          <span class="tag-group-label">Allergens</span>
+          <span class="badge badge-pill badge-teal">Dairy <button class="badge-dismiss" aria-label="Remove Dairy">&times;</button></span>
+          <span class="badge badge-pill badge-teal">Gluten <button class="badge-dismiss" aria-label="Remove Gluten">&times;</button></span>
+          <span class="badge badge-pill badge-teal">Shellfish <button class="badge-dismiss" aria-label="Remove Shellfish">&times;</button></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  var demo = document.getElementById('tag-group-demo');
+  if (!demo) return;
+  demo.addEventListener('click', function(e) {
+    var btn = e.target.closest('.badge-dismiss');
+    if (!btn) return;
+    var badge = btn.closest('.badge');
+    if (badge) {
+      badge.classList.add('badge-exiting');
+      badge.addEventListener('animationend', function() { badge.remove(); }, { once: true });
+    }
+  });
+})();
+</script>

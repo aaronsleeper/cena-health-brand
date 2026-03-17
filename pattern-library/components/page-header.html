@@ -1,0 +1,42 @@
+<!--
+  @component-meta
+  name: Page Header
+  category: Layout
+  file: page-header.html
+  classes: page-header
+  spec: components/ui/page-header.md
+  css: src/css/components/page-header.css
+  when-to-use: Top of every data view page to show title and primary actions.
+  do-not-use-when: Inside cards or modals — this is a page-level component.
+  @end-meta
+-->
+
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="page-header" style="margin-bottom: 0;">
+      <h1 style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; color: var(--color-text-primary); margin: 0;">Patients</h1>
+      <div style="display: flex; gap: var(--space-2);">
+        <button class="btn btn-secondary btn-default">Export</button>
+        <button class="btn btn-primary btn-default">Add Patient</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="title-only">
+  <h2 class="pl-section-title">Title Only</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="page-header" style="margin-bottom: 0;">
+      <h1 style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; color: var(--color-text-primary); margin: 0;">Care Plans</h1>
+    </div>
+  </div>
+</section>

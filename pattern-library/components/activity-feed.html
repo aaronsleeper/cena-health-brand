@@ -1,0 +1,77 @@
+<!--
+  @component-meta
+  name: Activity Feed
+  category: Data
+  file: activity-feed.html
+  classes: activity-feed-row
+  spec: components/ui/activity-feed.md
+  css: src/css/components/activity-feed.css
+  when-to-use: Chronological event lists on patient detail pages and dashboards.
+  do-not-use-when: Events need rich detail or expandable content — use timeline instead.
+  @end-meta
+-->
+
+<template id="icon-feed-user">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="8" cy="5" r="3"/>
+    <path d="M2 15C2 12.2 4.7 10 8 10C11.3 10 14 12.2 14 15"/>
+  </svg>
+</template>
+
+<template id="icon-feed-flask">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M6 2V6L2 13H14L10 6V2"/>
+    <line x1="5" y1="2" x2="11" y2="2"/>
+  </svg>
+</template>
+
+<template id="icon-feed-check">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="3,8 6,11 13,4"/>
+  </svg>
+</template>
+
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 32rem;">
+      <div class="activity-feed-row">
+        <svg class="feed-icon-user" style="flex-shrink: 0; width: var(--icon-sm); height: var(--icon-sm); color: var(--color-primary);"></svg>
+        <span style="flex: 1; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">Patient enrolled in Diabetes Management program</span>
+        <span style="flex-shrink: 0; font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-tertiary);">Feb 18, 2026</span>
+      </div>
+      <div class="activity-feed-row">
+        <svg class="feed-icon-flask" style="flex-shrink: 0; width: var(--icon-sm); height: var(--icon-sm); color: var(--color-info-base);"></svg>
+        <span style="flex: 1; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">Lab result received — HbA1c: 7.4%</span>
+        <span style="flex-shrink: 0; font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-tertiary);">Feb 15, 2026</span>
+      </div>
+      <div class="activity-feed-row">
+        <svg class="feed-icon-check" style="flex-shrink: 0; width: var(--icon-sm); height: var(--icon-sm); color: var(--color-success-base);"></svg>
+        <span style="flex: 1; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">Care plan goals updated by Dr. Chen</span>
+        <span style="flex-shrink: 0; font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-tertiary);">Feb 12, 2026</span>
+      </div>
+      <div class="activity-feed-row">
+        <svg class="feed-icon-user" style="flex-shrink: 0; width: var(--icon-sm); height: var(--icon-sm); color: var(--color-primary);"></svg>
+        <span style="flex: 1; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">Initial assessment completed</span>
+        <span style="flex-shrink: 0; font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-tertiary);">Feb 10, 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  var map = { 'feed-icon-user': 'icon-feed-user', 'feed-icon-flask': 'icon-feed-flask', 'feed-icon-check': 'icon-feed-check' };
+  Object.keys(map).forEach(function(cls) {
+    document.querySelectorAll('.' + cls).forEach(function(el) {
+      var tmpl = document.getElementById(map[cls]);
+      if (tmpl) { var svg = tmpl.content.cloneNode(true).querySelector('svg'); if (svg) el.parentNode.replaceChild(svg, el); }
+    });
+  });
+})();
+</script>

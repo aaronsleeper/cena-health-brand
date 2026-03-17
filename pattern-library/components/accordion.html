@@ -1,0 +1,90 @@
+<!--
+  @component-meta
+  name: Accordion
+  category: Layout
+  file: accordion.html
+  classes: accordion, accordion-item, accordion-toggle, accordion-content, accordion-chevron-up, accordion-chevron-down
+  spec: components/ui/accordion.md
+  css: src/css/components/accordion.css
+  when-to-use: Expandable content sections for FAQs, settings panels, or grouped detail content.
+  do-not-use-when: Content should always be visible — use headings and sections instead.
+  @end-meta
+-->
+
+<template id="icon-acc-chevron-up">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="4,10 8,6 12,10"/>
+  </svg>
+</template>
+
+<template id="icon-acc-chevron-down">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="4,6 8,10 12,6"/>
+  </svg>
+</template>
+
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+  <p class="pl-section-description">Click items to expand/collapse. Preline handles the accordion behavior.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="accordion hs-accordion-group" style="max-width: 32rem;" data-hs-accordion-always-open>
+
+      <div class="accordion-item hs-accordion active" id="acc-demo-1">
+        <button type="button" class="accordion-toggle hs-accordion-toggle">
+          What is medically tailored meals?
+          <span class="accordion-chevron-up"><svg class="acc-chev-up"></svg></span>
+          <span class="accordion-chevron-down"><svg class="acc-chev-down"></svg></span>
+        </button>
+        <div id="acc-demo-1-child" class="hs-accordion-content" style="width: 100%; overflow: hidden;" role="region">
+          <div class="accordion-content">
+            Medically tailored meals (MTM) are meals designed by a registered dietitian to address the specific nutritional needs of individuals with severe or chronic illnesses.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item hs-accordion" id="acc-demo-2">
+        <button type="button" class="accordion-toggle hs-accordion-toggle">
+          Who is eligible for the program?
+          <span class="accordion-chevron-up"><svg class="acc-chev-up"></svg></span>
+          <span class="accordion-chevron-down"><svg class="acc-chev-down"></svg></span>
+        </button>
+        <div id="acc-demo-2-child" class="hs-accordion-content" style="width: 100%; overflow: hidden;" role="region">
+          <div class="accordion-content">
+            Patients with qualifying chronic conditions (diabetes, CHF, CKD, cancer) who have been referred by their primary care provider are eligible for enrollment.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item hs-accordion" id="acc-demo-3">
+        <button type="button" class="accordion-toggle hs-accordion-toggle">
+          How are meals delivered?
+          <span class="accordion-chevron-up"><svg class="acc-chev-up"></svg></span>
+          <span class="accordion-chevron-down"><svg class="acc-chev-down"></svg></span>
+        </button>
+        <div id="acc-demo-3-child" class="hs-accordion-content" style="width: 100%; overflow: hidden;" role="region">
+          <div class="accordion-content">
+            Meals are prepared in our commercial kitchen and delivered to the patient's home on a weekly schedule. Delivery windows are confirmed 24 hours in advance via SMS.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  var map = { 'acc-chev-up': 'icon-acc-chevron-up', 'acc-chev-down': 'icon-acc-chevron-down' };
+  Object.keys(map).forEach(function(cls) {
+    document.querySelectorAll('.' + cls).forEach(function(el) {
+      var tmpl = document.getElementById(map[cls]);
+      if (tmpl) { var svg = tmpl.content.cloneNode(true).querySelector('svg'); if (svg) el.parentNode.replaceChild(svg, el); }
+    });
+  });
+})();
+</script>

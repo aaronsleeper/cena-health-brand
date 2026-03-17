@@ -1,0 +1,53 @@
+<!--
+  @component-meta
+  name: Pipeline Bar
+  category: Data
+  file: pipeline-bar.html
+  classes: pipeline-bar, pipeline-segment
+  spec: components/ui/pipeline-bar.md
+  css: src/css/components/pipeline-bar.css
+  when-to-use: Showing proportional data across stages without a chart library.
+  do-not-use-when: You need precise data visualization — use a chart instead.
+  @end-meta
+-->
+
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 32rem;">
+      <div class="pipeline-bar">
+        <div class="pipeline-segment" style="flex: 100; background-color: var(--color-primary);">Referred</div>
+        <div class="pipeline-segment" style="flex: 78; background-color: var(--color-info-base);">Screened</div>
+        <div class="pipeline-segment" style="flex: 52; background-color: var(--color-warning-base);">Enrolled</div>
+        <div class="pipeline-segment" style="flex: 31; background-color: var(--color-success-base);">Active</div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: var(--space-6); margin-top: var(--space-3); font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-tertiary);">
+        <span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--color-primary); margin-right: var(--space-1);"></span>Referred — 248</span>
+        <span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--color-info-base); margin-right: var(--space-1);"></span>Screened — 194</span>
+        <span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--color-warning-base); margin-right: var(--space-1);"></span>Enrolled — 128</span>
+        <span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--color-success-base); margin-right: var(--space-1);"></span>Active — 76</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="compact">
+  <h2 class="pl-section-title">Two-Stage</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 24rem;">
+      <div class="pipeline-bar">
+        <div class="pipeline-segment" style="flex: 76; background-color: var(--color-success-base);">Compliant</div>
+        <div class="pipeline-segment" style="flex: 24; background-color: var(--color-error-base);">Non-compliant</div>
+      </div>
+    </div>
+  </div>
+</section>

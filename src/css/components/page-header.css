@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Cena Health — Page Header Component
+   Source: components/ui/page-header.md
+   ========================================================================== */
+
+@layer components {
+
+  .page-header {
+    @apply flex items-center justify-between gap-4;
+    margin-bottom: var(--space-6);
+  }
+
+  @media (max-width: 599px) {
+    .page-header {
+      @apply flex-col items-start;
+    }
+  }
+
+  .page-header h1 {
+    @apply m-0;
+  }
+}

@@ -1,0 +1,31 @@
+/* ==========================================================================
+   Cena Health — KV Table Component
+   Source: components/ui/kv-table.md
+   ========================================================================== */
+
+@layer components {
+
+  .kv-table {
+    @apply block w-full;
+  }
+
+  .kv-table tr {
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  .kv-table tr:last-child {
+    border-bottom: none;
+  }
+
+  .kv-table td:first-child {
+    @apply font-sans text-sm font-semibold;
+    color: var(--color-text-tertiary);
+    padding: var(--space-2) var(--space-4) var(--space-2) 0;
+  }
+
+  .kv-table td:last-child {
+    @apply font-sans text-sm font-normal;
+    color: var(--color-text-primary);
+    padding: var(--space-2) 0;
+  }
+}

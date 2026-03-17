@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Cena Health — Accordion Component
+   Source: components/ui/accordion.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Container
+     -------------------------------------------------------------------------- */
+
+  .accordion {
+    @apply flex flex-col;
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  .accordion-item:last-child {
+    border-bottom: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Toggle
+     -------------------------------------------------------------------------- */
+
+  .accordion-toggle {
+    @apply flex items-center justify-between w-full font-sans text-sm font-medium text-left cursor-pointer border-none bg-transparent;
+    padding: var(--space-3) var(--space-4);
+    color: var(--color-text-primary);
+    transition: background-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .accordion-toggle:hover {
+    @apply bg-gray-100;
+  }
+
+  .hs-accordion.active > .accordion-toggle {
+    color: var(--color-text-brand);
+  }
+
+  .accordion-toggle:focus-visible {
+    @apply outline-none relative z-10;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  /* --------------------------------------------------------------------------
+     Chevrons (reuses sidebar pattern)
+     -------------------------------------------------------------------------- */
+
+  .accordion-toggle .accordion-chevron-up {
+    display: none !important;
+    opacity: 0.6;
+  }
+
+  .accordion-toggle .accordion-chevron-down {
+    display: block !important;
+    opacity: 0.6;
+  }
+
+  .hs-accordion.active .accordion-toggle .accordion-chevron-up {
+    display: block !important;
+  }
+
+  .hs-accordion.active .accordion-toggle .accordion-chevron-down {
+    display: none !important;
+  }
+
+  /* --------------------------------------------------------------------------
+     Content
+     -------------------------------------------------------------------------- */
+
+  .accordion-content {
+    @apply font-sans text-sm font-normal;
+    padding: 0 var(--space-4) var(--space-4);
+    color: var(--color-text-secondary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .accordion-toggle {
+      transition-duration: 0ms;
+    }
+  }
+}
