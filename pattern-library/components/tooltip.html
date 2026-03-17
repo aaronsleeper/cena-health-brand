@@ -1,0 +1,108 @@
+<!--
+  @component-meta
+  name: Tooltip
+  category: Overlays
+  file: tooltip.html
+  classes: tooltip, tooltip-content, tooltip-bottom, tooltip-left, tooltip-right
+  spec: components/ui/tooltip.md
+  css: src/css/components/tooltip.css
+  when-to-use: Brief supplementary text on hover/focus — icon labels, truncated text, abbreviations.
+  do-not-use-when: You need interactive content — use a popover instead. Do not use for essential information that must be visible without hovering.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Placement Variants
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="placements">
+  <h2 class="pl-section-title">Placement Variants</h2>
+  <p class="pl-section-description">
+    Tooltips appear on hover and focus. Default placement is top. Add <code>.tooltip-bottom</code>,
+    <code>.tooltip-left</code>, or <code>.tooltip-right</code> for other positions.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; flex-wrap: wrap; gap: var(--space-8); align-items: center; justify-content: center; padding: var(--space-10) var(--space-6);">
+
+      <!-- Top (default) -->
+      <div class="tooltip">
+        <button class="btn btn-secondary btn-default" type="button">Top</button>
+        <span class="tooltip-content">Tooltip on top</span>
+      </div>
+
+      <!-- Bottom -->
+      <div class="tooltip tooltip-bottom">
+        <button class="btn btn-secondary btn-default" type="button">Bottom</button>
+        <span class="tooltip-content">Tooltip on bottom</span>
+      </div>
+
+      <!-- Left -->
+      <div class="tooltip tooltip-left">
+        <button class="btn btn-secondary btn-default" type="button">Left</button>
+        <span class="tooltip-content">Tooltip on left</span>
+      </div>
+
+      <!-- Right -->
+      <div class="tooltip tooltip-right">
+        <button class="btn btn-secondary btn-default" type="button">Right</button>
+        <span class="tooltip-content">Tooltip on right</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Icon Button with Tooltip
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="icon-buttons">
+  <h2 class="pl-section-title">Icon Buttons with Tooltips</h2>
+  <p class="pl-section-description">
+    Icon-only buttons should always have a tooltip to provide an accessible label.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; gap: var(--space-4); align-items: center; justify-content: center; padding: var(--space-8) var(--space-6);">
+
+      <div class="tooltip">
+        <button class="btn btn-ghost btn-default btn-icon-only" type="button" aria-label="Edit">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 3l3 3L7 16H4v-3L14 3z"/>
+          </svg>
+        </button>
+        <span class="tooltip-content">Edit</span>
+      </div>
+
+      <div class="tooltip">
+        <button class="btn btn-ghost btn-default btn-icon-only" type="button" aria-label="Delete">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="4 6 16 6"/>
+            <path d="M6 6V4h8v2"/>
+            <path d="M5 6l1 11h8l1-11"/>
+          </svg>
+        </button>
+        <span class="tooltip-content">Delete</span>
+      </div>
+
+      <div class="tooltip">
+        <button class="btn btn-ghost btn-default btn-icon-only" type="button" aria-label="Download">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10 3v10"/>
+            <polyline points="6 9 10 13 14 9"/>
+            <path d="M4 17h12"/>
+          </svg>
+        </button>
+        <span class="tooltip-content">Download</span>
+      </div>
+
+    </div>
+  </div>
+</section>

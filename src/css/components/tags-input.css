@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Cena Health — Tags Input Component
+   Source: components/ui/tags-input.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Container
+     -------------------------------------------------------------------------- */
+
+  .tags-input {
+    @apply flex flex-wrap items-center;
+    gap: var(--space-1-5);
+    padding: var(--space-1-5) var(--space-2);
+    min-height: 2.75rem;
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    cursor: text;
+    transition:
+      border-color var(--duration-fast) var(--ease-transition),
+      box-shadow var(--duration-fast) var(--ease-transition);
+  }
+
+  .tags-input:focus-within {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 var(--space-0-5) oklch(56.3% 0.0762 181.3 / 15%);
+  }
+
+  /* --------------------------------------------------------------------------
+     Tag
+     -------------------------------------------------------------------------- */
+
+  .tags-input-tag {
+    @apply inline-flex items-center gap-1 shrink-0;
+    padding: var(--space-0-5) var(--space-2);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface-teal);
+    color: var(--color-text-brand);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    white-space: nowrap;
+  }
+
+  .tags-input-tag button {
+    @apply inline-flex items-center justify-center p-0 border-none bg-transparent cursor-pointer shrink-0;
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+    color: inherit;
+    opacity: 0.6;
+    border-radius: var(--radius-sm);
+    transition:
+      opacity var(--duration-fast) var(--ease-transition);
+  }
+
+  .tags-input-tag button:hover {
+    opacity: 1;
+  }
+
+  .tags-input-tag button svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* --------------------------------------------------------------------------
+     Input Field
+     -------------------------------------------------------------------------- */
+
+  .tags-input-field {
+    @apply flex-1 border-none bg-transparent p-0 m-0;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: var(--leading-body-sm);
+    color: var(--color-text-primary);
+    min-width: 6rem;
+    outline: none;
+  }
+
+  .tags-input-field::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .tags-input {
+      transition-duration: 0ms;
+    }
+
+    .tags-input-tag button {
+      transition-duration: 0ms;
+    }
+  }
+}

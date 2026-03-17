@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Cena Health — Progress Bar Component
+   Source: components/ui/progress-bar.md
+   ========================================================================== */
+
+@layer components {
+
+  .progress {
+    @apply w-full overflow-hidden rounded-full;
+    height: 0.5rem;
+    background-color: var(--color-surface-secondary);
+  }
+
+  .progress-bar {
+    @apply block rounded-full;
+    height: 100%;
+    background-color: var(--color-primary);
+    transition: width var(--duration-normal) var(--ease-transition);
+  }
+
+  /* Variants */
+  .progress-bar-success { background-color: var(--color-success-base); }
+  .progress-bar-warning { background-color: var(--color-warning-base); }
+  .progress-bar-error   { background-color: var(--color-error-base); }
+
+  /* Large track */
+  .progress-lg {
+    height: 0.75rem;
+  }
+
+  /* Label */
+  .progress-label {
+    @apply flex items-center justify-between font-sans text-xs font-medium;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .progress-bar {
+      transition-duration: 0ms;
+    }
+  }
+}

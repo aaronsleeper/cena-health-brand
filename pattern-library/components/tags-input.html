@@ -1,0 +1,153 @@
+<!--
+  @component-meta
+  name: Tags Input
+  category: Primitives
+  file: tags-input.html
+  classes: tags-input, tags-input-field, tags-input-tag
+  spec: components/ui/tags-input.md
+  css: src/css/components/tags-input.css
+  when-to-use: Multi-value text entry — diagnoses, allergens, skills, labels.
+  do-not-use-when: Selection is from a fixed list — use a combobox or multi-select. For displaying-only tags, use badge or tag-group.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Default Tags Input (Static)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default-static">
+  <h2 class="pl-section-title">Default Tags Input (Static)</h2>
+  <p class="pl-section-description">
+    Container styled like an input field, holding badge-like tags with dismiss buttons and a text input for new entries.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); max-width: 28rem;">
+      <label style="display: block; font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500; color: var(--color-text-primary); margin-bottom: var(--space-2);">
+        Diagnoses
+      </label>
+      <div class="tags-input">
+        <span class="tags-input-tag">
+          Diabetes
+          <button type="button" aria-label="Remove Diabetes">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg>
+          </button>
+        </span>
+        <span class="tags-input-tag">
+          Hypertension
+          <button type="button" aria-label="Remove Hypertension">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg>
+          </button>
+        </span>
+        <span class="tags-input-tag">
+          Obesity
+          <button type="button" aria-label="Remove Obesity">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg>
+          </button>
+        </span>
+        <input class="tags-input-field" type="text" placeholder="Add diagnosis..." />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Interactive Demo
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="interactive">
+  <h2 class="pl-section-title">Interactive Demo</h2>
+  <p class="pl-section-description">
+    Type a value and press Enter to add a tag. Click the dismiss button to remove.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); max-width: 28rem;">
+      <label style="display: block; font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500; color: var(--color-text-primary); margin-bottom: var(--space-2);">
+        Allergens
+      </label>
+      <div class="tags-input" id="tags-demo">
+        <input class="tags-input-field" id="tags-demo-input" type="text" placeholder="Type and press Enter..." />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Empty State
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="empty">
+  <h2 class="pl-section-title">Empty State</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); max-width: 28rem;">
+      <label style="display: block; font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500; color: var(--color-text-primary); margin-bottom: var(--space-2);">
+        Labels
+      </label>
+      <div class="tags-input">
+        <input class="tags-input-field" type="text" placeholder="Add labels..." />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: interactive tags demo -->
+<script>
+(function() {
+  var container = document.getElementById('tags-demo');
+  var input = document.getElementById('tags-demo-input');
+  if (!container || !input) return;
+
+  function createTag(text) {
+    var tag = document.createElement('span');
+    tag.className = 'tags-input-tag';
+    tag.textContent = text + ' ';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'Remove ' + text);
+    btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg>';
+    btn.addEventListener('click', function() {
+      tag.remove();
+    });
+    tag.appendChild(btn);
+    return tag;
+  }
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      var val = input.value.trim();
+      if (!val) return;
+      container.insertBefore(createTag(val), input);
+      input.value = '';
+    }
+    if (e.key === 'Backspace' && !input.value) {
+      var tags = container.querySelectorAll('.tags-input-tag');
+      if (tags.length) tags[tags.length - 1].remove();
+    }
+  });
+
+  // Dismiss static tags
+  container.querySelectorAll('.tags-input-tag button').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btn.closest('.tags-input-tag').remove();
+    });
+  });
+
+  // Focus input when clicking container
+  container.addEventListener('click', function() {
+    input.focus();
+  });
+})();
+</script>

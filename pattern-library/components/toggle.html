@@ -1,0 +1,49 @@
+<!--
+  @component-meta
+  name: Toggle
+  category: Primitives
+  file: toggle.html
+  classes: toggle, toggle-input, toggle-track, toggle-label
+  spec: components/ui/toggle.md
+  css: src/css/components/toggle.css
+  when-to-use: On/off settings, feature flags, or boolean preferences.
+  do-not-use-when: Multiple options exist — use checkboxes or radio buttons.
+  @end-meta
+-->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+      <label class="toggle">
+        <input type="checkbox" class="toggle-input" checked>
+        <span class="toggle-track"></span>
+        <span class="toggle-label">Email notifications</span>
+      </label>
+      <label class="toggle">
+        <input type="checkbox" class="toggle-input">
+        <span class="toggle-track"></span>
+        <span class="toggle-label">SMS alerts</span>
+      </label>
+      <label class="toggle">
+        <input type="checkbox" class="toggle-input" disabled>
+        <span class="toggle-track"></span>
+        <span class="toggle-label">Push notifications (unavailable)</span>
+      </label>
+    </div>
+  </div>
+</section>
+
+<section class="pl-section" data-pl-section="states">
+  <h2 class="pl-section-title">States</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="display: flex; gap: var(--space-6); flex-wrap: wrap; align-items: center;">
+      <div><p class="pl-col-label">Off</p><label class="toggle"><input type="checkbox" class="toggle-input"><span class="toggle-track"></span></label></div>
+      <div><p class="pl-col-label">On</p><label class="toggle"><input type="checkbox" class="toggle-input" checked><span class="toggle-track"></span></label></div>
+      <div><p class="pl-col-label">Disabled Off</p><label class="toggle"><input type="checkbox" class="toggle-input" disabled><span class="toggle-track"></span></label></div>
+      <div><p class="pl-col-label">Disabled On</p><label class="toggle"><input type="checkbox" class="toggle-input" checked disabled><span class="toggle-track"></span></label></div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,125 @@
+/* ==========================================================================
+   Cena Health — Combobox Component
+   Source: components/ui/combobox.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Container
+     -------------------------------------------------------------------------- */
+
+  .combobox {
+    @apply relative;
+    display: block;
+    width: 100%;
+  }
+
+  /* --------------------------------------------------------------------------
+     Input
+     -------------------------------------------------------------------------- */
+
+  .combobox-input {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--leading-body);
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    min-height: 2.75rem;
+    width: 100%;
+    transition:
+      border-color var(--duration-fast) var(--ease-transition),
+      box-shadow var(--duration-fast) var(--ease-transition);
+  }
+
+  .combobox-input::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  .combobox-input:hover:not(:disabled):not(:focus) {
+    border-color: var(--color-border-focus);
+  }
+
+  .combobox-input:focus {
+    outline: none;
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 var(--space-0-5) oklch(56.3% 0.0762 181.3 / 15%);
+  }
+
+  /* --------------------------------------------------------------------------
+     Listbox
+     -------------------------------------------------------------------------- */
+
+  .combobox-listbox {
+    @apply absolute hidden flex-col;
+    top: calc(100% + var(--space-1));
+    left: 0;
+    right: 0;
+    max-height: 16rem;
+    overflow-y: auto;
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    z-index: 40;
+    padding: var(--space-1) 0;
+    list-style: none;
+    margin: 0;
+  }
+
+  .combobox-listbox.open {
+    @apply flex;
+  }
+
+  /* --------------------------------------------------------------------------
+     Option
+     -------------------------------------------------------------------------- */
+
+  .combobox-option {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: var(--leading-body-sm);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition:
+      background-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .combobox-option:hover {
+    background-color: var(--color-surface-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Active Option
+     -------------------------------------------------------------------------- */
+
+  .combobox-option-active {
+    background-color: var(--color-surface-teal);
+    color: var(--color-text-brand);
+  }
+
+  .combobox-option-active:hover {
+    background-color: var(--color-surface-teal);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .combobox-input {
+      transition-duration: 0ms;
+    }
+
+    .combobox-option {
+      transition-duration: 0ms;
+    }
+  }
+}

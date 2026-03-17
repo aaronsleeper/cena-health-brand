@@ -1,0 +1,120 @@
+<!--
+  @component-meta
+  name: Divider
+  category: Layout
+  file: divider.html
+  classes: divider, divider-label, divider-vertical
+  spec: components/ui/divider.md
+  css: src/css/components/divider.css
+  when-to-use: Visual separation between content sections, menu groups, or inline elements.
+  do-not-use-when: You need structural separation — use a card or section boundary instead.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Horizontal Divider
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="horizontal">
+  <h2 class="pl-section-title">Horizontal Divider</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6);">
+      <p style="margin: 0; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">Content above the divider</p>
+      <hr class="divider" />
+      <p style="margin: 0; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">Content below the divider</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Divider with Label
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="label">
+  <h2 class="pl-section-title">Divider with Label</h2>
+  <p class="pl-section-description">
+    A horizontal line with centered text label, useful for section breaks in forms or "or" separators.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6);">
+      <p style="margin: 0; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">Sign in with email</p>
+      <div class="divider-label"><span>or</span></div>
+      <p style="margin: 0; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">Sign in with SSO</p>
+    </div>
+
+    <div style="padding: 0 var(--space-6) var(--space-6);">
+      <div class="divider-label"><span>March 2026</span></div>
+      <p style="margin: 0; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">Timeline entries would appear below.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Vertical Divider
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="vertical">
+  <h2 class="pl-section-title">Vertical Divider</h2>
+  <p class="pl-section-description">
+    Inline separator for horizontal layouts — toolbars, button groups, metadata rows.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; align-items: center; padding: var(--space-6);">
+      <span style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">Dashboard</span>
+      <span class="divider-vertical"></span>
+      <span style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">Patients</span>
+      <span class="divider-vertical"></span>
+      <span style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary);">Reports</span>
+    </div>
+
+    <div style="display: flex; align-items: center; padding: 0 var(--space-6) var(--space-6);">
+      <button class="btn btn-ghost btn-sm" type="button">Edit</button>
+      <span class="divider-vertical"></span>
+      <button class="btn btn-ghost btn-sm" type="button">Duplicate</button>
+      <span class="divider-vertical"></span>
+      <button class="btn btn-ghost btn-sm" type="button">Archive</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: On Different Surfaces
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surfaces">
+  <h2 class="pl-section-title">Surface Variants</h2>
+
+  <div class="pl-stack">
+    <div class="pl-canvas" style="background: var(--color-surface-page);">
+      <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+      <div style="padding: 0 var(--space-6);">
+        <hr class="divider" />
+      </div>
+    </div>
+    <div class="pl-canvas" style="background: var(--color-surface-primary);">
+      <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+      <div style="padding: 0 var(--space-6);">
+        <hr class="divider" />
+      </div>
+    </div>
+    <div class="pl-canvas" style="background: var(--color-surface-teal);">
+      <p class="pl-canvas-label">surface-teal (#E9F5F2)</p>
+      <div style="padding: 0 var(--space-6);">
+        <hr class="divider" />
+      </div>
+    </div>
+  </div>
+</section>

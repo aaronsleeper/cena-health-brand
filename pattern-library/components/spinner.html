@@ -1,0 +1,36 @@
+<!--
+  @component-meta
+  name: Spinner
+  category: Feedback
+  file: spinner.html
+  classes: spinner, spinner-sm, spinner-lg
+  spec: components/ui/spinner.md
+  css: src/css/components/spinner.css
+  when-to-use: Indeterminate loading states — full page, inline, or button loading.
+  do-not-use-when: Progress is determinate — use a progress bar instead.
+  @end-meta
+-->
+
+<section class="pl-section" data-pl-section="sizes">
+  <h2 class="pl-section-title">Sizes</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="display: flex; gap: var(--space-6); align-items: center;">
+      <div><p class="pl-col-label">Small (16px)</p><div class="spinner spinner-sm" role="status" aria-label="Loading"></div></div>
+      <div><p class="pl-col-label">Default (24px)</p><div class="spinner" role="status" aria-label="Loading"></div></div>
+      <div><p class="pl-col-label">Large (32px)</p><div class="spinner spinner-lg" role="status" aria-label="Loading"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pl-section" data-pl-section="in-context">
+  <h2 class="pl-section-title">In Context — Card Loading</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="card" style="max-width: 20rem;">
+      <div class="card-body" style="display: flex; align-items: center; justify-content: center; min-height: 8rem;">
+        <div class="spinner" role="status" aria-label="Loading content"></div>
+      </div>
+    </div>
+  </div>
+</section>

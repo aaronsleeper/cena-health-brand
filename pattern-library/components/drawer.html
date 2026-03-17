@@ -1,0 +1,163 @@
+<!--
+  @component-meta
+  name: Drawer
+  category: Overlays
+  file: drawer.html
+  classes: drawer-backdrop, drawer, drawer-header, drawer-title, drawer-body, drawer-footer, drawer-backdrop-left, drawer-enter, drawer-exiting, drawer-backdrop-enter, drawer-backdrop-exiting
+  spec: components/ui/drawer.md
+  css: src/css/components/drawer.css
+  when-to-use: Slide-over panels for detail views, edit forms, or secondary content that should not replace the page.
+  do-not-use-when: The content is critical and requires full attention — use a modal. For simple confirmations, use a modal instead.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Static Drawer Structure
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="structure">
+  <h2 class="pl-section-title">Drawer Structure (Static)</h2>
+  <p class="pl-section-description">
+    Static rendering of the drawer panel showing header, scrollable body, and footer with actions.
+    In production, the drawer is <code>fixed</code> with a backdrop overlay.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <!-- PL-only: position static for demonstration -->
+    <div style="position: relative; height: 24rem; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
+      <div class="drawer" style="position: absolute; right: 0; top: 0; bottom: 0; max-width: 22rem;">
+        <div class="drawer-header">
+          <h2 class="drawer-title">Patient Details</h2>
+          <button class="modal-close" aria-label="Close drawer">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <line x1="4" y1="4" x2="12" y2="12"/>
+              <line x1="12" y1="4" x2="4" y2="12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="drawer-body">
+          <p style="margin: 0 0 var(--space-3); font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-primary); font-weight: 600;">Maria Rivera</p>
+          <p style="margin: 0 0 var(--space-2); font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">Age: 68</p>
+          <p style="margin: 0 0 var(--space-2); font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">MRN: 1234567</p>
+          <p style="margin: 0 0 var(--space-2); font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">Primary Dx: Type 2 Diabetes</p>
+          <p style="margin: 0 0 var(--space-2); font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">Care Plan: Active — Quarterly HbA1c monitoring</p>
+          <p style="margin: 0; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">Last Visit: March 1, 2026</p>
+        </div>
+        <div class="drawer-footer">
+          <button class="btn btn-secondary btn-default" type="button">Cancel</button>
+          <button class="btn btn-primary btn-default" type="button">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Live Drawer Demo
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="live-demo">
+  <h2 class="pl-section-title">Live Drawer (Right)</h2>
+  <p class="pl-section-description">
+    Click the button to open an animated drawer with backdrop. Click the backdrop or close button to dismiss.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6);">
+      <button class="btn btn-primary btn-default" type="button" id="drawer-trigger-right">
+        Open Drawer
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Live Drawer Demo (Left)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="live-demo-left">
+  <h2 class="pl-section-title">Live Drawer (Left)</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6);">
+      <button class="btn btn-secondary btn-default" type="button" id="drawer-trigger-left">
+        Open Left Drawer
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: drawer open/close -->
+<script>
+(function() {
+  function createDrawer(side) {
+    var isLeft = side === 'left';
+    var backdrop = document.createElement('div');
+    backdrop.className = 'drawer-backdrop drawer-backdrop-enter' + (isLeft ? ' drawer-backdrop-left' : '');
+    backdrop.innerHTML =
+      '<div class="drawer drawer-enter">' +
+        '<div class="drawer-header">' +
+          '<h2 class="drawer-title">' + (isLeft ? 'Navigation' : 'Edit Patient') + '</h2>' +
+          '<button class="modal-close" aria-label="Close drawer">' +
+            '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
+              '<line x1="4" y1="4" x2="12" y2="12"/>' +
+              '<line x1="12" y1="4" x2="4" y2="12"/>' +
+            '</svg>' +
+          '</button>' +
+        '</div>' +
+        '<div class="drawer-body">' +
+          '<p style="margin: 0; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">' +
+            'This is a live drawer demo. Click the backdrop or close button to dismiss.' +
+          '</p>' +
+        '</div>' +
+        '<div class="drawer-footer">' +
+          '<button class="btn btn-secondary btn-default" data-drawer-close>Cancel</button>' +
+          '<button class="btn btn-primary btn-default" data-drawer-close>Confirm</button>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(backdrop);
+
+    function closeDrawer() {
+      var drawer = backdrop.querySelector('.drawer');
+      drawer.classList.remove('drawer-enter');
+      drawer.classList.add('drawer-exiting');
+      backdrop.classList.remove('drawer-backdrop-enter');
+      backdrop.classList.add('drawer-backdrop-exiting');
+      backdrop.addEventListener('animationend', function() {
+        backdrop.remove();
+      }, { once: true });
+    }
+
+    backdrop.addEventListener('click', function(e) {
+      if (e.target === backdrop) closeDrawer();
+    });
+
+    backdrop.querySelectorAll('[data-drawer-close]').forEach(function(btn) {
+      btn.addEventListener('click', closeDrawer);
+    });
+
+    backdrop.querySelector('.modal-close').addEventListener('click', closeDrawer);
+  }
+
+  var triggerRight = document.getElementById('drawer-trigger-right');
+  if (triggerRight) {
+    triggerRight.addEventListener('click', function() { createDrawer('right'); });
+  }
+
+  var triggerLeft = document.getElementById('drawer-trigger-left');
+  if (triggerLeft) {
+    triggerLeft.addEventListener('click', function() { createDrawer('left'); });
+  }
+})();
+</script>

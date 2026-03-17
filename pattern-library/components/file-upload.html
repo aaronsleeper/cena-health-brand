@@ -1,0 +1,150 @@
+<!--
+  @component-meta
+  name: File Upload
+  category: Primitives
+  file: file-upload.html
+  classes: file-upload, file-upload-icon, file-upload-text, file-upload-hint, file-upload-dragover
+  spec: components/ui/file-upload.md
+  css: src/css/components/file-upload.css
+  when-to-use: File attachment zones — document uploads, image uploads, CSV imports.
+  do-not-use-when: You only need a file input button — use a standard button with hidden file input.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Default Dropzone
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default File Upload</h2>
+  <p class="pl-section-description">
+    Dashed border dropzone with icon, instruction text, and hint. Click or drag files to upload.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); max-width: 28rem;">
+      <div class="file-upload" id="file-upload-demo" tabindex="0" role="button" aria-label="Upload file">
+        <div class="file-upload-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 20V8"/>
+            <polyline points="10 14 16 8 22 14"/>
+            <path d="M26 20v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4"/>
+          </svg>
+        </div>
+        <span class="file-upload-text">Drag and drop files here, or click to browse</span>
+        <span class="file-upload-hint">PDF, PNG, JPG up to 10MB</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Drag-Over State
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="dragover">
+  <h2 class="pl-section-title">Drag-Over State</h2>
+  <p class="pl-section-description">
+    Visual feedback when a file is dragged over the dropzone.
+    The border turns teal and the background shifts to <code>surface-teal</code>.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); max-width: 28rem;">
+      <div class="file-upload file-upload-dragover" tabindex="0" role="button" aria-label="Upload file">
+        <div class="file-upload-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 20V8"/>
+            <polyline points="10 14 16 8 22 14"/>
+            <path d="M26 20v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4"/>
+          </svg>
+        </div>
+        <span class="file-upload-text">Drop files to upload</span>
+        <span class="file-upload-hint">PDF, PNG, JPG up to 10MB</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Compact Variant
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="compact">
+  <h2 class="pl-section-title">Compact (Less Padding)</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); max-width: 28rem;">
+      <div class="file-upload" style="padding: var(--space-4) var(--space-4);" tabindex="0" role="button" aria-label="Upload file">
+        <div class="file-upload-icon" style="margin-bottom: var(--space-2);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 15V5"/>
+            <polyline points="8 9 12 5 16 9"/>
+            <path d="M20 15v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3"/>
+          </svg>
+        </div>
+        <span class="file-upload-text">Click to upload or drag files here</span>
+        <span class="file-upload-hint">CSV files only, max 5MB</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: On Card Surface
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surface-primary">
+  <h2 class="pl-section-title">On Card Surface</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-primary);">
+    <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+
+    <div style="padding: var(--space-6); max-width: 28rem;">
+      <div class="file-upload" tabindex="0" role="button" aria-label="Upload file">
+        <div class="file-upload-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 20V8"/>
+            <polyline points="10 14 16 8 22 14"/>
+            <path d="M26 20v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4"/>
+          </svg>
+        </div>
+        <span class="file-upload-text">Upload lab results</span>
+        <span class="file-upload-hint">PDF or image, up to 25MB</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: drag-over demo -->
+<script>
+(function() {
+  var zone = document.getElementById('file-upload-demo');
+  if (!zone) return;
+
+  zone.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    zone.classList.add('file-upload-dragover');
+  });
+
+  zone.addEventListener('dragleave', function() {
+    zone.classList.remove('file-upload-dragover');
+  });
+
+  zone.addEventListener('drop', function(e) {
+    e.preventDefault();
+    zone.classList.remove('file-upload-dragover');
+  });
+})();
+</script>

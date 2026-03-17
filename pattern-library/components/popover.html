@@ -1,0 +1,156 @@
+<!--
+  @component-meta
+  name: Popover
+  category: Overlays
+  file: popover.html
+  classes: popover, popover-content, popover-header, popover-body, popover-bottom
+  spec: components/ui/popover.md
+  css: src/css/components/popover.css
+  when-to-use: Rich floating content that requires interaction — help text, mini-forms, supplementary details.
+  do-not-use-when: You only need a text label — use a tooltip instead. For action menus, use a dropdown.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Default Popover
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default (Top Placement)</h2>
+  <p class="pl-section-description">
+    A popover with header and body content. Opens on click.
+    Default placement is above the trigger.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; justify-content: center; padding: var(--space-16) var(--space-6) var(--space-6);">
+
+      <div class="popover" data-popover>
+        <button class="btn btn-secondary btn-default" type="button" data-popover-trigger>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="10" cy="10" r="8"/>
+            <line x1="10" y1="7" x2="10" y2="7.01"/>
+            <line x1="10" y1="10" x2="10" y2="14"/>
+          </svg>
+          More info
+        </button>
+        <div class="popover-content" role="dialog" aria-label="Patient info">
+          <div class="popover-header">Patient Summary</div>
+          <div class="popover-body">
+            <p style="margin: 0; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">
+              Maria Rivera, 68 years old. Active care plan for Type 2 Diabetes management
+              with quarterly HbA1c monitoring and weekly nutrition check-ins.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Bottom Placement
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="bottom">
+  <h2 class="pl-section-title">Bottom Placement</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; justify-content: center; padding: var(--space-6) var(--space-6) var(--space-16);">
+
+      <div class="popover popover-bottom" data-popover>
+        <button class="btn btn-secondary btn-default" type="button" data-popover-trigger>
+          Show details
+        </button>
+        <div class="popover-content" role="dialog" aria-label="Details">
+          <div class="popover-header">Lab Results</div>
+          <div class="popover-body">
+            <p style="margin: 0; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">
+              HbA1c: 7.2% (target &lt; 7.0%). Last tested March 1, 2026.
+              Next scheduled test: June 1, 2026.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Body-Only Popover
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="body-only">
+  <h2 class="pl-section-title">Body Only (No Header)</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; justify-content: center; padding: var(--space-16) var(--space-6) var(--space-6);">
+
+      <div class="popover" data-popover>
+        <button class="btn btn-ghost btn-default" type="button" data-popover-trigger>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="10" cy="10" r="8"/>
+            <path d="M8 8a2 2 0 1 1 2 2v1"/>
+            <line x1="10" y1="14" x2="10" y2="14.01"/>
+          </svg>
+          Help
+        </button>
+        <div class="popover-content" role="dialog" aria-label="Help">
+          <div class="popover-body">
+            <p style="margin: 0; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">
+              Click "Save" to persist your changes. Changes are auto-saved every 30 seconds.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: popover toggle -->
+<script>
+(function() {
+  document.querySelectorAll('[data-popover]').forEach(function(popover) {
+    var trigger = popover.querySelector('[data-popover-trigger]');
+    var content = popover.querySelector('.popover-content');
+    if (!trigger || !content) return;
+
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = content.classList.contains('open');
+      // Close all other popovers first
+      document.querySelectorAll('.popover-content.open').forEach(function(el) {
+        el.classList.remove('open');
+      });
+      if (!isOpen) {
+        content.classList.add('open');
+      }
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.popover-content.open').forEach(function(el) {
+      el.classList.remove('open');
+    });
+  });
+
+  // Prevent closing when clicking inside popover content
+  document.querySelectorAll('.popover-content').forEach(function(el) {
+    el.addEventListener('click', function(e) { e.stopPropagation(); });
+  });
+})();
+</script>

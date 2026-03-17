@@ -1,0 +1,35 @@
+<!--
+  @component-meta
+  name: Progress Bar
+  category: Feedback
+  file: progress-bar.html
+  classes: progress, progress-bar, progress-bar-success, progress-bar-warning, progress-bar-error, progress-lg, progress-label
+  spec: components/ui/progress-bar.md
+  css: src/css/components/progress-bar.css
+  when-to-use: Showing determinate progress for uploads, form completion, or goal tracking.
+  do-not-use-when: Progress is indeterminate — use a spinner instead.
+  @end-meta
+-->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="max-width: 24rem; display: flex; flex-direction: column; gap: var(--space-4);">
+      <div><div class="progress-label"><span>Enrollment Progress</span><span>68%</span></div><div class="progress"><div class="progress-bar" style="width: 68%;"></div></div></div>
+      <div><div class="progress-label"><span>HbA1c Target</span><span>85%</span></div><div class="progress"><div class="progress-bar progress-bar-success" style="width: 85%;"></div></div></div>
+      <div><div class="progress-label"><span>Compliance</span><span>42%</span></div><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 42%;"></div></div></div>
+      <div><div class="progress-label"><span>Missed Deliveries</span><span>15%</span></div><div class="progress"><div class="progress-bar progress-bar-error" style="width: 15%;"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pl-section" data-pl-section="large">
+  <h2 class="pl-section-title">Large Track</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="max-width: 24rem;">
+      <div class="progress progress-lg"><div class="progress-bar" style="width: 55%;"></div></div>
+    </div>
+  </div>
+</section>

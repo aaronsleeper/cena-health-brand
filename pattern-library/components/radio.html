@@ -1,0 +1,37 @@
+<!--
+  @component-meta
+  name: Radio
+  category: Primitives
+  file: radio.html
+  classes: radio, radio-input, radio-label, radio-group
+  spec: components/ui/radio.md
+  css: src/css/components/radio.css
+  when-to-use: Single-select choices in forms where all options are visible.
+  do-not-use-when: Too many options to display — use a select dropdown instead.
+  @end-meta
+-->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default Group</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="radio-group">
+      <label class="radio"><input type="radio" name="diet" class="radio-input" checked><span class="radio-label">Low Sodium</span></label>
+      <label class="radio"><input type="radio" name="diet" class="radio-input"><span class="radio-label">Diabetic</span></label>
+      <label class="radio"><input type="radio" name="diet" class="radio-input"><span class="radio-label">Renal</span></label>
+      <label class="radio"><input type="radio" name="diet" class="radio-input" disabled><span class="radio-label">Custom (unavailable)</span></label>
+    </div>
+  </div>
+</section>
+
+<section class="pl-section" data-pl-section="states">
+  <h2 class="pl-section-title">States</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="display: flex; gap: var(--space-6); flex-wrap: wrap;">
+      <div><p class="pl-col-label">Unselected</p><label class="radio"><input type="radio" name="state-demo" class="radio-input"><span class="radio-label">Option</span></label></div>
+      <div><p class="pl-col-label">Selected</p><label class="radio"><input type="radio" name="state-demo-2" class="radio-input" checked><span class="radio-label">Option</span></label></div>
+      <div><p class="pl-col-label">Disabled</p><label class="radio"><input type="radio" class="radio-input" disabled><span class="radio-label">Option</span></label></div>
+    </div>
+  </div>
+</section>

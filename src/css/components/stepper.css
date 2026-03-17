@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Cena Health — Stepper Component
+   Source: components/ui/stepper.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Container
+     -------------------------------------------------------------------------- */
+
+  .stepper {
+    @apply flex items-start w-full;
+  }
+
+  /* --------------------------------------------------------------------------
+     Step Item
+     -------------------------------------------------------------------------- */
+
+  .stepper-item {
+    @apply flex flex-col items-center;
+    gap: var(--space-2);
+    min-width: 4rem;
+  }
+
+  /* --------------------------------------------------------------------------
+     Circle
+     -------------------------------------------------------------------------- */
+
+  .stepper-circle {
+    @apply flex items-center justify-center shrink-0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-border-default);
+    background-color: transparent;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-tertiary);
+    transition:
+      background-color var(--duration-fast) var(--ease-transition),
+      border-color var(--duration-fast) var(--ease-transition),
+      color var(--duration-fast) var(--ease-transition);
+  }
+
+  .stepper-circle svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+  }
+
+  /* Active state */
+  .stepper-item-active .stepper-circle {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  /* Complete state */
+  .stepper-item-complete .stepper-circle {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Label
+     -------------------------------------------------------------------------- */
+
+  .stepper-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    line-height: var(--leading-snug);
+    color: var(--color-text-secondary);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .stepper-item-active .stepper-label {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  .stepper-item-complete .stepper-label {
+    color: var(--color-text-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Connector
+     -------------------------------------------------------------------------- */
+
+  .stepper-connector {
+    @apply flex-1 self-start;
+    height: 2px;
+    background-color: var(--color-border-default);
+    margin-top: calc(1rem - 1px); /* vertically center on circle */
+    min-width: var(--space-4);
+  }
+
+  .stepper-connector-complete {
+    background-color: var(--color-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .stepper-circle {
+      transition-duration: 0ms;
+    }
+  }
+}

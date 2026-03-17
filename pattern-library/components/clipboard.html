@@ -1,0 +1,163 @@
+<!--
+  @component-meta
+  name: Clipboard
+  category: Primitives
+  file: clipboard.html
+  classes: clipboard-btn, clipboard-copied
+  spec: components/ui/clipboard.md
+  css: src/css/components/clipboard.css
+  when-to-use: Copy-to-clipboard actions — API keys, referral codes, patient IDs, code snippets.
+  do-not-use-when: The user needs to select partial text — use standard text selection instead.
+  @end-meta
+-->
+
+<!-- SVG templates -->
+<template id="clipboard-icon-copy">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="5" y="5" width="9" height="9" rx="1"/>
+    <path d="M2 11V3a1 1 0 0 1 1-1h8"/>
+  </svg>
+</template>
+
+<template id="clipboard-icon-check">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="4,8 7,11 12,5"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Default Clipboard Button
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default Clipboard Button</h2>
+  <p class="pl-section-description">
+    Click to copy. Shows "Copied!" feedback with a check icon for 2 seconds.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4);">
+
+      <!-- With text to copy -->
+      <div style="display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); background: var(--color-surface-primary); border-radius: var(--radius-md);">
+        <code style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-primary); flex: 1;">REF-2026-0317-A4B2</code>
+        <button class="clipboard-btn" type="button" data-clipboard="REF-2026-0317-A4B2">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="5" y="5" width="9" height="9" rx="1"/>
+            <path d="M2 11V3a1 1 0 0 1 1-1h8"/>
+          </svg>
+          Copy
+        </button>
+      </div>
+
+      <!-- API key example -->
+      <div style="display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); background: var(--color-surface-primary); border-radius: var(--radius-md);">
+        <code style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-primary); flex: 1;">sk_live_a1b2c3d4e5f6g7h8i9j0</code>
+        <button class="clipboard-btn" type="button" data-clipboard="sk_live_a1b2c3d4e5f6g7h8i9j0">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="5" y="5" width="9" height="9" rx="1"/>
+            <path d="M2 11V3a1 1 0 0 1 1-1h8"/>
+          </svg>
+          Copy
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Copied State (Static)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="copied-state">
+  <h2 class="pl-section-title">Copied State (Static)</h2>
+  <p class="pl-section-description">
+    The button turns green with a check icon while in the "copied" feedback state.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); display: flex; gap: var(--space-6); align-items: center;">
+
+      <div style="display: flex; align-items: center; gap: var(--space-2);">
+        <span style="font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-tertiary);">Default:</span>
+        <button class="clipboard-btn" type="button">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="5" y="5" width="9" height="9" rx="1"/>
+            <path d="M2 11V3a1 1 0 0 1 1-1h8"/>
+          </svg>
+          Copy
+        </button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: var(--space-2);">
+        <span style="font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-tertiary);">Copied:</span>
+        <button class="clipboard-btn clipboard-copied" type="button">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="4,8 7,11 12,5"/>
+          </svg>
+          Copied!
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Icon-Only
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="icon-only">
+  <h2 class="pl-section-title">Icon-Only Variant</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); display: flex; align-items: center; gap: var(--space-3);">
+      <code style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-primary);">MRN-1234567</code>
+      <button class="clipboard-btn" type="button" data-clipboard="MRN-1234567" aria-label="Copy MRN">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="5" y="5" width="9" height="9" rx="1"/>
+          <path d="M2 11V3a1 1 0 0 1 1-1h8"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: copy to clipboard -->
+<script>
+(function() {
+  var copyIconSvg = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1"/><path d="M2 11V3a1 1 0 0 1 1-1h8"/></svg>';
+  var checkIconSvg = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,8 7,11 12,5"/></svg>';
+
+  document.querySelectorAll('[data-clipboard]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var text = btn.getAttribute('data-clipboard');
+      if (!text) return;
+
+      navigator.clipboard.writeText(text).then(function() {
+        var hasLabel = btn.textContent.trim() !== '';
+        var originalHTML = btn.innerHTML;
+
+        btn.classList.add('clipboard-copied');
+        btn.innerHTML = checkIconSvg + (hasLabel ? ' Copied!' : '');
+
+        setTimeout(function() {
+          btn.classList.remove('clipboard-copied');
+          btn.innerHTML = originalHTML;
+        }, 2000);
+      });
+    });
+  });
+})();
+</script>

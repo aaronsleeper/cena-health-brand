@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Cena Health — Clipboard Component
+   Source: components/ui/clipboard.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Button
+     -------------------------------------------------------------------------- */
+
+  .clipboard-btn {
+    @apply inline-flex items-center gap-1 border-none cursor-pointer;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    background-color: transparent;
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    transition:
+      background-color var(--duration-fast) var(--ease-transition),
+      color var(--duration-fast) var(--ease-transition);
+  }
+
+  .clipboard-btn svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+    flex-shrink: 0;
+  }
+
+  .clipboard-btn:hover {
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-primary);
+  }
+
+  .clipboard-btn:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .clipboard-btn:active {
+    background-color: var(--color-surface-secondary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Copied State
+     -------------------------------------------------------------------------- */
+
+  .clipboard-copied {
+    color: var(--color-success-text);
+  }
+
+  .clipboard-copied:hover {
+    color: var(--color-success-text);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .clipboard-btn {
+      transition-duration: 0ms;
+    }
+  }
+}

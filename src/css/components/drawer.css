@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Cena Health — Drawer (Slide-over) Component
+   Source: components/ui/drawer.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Backdrop
+     -------------------------------------------------------------------------- */
+
+  .drawer-backdrop {
+    @apply fixed inset-0 flex;
+    background-color: oklch(20% 0.01 70 / 50%);
+    z-index: 50;
+    justify-content: flex-end;
+  }
+
+  .drawer-backdrop-left {
+    justify-content: flex-start;
+  }
+
+  /* --------------------------------------------------------------------------
+     Panel
+     -------------------------------------------------------------------------- */
+
+  .drawer {
+    @apply flex flex-col overflow-hidden;
+    width: 100%;
+    max-width: 28rem;
+    height: 100%;
+    background-color: var(--color-surface-page);
+    border-left: 1px solid var(--color-border-default);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .drawer-left .drawer,
+  .drawer-backdrop-left .drawer {
+    border-left: none;
+    border-right: 1px solid var(--color-border-default);
+  }
+
+  /* --------------------------------------------------------------------------
+     Header / Body / Footer
+     -------------------------------------------------------------------------- */
+
+  .drawer-header {
+    @apply flex items-center justify-between shrink-0;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  .drawer-title {
+    @apply font-display text-lg font-semibold m-0;
+    color: var(--color-text-primary);
+  }
+
+  .drawer-body {
+    @apply flex-1 overflow-y-auto;
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .drawer-footer {
+    @apply flex items-center justify-end gap-3 shrink-0;
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--color-border-default);
+  }
+
+  /* --------------------------------------------------------------------------
+     Enter / Exit Animation
+     -------------------------------------------------------------------------- */
+
+  .drawer-enter {
+    animation: drawer-slide-in var(--duration-normal) var(--ease-enter) both;
+  }
+
+  .drawer-exiting {
+    animation: drawer-slide-out var(--duration-fast) var(--ease-exit) both;
+  }
+
+  @keyframes drawer-slide-in {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(0); }
+  }
+
+  @keyframes drawer-slide-out {
+    from { transform: translateX(0); }
+    to   { transform: translateX(100%); }
+  }
+
+  /* Left variant animations */
+  .drawer-backdrop-left .drawer-enter {
+    animation-name: drawer-slide-in-left;
+  }
+
+  .drawer-backdrop-left .drawer-exiting {
+    animation-name: drawer-slide-out-left;
+  }
+
+  @keyframes drawer-slide-in-left {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(0); }
+  }
+
+  @keyframes drawer-slide-out-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
+  }
+
+  /* Backdrop fade */
+  .drawer-backdrop-enter {
+    animation: drawer-backdrop-fade-in var(--duration-normal) var(--ease-transition) both;
+  }
+
+  .drawer-backdrop-exiting {
+    animation: drawer-backdrop-fade-out var(--duration-fast) var(--ease-exit) both;
+  }
+
+  @keyframes drawer-backdrop-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes drawer-backdrop-fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .drawer-enter,
+    .drawer-exiting,
+    .drawer-backdrop-enter,
+    .drawer-backdrop-exiting {
+      animation-duration: 0ms;
+    }
+  }
+}

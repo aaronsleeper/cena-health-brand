@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Cena Health — Checkbox Component
+   Source: components/ui/checkbox.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Wrapper
+     -------------------------------------------------------------------------- */
+
+  .checkbox {
+    @apply flex items-start gap-2 cursor-pointer;
+  }
+
+  /* --------------------------------------------------------------------------
+     Input
+     -------------------------------------------------------------------------- */
+
+  .checkbox-input {
+    @apply shrink-0 cursor-pointer rounded-sm;
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--color-border-strong);
+    background-color: var(--color-surface-page);
+    margin-top: var(--space-px);
+    transition:
+      background-color var(--duration-fast) var(--ease-transition),
+      border-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .checkbox-input:checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .checkbox-input:indeterminate {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='3' y='7' width='10' height='2' rx='1'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .checkbox-input:focus-visible {
+    @apply outline-none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .checkbox-input:disabled {
+    @apply cursor-not-allowed;
+    background-color: var(--color-surface-secondary);
+    border-color: var(--color-border-default);
+    opacity: 0.6;
+  }
+
+  .checkbox-input-error {
+    border-color: var(--color-error-border);
+  }
+
+  /* --------------------------------------------------------------------------
+     Label
+     -------------------------------------------------------------------------- */
+
+  .checkbox-label {
+    @apply font-sans text-sm font-normal;
+    color: var(--color-text-primary);
+  }
+
+  .checkbox-description {
+    @apply font-sans text-xs font-normal;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-0-5);
+  }
+
+  .checkbox-input:disabled ~ .checkbox-label {
+    @apply cursor-not-allowed;
+    opacity: 0.6;
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .checkbox-input {
+      transition-duration: 0ms;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Cena Health — Select Component
+   Source: components/ui/select.md
+   ========================================================================== */
+
+@layer components {
+
+  .select-field {
+    @apply font-sans text-base font-normal w-full cursor-pointer;
+    appearance: none;
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-10) var(--space-3) var(--space-4);
+    min-height: 2.75rem; /* 44px */
+    line-height: var(--leading-body);
+    /* Chevron indicator */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%235b544c'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-position: right var(--space-3) center;
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    transition:
+      border-color var(--duration-fast) var(--ease-transition),
+      box-shadow var(--duration-fast) var(--ease-transition);
+  }
+
+  .select-field:hover:not(:disabled) {
+    border-color: var(--color-border-focus);
+  }
+
+  .select-field:focus {
+    @apply outline-none;
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 var(--space-0-5) oklch(56.3% 0.0762 181.3 / 15%);
+  }
+
+  .select-field:disabled {
+    @apply cursor-not-allowed;
+    background-color: var(--color-surface-secondary);
+    border-color: var(--color-border-default);
+    color: var(--color-text-disabled);
+  }
+
+  /* Small variant */
+  .select-field-sm {
+    @apply text-sm;
+    padding: var(--space-2) var(--space-8) var(--space-2) var(--space-3);
+    min-height: 2.25rem; /* 36px */
+  }
+
+  /* Error state */
+  .select-field-error {
+    border-color: var(--color-error-border);
+    border-width: 2px;
+  }
+
+  .select-field-error:focus {
+    box-shadow: 0 0 0 var(--space-0-5) oklch(55% 0.17 25 / 15%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .select-field {
+      transition-duration: 0ms;
+    }
+  }
+}

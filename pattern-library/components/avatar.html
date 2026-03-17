@@ -1,0 +1,50 @@
+<!--
+  @component-meta
+  name: Avatar
+  category: Data
+  file: avatar.html
+  classes: avatar, avatar-sm, avatar-lg, avatar-initials, avatar-status, avatar-status-online, avatar-status-offline, avatar-status-busy, avatar-group
+  spec: components/ui/avatar.md
+  css: src/css/components/avatar.css
+  when-to-use: User profile photos, team member displays, and activity attribution.
+  do-not-use-when: Displaying a brand logo — use an image directly.
+  @end-meta
+-->
+
+<section class="pl-section" data-pl-section="sizes">
+  <h2 class="pl-section-title">Sizes — Initials</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="display: flex; gap: var(--space-4); align-items: center;">
+      <div><p class="pl-col-label">Small</p><div class="avatar avatar-sm avatar-initials">MS</div></div>
+      <div><p class="pl-col-label">Default</p><div class="avatar avatar-initials">MS</div></div>
+      <div><p class="pl-col-label">Large</p><div class="avatar avatar-lg avatar-initials">MS</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pl-section" data-pl-section="status">
+  <h2 class="pl-section-title">With Status</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="display: flex; gap: var(--space-6); align-items: center;">
+      <div><p class="pl-col-label">Online</p><div class="avatar avatar-initials">JC<span class="avatar-status avatar-status-online"></span></div></div>
+      <div><p class="pl-col-label">Offline</p><div class="avatar avatar-initials">LP<span class="avatar-status avatar-status-offline"></span></div></div>
+      <div><p class="pl-col-label">Busy</p><div class="avatar avatar-initials">RK<span class="avatar-status avatar-status-busy"></span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pl-section" data-pl-section="group">
+  <h2 class="pl-section-title">Avatar Group</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="avatar-group">
+      <div class="avatar avatar-initials">MS</div>
+      <div class="avatar avatar-initials">JC</div>
+      <div class="avatar avatar-initials">LP</div>
+      <div class="avatar avatar-initials">RK</div>
+      <div class="avatar avatar-initials" style="background-color: var(--color-surface-secondary); color: var(--color-text-tertiary);">+3</div>
+    </div>
+  </div>
+</section>

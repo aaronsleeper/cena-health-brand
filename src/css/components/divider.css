@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Cena Health — Divider Component
+   Source: components/ui/divider.md
+   ========================================================================== */
+
+@layer components {
+
+  .divider {
+    @apply block w-full;
+    height: 1px;
+    background-color: var(--color-border-default);
+    border: none;
+    margin: var(--space-4) 0;
+  }
+
+  /* With centered label */
+  .divider-label {
+    @apply flex items-center gap-3 w-full;
+    margin: var(--space-4) 0;
+  }
+
+  .divider-label::before,
+  .divider-label::after {
+    content: "";
+    @apply flex-1;
+    height: 1px;
+    background-color: var(--color-border-default);
+  }
+
+  .divider-label span {
+    @apply font-sans text-xs font-medium whitespace-nowrap;
+    color: var(--color-text-tertiary);
+  }
+
+  /* Vertical */
+  .divider-vertical {
+    @apply inline-block;
+    width: 1px;
+    height: 1.25rem;
+    background-color: var(--color-border-default);
+    margin: 0 var(--space-3);
+  }
+}

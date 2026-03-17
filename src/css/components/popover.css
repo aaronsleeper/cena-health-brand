@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Cena Health — Popover Component
+   Source: components/ui/popover.md
+   ========================================================================== */
+
+@layer components {
+
+  .popover {
+    @apply relative inline-flex;
+  }
+
+  .popover-content {
+    @apply absolute hidden flex-col rounded-md overflow-hidden;
+    min-width: 16rem;
+    max-width: 24rem;
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-default);
+    box-shadow: var(--shadow-lg);
+    z-index: 50;
+    bottom: calc(100% + var(--space-2));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .popover-content.open {
+    @apply flex;
+  }
+
+  .popover-header {
+    @apply font-sans text-sm font-semibold;
+    padding: var(--space-3) var(--space-4);
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  .popover-body {
+    @apply font-sans text-sm font-normal;
+    padding: var(--space-3) var(--space-4);
+    color: var(--color-text-secondary);
+  }
+
+  /* Bottom placement */
+  .popover-bottom .popover-content {
+    bottom: auto;
+    top: calc(100% + var(--space-2));
+  }
+}

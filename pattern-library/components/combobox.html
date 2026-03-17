@@ -1,0 +1,185 @@
+<!--
+  @component-meta
+  name: Combobox
+  category: Primitives
+  file: combobox.html
+  classes: combobox, combobox-input, combobox-listbox, combobox-option, combobox-option-active
+  spec: components/ui/combobox.md
+  css: src/css/components/combobox.css
+  when-to-use: Searchable selection from a large set — patient lookup, diagnosis codes, medication search.
+  do-not-use-when: Options are few (under 7) — use a native select or radio group. For free-text with no options, use a plain input.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Default Combobox (Static)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default-static">
+  <h2 class="pl-section-title">Default Combobox (Static Preview)</h2>
+  <p class="pl-section-description">
+    Static rendering showing the input with an open listbox. The active option is highlighted in teal.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6) var(--space-6) var(--space-16); max-width: 24rem;">
+      <label style="display: block; font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500; color: var(--color-text-primary); margin-bottom: var(--space-2);">
+        Search patients
+      </label>
+      <div class="combobox">
+        <input class="combobox-input" type="text" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-controls="cb-list-static" value="Mar" placeholder="Type to search..." />
+        <ul class="combobox-listbox open" id="cb-list-static" role="listbox">
+          <li class="combobox-option combobox-option-active" role="option" aria-selected="true">Maria Rivera</li>
+          <li class="combobox-option" role="option">Marcus Johnson</li>
+          <li class="combobox-option" role="option">Margaret Chen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Interactive Demo
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="interactive">
+  <h2 class="pl-section-title">Interactive Demo</h2>
+  <p class="pl-section-description">
+    Type to filter the patient list. Arrow keys navigate, Enter selects.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); max-width: 24rem;">
+      <label for="cb-demo-input" style="display: block; font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500; color: var(--color-text-primary); margin-bottom: var(--space-2);">
+        Search diagnosis
+      </label>
+      <div class="combobox" id="cb-demo">
+        <input class="combobox-input" id="cb-demo-input" type="text" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="cb-demo-list" placeholder="Type to search..." />
+        <ul class="combobox-listbox" id="cb-demo-list" role="listbox"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Closed State
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="closed">
+  <h2 class="pl-section-title">Closed State</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); max-width: 24rem;">
+      <label style="display: block; font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500; color: var(--color-text-primary); margin-bottom: var(--space-2);">
+        Medication
+      </label>
+      <div class="combobox">
+        <input class="combobox-input" type="text" role="combobox" aria-expanded="false" placeholder="Search medications..." />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: interactive combobox demo -->
+<script>
+(function() {
+  var items = [
+    'Type 2 Diabetes Mellitus',
+    'Type 1 Diabetes Mellitus',
+    'Hypertension',
+    'Hyperlipidemia',
+    'Chronic Kidney Disease',
+    'Congestive Heart Failure',
+    'COPD',
+    'Obesity',
+    'Depression',
+    'Anxiety Disorder'
+  ];
+
+  var input = document.getElementById('cb-demo-input');
+  var listbox = document.getElementById('cb-demo-list');
+  if (!input || !listbox) return;
+  var activeIndex = -1;
+
+  function render(filtered) {
+    listbox.innerHTML = '';
+    activeIndex = -1;
+    if (filtered.length === 0) {
+      listbox.classList.remove('open');
+      input.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    filtered.forEach(function(item, i) {
+      var li = document.createElement('li');
+      li.className = 'combobox-option';
+      li.setAttribute('role', 'option');
+      li.textContent = item;
+      li.addEventListener('click', function() {
+        input.value = item;
+        listbox.classList.remove('open');
+        input.setAttribute('aria-expanded', 'false');
+      });
+      listbox.appendChild(li);
+    });
+    listbox.classList.add('open');
+    input.setAttribute('aria-expanded', 'true');
+  }
+
+  function setActive(index) {
+    var opts = listbox.querySelectorAll('.combobox-option');
+    opts.forEach(function(o) {
+      o.classList.remove('combobox-option-active');
+      o.removeAttribute('aria-selected');
+    });
+    if (index >= 0 && index < opts.length) {
+      activeIndex = index;
+      opts[index].classList.add('combobox-option-active');
+      opts[index].setAttribute('aria-selected', 'true');
+      opts[index].scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  input.addEventListener('input', function() {
+    var val = input.value.toLowerCase().trim();
+    if (!val) { render([]); return; }
+    var filtered = items.filter(function(i) { return i.toLowerCase().indexOf(val) !== -1; });
+    render(filtered);
+  });
+
+  input.addEventListener('keydown', function(e) {
+    var opts = listbox.querySelectorAll('.combobox-option');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActive(Math.min(activeIndex + 1, opts.length - 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActive(Math.max(activeIndex - 1, 0));
+    } else if (e.key === 'Enter' && activeIndex >= 0) {
+      e.preventDefault();
+      input.value = opts[activeIndex].textContent;
+      listbox.classList.remove('open');
+      input.setAttribute('aria-expanded', 'false');
+    } else if (e.key === 'Escape') {
+      listbox.classList.remove('open');
+      input.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#cb-demo')) {
+      listbox.classList.remove('open');
+      input.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+</script>

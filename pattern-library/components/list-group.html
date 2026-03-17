@@ -1,0 +1,138 @@
+<!--
+  @component-meta
+  name: List Group
+  category: Data
+  file: list-group.html
+  classes: list-group, list-group-item, list-group-item-action
+  spec: components/ui/list-group.md
+  css: src/css/components/list-group.css
+  when-to-use: Bordered lists for settings, navigation options, or data summaries.
+  do-not-use-when: You need a data table with columns — use a table instead. For tag collections, use tag-group.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Static List Group
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="static">
+  <h2 class="pl-section-title">Static List Group</h2>
+  <p class="pl-section-description">
+    A bordered list of non-interactive items. Good for displaying structured information.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); max-width: 24rem;">
+      <div class="list-group">
+        <div class="list-group-item">Diabetes Management</div>
+        <div class="list-group-item">Hypertension Monitoring</div>
+        <div class="list-group-item">Nutrition Counseling</div>
+        <div class="list-group-item">Medication Adherence</div>
+        <div class="list-group-item">Quarterly Lab Review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Interactive List Group
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="interactive">
+  <h2 class="pl-section-title">Interactive List Group</h2>
+  <p class="pl-section-description">
+    Items with hover and active states for clickable lists.
+    Uses <code>.list-group-item-action</code> for interactive behavior.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); max-width: 24rem;">
+      <div class="list-group">
+        <button class="list-group-item-action" type="button">General Settings</button>
+        <button class="list-group-item-action" type="button">Notification Preferences</button>
+        <button class="list-group-item-action" type="button">Privacy &amp; Security</button>
+        <button class="list-group-item-action" type="button">Integrations</button>
+        <button class="list-group-item-action" type="button">Billing</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Mixed Content
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="mixed">
+  <h2 class="pl-section-title">Mixed Content Items</h2>
+  <p class="pl-section-description">
+    Items with icons and secondary text.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="padding: var(--space-6); max-width: 28rem;">
+      <div class="list-group">
+        <button class="list-group-item-action" type="button" style="display: flex; align-items: center; gap: var(--space-3);">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; color: var(--color-text-secondary);">
+            <circle cx="10" cy="6" r="3"/>
+            <path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+          </svg>
+          <div>
+            <div style="font-weight: 500;">Maria Rivera</div>
+            <div style="font-size: var(--text-xs); color: var(--color-text-secondary);">Type 2 Diabetes — Active</div>
+          </div>
+        </button>
+        <button class="list-group-item-action" type="button" style="display: flex; align-items: center; gap: var(--space-3);">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; color: var(--color-text-secondary);">
+            <circle cx="10" cy="6" r="3"/>
+            <path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+          </svg>
+          <div>
+            <div style="font-weight: 500;">James Chen</div>
+            <div style="font-size: var(--text-xs); color: var(--color-text-secondary);">Hypertension — Monitoring</div>
+          </div>
+        </button>
+        <button class="list-group-item-action" type="button" style="display: flex; align-items: center; gap: var(--space-3);">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; color: var(--color-text-secondary);">
+            <circle cx="10" cy="6" r="3"/>
+            <path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+          </svg>
+          <div>
+            <div style="font-weight: 500;">Sandra Okafor</div>
+            <div style="font-size: var(--text-xs); color: var(--color-text-secondary);">Nutrition Program — Enrolled</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: On Card Surface
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="surface-primary">
+  <h2 class="pl-section-title">On Card Surface</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-primary);">
+    <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+
+    <div style="padding: var(--space-6); max-width: 24rem;">
+      <div class="list-group">
+        <div class="list-group-item">Blood Pressure: 128/82 mmHg</div>
+        <div class="list-group-item">Heart Rate: 72 bpm</div>
+        <div class="list-group-item">HbA1c: 7.2%</div>
+        <div class="list-group-item">BMI: 26.4</div>
+      </div>
+    </div>
+  </div>
+</section>
