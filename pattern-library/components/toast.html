@@ -1,0 +1,350 @@
+<!--
+  @component-meta
+  name: Toast
+  category: Overlays
+  file: toast.html
+  classes: toast-container, toast, toast-info, toast-warning, toast-error, toast-success, toast-icon, toast-content, toast-title, toast-message, toast-dismiss, toast-progress, toast-enter, toast-exiting, toast-auto-exiting
+  spec: components/ui/toast.md
+  css: src/css/components/toast.css
+  when-to-use: Non-blocking confirmation of completed actions, background status updates, or system messages. Toasts float at the viewport edge and auto-dismiss.
+  do-not-use-when: The message requires user acknowledgment — use a modal. The feedback is inline — use an alert. Do not use for persistent status — use a badge.
+  @end-meta
+-->
+
+<!-- SVG icon templates -->
+<template id="icon-toast-info">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="10" cy="10" r="8"/>
+    <line x1="10" y1="7" x2="10" y2="7.01"/>
+    <line x1="10" y1="10" x2="10" y2="14"/>
+  </svg>
+</template>
+
+<template id="icon-toast-warning">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M10 3L18 17H2L10 3Z"/>
+    <line x1="10" y1="9" x2="10" y2="12"/>
+    <line x1="10" y1="15" x2="10" y2="15.01"/>
+  </svg>
+</template>
+
+<template id="icon-toast-error">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="10" cy="10" r="8"/>
+    <line x1="8" y1="8" x2="12" y2="12"/>
+    <line x1="12" y1="8" x2="8" y2="12"/>
+  </svg>
+</template>
+
+<template id="icon-toast-success">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="10" cy="10" r="8"/>
+    <polyline points="7,10 9,12 13,8"/>
+  </svg>
+</template>
+
+<template id="icon-toast-dismiss">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <line x1="4" y1="4" x2="12" y2="12"/>
+    <line x1="12" y1="4" x2="4" y2="12"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Variants (static)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="variants">
+  <h2 class="pl-section-title">Variants</h2>
+  <p class="pl-section-description">Same semantic colors as alerts. Left accent border, status icon, and dismiss button. Shown inline for documentation.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary);">
+    <p class="pl-canvas-label">Shown inline — normally fixed to viewport top-right</p>
+
+    <div style="display: flex; flex-direction: column; gap: var(--space-3); max-width: 22rem; margin: 0 auto;">
+
+      <div class="toast toast-info" style="position: relative;" role="status">
+        <span class="toast-icon" data-toast-icon="info"></span>
+        <div class="toast-content">
+          <p class="toast-title">Info</p>
+          <p class="toast-message">Your session will expire in 10 minutes.</p>
+        </div>
+        <button class="toast-dismiss" aria-label="Dismiss"><span class="toast-dismiss-icon"></span></button>
+      </div>
+
+      <div class="toast toast-warning" style="position: relative;" role="alert">
+        <span class="toast-icon" data-toast-icon="warning"></span>
+        <div class="toast-content">
+          <p class="toast-title">Warning</p>
+          <p class="toast-message">Two patients have missed scheduled check-ins.</p>
+        </div>
+        <button class="toast-dismiss" aria-label="Dismiss"><span class="toast-dismiss-icon"></span></button>
+      </div>
+
+      <div class="toast toast-error" style="position: relative;" role="alert">
+        <span class="toast-icon" data-toast-icon="error"></span>
+        <div class="toast-content">
+          <p class="toast-title">Error</p>
+          <p class="toast-message">Failed to save care plan changes. Try again.</p>
+        </div>
+        <button class="toast-dismiss" aria-label="Dismiss"><span class="toast-dismiss-icon"></span></button>
+      </div>
+
+      <div class="toast toast-success" style="position: relative;" role="status">
+        <span class="toast-icon" data-toast-icon="success"></span>
+        <div class="toast-content">
+          <p class="toast-title">Success</p>
+          <p class="toast-message">Care plan updated successfully.</p>
+        </div>
+        <button class="toast-dismiss" aria-label="Dismiss"><span class="toast-dismiss-icon"></span></button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: With Progress Bar
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="progress">
+  <h2 class="pl-section-title">With Progress Bar</h2>
+  <p class="pl-section-description">Optional thin bar at the bottom shows remaining time before auto-dismiss.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary);">
+    <p class="pl-canvas-label">Progress bar at ~60% remaining</p>
+
+    <div style="max-width: 22rem; margin: 0 auto;">
+      <div class="toast toast-success" style="position: relative;" role="status">
+        <span class="toast-icon" data-toast-icon="success"></span>
+        <div class="toast-content">
+          <p class="toast-title">Saved</p>
+          <p class="toast-message">Patient enrolled in nutrition program.</p>
+        </div>
+        <button class="toast-dismiss" aria-label="Dismiss"><span class="toast-dismiss-icon"></span></button>
+        <div class="toast-progress" style="width: 60%;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Title Only / Message Only
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="minimal">
+  <h2 class="pl-section-title">Minimal Variants</h2>
+  <p class="pl-section-description">Title-only for brief confirmations. Message-only when no title is needed.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary);">
+    <p class="pl-canvas-label">Shown inline</p>
+
+    <div style="display: flex; flex-direction: column; gap: var(--space-3); max-width: 22rem; margin: 0 auto;">
+
+      <!-- Title only -->
+      <div class="toast toast-success" style="position: relative;" role="status">
+        <span class="toast-icon" data-toast-icon="success"></span>
+        <div class="toast-content">
+          <p class="toast-title">Care plan saved.</p>
+        </div>
+        <button class="toast-dismiss" aria-label="Dismiss"><span class="toast-dismiss-icon"></span></button>
+      </div>
+
+      <!-- Message only -->
+      <div class="toast toast-info" style="position: relative;" role="status">
+        <span class="toast-icon" data-toast-icon="info"></span>
+        <div class="toast-content">
+          <p class="toast-message">3 new lab results available for review.</p>
+        </div>
+        <button class="toast-dismiss" aria-label="Dismiss"><span class="toast-dismiss-icon"></span></button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Live Demo
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="live-demo">
+  <h2 class="pl-section-title">Live Demo</h2>
+  <p class="pl-section-description">Triggers real toasts at the viewport top-right with enter animation and auto-dismiss (5s). Error toasts persist until dismissed.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">Click to trigger — toasts appear top-right of viewport</p>
+    <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+      <button class="btn btn-secondary btn-default" type="button" data-toast-trigger="info">Info toast</button>
+      <button class="btn btn-secondary btn-default" type="button" data-toast-trigger="warning">Warning toast</button>
+      <button class="btn btn-danger btn-default" type="button" data-toast-trigger="error">Error toast</button>
+      <button class="btn btn-primary btn-default" type="button" data-toast-trigger="success">Success toast</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: icon injection + live demo -->
+<script>
+(function () {
+  // Inject variant icons
+  var toastIconMap = {
+    'info': 'icon-toast-info',
+    'warning': 'icon-toast-warning',
+    'error': 'icon-toast-error',
+    'success': 'icon-toast-success'
+  };
+
+  function injectToastIcons(root) {
+    root.querySelectorAll('[data-toast-icon]').forEach(function (span) {
+      var variant = span.getAttribute('data-toast-icon');
+      var tmpl = document.getElementById(toastIconMap[variant]);
+      if (tmpl && !span.querySelector('svg')) {
+        span.appendChild(tmpl.content.cloneNode(true));
+      }
+    });
+  }
+
+  // Inject dismiss icons
+  function injectDismissIcons(root) {
+    var tmpl = document.getElementById('icon-toast-dismiss');
+    if (!tmpl) return;
+    root.querySelectorAll('.toast-dismiss-icon').forEach(function (span) {
+      if (!span.querySelector('svg')) {
+        span.appendChild(tmpl.content.cloneNode(true));
+      }
+    });
+  }
+
+  injectToastIcons(document);
+  injectDismissIcons(document);
+
+  // Dismiss static toasts
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.toast-dismiss');
+    if (!btn) return;
+    var toast = btn.closest('.toast');
+    if (!toast || toast.closest('.toast-container')) return; // skip live toasts
+    toast.classList.add('toast-exiting');
+    toast.addEventListener('animationend', function () { toast.remove(); }, { once: true });
+  });
+
+  // Live demo
+  var container = null;
+  var toastCount = 0;
+  var MAX_TOASTS = 3;
+
+  var messages = {
+    info: { title: 'Info', message: 'Your session will expire in 10 minutes.', role: 'status', live: 'polite' },
+    warning: { title: 'Warning', message: 'Patient check-in is overdue by 2 days.', role: 'alert', live: 'assertive' },
+    error: { title: 'Error', message: 'Failed to save changes. Check your connection.', role: 'alert', live: 'assertive' },
+    success: { title: 'Saved', message: 'Care plan updated successfully.', role: 'status', live: 'polite' }
+  };
+
+  function getContainer() {
+    if (!container) {
+      container = document.createElement('div');
+      container.className = 'toast-container';
+      document.body.appendChild(container);
+    }
+    return container;
+  }
+
+  function createToast(variant) {
+    var c = getContainer();
+    var data = messages[variant];
+    var isError = variant === 'error';
+
+    // Enforce max
+    var existing = c.querySelectorAll('.toast');
+    if (existing.length >= MAX_TOASTS) {
+      dismissToast(existing[existing.length - 1], true);
+    }
+
+    var toast = document.createElement('div');
+    toast.className = 'toast toast-' + variant + ' toast-enter';
+    toast.setAttribute('role', data.role);
+    toast.setAttribute('aria-live', data.live);
+    toast.style.position = 'relative';
+
+    var iconTmpl = document.getElementById(toastIconMap[variant]);
+    var dismissTmpl = document.getElementById('icon-toast-dismiss');
+
+    toast.innerHTML =
+      '<span class="toast-icon" data-toast-icon="' + variant + '"></span>' +
+      '<div class="toast-content">' +
+        '<p class="toast-title">' + data.title + '</p>' +
+        '<p class="toast-message">' + data.message + '</p>' +
+      '</div>' +
+      '<button class="toast-dismiss" aria-label="Dismiss"><span class="toast-dismiss-icon"></span></button>' +
+      (isError ? '' : '<div class="toast-progress" style="width: 100%;"></div>');
+
+    // Inject SVGs
+    if (iconTmpl) {
+      var iconSpan = toast.querySelector('.toast-icon');
+      iconSpan.appendChild(iconTmpl.content.cloneNode(true));
+    }
+    if (dismissTmpl) {
+      var dismissSpan = toast.querySelector('.toast-dismiss-icon');
+      dismissSpan.appendChild(dismissTmpl.content.cloneNode(true));
+    }
+
+    // Insert at top
+    c.insertBefore(toast, c.firstChild);
+
+    // Dismiss on click
+    toast.querySelector('.toast-dismiss').addEventListener('click', function () {
+      dismissToast(toast, false);
+    });
+
+    // Auto-dismiss (not for error)
+    if (!isError) {
+      var timeout = 5000;
+      var progress = toast.querySelector('.toast-progress');
+      if (progress) {
+        progress.style.transition = 'width ' + timeout + 'ms linear';
+        requestAnimationFrame(function () { progress.style.width = '0%'; });
+      }
+
+      var timer = setTimeout(function () { dismissToast(toast, true); }, timeout);
+
+      // Pause on hover
+      toast.addEventListener('mouseenter', function () {
+        clearTimeout(timer);
+        if (progress) {
+          var w = progress.getBoundingClientRect().width;
+          var tw = toast.getBoundingClientRect().width;
+          var pct = (w / tw) * 100;
+          progress.style.transition = 'none';
+          progress.style.width = pct + '%';
+        }
+      });
+
+      toast.addEventListener('mouseleave', function () {
+        if (progress) {
+          var remaining = parseFloat(progress.style.width) / 100 * timeout;
+          progress.style.transition = 'width ' + remaining + 'ms linear';
+          requestAnimationFrame(function () { progress.style.width = '0%'; });
+          timer = setTimeout(function () { dismissToast(toast, true); }, remaining);
+        }
+      });
+    }
+  }
+
+  function dismissToast(toast, isAuto) {
+    toast.classList.remove('toast-enter');
+    toast.classList.add(isAuto ? 'toast-auto-exiting' : 'toast-exiting');
+    toast.addEventListener('animationend', function () { toast.remove(); }, { once: true });
+  }
+
+  // Trigger buttons
+  document.querySelectorAll('[data-toast-trigger]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      createToast(btn.getAttribute('data-toast-trigger'));
+    });
+  });
+})();
+</script>

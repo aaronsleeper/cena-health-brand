@@ -1,0 +1,248 @@
+/* ==========================================================================
+   Cena Health — Toast Component
+   Source: components/ui/toast.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Toast Container (viewport-level)
+     -------------------------------------------------------------------------- */
+
+  .toast-container {
+    position: fixed;
+    top: var(--space-4);
+    right: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    z-index: 60;
+    pointer-events: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Toast Base
+     -------------------------------------------------------------------------- */
+
+  .toast {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    width: 22rem;
+    max-width: calc(100vw - var(--space-8));
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-default);
+    border-left-width: 3px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    pointer-events: auto;
+  }
+
+  /* --------------------------------------------------------------------------
+     Variants
+     -------------------------------------------------------------------------- */
+
+  .toast-info {
+    border-left-color: var(--color-info-base);
+  }
+
+  .toast-warning {
+    border-left-color: var(--color-warning-base);
+  }
+
+  .toast-error {
+    border-left-color: var(--color-error-base);
+  }
+
+  .toast-success {
+    border-left-color: var(--color-success-base);
+  }
+
+  /* --------------------------------------------------------------------------
+     Icon
+     -------------------------------------------------------------------------- */
+
+  .toast-icon {
+    flex-shrink: 0;
+    width: var(--icon-md);
+    height: var(--icon-md);
+    margin-top: var(--space-px);
+  }
+
+  .toast-info .toast-icon    { color: var(--color-info-base); }
+  .toast-warning .toast-icon { color: var(--color-warning-base); }
+  .toast-error .toast-icon   { color: var(--color-error-base); }
+  .toast-success .toast-icon { color: var(--color-success-base); }
+
+  /* --------------------------------------------------------------------------
+     Content
+     -------------------------------------------------------------------------- */
+
+  .toast-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-0-5);
+  }
+
+  .toast-title {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: var(--leading-body-sm);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .toast-info .toast-title    { color: var(--color-info-text); }
+  .toast-warning .toast-title { color: var(--color-warning-text); }
+  .toast-error .toast-title   { color: var(--color-error-text); }
+  .toast-success .toast-title { color: var(--color-success-text); }
+
+  .toast-message {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: var(--leading-body-sm);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Dismiss Button
+     -------------------------------------------------------------------------- */
+
+  .toast-dismiss {
+    position: absolute;
+    top: var(--space-1);
+    right: var(--space-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-text-secondary);
+    opacity: 0.7;
+    cursor: pointer;
+    transition:
+      opacity var(--duration-fast) var(--ease-transition),
+      background-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .toast-dismiss svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+  }
+
+  .toast-dismiss:hover {
+    opacity: 1;
+    background-color: var(--color-surface-secondary);
+  }
+
+  .toast-dismiss:focus-visible {
+    outline: none;
+    opacity: 1;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .toast-dismiss:active {
+    transform: scale(0.95);
+  }
+
+  /* Padding for dismiss button */
+  .toast {
+    padding-right: var(--space-10);
+  }
+
+  /* --------------------------------------------------------------------------
+     Progress Bar
+     -------------------------------------------------------------------------- */
+
+  .toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background-color: var(--color-border-strong);
+    border-radius: 0 0 0 var(--radius-md);
+    transition: width linear;
+  }
+
+  .toast-info .toast-progress    { background-color: var(--color-info-base); }
+  .toast-warning .toast-progress { background-color: var(--color-warning-base); }
+  .toast-error .toast-progress   { background-color: var(--color-error-base); }
+  .toast-success .toast-progress { background-color: var(--color-success-base); }
+
+  /* --------------------------------------------------------------------------
+     Enter Animation
+     -------------------------------------------------------------------------- */
+
+  .toast-enter {
+    animation: toast-enter var(--duration-normal) var(--ease-enter) both;
+  }
+
+  @keyframes toast-enter {
+    from {
+      opacity: 0.6;
+      transform: translateX(var(--space-10));
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Exit Animations
+     -------------------------------------------------------------------------- */
+
+  /* User dismiss — fast */
+  .toast-exiting {
+    animation: toast-exit var(--duration-fast) var(--ease-exit) both;
+  }
+
+  /* Auto dismiss — normal */
+  .toast-auto-exiting {
+    animation: toast-exit var(--duration-normal) var(--ease-exit) both;
+  }
+
+  @keyframes toast-exit {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(var(--space-10));
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .toast-enter,
+    .toast-exiting,
+    .toast-auto-exiting {
+      animation-duration: 0ms;
+    }
+
+    .toast-dismiss {
+      transition-duration: 0ms;
+    }
+
+    .toast-dismiss:active {
+      transform: none;
+    }
+  }
+}
