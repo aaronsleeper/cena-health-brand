@@ -40,7 +40,9 @@
 @import "./components/chat.css";
 @import "./components/checkbox.css";
 @import "./components/clipboard.css";
+@import "./components/collapse.css";
 @import "./components/combobox.css";
+@import "./components/context-menu.css";
 @import "./components/datepicker.css";
 @import "./components/divider.css";
 @import "./components/drawer.css";
@@ -67,6 +69,7 @@
 @import "./components/prompt-input.css";
 @import "./components/radio.css";
 @import "./components/range-slider.css";
+@import "./components/search-box.css";
 @import "./components/section-nav.css";
 @import "./components/segmented-control.css";
 @import "./components/select.css";

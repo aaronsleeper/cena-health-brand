@@ -1,0 +1,30 @@
+/* ==========================================================================
+   Cena Health — Context Menu Component
+   Source: components/ui/context-menu.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Container
+     -------------------------------------------------------------------------- */
+
+  .context-menu {
+    display: none;
+    position: fixed;
+    @apply flex-col overflow-y-auto;
+    min-width: 12rem;
+    max-width: 20rem;
+    max-height: 20rem;
+    padding: var(--space-1) 0;
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    z-index: 45;
+  }
+
+  .context-menu.open {
+    display: flex;
+  }
+}

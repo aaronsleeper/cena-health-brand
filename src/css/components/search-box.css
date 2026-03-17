@@ -1,0 +1,188 @@
+/* ==========================================================================
+   Cena Health — Search Box Component
+   Source: components/ui/search-box.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Wrapper
+     -------------------------------------------------------------------------- */
+
+  .search-box {
+    display: block;
+    position: relative;
+  }
+
+  /* --------------------------------------------------------------------------
+     Input
+     -------------------------------------------------------------------------- */
+
+  .search-box-input {
+    @apply font-sans text-base font-normal;
+    width: 100%;
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    padding-left: calc(var(--space-4) + var(--icon-md) + var(--space-2));
+    padding-right: calc(var(--space-4) + var(--icon-md) + var(--space-2));
+    min-height: 2.75rem; /* 44px touch target */
+    line-height: var(--leading-body);
+    transition:
+      border-color var(--duration-fast) var(--ease-transition),
+      box-shadow var(--duration-fast) var(--ease-transition);
+  }
+
+  .search-box-input::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  .search-box-input:hover:not(:disabled):not(:focus) {
+    border-color: var(--color-border-focus);
+  }
+
+  .search-box-input:focus {
+    @apply outline-none;
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 var(--space-0-5) oklch(56.3% 0.0762 181.3 / 15%);
+  }
+
+  /* --------------------------------------------------------------------------
+     Leading Icon
+     -------------------------------------------------------------------------- */
+
+  .search-box-icon {
+    display: flex;
+    position: absolute;
+    left: var(--space-4);
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--icon-md);
+    height: var(--icon-md);
+    color: var(--color-text-tertiary);
+    pointer-events: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Clear Button
+     -------------------------------------------------------------------------- */
+
+  .search-box-clear {
+    display: none;
+    position: absolute;
+    right: var(--space-1);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.75rem; /* 44px touch target */
+    height: 2.75rem;
+    @apply items-center justify-center border-none bg-transparent cursor-pointer;
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-sm);
+    transition: color var(--duration-fast) var(--ease-transition);
+  }
+
+  .search-box-clear:hover {
+    color: var(--color-text-primary);
+  }
+
+  .search-box-clear:focus-visible {
+    @apply outline-none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .search-box-clear.visible {
+    display: flex;
+  }
+
+  /* --------------------------------------------------------------------------
+     Results Panel
+     -------------------------------------------------------------------------- */
+
+  .search-box-results {
+    display: none;
+    position: absolute;
+    top: calc(100% + var(--space-1));
+    left: 0;
+    right: 0;
+    @apply flex-col overflow-y-auto;
+    max-height: 20rem;
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-1) 0;
+    z-index: 40;
+  }
+
+  .search-box-results.open {
+    display: flex;
+  }
+
+  /* --------------------------------------------------------------------------
+     Result Item
+     -------------------------------------------------------------------------- */
+
+  .search-box-result-item {
+    @apply flex flex-col py-2 px-3 mx-1;
+    @apply font-sans text-sm font-normal;
+    @apply bg-transparent border-none cursor-pointer text-left;
+    width: calc(100% - var(--space-2));
+    border-radius: var(--radius-sm);
+    color: var(--color-text-primary);
+    transition: background-color var(--duration-fast) var(--ease-transition);
+  }
+
+  .search-box-result-item:hover,
+  .search-box-result-item:focus-visible {
+    @apply bg-gray-100 outline-none;
+  }
+
+  .search-box-result-item-label {
+    display: block;
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    color: var(--color-text-primary);
+  }
+
+  .search-box-result-item-meta {
+    display: block;
+    font-size: var(--text-xs);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-tertiary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Empty State
+     -------------------------------------------------------------------------- */
+
+  .search-box-empty {
+    display: flex;
+    @apply items-center justify-center;
+    padding: var(--space-4);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .search-box-input {
+      transition-duration: 0ms;
+    }
+
+    .search-box-clear {
+      transition-duration: 0ms;
+    }
+
+    .search-box-result-item {
+      transition-duration: 0ms;
+    }
+  }
+}

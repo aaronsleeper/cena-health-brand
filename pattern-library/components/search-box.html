@@ -1,0 +1,310 @@
+<!--
+  @component-meta
+  name: Search Box
+  category: Primitives
+  file: search-box.html
+  classes: search-box, search-box-input, search-box-icon, search-box-clear, search-box-results, search-box-result-item, search-box-result-item-label, search-box-result-item-meta, search-box-empty
+  spec: components/ui/search-box.md
+  css: src/css/components/search-box.css
+  when-to-use: Patient search, search-as-you-type with preview results, filtering a known dataset.
+  do-not-use-when: Multi-select from results — use Combobox. Full-page search with pagination — use a dedicated search page.
+  @end-meta
+-->
+
+<template id="icon-search">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="9" cy="9" r="6"/>
+    <line x1="13.5" y1="13.5" x2="17" y2="17"/>
+  </svg>
+</template>
+
+<template id="icon-clear">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <line x1="4" y1="4" x2="12" y2="12"/>
+    <line x1="12" y1="4" x2="4" y2="12"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Default (Empty)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default (Empty)</h2>
+  <p class="pl-section-description">Search input with leading icon. No results panel visible.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="search-box" style="max-width: 24rem;">
+      <span class="search-box-icon"><svg class="sb-search-icon"></svg></span>
+      <input type="search" class="search-box-input" placeholder="Search patients..." aria-label="Search patients">
+      <button type="button" class="search-box-clear" aria-label="Clear search"><svg class="sb-clear-icon"></svg></button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: With Results
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="with-results">
+  <h2 class="pl-section-title">With Results</h2>
+  <p class="pl-section-description">Static open state showing patient results with name and MRN.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page); min-height: 20rem;">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="search-box" style="max-width: 24rem;">
+      <span class="search-box-icon"><svg class="sb-search-icon"></svg></span>
+      <input type="search" class="search-box-input" value="Rivera" aria-label="Search patients" readonly>
+      <button type="button" class="search-box-clear visible" aria-label="Clear search"><svg class="sb-clear-icon"></svg></button>
+      <div class="search-box-results open" role="listbox">
+        <button class="search-box-result-item" role="option">
+          <span class="search-box-result-item-label">Maria Rivera</span>
+          <span class="search-box-result-item-meta">MRN: 2847103</span>
+        </button>
+        <button class="search-box-result-item" role="option">
+          <span class="search-box-result-item-label">Carlos Rivera</span>
+          <span class="search-box-result-item-meta">MRN: 3910284</span>
+        </button>
+        <button class="search-box-result-item" role="option">
+          <span class="search-box-result-item-label">Ana Rivera-Santos</span>
+          <span class="search-box-result-item-meta">MRN: 5028471</span>
+        </button>
+        <button class="search-box-result-item" role="option">
+          <span class="search-box-result-item-label">Luis Rivera</span>
+          <span class="search-box-result-item-meta">MRN: 1039285</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: With Meta
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="with-meta">
+  <h2 class="pl-section-title">With Meta</h2>
+  <p class="pl-section-description">Results showing name, condition, and last visit date.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page); min-height: 22rem;">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="search-box" style="max-width: 24rem;">
+      <span class="search-box-icon"><svg class="sb-search-icon"></svg></span>
+      <input type="search" class="search-box-input" value="Dia" aria-label="Search patients" readonly>
+      <button type="button" class="search-box-clear visible" aria-label="Clear search"><svg class="sb-clear-icon"></svg></button>
+      <div class="search-box-results open" role="listbox">
+        <button class="search-box-result-item" role="option">
+          <span class="search-box-result-item-label">Maria Rivera</span>
+          <span class="search-box-result-item-meta">Diabetes Type 2 · Last visit Mar 8, 2026</span>
+        </button>
+        <button class="search-box-result-item" role="option">
+          <span class="search-box-result-item-label">James Okafor</span>
+          <span class="search-box-result-item-meta">Diabetes Type 1 · Last visit Feb 22, 2026</span>
+        </button>
+        <button class="search-box-result-item" role="option">
+          <span class="search-box-result-item-label">Diane Chen</span>
+          <span class="search-box-result-item-meta">CKD Stage 3 · Last visit Mar 1, 2026</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Empty State
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="empty-state">
+  <h2 class="pl-section-title">Empty State</h2>
+  <p class="pl-section-description">No matching results found.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page); min-height: 10rem;">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="search-box" style="max-width: 24rem;">
+      <span class="search-box-icon"><svg class="sb-search-icon"></svg></span>
+      <input type="search" class="search-box-input" value="xyzabc" aria-label="Search patients" readonly>
+      <button type="button" class="search-box-clear visible" aria-label="Clear search"><svg class="sb-clear-icon"></svg></button>
+      <div class="search-box-results open" role="listbox">
+        <div class="search-box-empty">No patients found matching "xyzabc"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Live Demo
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="live-demo">
+  <h2 class="pl-section-title">Live Demo</h2>
+  <p class="pl-section-description">Type to filter a hardcoded list of 10 patients. Clear button and result selection work.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page); min-height: 22rem;">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="search-box" style="max-width: 24rem;" id="search-box-live">
+      <span class="search-box-icon"><svg class="sb-search-icon"></svg></span>
+      <input type="search" class="search-box-input" placeholder="Search patients..." aria-label="Search patients" aria-autocomplete="list" aria-controls="search-box-live-results" id="search-box-live-input">
+      <button type="button" class="search-box-clear" aria-label="Clear search"><svg class="sb-clear-icon"></svg></button>
+      <div class="search-box-results" role="listbox" id="search-box-live-results"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 6: In a Toolbar
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="in-toolbar">
+  <h2 class="pl-section-title">In a Toolbar</h2>
+  <p class="pl-section-description">Search box placed inside a toolbar alongside filter buttons.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="toolbar">
+      <div class="toolbar-start">
+        <div class="search-box" style="min-width: 16rem;">
+          <span class="search-box-icon"><svg class="sb-search-icon"></svg></span>
+          <input type="search" class="search-box-input" placeholder="Search patients..." aria-label="Search patients">
+          <button type="button" class="search-box-clear" aria-label="Clear search"><svg class="sb-clear-icon"></svg></button>
+        </div>
+      </div>
+      <div class="toolbar-end">
+        <button class="btn btn-secondary btn-default" type="button">All Status</button>
+        <button class="btn btn-secondary btn-default" type="button">This Week</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: search box behavior + icon injection -->
+<script>
+(function() {
+  // Inject icons
+  var searchTmpl = document.getElementById('icon-search');
+  var clearTmpl = document.getElementById('icon-clear');
+
+  if (searchTmpl) {
+    document.querySelectorAll('.sb-search-icon').forEach(function(el) {
+      var svg = searchTmpl.content.cloneNode(true).querySelector('svg');
+      if (svg) el.parentNode.replaceChild(svg, el);
+    });
+  }
+
+  if (clearTmpl) {
+    document.querySelectorAll('.sb-clear-icon').forEach(function(el) {
+      var svg = clearTmpl.content.cloneNode(true).querySelector('svg');
+      if (svg) el.parentNode.replaceChild(svg, el);
+    });
+  }
+
+  // Hardcoded patient data for live demo
+  var patients = [
+    { name: 'Maria Rivera', meta: 'Diabetes Type 2 · MRN: 2847103' },
+    { name: 'Carlos Rivera', meta: 'CHF · MRN: 3910284' },
+    { name: 'James Okafor', meta: 'Diabetes Type 1 · MRN: 4820193' },
+    { name: 'Diane Chen', meta: 'CKD Stage 3 · MRN: 5028471' },
+    { name: 'Robert Kim', meta: 'COPD · MRN: 6019283' },
+    { name: 'Ana Rivera-Santos', meta: 'Hypertension · MRN: 5028471' },
+    { name: 'Patricia Williams', meta: 'Cancer (breast) · MRN: 7029384' },
+    { name: 'Luis Rivera', meta: 'Diabetes Type 2 · MRN: 1039285' },
+    { name: 'Sandra Johnson', meta: 'CHF · MRN: 8203948' },
+    { name: 'Michael Torres', meta: 'CKD Stage 4 · MRN: 9304857' }
+  ];
+
+  var liveBox = document.getElementById('search-box-live');
+  if (!liveBox) return;
+
+  var input = liveBox.querySelector('.search-box-input');
+  var clearBtn = liveBox.querySelector('.search-box-clear');
+  var resultsPanel = liveBox.querySelector('.search-box-results');
+
+  function renderResults(query) {
+    resultsPanel.innerHTML = '';
+
+    if (!query) {
+      resultsPanel.classList.remove('open');
+      return;
+    }
+
+    var q = query.toLowerCase();
+    var matches = patients.filter(function(p) {
+      return p.name.toLowerCase().indexOf(q) !== -1 || p.meta.toLowerCase().indexOf(q) !== -1;
+    });
+
+    if (matches.length === 0) {
+      var empty = document.createElement('div');
+      empty.className = 'search-box-empty';
+      empty.textContent = 'No patients found matching "' + query + '"';
+      resultsPanel.appendChild(empty);
+    } else {
+      matches.forEach(function(p) {
+        var btn = document.createElement('button');
+        btn.className = 'search-box-result-item';
+        btn.setAttribute('role', 'option');
+        btn.innerHTML =
+          '<span class="search-box-result-item-label">' + p.name + '</span>' +
+          '<span class="search-box-result-item-meta">' + p.meta + '</span>';
+        btn.addEventListener('click', function() {
+          input.value = p.name;
+          resultsPanel.classList.remove('open');
+          clearBtn.classList.add('visible');
+        });
+        resultsPanel.appendChild(btn);
+      });
+    }
+
+    resultsPanel.classList.add('open');
+  }
+
+  // Input event
+  input.addEventListener('input', function() {
+    var val = input.value.trim();
+    if (val) {
+      clearBtn.classList.add('visible');
+    } else {
+      clearBtn.classList.remove('visible');
+    }
+    renderResults(val);
+  });
+
+  // Clear button
+  clearBtn.addEventListener('click', function() {
+    input.value = '';
+    clearBtn.classList.remove('visible');
+    resultsPanel.classList.remove('open');
+    resultsPanel.innerHTML = '';
+    input.focus();
+  });
+
+  // Click outside closes results
+  document.addEventListener('click', function(e) {
+    if (!liveBox.contains(e.target)) {
+      resultsPanel.classList.remove('open');
+    }
+  });
+
+  // Escape closes results and clears
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      input.value = '';
+      clearBtn.classList.remove('visible');
+      resultsPanel.classList.remove('open');
+      resultsPanel.innerHTML = '';
+    }
+  });
+})();
+</script>

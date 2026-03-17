@@ -1,0 +1,245 @@
+<!--
+  @component-meta
+  name: Context Menu
+  category: Overlays
+  file: context-menu.html
+  classes: context-menu
+  spec: components/ui/context-menu.md
+  css: src/css/components/context-menu.css
+  when-to-use: Right-click actions on table rows, cards, or list items for power-user shortcuts.
+  do-not-use-when: Click-triggered action lists — use Dropdown. Touch-only interfaces — no mobile equivalent.
+  @end-meta
+-->
+
+<template id="icon-ctx-view">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z"/>
+    <circle cx="8" cy="8" r="2"/>
+  </svg>
+</template>
+
+<template id="icon-ctx-edit">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M11.5 2.5l2 2L5 13H3v-2l8.5-8.5z"/>
+  </svg>
+</template>
+
+<template id="icon-ctx-export">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 13h8M8 3v7M5 6l3-3 3 3"/>
+  </svg>
+</template>
+
+<template id="icon-ctx-trash">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 5h10M5 5V4a1 1 0 011-1h4a1 1 0 011 1v1"/>
+    <path d="M4 5l.7 8.4a1 1 0 001 .6h4.6a1 1 0 001-.6L12 5"/>
+  </svg>
+</template>
+
+<template id="icon-ctx-copy">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="5" y="5" width="8" height="8" rx="1.5"/>
+    <path d="M11 3H4.5A1.5 1.5 0 003 4.5V11"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Static Demo
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="static">
+  <h2 class="pl-section-title">Static Demo</h2>
+  <p class="pl-section-description">The context menu rendered inline (not fixed) to document the markup. Uses dropdown item classes for content.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: inline-flex; flex-direction: column; min-width: 12rem; max-width: 20rem; padding: var(--space-1) 0; background-color: var(--color-surface-page); border: 1px solid var(--color-border-default); border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
+      <span class="dropdown-header" role="presentation">Patient Actions</span>
+      <button class="dropdown-item" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-view"></span> View profile</button>
+      <button class="dropdown-item" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-edit"></span> Edit care plan</button>
+      <button class="dropdown-item" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-copy"></span> Copy MRN</button>
+      <button class="dropdown-item" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-export"></span> Export PDF</button>
+      <hr class="dropdown-divider">
+      <button class="dropdown-item dropdown-item-danger" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-trash"></span> Remove patient</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Right-Click Demo
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="right-click">
+  <h2 class="pl-section-title">Right-Click Demo</h2>
+  <p class="pl-section-description">Right-click anywhere in the highlighted area to trigger the context menu. Click outside or press Escape to close.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="context-menu-zone" style="padding: var(--space-6); border: 2px dashed var(--color-border-default); border-radius: var(--radius-md); cursor: context-menu;" data-context-menu="ctx-menu-patient">
+      <div style="display: flex; align-items: center; gap: var(--space-4);">
+        <div style="width: 2.5rem; height: 2.5rem; border-radius: var(--radius-full); background-color: var(--color-surface-teal); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: var(--text-sm); font-weight: 600; color: var(--color-text-brand);">MR</div>
+        <div>
+          <p style="font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500; color: var(--color-text-primary); line-height: var(--leading-snug);">Maria Rivera</p>
+          <p style="font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-tertiary); line-height: var(--leading-relaxed);">MRN: 2847103 · Diabetes Type 2 · Active</p>
+        </div>
+      </div>
+      <p style="font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-tertiary); margin-top: var(--space-3); text-align: center;">Right-click anywhere in this area</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Table Row Variant
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="table-row">
+  <h2 class="pl-section-title">Table Row Variant</h2>
+  <p class="pl-section-description">Right-click on a table row to show row-specific actions.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <table class="table" style="max-width: 40rem;">
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>MRN</th>
+          <th>Condition</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="context-menu-zone" data-context-menu="ctx-menu-table" style="cursor: context-menu;">
+          <td style="font-weight: 500;">Maria Rivera</td>
+          <td>2847103</td>
+          <td>Diabetes Type 2</td>
+          <td><span class="badge badge-success">Active</span></td>
+        </tr>
+        <tr class="context-menu-zone" data-context-menu="ctx-menu-table" style="cursor: context-menu;">
+          <td style="font-weight: 500;">James Okafor</td>
+          <td>4820193</td>
+          <td>Diabetes Type 1</td>
+          <td><span class="badge badge-success">Active</span></td>
+        </tr>
+        <tr class="context-menu-zone" data-context-menu="ctx-menu-table" style="cursor: context-menu;">
+          <td style="font-weight: 500;">Robert Kim</td>
+          <td>6019283</td>
+          <td>COPD</td>
+          <td><span class="badge badge-warning">Pending</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-tertiary); margin-top: var(--space-3);">Right-click any row for actions</p>
+  </div>
+</section>
+
+
+<!-- Shared context menu (positioned by JS) -->
+<div class="context-menu" id="ctx-menu-patient" role="menu">
+  <span class="dropdown-header" role="presentation">Patient Actions</span>
+  <button class="dropdown-item" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-view"></span> View profile</button>
+  <button class="dropdown-item" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-edit"></span> Edit care plan</button>
+  <button class="dropdown-item" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-copy"></span> Copy MRN</button>
+  <button class="dropdown-item" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-export"></span> Export PDF</button>
+  <hr class="dropdown-divider">
+  <button class="dropdown-item dropdown-item-danger" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-trash"></span> Remove patient</button>
+</div>
+
+<div class="context-menu" id="ctx-menu-table" role="menu">
+  <button class="dropdown-item" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-view"></span> View</button>
+  <button class="dropdown-item" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-edit"></span> Edit</button>
+  <button class="dropdown-item" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-export"></span> Export</button>
+  <hr class="dropdown-divider">
+  <button class="dropdown-item dropdown-item-danger" role="menuitem"><span class="dropdown-item-icon" data-ctx-icon="ctx-trash"></span> Delete</button>
+</div>
+
+
+<!-- Component JS: context menu positioning + icon injection -->
+<script>
+(function() {
+  // Inject icons
+  var iconMap = {
+    'ctx-view': 'icon-ctx-view',
+    'ctx-edit': 'icon-ctx-edit',
+    'ctx-export': 'icon-ctx-export',
+    'ctx-trash': 'icon-ctx-trash',
+    'ctx-copy': 'icon-ctx-copy'
+  };
+
+  document.querySelectorAll('[data-ctx-icon]').forEach(function(span) {
+    var key = span.getAttribute('data-ctx-icon');
+    var tmplId = iconMap[key];
+    if (!tmplId) return;
+    var tmpl = document.getElementById(tmplId);
+    if (tmpl && !span.querySelector('svg')) {
+      span.appendChild(tmpl.content.cloneNode(true));
+    }
+  });
+
+  // Close all context menus
+  function closeAll() {
+    document.querySelectorAll('.context-menu.open').forEach(function(m) {
+      m.classList.remove('open');
+    });
+  }
+
+  // Right-click handler
+  document.addEventListener('contextmenu', function(e) {
+    var zone = e.target.closest('.context-menu-zone');
+    if (!zone) return;
+
+    e.preventDefault();
+    closeAll();
+
+    var menuId = zone.getAttribute('data-context-menu');
+    var menu = document.getElementById(menuId);
+    if (!menu) return;
+
+    // Position at cursor
+    var x = e.clientX;
+    var y = e.clientY;
+
+    // Show temporarily to measure
+    menu.style.left = '-9999px';
+    menu.style.top = '-9999px';
+    menu.classList.add('open');
+
+    var rect = menu.getBoundingClientRect();
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+
+    // Clamp: flip if overflows right or bottom
+    if (x + rect.width > vw) {
+      x = x - rect.width;
+    }
+    if (y + rect.height > vh) {
+      y = y - rect.height;
+    }
+
+    // Ensure not negative
+    if (x < 0) x = 0;
+    if (y < 0) y = 0;
+
+    menu.style.left = x + 'px';
+    menu.style.top = y + 'px';
+  });
+
+  // Click outside closes
+  document.addEventListener('click', function() {
+    closeAll();
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeAll();
+    }
+  });
+})();
+</script>

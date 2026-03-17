@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Cena Health — Collapse Component
+   Source: components/ui/collapse.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Base
+     -------------------------------------------------------------------------- */
+
+  .collapse {
+    display: block;
+    position: relative;
+  }
+
+  /* --------------------------------------------------------------------------
+     Trigger
+     -------------------------------------------------------------------------- */
+
+  .collapse-trigger {
+    @apply flex items-center gap-2 w-full font-sans text-sm font-medium text-left cursor-pointer border-none bg-transparent;
+    color: var(--color-text-primary);
+    padding: var(--space-2) 0;
+    transition: color var(--duration-fast) var(--ease-transition);
+  }
+
+  .collapse-trigger:hover {
+    color: var(--color-text-brand);
+  }
+
+  .collapse-trigger:focus-visible {
+    @apply outline-none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+    border-radius: var(--radius-sm);
+  }
+
+  .collapse-trigger[aria-expanded="true"] {
+    color: var(--color-text-brand);
+  }
+
+  /* --------------------------------------------------------------------------
+     Content
+     -------------------------------------------------------------------------- */
+
+  .collapse-content {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--duration-fast) var(--ease-exit);
+  }
+
+  .collapse-content.open {
+    max-height: 60rem;
+    transition: max-height var(--duration-normal) var(--ease-enter);
+  }
+
+  /* --------------------------------------------------------------------------
+     Chevron
+     -------------------------------------------------------------------------- */
+
+  .collapse-chevron {
+    @apply shrink-0 inline-flex items-center justify-center;
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+    transition: transform var(--duration-normal) var(--ease-enter);
+  }
+
+  .collapse-trigger[aria-expanded="true"] .collapse-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .collapse-content {
+      transition-duration: 0ms;
+    }
+
+    .collapse-content.open {
+      transition-duration: 0ms;
+    }
+
+    .collapse-chevron {
+      transition-duration: 0ms;
+    }
+
+    .collapse-trigger {
+      transition-duration: 0ms;
+    }
+  }
+}

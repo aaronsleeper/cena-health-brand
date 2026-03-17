@@ -1,0 +1,226 @@
+<!--
+  @component-meta
+  name: Collapse
+  category: Layout
+  file: collapse.html
+  classes: collapse, collapse-trigger, collapse-content, collapse-chevron
+  spec: components/ui/collapse.md
+  css: src/css/components/collapse.css
+  when-to-use: Progressive disclosure of content — "show more", collapsible filter panels, inline help, expandable card sections.
+  do-not-use-when: Mutually exclusive panels — use Accordion. Floating overlays — use Dropdown or Popover.
+  @end-meta
+-->
+
+<template id="icon-collapse-chevron">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="4,6 8,10 12,6"/>
+  </svg>
+</template>
+
+
+<!-- =====================================================================
+     Section 1: Default (Open)
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default (Open)</h2>
+  <p class="pl-section-description">A collapse that starts open. Click the trigger to toggle.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="collapse" style="max-width: 32rem;">
+      <button type="button" class="collapse-trigger" data-collapse-trigger aria-expanded="true" aria-controls="collapse-default-content" id="collapse-default-trigger">
+        What are medically tailored meals?
+      </button>
+      <div class="collapse-content open" data-collapse-content id="collapse-default-content" role="region" aria-labelledby="collapse-default-trigger">
+        <div style="padding: var(--space-2) 0 var(--space-4);">
+          <p style="font-family: var(--font-body); font-size: var(--text-sm); line-height: var(--leading-body-sm); color: var(--color-text-secondary);">
+            Medically tailored meals (MTM) are meals designed by a registered dietitian to address the specific nutritional needs of individuals with severe or chronic illnesses. They are tailored to the medical condition and personal preferences of each patient.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Closed by Default
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="closed">
+  <h2 class="pl-section-title">Closed by Default</h2>
+  <p class="pl-section-description">Starts collapsed. Click to reveal content.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="collapse" style="max-width: 32rem;">
+      <button type="button" class="collapse-trigger" data-collapse-trigger aria-expanded="false" aria-controls="collapse-closed-content" id="collapse-closed-trigger">
+        Eligibility requirements
+      </button>
+      <div class="collapse-content" data-collapse-content id="collapse-closed-content" role="region" aria-labelledby="collapse-closed-trigger">
+        <div style="padding: var(--space-2) 0 var(--space-4);">
+          <p style="font-family: var(--font-body); font-size: var(--text-sm); line-height: var(--leading-body-sm); color: var(--color-text-secondary);">
+            Patients with qualifying chronic conditions (diabetes, CHF, CKD, cancer) who have been referred by their primary care provider are eligible for enrollment. Medicaid and Medicare Advantage members in participating states may have coverage.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: With Chevron
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="with-chevron">
+  <h2 class="pl-section-title">With Chevron</h2>
+  <p class="pl-section-description">Trigger includes a rotating chevron icon to indicate expand/collapse state.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="collapse" style="max-width: 32rem;">
+      <button type="button" class="collapse-trigger" data-collapse-trigger aria-expanded="false" aria-controls="collapse-chevron-content" id="collapse-chevron-trigger">
+        How are meals delivered?
+        <span class="collapse-chevron"><svg class="collapse-chev"></svg></span>
+      </button>
+      <div class="collapse-content" data-collapse-content id="collapse-chevron-content" role="region" aria-labelledby="collapse-chevron-trigger">
+        <div style="padding: var(--space-2) 0 var(--space-4);">
+          <p style="font-family: var(--font-body); font-size: var(--text-sm); line-height: var(--leading-body-sm); color: var(--color-text-secondary);">
+            Meals are prepared in our commercial kitchen and delivered to the patient's home on a weekly schedule. Delivery windows are confirmed 24 hours in advance via SMS. Special dietary accommodations (kosher, halal, texture-modified) are available.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Collapse in a Card
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="in-card">
+  <h2 class="pl-section-title">Collapse in a Card</h2>
+  <p class="pl-section-description">Collapse integrated into a card layout. Trigger in the header area, content in the body.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 32rem;">
+      <div style="padding: var(--space-3) var(--space-6) 0;">
+        <div class="collapse">
+          <button type="button" class="collapse-trigger" data-collapse-trigger aria-expanded="true" aria-controls="collapse-card-content" id="collapse-card-trigger">
+            Patient Notes
+            <span class="collapse-chevron"><svg class="collapse-chev"></svg></span>
+          </button>
+          <div class="collapse-content open" data-collapse-content id="collapse-card-content" role="region" aria-labelledby="collapse-card-trigger">
+            <div class="card-body" style="padding-left: 0; padding-right: 0;">
+              <p class="card-text">
+                Mrs. Rivera has been responding well to the diabetic-friendly meal plan. HbA1c decreased from 9.2% to 7.8% over the last quarter. Continue current plan with increased vegetable variety per patient request.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Multiple Independent
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="multiple">
+  <h2 class="pl-section-title">Multiple Independent</h2>
+  <p class="pl-section-description">Three collapses on the page, each toggling independently. Contrast with Accordion where only one opens at a time.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 32rem; display: flex; flex-direction: column; gap: var(--space-1);">
+
+      <div class="collapse" style="border-bottom: 1px solid var(--color-border-default); padding-bottom: var(--space-1);">
+        <button type="button" class="collapse-trigger" data-collapse-trigger aria-expanded="false" aria-controls="collapse-multi-1" id="collapse-multi-trigger-1">
+          Nutrition details
+          <span class="collapse-chevron"><svg class="collapse-chev"></svg></span>
+        </button>
+        <div class="collapse-content" data-collapse-content id="collapse-multi-1" role="region" aria-labelledby="collapse-multi-trigger-1">
+          <div style="padding: var(--space-2) 0 var(--space-3);">
+            <p style="font-family: var(--font-body); font-size: var(--text-sm); line-height: var(--leading-body-sm); color: var(--color-text-secondary);">
+              Daily targets: 1800 kcal, 65g protein, &lt;2000mg sodium, &lt;45g added sugar. Meals are portioned and labeled with full macronutrient breakdown.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="collapse" style="border-bottom: 1px solid var(--color-border-default); padding-bottom: var(--space-1);">
+        <button type="button" class="collapse-trigger" data-collapse-trigger aria-expanded="false" aria-controls="collapse-multi-2" id="collapse-multi-trigger-2">
+          Delivery schedule
+          <span class="collapse-chevron"><svg class="collapse-chev"></svg></span>
+        </button>
+        <div class="collapse-content" data-collapse-content id="collapse-multi-2" role="region" aria-labelledby="collapse-multi-trigger-2">
+          <div style="padding: var(--space-2) 0 var(--space-3);">
+            <p style="font-family: var(--font-body); font-size: var(--text-sm); line-height: var(--leading-body-sm); color: var(--color-text-secondary);">
+              Weekly delivery on Tuesdays between 9 AM–12 PM. Confirmation SMS sent 24 hours prior. Contact coordinator to reschedule.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="collapse">
+        <button type="button" class="collapse-trigger" data-collapse-trigger aria-expanded="false" aria-controls="collapse-multi-3" id="collapse-multi-trigger-3">
+          Insurance coverage
+          <span class="collapse-chevron"><svg class="collapse-chev"></svg></span>
+        </button>
+        <div class="collapse-content" data-collapse-content id="collapse-multi-3" role="region" aria-labelledby="collapse-multi-trigger-3">
+          <div style="padding: var(--space-2) 0 var(--space-3);">
+            <p style="font-family: var(--font-body); font-size: var(--text-sm); line-height: var(--leading-body-sm); color: var(--color-text-secondary);">
+              Covered under Medicaid (CT, NY, MA) and select Medicare Advantage plans. Prior authorization required. Cena Health handles PA submission on behalf of the provider.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: collapse toggle + icon injection -->
+<script>
+(function() {
+  // Inject chevron icons
+  var chevronTmpl = document.getElementById('icon-collapse-chevron');
+  if (chevronTmpl) {
+    document.querySelectorAll('.collapse-chev').forEach(function(el) {
+      var svg = chevronTmpl.content.cloneNode(true).querySelector('svg');
+      if (svg) el.parentNode.replaceChild(svg, el);
+    });
+  }
+
+  // Toggle behavior via event delegation
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('[data-collapse-trigger]');
+    if (!trigger) return;
+
+    var content = trigger.parentElement.querySelector('[data-collapse-content]');
+    if (!content) return;
+
+    var isOpen = content.classList.contains('open');
+
+    if (isOpen) {
+      content.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    } else {
+      content.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+  });
+})();
+</script>
