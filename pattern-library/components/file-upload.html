@@ -3,7 +3,7 @@
   name: File Upload
   category: Primitives
   file: file-upload.html
-  classes: file-upload, file-upload-icon, file-upload-text, file-upload-hint, file-upload-dragover
+  classes: file-upload, file-upload-icon, file-upload-text, file-upload-hint, file-upload-dragover, file-progress-list, file-progress, file-progress-info, file-progress-icon, file-progress-name, file-progress-size, file-progress-bar-track, file-progress-bar-fill, file-progress-cancel, file-progress-complete, file-progress-error
   spec: components/ui/file-upload.md
   css: src/css/components/file-upload.css
   when-to-use: File attachment zones — document uploads, image uploads, CSV imports.
@@ -121,6 +121,191 @@
         </div>
         <span class="file-upload-text">Upload lab results</span>
         <span class="file-upload-hint">PDF or image, up to 25MB</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Upload Progress — Single File
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="progress-single">
+  <h2 class="pl-section-title">Upload Progress — Single File</h2>
+  <p class="pl-section-description">Shows filename, file size, progress bar, and cancel button during upload.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 28rem;">
+      <div class="file-progress">
+        <div class="file-progress-info">
+          <span class="file-progress-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+          </span>
+          <span class="file-progress-name">patient-records-2026.pdf</span>
+          <span class="file-progress-size">2.4 MB</span>
+          <button class="file-progress-cancel" aria-label="Cancel upload">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <line x1="5" y1="5" x2="15" y2="15"/>
+              <line x1="15" y1="5" x2="5" y2="15"/>
+            </svg>
+          </button>
+        </div>
+        <div class="file-progress-bar-track">
+          <div class="file-progress-bar-fill" style="width: 65%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 6: Multiple Files
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="progress-multiple">
+  <h2 class="pl-section-title">Upload Progress — Multiple Files</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 28rem;">
+      <div class="file-progress-list">
+
+        <div class="file-progress">
+          <div class="file-progress-info">
+            <span class="file-progress-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </span>
+            <span class="file-progress-name">lab-results-march.pdf</span>
+            <span class="file-progress-size">1.8 MB</span>
+            <button class="file-progress-cancel" aria-label="Cancel upload">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <line x1="5" y1="5" x2="15" y2="15"/>
+                <line x1="15" y1="5" x2="5" y2="15"/>
+              </svg>
+            </button>
+          </div>
+          <div class="file-progress-bar-track">
+            <div class="file-progress-bar-fill" style="width: 85%;"></div>
+          </div>
+        </div>
+
+        <div class="file-progress">
+          <div class="file-progress-info">
+            <span class="file-progress-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </span>
+            <span class="file-progress-name">insurance-card-front.jpg</span>
+            <span class="file-progress-size">3.1 MB</span>
+            <button class="file-progress-cancel" aria-label="Cancel upload">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <line x1="5" y1="5" x2="15" y2="15"/>
+                <line x1="15" y1="5" x2="5" y2="15"/>
+              </svg>
+            </button>
+          </div>
+          <div class="file-progress-bar-track">
+            <div class="file-progress-bar-fill" style="width: 40%;"></div>
+          </div>
+        </div>
+
+        <div class="file-progress">
+          <div class="file-progress-info">
+            <span class="file-progress-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </span>
+            <span class="file-progress-name">referral-letter.pdf</span>
+            <span class="file-progress-size">0.5 MB</span>
+            <button class="file-progress-cancel" aria-label="Cancel upload">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <line x1="5" y1="5" x2="15" y2="15"/>
+                <line x1="15" y1="5" x2="5" y2="15"/>
+              </svg>
+            </button>
+          </div>
+          <div class="file-progress-bar-track">
+            <div class="file-progress-bar-fill" style="width: 12%;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 7: Completed + Error States
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="progress-states">
+  <h2 class="pl-section-title">Upload — Completed + Error States</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 28rem;">
+      <div class="file-progress-list">
+
+        <!-- Completed -->
+        <div class="file-progress file-progress-complete">
+          <div class="file-progress-info">
+            <span class="file-progress-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </span>
+            <span class="file-progress-name">lab-results-march.pdf</span>
+            <span class="file-progress-size">1.8 MB</span>
+          </div>
+          <div class="file-progress-bar-track">
+            <div class="file-progress-bar-fill" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div class="file-progress file-progress-error">
+          <div class="file-progress-info">
+            <span class="file-progress-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </span>
+            <span class="file-progress-name">insurance-card-front.jpg</span>
+            <span class="file-progress-size">Upload failed</span>
+            <button class="file-progress-cancel" aria-label="Retry upload" style="color: var(--color-primary);">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="4 10 4 5 9 5"/>
+                <path d="M5 6l5 5"/>
+                <polyline points="16 10 16 15 11 15"/>
+                <path d="M15 14l-5-5"/>
+              </svg>
+            </button>
+          </div>
+          <div class="file-progress-bar-track">
+            <div class="file-progress-bar-fill" style="width: 45%;"></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

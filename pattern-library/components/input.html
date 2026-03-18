@@ -3,7 +3,7 @@
   name: Input
   category: Primitives
   file: input.html
-  classes: field, field-row, input-field, input-field-sm, input-field-error, input-field-error-pulse, input-field-success, input-label, input-label-required, input-label-sm, input-wrapper, input-wrapper-leading, input-wrapper-trailing, input-icon, input-icon-leading, input-icon-trailing, input-icon-success, input-helper, input-error-msg, input-success-msg
+  classes: field, field-row, input-field, input-field-sm, input-field-error, input-field-error-pulse, input-field-success, input-label, input-label-required, input-label-sm, input-wrapper, input-wrapper-leading, input-wrapper-trailing, input-icon, input-icon-leading, input-icon-trailing, input-icon-success, input-helper, input-error-msg, input-success-msg, textarea-count, textarea-count-label, textarea-count-warning, textarea-count-error
   spec: components/ui/input.md
   css: src/css/components/input.css
   when-to-use: Any data entry point — clinical forms, enrollment flows, search, administrative interfaces. Every input must have a visible label.
@@ -246,7 +246,52 @@
 
 
 <!-- =====================================================================
-     Section 6: Side-by-Side Fields
+     Section 6: Character Count
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="character-count">
+  <h2 class="pl-section-title">Character Count</h2>
+  <p class="pl-section-description">Live counter below the textarea. Warning at 80% capacity, error at limit.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="display: flex; flex-direction: column; gap: var(--space-8); max-width: 30rem;">
+
+      <!-- Default — live count -->
+      <div class="field">
+        <label class="input-label" for="demo-charcount">Care plan notes</label>
+        <div class="textarea-count">
+          <textarea class="input-field" id="demo-charcount" data-char-count="500" placeholder="Start typing to see the count update..."></textarea>
+          <span class="textarea-count-label">0 / 500</span>
+        </div>
+      </div>
+
+      <!-- Near limit (static demo) -->
+      <div class="field">
+        <label class="input-label">Near Limit (static demo)</label>
+        <div class="textarea-count">
+          <textarea class="input-field" readonly style="pointer-events: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</textarea>
+          <span class="textarea-count-label textarea-count-warning">423 / 500</span>
+        </div>
+      </div>
+
+      <!-- At limit (static demo) -->
+      <div class="field">
+        <label class="input-label">At Limit (static demo)</label>
+        <div class="textarea-count">
+          <textarea class="input-field input-field-error" readonly style="pointer-events: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum sed.</textarea>
+          <span class="textarea-count-label textarea-count-error">500 / 500</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 7: Side-by-Side Fields
      ===================================================================== -->
 
 <section class="pl-section" data-pl-section="field-row">
@@ -378,6 +423,22 @@
     if (tmpl && !span.querySelector('svg')) {
       span.appendChild(tmpl.content.cloneNode(true));
     }
+  });
+
+  // Character count
+  document.querySelectorAll('[data-char-count]').forEach(function(textarea) {
+    var max = parseInt(textarea.getAttribute('data-char-count'));
+    var label = textarea.closest('.textarea-count').querySelector('.textarea-count-label');
+    if (!label) return;
+    function update() {
+      var len = textarea.value.length;
+      label.textContent = len + ' / ' + max;
+      label.classList.remove('textarea-count-warning', 'textarea-count-error');
+      if (len >= max) label.classList.add('textarea-count-error');
+      else if (len / max >= 0.8) label.classList.add('textarea-count-warning');
+    }
+    textarea.addEventListener('input', update);
+    update();
   });
 
   // Error pulse demo

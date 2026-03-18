@@ -78,11 +78,138 @@
   }
 
   /* --------------------------------------------------------------------------
+     File Upload Progress
+     -------------------------------------------------------------------------- */
+
+  .file-progress-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .file-progress {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    background-color: var(--color-surface-primary);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .file-progress-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 0;
+  }
+
+  .file-progress-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--icon-lg);
+    height: var(--icon-lg);
+    color: var(--color-text-secondary);
+  }
+
+  .file-progress-icon svg {
+    width: var(--icon-lg);
+    height: var(--icon-lg);
+  }
+
+  .file-progress-name {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .file-progress-size {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    color: var(--color-text-tertiary);
+    flex-shrink: 0;
+  }
+
+  .file-progress-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-tertiary);
+    cursor: pointer;
+    transition: color var(--duration-fast) var(--ease-transition);
+  }
+
+  .file-progress-cancel:hover {
+    color: var(--color-text-primary);
+  }
+
+  .file-progress-cancel svg {
+    width: var(--icon-md);
+    height: var(--icon-md);
+  }
+
+  .file-progress-bar-track {
+    display: block;
+    width: 100%;
+    height: 6px;
+    background-color: var(--color-surface-secondary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  .file-progress-bar-fill {
+    display: block;
+    height: 100%;
+    background-color: var(--color-primary);
+    border-radius: var(--radius-full);
+    transition: width var(--duration-fast) var(--ease-transition);
+  }
+
+  /* Complete state */
+  .file-progress-complete .file-progress-bar-fill {
+    background-color: var(--color-success-base);
+  }
+
+  .file-progress-complete .file-progress-icon {
+    color: var(--color-success-base);
+  }
+
+  /* Error state */
+  .file-progress-error .file-progress-bar-fill {
+    background-color: var(--color-error-base);
+  }
+
+  .file-progress-error .file-progress-icon {
+    color: var(--color-error-base);
+  }
+
+  /* --------------------------------------------------------------------------
      Reduced Motion
      -------------------------------------------------------------------------- */
 
   @media (prefers-reduced-motion: reduce) {
-    .file-upload {
+    .file-upload,
+    .file-progress-cancel,
+    .file-progress-bar-fill {
       transition-duration: 0ms;
     }
   }

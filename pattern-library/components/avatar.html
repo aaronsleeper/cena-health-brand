@@ -3,7 +3,7 @@
   name: Avatar
   category: Data
   file: avatar.html
-  classes: avatar, avatar-sm, avatar-lg, avatar-initials, avatar-status, avatar-status-online, avatar-status-offline, avatar-status-busy, avatar-group
+  classes: avatar, avatar-sm, avatar-lg, avatar-initials, avatar-status, avatar-status-online, avatar-status-offline, avatar-status-busy, avatar-group, avatar-group-overflow
   spec: components/ui/avatar.md
   css: src/css/components/avatar.css
   when-to-use: User profile photos, team member displays, and activity attribution.
@@ -35,8 +35,8 @@
   </div>
 </section>
 
-<section class="pl-section" data-pl-section="group">
-  <h2 class="pl-section-title">Avatar Group</h2>
+<section class="pl-section" data-pl-section="group-default">
+  <h2 class="pl-section-title">Avatar Group — Default</h2>
   <div class="pl-canvas" style="background: var(--color-surface-page);">
     <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
     <div class="avatar-group">
@@ -44,7 +44,84 @@
       <div class="avatar avatar-initials">JC</div>
       <div class="avatar avatar-initials">LP</div>
       <div class="avatar avatar-initials">RK</div>
-      <div class="avatar avatar-initials" style="background-color: var(--color-surface-secondary); color: var(--color-text-tertiary);">+3</div>
+    </div>
+  </div>
+</section>
+
+<section class="pl-section" data-pl-section="group-overflow">
+  <h2 class="pl-section-title">Avatar Group — With Overflow</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="avatar-group">
+      <div class="avatar avatar-initials">MS</div>
+      <div class="avatar avatar-initials">JC</div>
+      <div class="avatar avatar-initials">LP</div>
+      <div class="avatar avatar-initials">RK</div>
+      <div class="avatar-group-overflow">+3</div>
+    </div>
+  </div>
+</section>
+
+<section class="pl-section" data-pl-section="group-sizes">
+  <h2 class="pl-section-title">Avatar Group — Sizes</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="display: flex; flex-direction: column; gap: var(--space-6);">
+      <div>
+        <p class="pl-col-label">Small</p>
+        <div class="avatar-group">
+          <div class="avatar avatar-sm avatar-initials">MS</div>
+          <div class="avatar avatar-sm avatar-initials">JC</div>
+          <div class="avatar avatar-sm avatar-initials">LP</div>
+          <div class="avatar-group-overflow" style="width: 2rem; height: 2rem; font-size: var(--text-xs);">+2</div>
+        </div>
+      </div>
+      <div>
+        <p class="pl-col-label">Default</p>
+        <div class="avatar-group">
+          <div class="avatar avatar-initials">MS</div>
+          <div class="avatar avatar-initials">JC</div>
+          <div class="avatar avatar-initials">LP</div>
+          <div class="avatar-group-overflow">+2</div>
+        </div>
+      </div>
+      <div>
+        <p class="pl-col-label">Large</p>
+        <div class="avatar-group">
+          <div class="avatar avatar-lg avatar-initials">MS</div>
+          <div class="avatar avatar-lg avatar-initials">JC</div>
+          <div class="avatar avatar-lg avatar-initials">LP</div>
+          <div class="avatar-group-overflow" style="width: 3rem; height: 3rem; font-size: var(--text-base);">+2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pl-section" data-pl-section="group-tinted">
+  <h2 class="pl-section-title">Avatar Group — On Tinted Surface</h2>
+  <p class="pl-section-description">Ring color adapts to match the background surface.</p>
+  <div class="pl-canvas surface-primary" style="background: var(--color-surface-primary);">
+    <p class="pl-canvas-label">surface-primary (#F3F1EE)</p>
+    <div class="avatar-group">
+      <div class="avatar avatar-initials">MS</div>
+      <div class="avatar avatar-initials">JC</div>
+      <div class="avatar avatar-initials">LP</div>
+      <div class="avatar avatar-initials">RK</div>
+      <div class="avatar-group-overflow">+3</div>
+    </div>
+  </div>
+</section>
+
+<section class="pl-section" data-pl-section="group-status">
+  <h2 class="pl-section-title">Avatar Group — With Status</h2>
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="avatar-group">
+      <div class="avatar avatar-initials">MS<span class="avatar-status avatar-status-online"></span></div>
+      <div class="avatar avatar-initials">JC<span class="avatar-status avatar-status-busy"></span></div>
+      <div class="avatar avatar-initials">LP<span class="avatar-status avatar-status-offline"></span></div>
+      <div class="avatar avatar-initials">RK<span class="avatar-status avatar-status-online"></span></div>
     </div>
   </div>
 </section>

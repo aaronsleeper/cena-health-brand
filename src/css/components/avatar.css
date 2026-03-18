@@ -63,14 +63,64 @@
   /* Avatar group — stacked overlap */
   .avatar-group {
     @apply flex;
+    align-items: center;
   }
 
   .avatar-group .avatar {
-    border: 2px solid var(--color-surface-page);
-    margin-left: -0.5rem;
+    box-shadow: 0 0 0 2px var(--color-surface-page);
+    margin-left: calc(-1 * var(--space-3));
   }
 
   .avatar-group .avatar:first-child {
     margin-left: 0;
+  }
+
+  /* Overflow badge */
+  .avatar-group-overflow {
+    @apply relative inline-flex items-center justify-center shrink-0 rounded-full;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    box-shadow: 0 0 0 2px var(--color-surface-page);
+    margin-left: calc(-1 * var(--space-3));
+  }
+
+  .avatar-sm + .avatar-group-overflow,
+  .avatar-group .avatar-sm ~ .avatar-group-overflow {
+    width: 2rem;
+    height: 2rem;
+    font-size: var(--text-xs);
+  }
+
+  .avatar-lg + .avatar-group-overflow,
+  .avatar-group .avatar-lg ~ .avatar-group-overflow {
+    width: 3rem;
+    height: 3rem;
+    font-size: var(--text-base);
+  }
+
+  /* Surface-specific ring overrides */
+  .surface-primary .avatar-group .avatar,
+  .surface-primary .avatar-group .avatar-group-overflow {
+    box-shadow: 0 0 0 2px var(--color-surface-primary);
+  }
+
+  .surface-secondary .avatar-group .avatar,
+  .surface-secondary .avatar-group .avatar-group-overflow {
+    box-shadow: 0 0 0 2px var(--color-surface-secondary);
+  }
+
+  .surface-teal .avatar-group .avatar,
+  .surface-teal .avatar-group .avatar-group-overflow {
+    box-shadow: 0 0 0 2px var(--color-surface-teal);
+  }
+
+  .surface-sage .avatar-group .avatar,
+  .surface-sage .avatar-group .avatar-group-overflow {
+    box-shadow: 0 0 0 2px var(--color-surface-sage);
   }
 }
