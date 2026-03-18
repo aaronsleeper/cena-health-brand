@@ -293,4 +293,39 @@
       transform: none;
     }
   }
+
+  /* --------------------------------------------------------------------------
+     Connected Button Group (segmented selector)
+     -------------------------------------------------------------------------- */
+
+  .btn-group-connected {
+    @apply inline-flex;
+  }
+
+  /* Square the inner adjacent corners */
+  .btn-group-connected .btn:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  .btn-group-connected .btn:first-child:not(:only-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .btn-group-connected .btn:last-child:not(:only-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  /* Collapse adjacent borders so secondary buttons don't double up */
+  .btn-group-connected .btn-secondary:not(:first-child) {
+    margin-left: -1px;
+  }
+
+  /* Ensure focused/active button rises above its neighbours */
+  .btn-group-connected .btn:focus-visible,
+  .btn-group-connected .btn:active {
+    position: relative;
+    z-index: 1;
+  }
 }

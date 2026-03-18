@@ -1,0 +1,446 @@
+<!--
+  @component-meta
+  name: Chart
+  category: Data
+  file: chart.html
+  classes: chart-wrapper, chart-line, chart-bar, chart-sparkline, chart-title, chart-legend, chart-legend-item, chart-legend-dot
+  spec: components/ui/chart.md
+  css: src/css/components/chart.css
+  when-to-use: Data visualization for trends, distributions, and inline sparklines. Line for time-series, bar for comparisons, sparkline for compact inline trends.
+  do-not-use-when: Pie or donut charts — use stat cards, bar charts, or numeric comparisons instead (Tufte principle).
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Line Chart
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="line">
+  <h2 class="pl-section-title">Line Chart</h2>
+  <p class="pl-section-description">Single-series HbA1c trend over 6 months with subtle area fill.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <p class="chart-title">HbA1c Trend — Maria Rivera</p>
+    <div class="chart-wrapper chart-line">
+      <canvas id="chart-line-single"></canvas>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Multi-Series Line
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="line-multi">
+  <h2 class="pl-section-title">Multi-Series Line</h2>
+  <p class="pl-section-description">Two patients' HbA1c trends on the same chart.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <p class="chart-title">HbA1c Comparison</p>
+    <div class="chart-wrapper chart-line">
+      <canvas id="chart-line-multi"></canvas>
+    </div>
+    <div class="chart-legend" id="legend-line-multi"></div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Bar Chart
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="bar">
+  <h2 class="pl-section-title">Bar Chart</h2>
+  <p class="pl-section-description">Monthly enrollment counts with hover highlight.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <p class="chart-title">Monthly Enrollments — 2026</p>
+    <div class="chart-wrapper chart-bar">
+      <canvas id="chart-bar-vertical"></canvas>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 4: Horizontal Bar
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="bar-horizontal">
+  <h2 class="pl-section-title">Horizontal Bar</h2>
+  <p class="pl-section-description">Care program distribution with mixed teal/sage colors.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <p class="chart-title">Care Program Distribution</p>
+    <div class="chart-wrapper chart-bar">
+      <canvas id="chart-bar-horizontal"></canvas>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 5: Sparklines
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="sparklines">
+  <h2 class="pl-section-title">Sparklines</h2>
+  <p class="pl-section-description">Inline trend indicators inside stat cards — no axes, no labels.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+
+      <div class="card card-default" style="flex: 1; min-width: 200px;">
+        <div class="card-body">
+          <p style="font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-secondary); margin-bottom: var(--space-1);">Active Patients</p>
+          <p style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--space-2);">1,247</p>
+          <div class="chart-wrapper chart-sparkline">
+            <canvas id="spark-up"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-default" style="flex: 1; min-width: 200px;">
+        <div class="card-body">
+          <p style="font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-secondary); margin-bottom: var(--space-1);">Avg HbA1c</p>
+          <p style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--space-2);">7.2%</p>
+          <div class="chart-wrapper chart-sparkline">
+            <canvas id="spark-flat"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-default" style="flex: 1; min-width: 200px;">
+        <div class="card-body">
+          <p style="font-family: var(--font-body); font-size: var(--text-xs); color: var(--color-text-secondary); margin-bottom: var(--space-1);">Overdue Check-Ins</p>
+          <p style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--space-2);">38</p>
+          <div class="chart-wrapper chart-sparkline">
+            <canvas id="spark-down"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 6: With Custom Legend
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="custom-legend">
+  <h2 class="pl-section-title">With Custom Legend</h2>
+  <p class="pl-section-description">Multi-series chart with a .chart-legend below using colored dots.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <p class="chart-title">Program Enrollment Trends</p>
+    <div class="chart-wrapper chart-line">
+      <canvas id="chart-legend-demo"></canvas>
+    </div>
+    <div class="chart-legend" id="legend-custom"></div>
+  </div>
+</section>
+
+
+<!-- Component JS: Chart.js IIFE -->
+<script>
+(function () {
+
+  /* Cena brand color constants */
+  var CENA = {
+    primary:   '#1B685E',
+    secondary: '#3A8478',
+    sage:      '#81B983',
+    warm:      '#B3ADA4',
+    success:   '#3A8E64',
+    warning:   '#B58B20',
+    error:     '#C13C3B',
+    info:      '#287AA3',
+    gridColor: 'rgba(209, 205, 198, 0.5)',
+    textColor: '#5B544C'
+  };
+
+  /* Shared Chart.js defaults */
+  Chart.defaults.font.family = "'Source Sans 3', system-ui, sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.color = CENA.textColor;
+  Chart.defaults.plugins.legend.display = false;
+  Chart.defaults.plugins.tooltip.backgroundColor = '#FBFAF8';
+  Chart.defaults.plugins.tooltip.borderColor = CENA.gridColor;
+  Chart.defaults.plugins.tooltip.borderWidth = 1;
+  Chart.defaults.plugins.tooltip.titleColor = '#0D322D';
+  Chart.defaults.plugins.tooltip.bodyColor = CENA.textColor;
+  Chart.defaults.plugins.tooltip.padding = 10;
+  Chart.defaults.scale.grid.color = CENA.gridColor;
+  Chart.defaults.scale.ticks.color = CENA.textColor;
+
+  var MONTHS = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
+
+  /* Helper: build legend HTML */
+  function buildLegend(containerId, items) {
+    var el = document.getElementById(containerId);
+    if (!el) return;
+    var html = '';
+    items.forEach(function (item) {
+      html += '<span class="chart-legend-item">';
+      html += '<span class="chart-legend-dot" style="background-color: ' + item.color + ';"></span>';
+      html += item.label;
+      html += '</span>';
+    });
+    el.innerHTML = html;
+  }
+
+  /* ---- Section 1: Single Line Chart ---- */
+  new Chart(document.getElementById('chart-line-single'), {
+    type: 'line',
+    data: {
+      labels: MONTHS,
+      datasets: [{
+        data: [8.4, 8.1, 7.9, 7.6, 7.4, 7.1],
+        borderColor: CENA.primary,
+        backgroundColor: 'rgba(27, 104, 94, 0.08)',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.3,
+        pointBackgroundColor: CENA.primary,
+        pointRadius: 4,
+        pointHoverRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: false,
+          title: { display: true, text: 'HbA1c (%)', color: CENA.textColor }
+        }
+      }
+    }
+  });
+
+  /* ---- Section 2: Multi-Series Line ---- */
+  new Chart(document.getElementById('chart-line-multi'), {
+    type: 'line',
+    data: {
+      labels: MONTHS,
+      datasets: [
+        {
+          data: [8.4, 8.1, 7.9, 7.6, 7.4, 7.1],
+          borderColor: CENA.primary,
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          tension: 0.3,
+          pointBackgroundColor: CENA.primary,
+          pointRadius: 4,
+          pointHoverRadius: 6
+        },
+        {
+          data: [9.2, 8.8, 8.5, 8.6, 8.2, 7.9],
+          borderColor: CENA.sage,
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          tension: 0.3,
+          pointBackgroundColor: CENA.sage,
+          pointRadius: 4,
+          pointHoverRadius: 6
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: false,
+          title: { display: true, text: 'HbA1c (%)', color: CENA.textColor }
+        }
+      }
+    }
+  });
+
+  buildLegend('legend-line-multi', [
+    { color: CENA.primary, label: 'Maria Rivera' },
+    { color: CENA.sage, label: 'Robert Johnson' }
+  ]);
+
+  /* ---- Section 3: Vertical Bar Chart ---- */
+  new Chart(document.getElementById('chart-bar-vertical'), {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      datasets: [{
+        data: [42, 58, 65, 51, 73, 68],
+        backgroundColor: CENA.primary,
+        hoverBackgroundColor: CENA.warm,
+        borderRadius: 4,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: 'Enrollments', color: CENA.textColor }
+        }
+      }
+    }
+  });
+
+  /* ---- Section 4: Horizontal Bar Chart ---- */
+  var programColors = [CENA.primary, CENA.secondary, CENA.sage, CENA.warm, CENA.info];
+  new Chart(document.getElementById('chart-bar-horizontal'), {
+    type: 'bar',
+    data: {
+      labels: ['DASH Diet', 'Mediterranean', 'Renal Diet', 'Low-Sodium', 'Culturally Adapted'],
+      datasets: [{
+        data: [124, 98, 67, 45, 82],
+        backgroundColor: programColors,
+        hoverBackgroundColor: programColors.map(function (c) { return c + 'CC'; }),
+        borderRadius: 4,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: { display: true, text: 'Patients', color: CENA.textColor }
+        }
+      }
+    }
+  });
+
+  /* ---- Section 5: Sparklines ---- */
+  var sparkOpts = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: { display: false },
+      y: { display: false }
+    },
+    plugins: {
+      tooltip: { enabled: false }
+    },
+    elements: {
+      point: { radius: 0 }
+    }
+  };
+
+  new Chart(document.getElementById('spark-up'), {
+    type: 'line',
+    data: {
+      labels: ['', '', '', '', '', '', '', ''],
+      datasets: [{
+        data: [980, 1010, 1050, 1090, 1120, 1170, 1210, 1247],
+        borderColor: CENA.success,
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        tension: 0.4
+      }]
+    },
+    options: sparkOpts
+  });
+
+  new Chart(document.getElementById('spark-flat'), {
+    type: 'line',
+    data: {
+      labels: ['', '', '', '', '', '', '', ''],
+      datasets: [{
+        data: [7.4, 7.3, 7.5, 7.2, 7.3, 7.1, 7.2, 7.2],
+        borderColor: CENA.warm,
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        tension: 0.4
+      }]
+    },
+    options: sparkOpts
+  });
+
+  new Chart(document.getElementById('spark-down'), {
+    type: 'line',
+    data: {
+      labels: ['', '', '', '', '', '', '', ''],
+      datasets: [{
+        data: [62, 55, 50, 48, 45, 42, 40, 38],
+        borderColor: CENA.error,
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        tension: 0.4
+      }]
+    },
+    options: sparkOpts
+  });
+
+  /* ---- Section 6: Custom Legend Demo ---- */
+  new Chart(document.getElementById('chart-legend-demo'), {
+    type: 'line',
+    data: {
+      labels: MONTHS,
+      datasets: [
+        {
+          data: [30, 42, 55, 61, 68, 73],
+          borderColor: CENA.primary,
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          tension: 0.3,
+          pointBackgroundColor: CENA.primary,
+          pointRadius: 3,
+          pointHoverRadius: 5
+        },
+        {
+          data: [22, 28, 35, 40, 38, 45],
+          borderColor: CENA.sage,
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          tension: 0.3,
+          pointBackgroundColor: CENA.sage,
+          pointRadius: 3,
+          pointHoverRadius: 5
+        },
+        {
+          data: [15, 18, 20, 24, 26, 30],
+          borderColor: CENA.info,
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          tension: 0.3,
+          pointBackgroundColor: CENA.info,
+          pointRadius: 3,
+          pointHoverRadius: 5
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: 'Enrollments', color: CENA.textColor }
+        }
+      }
+    }
+  });
+
+  buildLegend('legend-custom', [
+    { color: CENA.primary, label: 'DASH Diet' },
+    { color: CENA.sage, label: 'Mediterranean' },
+    { color: CENA.info, label: 'Renal Diet' }
+  ]);
+
+})();
+</script>

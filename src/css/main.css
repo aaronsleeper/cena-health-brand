@@ -38,12 +38,14 @@
 @import "./components/blockquote.css";
 @import "./components/button.css";
 @import "./components/card.css";
+@import "./components/chart.css";
 @import "./components/chat.css";
 @import "./components/checkbox.css";
 @import "./components/clipboard.css";
 @import "./components/collapse.css";
 @import "./components/combobox.css";
 @import "./components/context-menu.css";
+@import "./components/datatable.css";
 @import "./components/datepicker.css";
 @import "./components/divider.css";
 @import "./components/drawer.css";

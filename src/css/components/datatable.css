@@ -1,0 +1,184 @@
+/* ==========================================================================
+   Cena Health — Datatable Component
+   Source: components/ui/datatable.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Wrapper
+     -------------------------------------------------------------------------- */
+
+  .datatable-wrapper {
+    display: block;
+    width: 100%;
+  }
+
+  /* --------------------------------------------------------------------------
+     Controls (top row: entries selector + search)
+     -------------------------------------------------------------------------- */
+
+  .datatable-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  /* --------------------------------------------------------------------------
+     Entries Selector
+     -------------------------------------------------------------------------- */
+
+  .datatable-entries {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .datatable-entries-label {
+    display: inline;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .datatable-entries-select {
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-page);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    padding: var(--space-1) var(--space-6) var(--space-1) var(--space-2);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%235B544C' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-2) center;
+  }
+
+  .datatable-entries-select:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  /* --------------------------------------------------------------------------
+     Search
+     -------------------------------------------------------------------------- */
+
+  .datatable-search {
+    display: flex;
+    align-items: center;
+  }
+
+  /* --------------------------------------------------------------------------
+     Footer (bottom row: info text + pagination)
+     -------------------------------------------------------------------------- */
+
+  .datatable-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  /* --------------------------------------------------------------------------
+     Info Text
+     -------------------------------------------------------------------------- */
+
+  .datatable-info {
+    display: inline;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Pagination
+     -------------------------------------------------------------------------- */
+
+  .datatable-pagination {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .datatable-page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-md);
+    border: none;
+    background-color: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition:
+      background-color var(--duration-fast) var(--ease-transition),
+      color var(--duration-fast) var(--ease-transition);
+  }
+
+  .datatable-page-btn:hover {
+    background-color: var(--color-surface-primary);
+  }
+
+  .datatable-page-btn.active {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  .datatable-page-btn.active:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  .datatable-page-btn:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .datatable-page-btn:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  .datatable-page-btn svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+  }
+
+  /* --------------------------------------------------------------------------
+     Empty State
+     -------------------------------------------------------------------------- */
+
+  .datatable-empty {
+    display: table-cell;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    padding: var(--space-8);
+  }
+
+  /* --------------------------------------------------------------------------
+     Sortable Header Cursor
+     -------------------------------------------------------------------------- */
+
+  .datatable-wrapper .table-sort {
+    cursor: pointer;
+    user-select: none;
+  }
+}

@@ -3,7 +3,7 @@
   name: Button
   category: Primitives
   file: button.html
-  classes: btn, btn-primary, btn-secondary, btn-ghost, btn-danger, btn-sm, btn-default, btn-lg, btn-icon-only, btn-round, btn-full, btn-group, btn-loading, btn-group-stack-mobile
+  classes: btn, btn-primary, btn-secondary, btn-ghost, btn-danger, btn-sm, btn-default, btn-lg, btn-icon-only, btn-round, btn-full, btn-group, btn-group-connected, btn-loading, btn-group-stack-mobile
   spec: components/ui/button.md
   css: src/css/components/button.css
   when-to-use: Use for any interactive action: form submission, navigation, triggering overlays. Primary for the single most important action. Secondary for complementary actions. Ghost for tertiary or toolbar actions. Danger for irreversible operations.
@@ -211,6 +211,80 @@
         <button class="btn btn-primary btn-default" type="button">Primary</button>
         <button class="btn btn-secondary btn-default" type="button">Secondary</button>
         <button class="btn btn-ghost btn-default" type="button">Ghost</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 8: Connected Button Group
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="connected-group">
+  <h2 class="pl-section-title">Connected Button Group</h2>
+  <p class="pl-section-description">Buttons sharing borders with no gap — used for view toggles, filter tabs, and segmented actions. Distinct from .btn-group (which uses spacing) and .segmented-control (lighter toggle pattern).</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8) — Secondary variants</p>
+    <div class="pl-stack">
+      <div class="btn-group-connected" role="group" aria-label="View toggle">
+        <button class="btn btn-secondary btn-default" type="button">List</button>
+        <button class="btn btn-primary btn-default" type="button" aria-pressed="true">Card</button>
+        <button class="btn btn-secondary btn-default" type="button">Map</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8) — Ghost variant</p>
+    <div class="pl-stack">
+      <div class="btn-group-connected" role="group" aria-label="Toolbar actions">
+        <button class="btn btn-ghost btn-default" type="button">Bold</button>
+        <button class="btn btn-ghost btn-default" type="button">Italic</button>
+        <button class="btn btn-ghost btn-default" type="button">Underline</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8) — With icons</p>
+    <div class="pl-stack">
+      <div class="btn-group-connected" role="group" aria-label="View mode">
+        <button class="btn btn-secondary btn-default" type="button">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="4" x2="13" y2="4"/><line x1="3" y1="8" x2="13" y2="8"/><line x1="3" y1="12" x2="13" y2="12"/></svg>
+          List
+        </button>
+        <button class="btn btn-primary btn-default" type="button" aria-pressed="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+          Grid
+        </button>
+        <button class="btn btn-secondary btn-default" type="button">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 2a10 10 0 0 1 0 12M8 2a10 10 0 0 0 0 12M2 8h12"/></svg>
+          Map
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8) — Sizes</p>
+    <div class="pl-stack">
+      <div>
+        <p class="pl-col-label">Small</p>
+        <div class="btn-group-connected" role="group" aria-label="Filter">
+          <button class="btn btn-secondary btn-sm" type="button">All</button>
+          <button class="btn btn-primary btn-sm" type="button" aria-pressed="true">Active</button>
+          <button class="btn btn-secondary btn-sm" type="button">Archived</button>
+        </div>
+      </div>
+      <div>
+        <p class="pl-col-label">Large</p>
+        <div class="btn-group-connected" role="group" aria-label="Filter">
+          <button class="btn btn-secondary btn-lg" type="button">All</button>
+          <button class="btn btn-primary btn-lg" type="button" aria-pressed="true">Active</button>
+          <button class="btn btn-secondary btn-lg" type="button">Archived</button>
+        </div>
       </div>
     </div>
   </div>

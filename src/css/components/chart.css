@@ -1,0 +1,79 @@
+/* ==========================================================================
+   Cena Health — Chart Component
+   Source: components/ui/chart.md
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Wrapper
+     -------------------------------------------------------------------------- */
+
+  .chart-wrapper {
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+
+  .chart-wrapper canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* --------------------------------------------------------------------------
+     Size Variants
+     -------------------------------------------------------------------------- */
+
+  .chart-line {
+    height: 240px;
+  }
+
+  .chart-bar {
+    height: 200px;
+  }
+
+  .chart-sparkline {
+    height: 40px;
+  }
+
+  /* --------------------------------------------------------------------------
+     Title
+     -------------------------------------------------------------------------- */
+
+  .chart-title {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  /* --------------------------------------------------------------------------
+     Custom Legend
+     -------------------------------------------------------------------------- */
+
+  .chart-legend {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+  }
+
+  .chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+  }
+
+  .chart-legend-dot {
+    display: inline-block;
+    width: var(--space-2);
+    height: var(--space-2);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+  }
+}

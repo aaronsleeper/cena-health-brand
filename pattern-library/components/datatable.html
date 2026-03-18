@@ -1,0 +1,360 @@
+<!--
+  @component-meta
+  name: Datatable
+  category: Data
+  file: datatable.html
+  classes: datatable-wrapper, datatable-controls, datatable-entries, datatable-entries-label, datatable-entries-select, datatable-search, datatable-footer, datatable-info, datatable-pagination, datatable-page-btn, datatable-empty
+  spec: components/ui/datatable.md
+  css: src/css/components/datatable.css
+  when-to-use: Enhanced data tables that need client-side search, sort, pagination, and entries-per-page controls. Extends the base table component.
+  do-not-use-when: Simple data display with fewer than 10 rows — use a plain table. Server-side pagination — wire up your own API calls.
+  @end-meta
+-->
+
+
+<!-- =====================================================================
+     Section 1: Default Datatable
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+  <p class="pl-section-description">Full datatable with search, column sort, entries selector, and pagination.</p>
+
+  <div class="pl-canvas pl-canvas-tall" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="datatable-wrapper" id="dt-default">
+      <!-- JS renders controls, table, and footer here -->
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 2: Empty Search State
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="empty-state">
+  <h2 class="pl-section-title">Empty Search State</h2>
+  <p class="pl-section-description">Displayed when a search query matches no rows.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div class="datatable-wrapper">
+      <div class="datatable-controls">
+        <div class="datatable-entries">
+          <span class="datatable-entries-label">Show</span>
+          <select class="datatable-entries-select" disabled>
+            <option>10</option>
+          </select>
+          <span class="datatable-entries-label">entries</span>
+        </div>
+        <div class="datatable-search">
+          <div class="search-box">
+            <svg class="search-box-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4"/><line x1="10" y1="10" x2="13" y2="13"/></svg>
+            <input class="search-box-input" type="text" placeholder="Search..." value="xyznotfound" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table class="table" aria-label="Empty search demo">
+          <thead>
+            <tr>
+              <th scope="col">Patient</th>
+              <th scope="col">Condition</th>
+              <th scope="col">Last Check-In</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="datatable-empty" colspan="4">No matching records found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="datatable-footer">
+        <span class="datatable-info">Showing 0 to 0 of 0 entries (filtered from 20 total)</span>
+        <div class="datatable-pagination">
+          <button class="datatable-page-btn" disabled aria-label="Previous page">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg>
+          </button>
+          <button class="datatable-page-btn" disabled aria-label="Next page">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     Section 3: Compact Density
+     ===================================================================== -->
+
+<section class="pl-section" data-pl-section="density">
+  <h2 class="pl-section-title">Compact Density</h2>
+  <p class="pl-section-description">Wrapped in <code>data-density="compact"</code> — spacing tokens scale automatically.</p>
+
+  <div class="pl-canvas pl-canvas-tall" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+    <div data-density="compact">
+      <div class="datatable-wrapper" id="dt-compact">
+        <!-- JS renders controls, table, and footer here -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Component JS: datatable IIFE -->
+<script>
+(function () {
+
+  /* Patient data — 20 rows */
+  var DATA = [
+    { name: 'Maria Rivera',      condition: 'Type 2 Diabetes', lastCheckIn: '2026-03-14', status: 'Enrolled',   statusType: 'success' },
+    { name: 'James Chen',        condition: 'Hypertension',    lastCheckIn: '2026-03-12', status: 'At Risk',    statusType: 'warning' },
+    { name: 'Fatima Al-Rashid',  condition: 'CKD Stage 3',     lastCheckIn: '2026-03-10', status: 'Enrolled',   statusType: 'success' },
+    { name: 'Robert Johnson',    condition: 'CHF',             lastCheckIn: '2026-03-08', status: 'Overdue',    statusType: 'error' },
+    { name: 'Ana Gutierrez',     condition: 'Type 2 Diabetes', lastCheckIn: '2026-03-15', status: 'In Review',  statusType: 'info' },
+    { name: 'David Kim',         condition: 'Hypertension',    lastCheckIn: '2026-03-11', status: 'Enrolled',   statusType: 'success' },
+    { name: 'Sarah Thompson',    condition: 'CKD Stage 4',     lastCheckIn: '2026-03-09', status: 'At Risk',    statusType: 'warning' },
+    { name: 'Miguel Santos',     condition: 'Type 1 Diabetes', lastCheckIn: '2026-03-13', status: 'Enrolled',   statusType: 'success' },
+    { name: 'Priya Patel',       condition: 'Hypertension',    lastCheckIn: '2026-03-07', status: 'Overdue',    statusType: 'error' },
+    { name: 'William Brown',     condition: 'CHF',             lastCheckIn: '2026-03-16', status: 'In Review',  statusType: 'info' },
+    { name: 'Yuki Tanaka',       condition: 'CKD Stage 3',     lastCheckIn: '2026-03-06', status: 'Enrolled',   statusType: 'success' },
+    { name: 'Lisa Washington',   condition: 'Type 2 Diabetes', lastCheckIn: '2026-03-14', status: 'Enrolled',   statusType: 'success' },
+    { name: 'Ahmad Hassan',      condition: 'Hypertension',    lastCheckIn: '2026-03-10', status: 'At Risk',    statusType: 'warning' },
+    { name: 'Carmen Diaz',       condition: 'CHF',             lastCheckIn: '2026-03-12', status: 'Enrolled',   statusType: 'success' },
+    { name: 'Thomas Lee',        condition: 'Type 2 Diabetes', lastCheckIn: '2026-03-05', status: 'Overdue',    statusType: 'error' },
+    { name: 'Aisha Mohammed',    condition: 'CKD Stage 2',     lastCheckIn: '2026-03-15', status: 'Enrolled',   statusType: 'success' },
+    { name: 'Daniel Garcia',     condition: 'Hypertension',    lastCheckIn: '2026-03-08', status: 'In Review',  statusType: 'info' },
+    { name: 'Helen Nguyen',      condition: 'Type 2 Diabetes', lastCheckIn: '2026-03-11', status: 'Enrolled',   statusType: 'success' },
+    { name: 'Oscar Ramirez',     condition: 'CHF',             lastCheckIn: '2026-03-09', status: 'At Risk',    statusType: 'warning' },
+    { name: 'Rachel Adams',      condition: 'CKD Stage 3',     lastCheckIn: '2026-03-13', status: 'Enrolled',   statusType: 'success' }
+  ];
+
+  var COLUMNS = [
+    { key: 'name',        label: 'Patient',       sortable: true  },
+    { key: 'condition',   label: 'Condition',      sortable: true  },
+    { key: 'lastCheckIn', label: 'Last Check-In',  sortable: true  },
+    { key: 'status',      label: 'Status',         sortable: true  }
+  ];
+
+  var SVG_PREV = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg>';
+  var SVG_NEXT = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>';
+  var SVG_SEARCH = '<svg class="search-box-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4"/><line x1="10" y1="10" x2="13" y2="13"/></svg>';
+
+  function formatDate(iso) {
+    var d = new Date(iso + 'T00:00:00');
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  }
+
+  function badgeHTML(row) {
+    return '<span class="badge badge-' + row.statusType + ' badge-dot badge-sm">' + row.status + '</span>';
+  }
+
+  function initDatatable(containerId, data) {
+    var container = document.getElementById(containerId);
+    if (!container) return;
+
+    var state = {
+      data: data.slice(),
+      filtered: data.slice(),
+      page: 1,
+      pageSize: 10,
+      search: '',
+      sortKey: null,
+      sortDir: 'asc',
+      debounceTimer: null
+    };
+
+    function applyFilters() {
+      var q = state.search.toLowerCase();
+      if (q) {
+        state.filtered = state.data.filter(function (row) {
+          return COLUMNS.some(function (col) {
+            return String(row[col.key]).toLowerCase().indexOf(q) !== -1;
+          });
+        });
+      } else {
+        state.filtered = state.data.slice();
+      }
+
+      if (state.sortKey) {
+        var dir = state.sortDir === 'asc' ? 1 : -1;
+        var key = state.sortKey;
+        state.filtered.sort(function (a, b) {
+          var va = String(a[key]).toLowerCase();
+          var vb = String(b[key]).toLowerCase();
+          if (va < vb) return -1 * dir;
+          if (va > vb) return 1 * dir;
+          return 0;
+        });
+      }
+    }
+
+    function totalPages() {
+      return Math.max(1, Math.ceil(state.filtered.length / state.pageSize));
+    }
+
+    function pageRows() {
+      var start = (state.page - 1) * state.pageSize;
+      return state.filtered.slice(start, start + state.pageSize);
+    }
+
+    function render() {
+      applyFilters();
+      if (state.page > totalPages()) state.page = totalPages();
+
+      var rows = pageRows();
+      var start = (state.page - 1) * state.pageSize + 1;
+      var end = Math.min(state.page * state.pageSize, state.filtered.length);
+      var total = state.data.length;
+      var filtered = state.filtered.length;
+
+      var html = '';
+
+      /* Controls */
+      html += '<div class="datatable-controls">';
+      html += '  <div class="datatable-entries">';
+      html += '    <span class="datatable-entries-label">Show</span>';
+      html += '    <select class="datatable-entries-select" data-dt-entries>';
+      [10, 25, 50].forEach(function (n) {
+        html += '<option value="' + n + '"' + (n === state.pageSize ? ' selected' : '') + '>' + n + '</option>';
+      });
+      html += '    </select>';
+      html += '    <span class="datatable-entries-label">entries</span>';
+      html += '  </div>';
+      html += '  <div class="datatable-search">';
+      html += '    <div class="search-box">';
+      html += '      ' + SVG_SEARCH;
+      html += '      <input class="search-box-input" type="text" placeholder="Search..." value="' + state.search.replace(/"/g, '&quot;') + '" data-dt-search>';
+      html += '    </div>';
+      html += '  </div>';
+      html += '</div>';
+
+      /* Table */
+      html += '<div class="table-wrapper">';
+      html += '<table class="table table-hover" aria-label="Patient datatable">';
+      html += '<thead><tr>';
+      COLUMNS.forEach(function (col) {
+        var sortClass = 'table-sort';
+        var ariaSort = 'none';
+        if (state.sortKey === col.key) {
+          sortClass += state.sortDir === 'asc' ? ' table-sort-asc' : ' table-sort-desc';
+          ariaSort = state.sortDir === 'asc' ? 'ascending' : 'descending';
+        }
+        if (col.sortable) {
+          html += '<th scope="col" class="' + sortClass + '" aria-sort="' + ariaSort + '" data-dt-sort="' + col.key + '">' + col.label + '</th>';
+        } else {
+          html += '<th scope="col">' + col.label + '</th>';
+        }
+      });
+      html += '</tr></thead>';
+      html += '<tbody>';
+
+      if (rows.length === 0) {
+        html += '<tr><td class="datatable-empty" colspan="' + COLUMNS.length + '">No matching records found</td></tr>';
+      } else {
+        rows.forEach(function (row) {
+          html += '<tr>';
+          html += '<td>' + row.name + '</td>';
+          html += '<td>' + row.condition + '</td>';
+          html += '<td>' + formatDate(row.lastCheckIn) + '</td>';
+          html += '<td>' + badgeHTML(row) + '</td>';
+          html += '</tr>';
+        });
+      }
+
+      html += '</tbody></table></div>';
+
+      /* Footer */
+      var infoText;
+      if (filtered === 0) {
+        infoText = 'Showing 0 to 0 of 0 entries';
+        if (state.search) infoText += ' (filtered from ' + total + ' total)';
+      } else {
+        infoText = 'Showing ' + start + ' to ' + end + ' of ' + filtered + ' entries';
+        if (filtered < total) infoText += ' (filtered from ' + total + ' total)';
+      }
+
+      html += '<div class="datatable-footer">';
+      html += '  <span class="datatable-info">' + infoText + '</span>';
+      html += '  <div class="datatable-pagination">';
+
+      /* Prev */
+      html += '<button class="datatable-page-btn" data-dt-page="prev"' + (state.page <= 1 ? ' disabled' : '') + ' aria-label="Previous page">' + SVG_PREV + '</button>';
+
+      /* Page numbers */
+      for (var i = 1; i <= totalPages(); i++) {
+        html += '<button class="datatable-page-btn' + (i === state.page ? ' active' : '') + '" data-dt-page="' + i + '"' + (i === state.page ? ' aria-current="page"' : '') + '>' + i + '</button>';
+      }
+
+      /* Next */
+      html += '<button class="datatable-page-btn" data-dt-page="next"' + (state.page >= totalPages() ? ' disabled' : '') + ' aria-label="Next page">' + SVG_NEXT + '</button>';
+
+      html += '  </div>';
+      html += '</div>';
+
+      container.innerHTML = html;
+    }
+
+    /* Event delegation */
+    container.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-dt-page]');
+      if (btn) {
+        var val = btn.getAttribute('data-dt-page');
+        if (val === 'prev') state.page = Math.max(1, state.page - 1);
+        else if (val === 'next') state.page = Math.min(totalPages(), state.page + 1);
+        else state.page = parseInt(val, 10);
+        render();
+        return;
+      }
+
+      var sortTh = e.target.closest('[data-dt-sort]');
+      if (sortTh) {
+        var key = sortTh.getAttribute('data-dt-sort');
+        if (state.sortKey === key) {
+          state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          state.sortKey = key;
+          state.sortDir = 'asc';
+        }
+        render();
+        return;
+      }
+    });
+
+    container.addEventListener('input', function (e) {
+      if (e.target.hasAttribute('data-dt-search')) {
+        clearTimeout(state.debounceTimer);
+        state.debounceTimer = setTimeout(function () {
+          state.search = e.target.value;
+          state.page = 1;
+          render();
+        }, 150);
+        return;
+      }
+    });
+
+    container.addEventListener('change', function (e) {
+      if (e.target.hasAttribute('data-dt-entries')) {
+        state.pageSize = parseInt(e.target.value, 10);
+        state.page = 1;
+        render();
+        return;
+      }
+    });
+
+    render();
+  }
+
+  /* Initialize both datatables */
+  initDatatable('dt-default', DATA);
+  initDatatable('dt-compact', DATA);
+
+})();
+</script>
