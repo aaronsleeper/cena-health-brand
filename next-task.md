@@ -1,23 +1,21 @@
-# INFRA-03: @apply Migration + PL Inline Style Cleanup
+# SLIDES-01: Cover Slide + Content Slide + Stat Callout + Data Slide
 
-_Generated: 2026-03-16_
-_Phase: Implementation hardening — no visual changes, no renames_
+_Generated: 2026-03-17_
+_Roadmap refs: B1 (Data Slide), plus three existing stubs_
 
 ---
 
 ## Objective
 
-Two cleanup tasks in one pass:
+Four slide PL pages. Three have CSS already written and stubs only need the
+component HTML and page content built out. One is new end-to-end.
 
-**Part A — @apply migration:** Rewrite the 7 agent-built component CSS files
-to use `@apply` where Tailwind utilities exist, matching the authoring style
-of the original 4 components (alert, button, card, input).
-
-**Part B — PL inline style cleanup:** Add missing layout utility classes to
-`pl-head.html`, then replace every inline `style=""` attribute in the 7
-component HTML files with those classes.
-
-No visual output changes in either part. No class renames. No token value changes.
+| Page | CSS exists? | Stub exists? | Work needed |
+|---|---|---|---|
+| `slides-cover.html` | ✅ `cover-slide.css` | ✅ stub | Build component HTML + implement page |
+| `slides-content.html` | ✅ `content-slide.css` | ✅ stub | Build component HTML + implement page |
+| `slides-stat.html` | ✅ `stat-callout.css` | ✅ stub | Build component HTML + implement page |
+| `slides-data.html` | ❌ needs CSS | ❌ new page | New CSS + component HTML + new page + nav link |
 
 ---
 
@@ -25,365 +23,318 @@ No visual output changes in either part. No class renames. No token value change
 
 Read these files completely before writing anything:
 
-1. `src/css/components/button.css` — reference for correct @apply style
-2. `src/css/cena.css` — the `@theme` block defines what utilities are available
-3. `pattern-library/partials/pl-head.html` — existing PL chrome classes
-4. `CLAUDE.md` — @apply rules and no-inline-style rule
+1. `.agents/skills/pl-component-builder/SKILL.md`
+2. `src/css/slides/cover-slide.css` — all classes defined
+3. `src/css/slides/content-slide.css` — all classes defined
+4. `src/css/slides/stat-callout.css` — all classes defined
+5. `pattern-library/components/slide-quote.html` — reference for component structure
+6. `pattern-library/components/slide-divider.html` — second reference
+7. `pattern-library/pages/charts.html` — Chart.js CDN loading pattern to replicate
+8. `pattern-library/partials/pl-nav.html` — Slides section, find insertion point for Data
+9. `CLAUDE.md` — full rules, especially no pie/donut charts
 
 ---
 
-## Part A — @apply Migration
+## Pre-Build Plan (output before writing any file)
 
-### Files to update
-
-- `src/css/components/badge.css`
-- `src/css/components/dropdown.css`
-- `src/css/components/form-group.css`
-- `src/css/components/modal.css`
-- `src/css/components/nav.css`
-- `src/css/components/table.css`
-- `src/css/components/toast.css`
-
-### Rules
-
-**Use `@apply` for:**
-- Layout: `display`, `flex-direction`, `align-items`, `justify-content`,
-  `overflow`, `position`, `inset`, `z-index`
-- Sizing: `width: 100%`, `min-width: 0`, `flex: 1`, `flex-shrink: 0`
-- Typography: font-size, font-weight, font-family (via `font-sans`),
-  white-space, text-align, text-decoration, list-style, cursor
-- Spacing: padding, margin, gap — when they match the spacing scale
-- Border radius: when using `var(--radius-*)` values
-- Colors: background-color, color, border-color — when a utility maps cleanly
-- Shadows: `var(--shadow-md)` → `@apply shadow-md`
-
-**Keep as raw CSS for:**
-- `color-mix()`, `oklch()`, `calc()` values — no utility equivalent
-- `transition` with multiple values
-- `animation` and `@keyframes`
-- Specific pixel/rem measurements with no utility equivalent
-  (e.g. `width: 2.75rem` for touch targets — keep raw, add a comment)
-- All rules inside `@media (prefers-reduced-motion: reduce)`
-- Custom CSS variable assignments
-
-**Never** `@apply` a semantic class inside another semantic class.
-
-### Quick reference — common mappings
-
-| Raw CSS | @apply |
-|---|---|
-| `display: flex` | `@apply flex` |
-| `display: inline-flex` | `@apply inline-flex` |
-| `display: block` | `@apply block` |
-| `display: none` | `@apply hidden` |
-| `flex-direction: column` | `@apply flex-col` |
-| `align-items: center` | `@apply items-center` |
-| `align-items: flex-start` | `@apply items-start` |
-| `justify-content: center` | `@apply justify-center` |
-| `justify-content: flex-end` | `@apply justify-end` |
-| `justify-content: space-between` | `@apply justify-between` |
-| `flex: 1` | `@apply flex-1` |
-| `flex-shrink: 0` | `@apply shrink-0` |
-| `flex-wrap: wrap` | `@apply flex-wrap` |
-| `overflow: hidden` | `@apply overflow-hidden` |
-| `overflow-x: auto` | `@apply overflow-x-auto` |
-| `overflow-y: auto` | `@apply overflow-y-auto` |
-| `position: relative` | `@apply relative` |
-| `position: absolute` | `@apply absolute` |
-| `position: fixed` | `@apply fixed` |
-| `position: sticky` | `@apply sticky` |
-| `inset: 0` | `@apply inset-0` |
-| `width: 100%` | `@apply w-full` |
-| `min-width: 0` | `@apply min-w-0` |
-| `white-space: nowrap` | `@apply whitespace-nowrap` |
-| `cursor: pointer` | `@apply cursor-pointer` |
-| `cursor: not-allowed` | `@apply cursor-not-allowed` |
-| `pointer-events: none` | `@apply pointer-events-none` |
-| `user-select: none` | `@apply select-none` |
-| `list-style: none` | `@apply list-none` |
-| `text-decoration: none` | `@apply no-underline` |
-| `text-align: left` | `@apply text-left` |
-| `font-family: var(--font-body)` | `@apply font-sans` |
-| `font-size: var(--text-xs)` | `@apply text-xs` |
-| `font-size: var(--text-sm)` | `@apply text-sm` |
-| `font-size: var(--text-base)` | `@apply text-base` |
-| `font-weight: 400` | `@apply font-normal` |
-| `font-weight: 500` | `@apply font-medium` |
-| `font-weight: 600` | `@apply font-semibold` |
-| `border-radius: var(--radius-sm)` | `@apply rounded-sm` |
-| `border-radius: var(--radius-md)` | `@apply rounded-md` |
-| `border-radius: var(--radius-lg)` | `@apply rounded-lg` |
-| `border-radius: var(--radius-full)` | `@apply rounded-full` |
-| `border: none` | `@apply border-none` |
-| `border: 1px solid transparent` | `@apply border border-transparent` |
-| `background: transparent` | `@apply bg-transparent` |
-| `box-shadow: var(--shadow-md)` | `@apply shadow-md` |
-| `box-shadow: var(--shadow-lg)` | `@apply shadow-lg` |
-| `z-index: 40` | `@apply z-40` |
-| `z-index: 50` | `@apply z-50` |
-| `z-index: 60` | `@apply z-60` |
+Before writing any file, output a plan covering:
+- Class inventory for each slide type (from reading the CSS files)
+- Sections to show per PL page
+- How Chart.js is loaded for the data slide (CDN in page head only)
+- CENA color constants approach for the data slide
+- The file checklist for each slide
 
 ---
 
-## Part B — PL Inline Style Cleanup
+## Part A — Cover Slide (`slides-cover.html`)
 
-### Step 1: Add utility classes to `pl-head.html`
+### What it is
 
-Add the following classes to the `<style>` block in
-`pattern-library/partials/pl-head.html`, after the existing `.pl-note` rule:
+A 16:9 presentation slide with logo zone (left 2 columns) and title block
+(right 4 columns). Three variants: Standard, Dark, Conference/Event.
+Stagger entrance animation.
 
-```css
-  /* ---- Layout helpers for component examples ---- */
+### Sections to show in `slide-cover.html`
 
-  /* Inline row of components — wraps on overflow */
-  .pl-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    align-items: center;
-  }
+1. **Standard** — warm white surface, logo placeholder, title + subtitle + presenter
+2. **Dark Variant** — `.slide-cover--dark`, near-black teal background
+3. **Conference / Event** — `.slide-cover__event` overline above the title
+4. **Stagger Animation** — `.slide-cover--stagger`, add a "Replay" button that
+   removes and re-adds the class to restart the animation
 
-  /* Inline row with tighter gap */
-  .pl-row-sm {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    align-items: center;
-  }
+Use realistic content:
+- Title: "Medically Tailored Meals at Scale"
+- Subtitle: "A new model for food-as-medicine in managed care"
+- Presenter: "Aaron Sleeper, CEO · Q1 2026 Investor Update"
+- Event: "HLTH 2026 · Las Vegas, NV"
 
-  /* Stacked column — gap-4 (use .pl-stack for gap-3) */
-  .pl-stack-lg {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
+### Canvas treatment
 
-  /* Constrained demo containers — center within canvas */
-  .pl-demo-sm  { max-width: 25rem; margin: 0 auto; }
-  .pl-demo-md  { max-width: 32.5rem; margin: 0 auto; }
-  .pl-demo-lg  { max-width: 40rem; margin: 0 auto; }
-  .pl-demo-xl  { max-width: 36rem; }
+Slides need space — wrap each demo in a `.pl-canvas` with
+`style="background: var(--color-surface-secondary); padding: var(--space-4);"`.
+This gives the 16:9 slide room to breathe against the PL background.
+Add a `pl-canvas-label` noting the aspect ratio.
 
-  /* Canvas that needs extra height for overlays (dropdowns, tooltips) */
-  .pl-canvas-tall { min-height: 16rem; }
-  .pl-canvas-xl   { min-height: 20rem; }
+---
 
-  /* Right-aligned trigger — pushes a single child to the right */
-  .pl-align-right {
-    display: flex;
-    justify-content: flex-end;
-  }
+## Part B — Content Slide (`slides-content.html`)
 
-  /* Inline demo text — body copy used in context examples */
-  .pl-demo-text {
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    font-weight: 400;
-    color: var(--color-text-primary);
-  }
+### What it is
 
-  .pl-demo-text-medium {
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    font-weight: 500;
-    color: var(--color-text-primary);
-  }
+A 16:9 content frame with a 6-column grid, header zone, content zone with
+four layout patterns, four surface variants, footer zone, and progressive reveal.
 
-  /* Static menu panel replica — for item state documentation */
-  .pl-menu-demo {
-    max-width: 14rem;
-    background: var(--color-surface-page);
-    border: 1px solid var(--color-border-default);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    padding: var(--space-1) 0;
-  }
+### Sections to show in `slide-content.html`
+
+1. **Single Column** — `.slide-content__body--single`, title + body text + bullet list
+2. **Two Column** — `.slide-content__body--two-col`, two panels side by side
+3. **Asymmetric (4+2)** — `.slide-content__body--asym`, text left + visual placeholder right
+4. **Asymmetric Reversed (2+4)** — visual left + text right
+5. **Surface: Teal** — `.slide-content--teal` wrapping any of the above layouts
+6. **Surface: Sage** — `.slide-content--sage`
+7. **Surface: Gradient** — `.slide-content--gradient`
+8. **Progressive Reveal** — `.slide-content__reveal-item` on each list item,
+   a "Reveal next" button triggers `.reveal-item--visible` one at a time
+9. **With Stat Block** — a content slide with a `.stat-block` embedded in the body zone
+
+Use realistic clinical content:
+- Title: "Program Outcomes — Q1 2026"
+- Overline: "CLINICAL IMPACT"
+- Body: HbA1c reduction stats, readmission rates, patient satisfaction
+- Footnote: "Data sourced from pilot program, n=847, Jan–Mar 2026"
+
+---
+
+## Part C — Stat Callout Slide (`slides-stat.html`)
+
+### What it is
+
+Three stat layout patterns: full-slide single stat, embedded stat block,
+and triple stat row. With count-up animation choreography.
+
+### Sections to show in `slide-stat.html`
+
+1. **Full-Slide Single Stat** — `.slide-stat`, centered, teal surface, watermark
+2. **With Illustration Well** — `.slide-stat--illustrated`, stat left + SVG placeholder right
+3. **Embedded Stat Block** — `.stat-block` inside a `.slide-content` body zone
+4. **Triple Stat Row** — `.stat-row` with three `.stat-row__item` entries
+5. **Triple Row with Dividers** — `.stat-row--dividers`
+6. **Count-Up Animation** — a live demo with "Animate" button that triggers
+   `.stat-block__number--counting` and count-up JS
+
+Use realistic numbers:
+- "23%" — reduction in 30-day readmission rates
+- "4.8 / 5" — average patient satisfaction score
+- "847" — patients enrolled in Q1 2026
+- "18%" — reduction in total cost of care
+
+### Count-up JS for the demo
+
+IIFE in the component HTML:
+
+```js
+function countUp(el, target, duration) {
+  var start = 0;
+  var isFloat = String(target).indexOf('.') !== -1;
+  var decimals = isFloat ? String(target).split('.')[1].length : 0;
+  var step = (target / (duration / 16));
+  var current = 0;
+  var timer = setInterval(function() {
+    current += step;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = isFloat
+      ? current.toFixed(decimals)
+      : Math.floor(current).toLocaleString();
+  }, 16);
+}
 ```
 
-### Step 2: Update the 7 component HTML files
-
-Replace every inline `style=""` attribute with the appropriate PL class or
-combination of classes. The exact replacements by file follow.
-
-**Work through each file systematically. For each inline style found:**
-1. Identify which new PL class covers it
-2. Replace `style="..."` with `class="[pl-class]"` (or add to existing class list)
-3. If no single class covers it exactly, use the closest match and note the delta
+Trigger on "Animate" button click. Apply `--counting` classes, run count-up
+on each `.stat-block__number--animate` or `.stat-row__number--animate` element.
 
 ---
 
-#### `pattern-library/components/badge.html`
+## Part D — Data Slide (new, `slides-data.html`)
 
-| Current inline style | Replace with |
-|---|---|
-| `style="display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center;"` | `class="pl-row"` |
-| `style="display: flex; gap: var(--space-2); flex-wrap: wrap;"` | `class="pl-row-sm"` |
-| `style="max-width: 30rem; display: flex; flex-direction: column; gap: var(--space-4);"` | `class="pl-stack-lg"` with `style="max-width: 30rem;"` remaining (no utility for this exact width) |
-| `style="display: flex; align-items: center; gap: var(--space-2);"` | `class="pl-row-sm"` |
-| `style="display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap;"` | `class="pl-row-sm"` |
-| `style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) 0; border-top: 1px solid var(--color-border-default);"` | Keep as inline style — this is a one-off layout row, not a reusable pattern |
-| `style="font-family: var(--font-body); font-size: var(--text-base); font-weight: 500; color: var(--color-text-primary);"` | `class="pl-demo-text-medium"` |
-| `style="display: flex; flex-direction: column; gap: var(--space-4);"` (wrapping surface canvases) | `class="pl-stack-lg"` |
+### What it is
 
----
+A 16:9 presentation slide designed to hold a Chart.js chart with an
+annotation system — headline stat, chart, source citation, and optional
+key insight callout. The chart is the primary visual; all other elements
+support it.
 
-#### `pattern-library/components/dropdown.html`
+Roadmap item B1. Uses the same Chart.js v4 CDN and `CENA.*` color constants
+established in `charts.html` (COMP-07).
 
-| Current inline style | Replace with |
-|---|---|
-| `style="background: var(--color-surface-page); min-height: 16rem;"` on `.pl-canvas` | Add `class="pl-canvas-tall"` to the div alongside `pl-canvas`, keep background as inline style (canvas backgrounds are always inline per convention) |
-| `style="background: var(--color-surface-page); min-height: 20rem;"` | `pl-canvas-xl` modifier |
-| `style="display: flex; justify-content: flex-end;"` | `class="pl-align-right"` |
-| `style="max-width: 14rem; background: ...; border: ...; box-shadow: ...; padding: ...;"` (static states panel) | `class="pl-menu-demo"` |
-| `style="pointer-events: none; background-color: var(--color-surface-primary);"` on items | Keep as inline — these are state simulation overrides, acceptable per button.html precedent where PL-only `<style>` blocks handle this. Move these to a `<style>` block at the top of dropdown.html instead |
-| `style="pointer-events: none; background-color: var(--color-surface-secondary);"` | Same — move to `<style>` block |
-| `style="display: flex; flex-direction: column; gap: var(--space-4);"` (surface stacks) | `class="pl-stack-lg"` |
-| `style="display: inline-flex; margin-left: var(--space-1);"` on chevron spans (JS-injected) | Leave — JS-injected inline styles are acceptable |
+### CSS — `src/css/slides/data-slide.css`
 
-For the item state simulation styles, add a `<style>` block at the top of
-`dropdown.html` (after the `@component-meta` comment):
+```
+@layer components {
 
+  .slide-data { ... }               /* 16:9 container, surface-page default */
+  .slide-data--teal { ... }         /* surface-teal variant */
+  .slide-data--dark { ... }         /* dark teal variant */
+
+  /* Header zone */
+  .slide-data__header { ... }       /* overline + headline stat + subtitle */
+  .slide-data__overline { ... }
+  .slide-data__headline { ... }     /* large number — the answer, not the chart */
+  .slide-data__subtitle { ... }
+
+  /* Chart zone */
+  .slide-data__chart { ... }        /* flex-1, contains Chart.js canvas */
+  .slide-data__chart canvas { ... } /* width: 100%; height: 100% */
+
+  /* Insight callout — optional floating annotation */
+  .slide-data__insight { ... }      /* small pill positioned on the chart */
+
+  /* Footer */
+  .slide-data__footer { ... }
+  .slide-data__source { ... }       /* citation text */
+  .slide-data__wordmark { ... }
+}
+```
+
+Design values:
+- Container: same as other slides — `aspect-ratio: 16/9`, `padding: var(--space-20)`,
+  grid or flex layout
+- Headline number: `var(--font-display)`, `var(--text-3xl)`, `var(--color-brand-primary)`
+- Insight callout: `var(--color-surface-page)`, `var(--radius-full)`,
+  `var(--shadow-sm)`, `var(--text-xs)`, `padding: var(--space-1-5) var(--space-3)`
+- Dark variant: same as `.slide-cover--dark` — `oklch(18.0% 0.010 183)` background,
+  `var(--color-text-inverse)` text
+
+### CSS import
+
+Add to `src/css/main.css` in the Slides section:
+`@import "./slides/data-slide.css";`
+
+### Sections to show in `slide-data.html`
+
+1. **HbA1c Trend** — line chart, 6-month HbA1c data for 2 patient cohorts,
+   headline "−1.4%" (average reduction), source citation
+2. **Enrollment Bar** — monthly enrollment counts as a bar chart,
+   headline "847 patients" enrolled Q1 2026
+3. **With Insight Callout** — line chart with a `.slide-data__insight` pill
+   positioned to annotate a significant data point
+4. **Teal Surface Variant** — `.slide-data--teal` with the enrollment chart
+5. **Dark Variant** — `.slide-data--dark` with adjusted chart colors
+
+### Chart.js loading
+
+Add to `slides-data.html` `<head>` only:
 ```html
-<style>
-  /* PL-only state simulation — never add to src/css/ */
-  .dropdown-item--state-hover  { background-color: var(--color-surface-primary) !important; pointer-events: none; }
-  .dropdown-item--state-active { background-color: var(--color-surface-secondary) !important; pointer-events: none; }
-  .dropdown-item--state-danger-hover { background-color: var(--color-error-bg) !important; pointer-events: none; }
-</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 ```
 
-Then update the static state items to use these classes instead of inline styles.
+### CENA color constants
 
----
-
-#### `pattern-library/components/modal.html`
-
-| Current inline style | Replace with |
-|---|---|
-| `style="max-width: 32.5rem; margin: 0 auto;"` | `class="pl-demo-md"` |
-| `style="max-width: 25rem; margin: 0 auto;"` | `class="pl-demo-sm"` |
-| `style="max-width: 40rem; margin: 0 auto;"` | `class="pl-demo-lg"` |
-| `style="display: flex; gap: var(--space-3); flex-wrap: wrap;"` | `class="pl-row"` |
-| `position: relative` on static `.modal` elements | Keep — required for PL static display |
-
----
-
-#### `pattern-library/components/toast.html`
-
-| Current inline style | Replace with |
-|---|---|
-| `style="display: flex; flex-direction: column; gap: var(--space-3); max-width: 22rem; margin: 0 auto;"` | `class="pl-stack pl-demo-sm"` (`.pl-stack` already exists with `gap-3`) |
-| `style="max-width: 22rem; margin: 0 auto;"` | `class="pl-demo-sm"` |
-| `style="display: flex; gap: var(--space-3); flex-wrap: wrap;"` | `class="pl-row"` |
-| `position: relative` on static `.toast` elements | Keep — required for PL static display |
-
----
-
-#### `pattern-library/components/nav.html`
-
-| Current inline style | Replace with |
-|---|---|
-| `style="display: flex; flex-direction: column; gap: var(--space-6);"` (breadcrumb examples) | `class="pl-stack-lg"` |
-| `style="pointer-events: none;"` on static tab bar | Move to `<style>` block |
-| `style="color: var(--color-text-primary); background-color: var(--color-surface-primary); border-radius: var(--radius-sm) var(--radius-sm) 0 0;"` (hover state sim) | Move to `<style>` block |
-
-Add a `<style>` block at the top of `nav.html`:
-
-```html
-<style>
-  /* PL-only state simulation — never add to src/css/ */
-  .tab--state-hover {
-    color: var(--color-text-primary) !important;
-    background-color: var(--color-surface-primary) !important;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
-    pointer-events: none;
-  }
-</style>
+Use identical constants to `charts.html`:
+```js
+var CENA = {
+  primary:   '#1B685E',
+  secondary: '#3A8478',
+  sage:      '#81B983',
+  warm:      '#B3ADA4',
+  success:   '#3A8E64',
+  warning:   '#B58B20',
+  error:     '#C13C3B',
+  info:      '#287AA3',
+  gridColor: 'rgba(209, 205, 198, 0.5)',
+  textColor: '#5B544C'
+};
 ```
 
-Replace the hover state tab's inline style with `class="tab tab--state-hover"`.
-Add `style="pointer-events: none;"` static tab bars — move to a wrapping div
-with a PL class rather than on the `tabs` element directly so the semantic
-class isn't contaminated:
-
-```html
-<div style="pointer-events: none;">
-  <div class="tabs" role="tablist">
-    ...
-  </div>
-</div>
+For the dark variant charts, override grid and text colors:
+```js
+var CENA_DARK = Object.assign({}, CENA, {
+  gridColor: 'rgba(255,255,255,0.08)',
+  textColor: 'rgba(255,255,255,0.6)'
+});
 ```
 
 ---
 
-#### `pattern-library/components/table.html`
+## Files to create / modify
 
-Table.html has no significant inline style issues — the component markup is clean
-and the PL wrappers don't use inline styles. **No changes needed.**
+### Cover Slide
+1. `pattern-library/components/slide-cover.html` — new component HTML
+2. `pattern-library/pages/slides-cover.html` — replace stub with full implementation
+
+### Content Slide
+3. `pattern-library/components/slide-content.html` — new component HTML
+4. `pattern-library/pages/slides-content.html` — replace stub with full implementation
+
+### Stat Callout
+5. `pattern-library/components/slide-stat.html` — new component HTML
+6. `pattern-library/pages/slides-stat.html` — replace stub with full implementation
+
+### Data Slide (new)
+7. `src/css/slides/data-slide.css` — new CSS file
+8. `src/css/main.css` — add `@import "./slides/data-slide.css"` in Slides section
+9. `pattern-library/components/slide-data.html` — new component HTML
+10. `pattern-library/pages/slides-data.html` — new page with Chart.js CDN in head
+11. `pattern-library/partials/pl-nav.html` — add "Data" under Slides, after "Stat Callout"
+12. `pattern-library/pages/index.html` — add index card for Data Slide
 
 ---
 
-#### `pattern-library/components/form-group.html`
+## Known constraints
 
-| Current inline style | Replace with |
-|---|---|
-| `style="max-width: 36rem;"` | `class="pl-demo-xl"` |
-| `style="max-width: 24rem;"` | Keep as inline — `pl-demo-sm` is 25rem, not exact. No utility for 24rem. |
+- All slides use `aspect-ratio: 16/9` — never fixed pixel heights
+- Canvas backgrounds: `style="background: var(--color-surface-secondary); padding: var(--space-4);"` — gives slides visual context in the PL
+- Chart.js CDN only on `slides-data.html` — not in `pl-head.html`
+- No pie or donut charts — ever
+- All CENA chart colors via the constants object — never raw hex in JS
+- Count-up animation must respect `prefers-reduced-motion` — check the flag
+  before running count-up; if reduced motion, set the final value immediately
+- No raw hex in CSS, no hardcoded px — all tokens
+- All slide CSS inside `@layer components` (already the case for existing slide files)
+- Dark variant background `oklch(18.0% 0.010 183)` is acceptable as a raw value
+  in the CSS file because it is a one-off brand value with no corresponding token —
+  document this with a comment
 
 ---
 
 ## Verification
 
-After both parts are complete:
-
-1. Run `npm run build:css` — must pass without errors
-
-2. Check that **no inline `style=""` attributes remain** in the 7 component HTML
-   files except for:
-   - Canvas background colors (always inline per convention)
-   - `position: relative` on static component instances shown outside a backdrop
-   - JS-injected styles
-   - One-off measurements with no utility equivalent (document these)
-
-3. Open each PL page and confirm no visual regression:
-   - `http://localhost:5174/pattern-library/pages/alerts.html`
-   - `http://localhost:5174/pattern-library/pages/badges.html`
-   - `http://localhost:5174/pattern-library/pages/buttons.html`
-   - `http://localhost:5174/pattern-library/pages/dropdowns.html`
-   - `http://localhost:5174/pattern-library/pages/form-groups.html`
-   - `http://localhost:5174/pattern-library/pages/modals.html`
-   - `http://localhost:5174/pattern-library/pages/nav.html`
-   - `http://localhost:5174/pattern-library/pages/tables.html`
-   - `http://localhost:5174/pattern-library/pages/toasts.html`
+1. `npm run build:css` — must pass
+2. `http://localhost:5174/pattern-library/pages/slides-cover.html` — all 4 sections,
+   stagger animation plays and replays on button click
+3. `http://localhost:5174/pattern-library/pages/slides-content.html` — all 9 sections,
+   progressive reveal demo works
+4. `http://localhost:5174/pattern-library/pages/slides-stat.html` — count-up animation
+   triggers on button click, respects reduced motion
+5. `http://localhost:5174/pattern-library/pages/slides-data.html` — charts render,
+   dark variant uses adjusted colors, "Data" appears in PL nav
+6. No console errors from Chart.js on slides-data.html
 
 ---
 
 ## Completion Report
 
 ```
-## Completion Report — INFRA-03
+## Completion Report — SLIDES-01
 
-### Part A — @apply migration
-- CSS files modified: [list]
-- Rules converted to @apply: [count per file]
-- Rules kept as raw CSS with reason: [brief summary per file]
-
-### Part B — PL inline style cleanup
-- New PL classes added to pl-head.html: [list]
-- HTML files modified: [list]
-- Inline styles remaining (with reason): [list each one]
-
-### Build + visual check
+- Files created: [list]
+- Files modified: [list]
+- New CSS classes (data slide): [list]
+- Judgment calls: [list or "none"]
+- Reduced motion handled: yes / no
 - Build passes: yes / no
-- Visual regression: none / [describe]
-- Items deferred: [list, or "none"]
+- Items deferred: [list or "none"]
 ```
 
-Then:
 ```bash
 git add -A
-git commit -m "infra: @apply migration + PL layout utilities, remove inline styles"
+git commit -m "feat: slides track complete — cover, content, stat callout, data slide"
 ```
 
+**Verify at:** http://localhost:5174/pattern-library/pages/slides-cover.html
+
 ---
-**Verify at:** http://localhost:5174/pattern-library/pages/badges.html
+_After SLIDES-01, all buildable pattern library work is complete.
+Remaining: F2 (git baseline commit — no build needed), F1 (Figma variables — dedicated session)._

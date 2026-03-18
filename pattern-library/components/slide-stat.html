@@ -1,0 +1,296 @@
+<!--
+  @component-meta
+  name: Stat Callout Slide
+  category: Slides
+  file: slide-stat.html
+  classes: slide-stat, slide-stat__watermark, slide-stat__inner, slide-stat__overline, slide-stat__number, slide-stat__label, slide-stat__source, slide-stat--illustrated, slide-stat__illustration, stat-block, stat-block--illustrated, stat-block__content, stat-block__illustration, stat-block__overline, stat-block__number, stat-block__label, stat-block__source, stat-row, stat-row--dividers, stat-row__item, stat-row__number, stat-row__label
+  spec: components/slides/stat-callout.md
+  css: src/css/slides/stat-callout.css
+  when-to-use: Highlighting a single dramatic metric or a row of key stats in a pitch deck.
+  do-not-use-when: Presenting narrative content — use content slide instead.
+  @end-meta
+-->
+
+
+<section class="pl-section" data-pl-section="full-slide">
+  <h2 class="pl-section-title">Full-Slide Single Stat</h2>
+  <p class="pl-section-description">Centered stat on teal surface with optional watermark. The stat IS the slide.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-stat">
+      <div class="slide-stat__watermark">
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+          <circle cx="100" cy="100" r="90" stroke="currentColor" stroke-width="2" />
+          <circle cx="100" cy="100" r="60" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </div>
+      <div class="slide-stat__inner">
+        <p class="slide-stat__overline">READMISSION RATES</p>
+        <p class="slide-stat__number">23%</p>
+        <p class="slide-stat__label">reduction in 30-day readmission rates</p>
+        <p class="slide-stat__source">Pilot program, n=847, Jan–Mar 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="illustrated">
+  <h2 class="pl-section-title">With Illustration Well</h2>
+  <p class="pl-section-description">Stat left with SVG illustration placeholder right.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-stat slide-stat--illustrated">
+      <div class="slide-stat__inner">
+        <div>
+          <p class="slide-stat__overline">PATIENT SATISFACTION</p>
+          <p class="slide-stat__number">4.8 / 5</p>
+          <p class="slide-stat__label">average patient satisfaction score</p>
+          <p class="slide-stat__source">Patient survey, n=623, Feb 2026</p>
+        </div>
+        <div class="slide-stat__illustration">
+          <svg width="180" height="180" viewBox="0 0 180 180" fill="none" aria-hidden="true">
+            <rect width="180" height="180" rx="20" fill="var(--color-surface-page)" />
+            <text x="90" y="95" text-anchor="middle" font-family="var(--font-body)" font-size="12" fill="var(--color-text-tertiary)">Illustration</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="embedded">
+  <h2 class="pl-section-title">Embedded Stat Block</h2>
+  <p class="pl-section-description">A stat block embedded inside a content slide body zone.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-content">
+      <div class="slide-content__header">
+        <p class="slide-content__overline">CLINICAL IMPACT</p>
+        <h2 class="slide-content__title">Cost of Care Reduction</h2>
+      </div>
+      <div class="slide-content__body slide-content__body--asym">
+        <div class="slide-content__primary">
+          <p class="slide-content__text">The medically tailored meal program reduced the total cost of care for enrolled patients, driven primarily by fewer emergency department visits and shorter hospital stays.</p>
+        </div>
+        <div class="slide-content__visual">
+          <div class="stat-block">
+            <p class="stat-block__overline">COST OF CARE</p>
+            <p class="stat-block__number">18%</p>
+            <p class="stat-block__label">reduction in total cost of care</p>
+            <p class="stat-block__source">Claims analysis, Q1 2026</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-content__footer">
+        <p class="slide-content__footnote">Data sourced from pilot program, n=847, Jan–Mar 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="triple-row">
+  <h2 class="pl-section-title">Triple Stat Row</h2>
+  <p class="pl-section-description">Three stats side by side on teal surface.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">Standalone row on surface-secondary (#E7E4DF)</p>
+
+    <div style="max-width: 48rem; margin: 0 auto;">
+      <div class="stat-row">
+        <div class="stat-row__item">
+          <p class="stat-row__number">23%</p>
+          <p class="stat-row__label">reduction in 30-day readmission rates</p>
+        </div>
+        <div class="stat-row__item">
+          <p class="stat-row__number">4.8 / 5</p>
+          <p class="stat-row__label">average patient satisfaction score</p>
+        </div>
+        <div class="stat-row__item">
+          <p class="stat-row__number">847</p>
+          <p class="stat-row__label">patients enrolled in Q1 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="triple-dividers">
+  <h2 class="pl-section-title">Triple Row with Dividers</h2>
+  <p class="pl-section-description">Same row with vertical dividers between items.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">Standalone row on surface-secondary (#E7E4DF)</p>
+
+    <div style="max-width: 48rem; margin: 0 auto;">
+      <div class="stat-row stat-row--dividers">
+        <div class="stat-row__item">
+          <p class="stat-row__number">23%</p>
+          <p class="stat-row__label">reduction in 30-day readmission rates</p>
+        </div>
+        <div class="stat-row__item">
+          <p class="stat-row__number">4.8 / 5</p>
+          <p class="stat-row__label">average patient satisfaction score</p>
+        </div>
+        <div class="stat-row__item">
+          <p class="stat-row__number">847</p>
+          <p class="stat-row__label">patients enrolled in Q1 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="count-up">
+  <h2 class="pl-section-title">Count-Up Animation</h2>
+  <p class="pl-section-description">Click "Animate" to trigger count-up on numbers with staggered label/source reveal. Respects prefers-reduced-motion.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-stat" id="countup-slide-demo">
+      <div class="slide-stat__inner">
+        <p class="slide-stat__overline">ENROLLMENT</p>
+        <p class="slide-stat__number slide-stat__number--animate" data-target="847" id="countup-single">0</p>
+        <p class="slide-stat__label slide-stat__label--animate">patients enrolled in Q1 2026</p>
+        <p class="slide-stat__source slide-stat__source--animate">Program data, Jan–Mar 2026</p>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--space-4); text-align: center; display: flex; gap: var(--space-3); justify-content: center;">
+      <button class="btn btn--secondary btn--sm" id="countup-trigger">Animate</button>
+      <button class="btn btn--ghost btn--sm" id="countup-reset">Reset</button>
+    </div>
+  </div>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4); margin-top: var(--space-4);">
+    <p class="pl-canvas-label">Triple row count-up</p>
+
+    <div style="max-width: 48rem; margin: 0 auto;">
+      <div class="stat-row stat-row--dividers" id="countup-row-demo">
+        <div class="stat-row__item">
+          <p class="stat-row__number stat-row__number--animate stat-row__number--stagger-1" data-target="23">0</p>
+          <p class="stat-row__label stat-row__label--animate">% reduction in readmissions</p>
+        </div>
+        <div class="stat-row__item">
+          <p class="stat-row__number stat-row__number--animate stat-row__number--stagger-2" data-target="4.8">0</p>
+          <p class="stat-row__label stat-row__label--animate">/ 5 patient satisfaction</p>
+        </div>
+        <div class="stat-row__item">
+          <p class="stat-row__number stat-row__number--animate stat-row__number--stagger-3" data-target="847">0</p>
+          <p class="stat-row__label stat-row__label--animate">patients enrolled Q1 2026</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--space-4); text-align: center; display: flex; gap: var(--space-3); justify-content: center;">
+      <button class="btn btn--secondary btn--sm" id="countup-row-trigger">Animate Row</button>
+      <button class="btn btn--ghost btn--sm" id="countup-row-reset">Reset Row</button>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function countUp(el, target, duration) {
+    if (prefersReducedMotion) {
+      var isFloat = String(target).indexOf('.') !== -1;
+      var decimals = isFloat ? String(target).split('.')[1].length : 0;
+      el.textContent = isFloat ? target.toFixed(decimals) : Math.floor(target).toLocaleString();
+      return;
+    }
+    var isFloat = String(target).indexOf('.') !== -1;
+    var decimals = isFloat ? String(target).split('.')[1].length : 0;
+    var step = (target / (duration / 16));
+    var current = 0;
+    var timer = setInterval(function() {
+      current += step;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      el.textContent = isFloat
+        ? current.toFixed(decimals)
+        : Math.floor(current).toLocaleString();
+    }, 16);
+  }
+
+  /* Single stat demo */
+  var triggerBtn = document.getElementById('countup-trigger');
+  var resetBtn = document.getElementById('countup-reset');
+  var slideDemo = document.getElementById('countup-slide-demo');
+
+  if (triggerBtn && slideDemo) {
+    triggerBtn.addEventListener('click', function() {
+      var numEl = slideDemo.querySelector('.slide-stat__number--animate');
+      var labelEl = slideDemo.querySelector('.slide-stat__label--animate');
+      var sourceEl = slideDemo.querySelector('.slide-stat__source--animate');
+
+      numEl.classList.add('slide-stat__number--counting');
+      if (labelEl) labelEl.classList.add('slide-stat__label--visible');
+      if (sourceEl) sourceEl.classList.add('slide-stat__source--visible');
+
+      var target = parseFloat(numEl.getAttribute('data-target'));
+      countUp(numEl, target, 1200);
+    });
+
+    resetBtn.addEventListener('click', function() {
+      var numEl = slideDemo.querySelector('.slide-stat__number--animate');
+      var labelEl = slideDemo.querySelector('.slide-stat__label--animate');
+      var sourceEl = slideDemo.querySelector('.slide-stat__source--animate');
+
+      numEl.classList.remove('slide-stat__number--counting');
+      if (labelEl) labelEl.classList.remove('slide-stat__label--visible');
+      if (sourceEl) sourceEl.classList.remove('slide-stat__source--visible');
+      numEl.textContent = '0';
+    });
+  }
+
+  /* Triple row demo */
+  var rowTrigger = document.getElementById('countup-row-trigger');
+  var rowReset = document.getElementById('countup-row-reset');
+  var rowDemo = document.getElementById('countup-row-demo');
+
+  if (rowTrigger && rowDemo) {
+    rowTrigger.addEventListener('click', function() {
+      var nums = rowDemo.querySelectorAll('.stat-row__number--animate');
+      var labels = rowDemo.querySelectorAll('.stat-row__label--animate');
+
+      for (var i = 0; i < nums.length; i++) {
+        nums[i].classList.add('stat-row__number--counting');
+        var target = parseFloat(nums[i].getAttribute('data-target'));
+        countUp(nums[i], target, 1200);
+      }
+      for (var j = 0; j < labels.length; j++) {
+        labels[j].classList.add('stat-row__label--visible');
+      }
+    });
+
+    rowReset.addEventListener('click', function() {
+      var nums = rowDemo.querySelectorAll('.stat-row__number--animate');
+      var labels = rowDemo.querySelectorAll('.stat-row__label--animate');
+
+      for (var i = 0; i < nums.length; i++) {
+        nums[i].classList.remove('stat-row__number--counting');
+        nums[i].textContent = '0';
+      }
+      for (var j = 0; j < labels.length; j++) {
+        labels[j].classList.remove('stat-row__label--visible');
+      }
+    });
+  }
+})();
+</script>

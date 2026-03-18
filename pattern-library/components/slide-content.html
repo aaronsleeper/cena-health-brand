@@ -1,0 +1,328 @@
+<!--
+  @component-meta
+  name: Content Slide
+  category: Slides
+  file: slide-content.html
+  classes: slide-content, slide-content--teal, slide-content--sage, slide-content--gradient, slide-content__header, slide-content__overline, slide-content__title, slide-content__body, slide-content__body--single, slide-content__body--two-col, slide-content__body--asym, slide-content__body--asym-reverse, slide-content__primary, slide-content__visual, slide-content__text, slide-content__column-heading, slide-content__list, slide-content__footer, slide-content__footnote, slide-content__page-number, slide-content__wordmark, slide-content__reveal-item, slide-content__reveal-item--visible
+  spec: components/slides/content-slide.md
+  css: src/css/slides/content-slide.css
+  when-to-use: Body slides in pitch decks for text, data, and mixed-media layouts.
+  do-not-use-when: Opening or closing a deck — use cover slide or quote slide instead.
+  @end-meta
+-->
+
+
+<section class="pl-section" data-pl-section="single-column">
+  <h2 class="pl-section-title">Single Column</h2>
+  <p class="pl-section-description">Full-width text limited to 5 of 6 columns for readability.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-content">
+      <div class="slide-content__header">
+        <p class="slide-content__overline">CLINICAL IMPACT</p>
+        <h2 class="slide-content__title">Program Outcomes — Q1 2026</h2>
+      </div>
+      <div class="slide-content__body slide-content__body--single">
+        <p class="slide-content__text">Our medically tailored meal program delivered measurable clinical improvements across all three pilot markets in the first quarter of 2026.</p>
+        <ul class="slide-content__list">
+          <li>Average HbA1c reduction of 1.4 points across enrolled diabetic patients</li>
+          <li>30-day hospital readmission rates dropped 23% vs. control group</li>
+          <li>Patient satisfaction scores averaged 4.8 / 5.0 across all cohorts</li>
+          <li>847 patients actively enrolled and receiving weekly meal deliveries</li>
+        </ul>
+      </div>
+      <div class="slide-content__footer">
+        <p class="slide-content__footnote">Data sourced from pilot program, n=847, Jan–Mar 2026</p>
+        <span class="slide-content__page-number">3</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="two-column">
+  <h2 class="pl-section-title">Two Column</h2>
+  <p class="pl-section-description">Two equal panels (3 + 3) for side-by-side comparisons.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-content">
+      <div class="slide-content__header">
+        <p class="slide-content__overline">CLINICAL IMPACT</p>
+        <h2 class="slide-content__title">Before &amp; After: Pilot Outcomes</h2>
+      </div>
+      <div class="slide-content__body slide-content__body--two-col">
+        <div>
+          <h3 class="slide-content__column-heading">Before Program</h3>
+          <p class="slide-content__text">Average HbA1c: 8.9</p>
+          <p class="slide-content__text">30-day readmission rate: 18.2%</p>
+          <p class="slide-content__text">Patient satisfaction: 3.1 / 5.0</p>
+          <p class="slide-content__text">Weekly meal compliance: 42%</p>
+        </div>
+        <div>
+          <h3 class="slide-content__column-heading">After 90 Days</h3>
+          <p class="slide-content__text">Average HbA1c: 7.5 (−1.4)</p>
+          <p class="slide-content__text">30-day readmission rate: 14.0% (−23%)</p>
+          <p class="slide-content__text">Patient satisfaction: 4.8 / 5.0</p>
+          <p class="slide-content__text">Weekly meal compliance: 91%</p>
+        </div>
+      </div>
+      <div class="slide-content__footer">
+        <p class="slide-content__footnote">Data sourced from pilot program, n=847, Jan–Mar 2026</p>
+        <span class="slide-content__page-number">4</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="asymmetric">
+  <h2 class="pl-section-title">Asymmetric (4 + 2)</h2>
+  <p class="pl-section-description">Text-heavy left (4 columns) with visual placeholder right (2 columns).</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-content">
+      <div class="slide-content__header">
+        <p class="slide-content__overline">CLINICAL IMPACT</p>
+        <h2 class="slide-content__title">How Medically Tailored Meals Work</h2>
+      </div>
+      <div class="slide-content__body slide-content__body--asym">
+        <div class="slide-content__primary">
+          <p class="slide-content__text">Each patient receives a personalized meal plan designed by registered dietitians based on their clinical diagnoses, medications, and dietary restrictions.</p>
+          <ul class="slide-content__list">
+            <li>Referral from care team triggers nutrition assessment</li>
+            <li>RD creates tailored meal plan within 48 hours</li>
+            <li>Weekly deliveries of 14 meals (7 lunch + 7 dinner)</li>
+            <li>Outcomes tracked via EHR integration</li>
+          </ul>
+        </div>
+        <div class="slide-content__visual">
+          <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+            <rect width="160" height="160" rx="16" fill="var(--color-surface-teal)" />
+            <text x="80" y="85" text-anchor="middle" font-family="var(--font-body)" font-size="12" fill="var(--color-text-tertiary)">Visual placeholder</text>
+          </svg>
+        </div>
+      </div>
+      <div class="slide-content__footer">
+        <p class="slide-content__footnote">Data sourced from pilot program, n=847, Jan–Mar 2026</p>
+        <span class="slide-content__page-number">5</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="asymmetric-reverse">
+  <h2 class="pl-section-title">Asymmetric Reversed (2 + 4)</h2>
+  <p class="pl-section-description">Visual left (2 columns) with text right (4 columns).</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-content">
+      <div class="slide-content__header">
+        <p class="slide-content__overline">PATIENT EXPERIENCE</p>
+        <h2 class="slide-content__title">From Referral to Recovery</h2>
+      </div>
+      <div class="slide-content__body slide-content__body--asym-reverse">
+        <div class="slide-content__visual">
+          <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+            <rect width="160" height="160" rx="16" fill="var(--color-surface-sage)" />
+            <text x="80" y="85" text-anchor="middle" font-family="var(--font-body)" font-size="12" fill="var(--color-text-tertiary)">Visual placeholder</text>
+          </svg>
+        </div>
+        <div class="slide-content__primary">
+          <p class="slide-content__text">Our end-to-end process ensures patients receive their first meal delivery within 72 hours of referral, with continuous clinical monitoring throughout the program.</p>
+          <ul class="slide-content__list">
+            <li>Care team submits referral via EHR integration</li>
+            <li>Nutrition assessment completed within 24 hours</li>
+            <li>First delivery arrives within 72 hours</li>
+            <li>Bi-weekly check-ins with assigned dietitian</li>
+          </ul>
+        </div>
+      </div>
+      <div class="slide-content__footer">
+        <p class="slide-content__footnote">Data sourced from pilot program, n=847, Jan–Mar 2026</p>
+        <span class="slide-content__page-number">6</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="surface-teal">
+  <h2 class="pl-section-title">Surface: Teal</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-content slide-content--teal">
+      <div class="slide-content__header">
+        <p class="slide-content__overline">CLINICAL IMPACT</p>
+        <h2 class="slide-content__title">Program Outcomes — Q1 2026</h2>
+      </div>
+      <div class="slide-content__body slide-content__body--single">
+        <ul class="slide-content__list">
+          <li>Average HbA1c reduction of 1.4 points across enrolled diabetic patients</li>
+          <li>30-day hospital readmission rates dropped 23% vs. control group</li>
+          <li>Patient satisfaction scores averaged 4.8 / 5.0 across all cohorts</li>
+        </ul>
+      </div>
+      <div class="slide-content__footer">
+        <p class="slide-content__footnote">Data sourced from pilot program, n=847, Jan–Mar 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="surface-sage">
+  <h2 class="pl-section-title">Surface: Sage</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-content slide-content--sage">
+      <div class="slide-content__header">
+        <p class="slide-content__overline">PATIENT EXPERIENCE</p>
+        <h2 class="slide-content__title">Satisfaction Survey Results</h2>
+      </div>
+      <div class="slide-content__body slide-content__body--single">
+        <ul class="slide-content__list">
+          <li>92% of patients reported improved energy levels within 30 days</li>
+          <li>87% said meals matched their cultural food preferences</li>
+          <li>96% would recommend the program to other patients</li>
+        </ul>
+      </div>
+      <div class="slide-content__footer">
+        <p class="slide-content__footnote">Patient satisfaction survey, n=623, Feb 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="surface-gradient">
+  <h2 class="pl-section-title">Surface: Gradient</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-content slide-content--gradient">
+      <div class="slide-content__header">
+        <p class="slide-content__overline" style="color: var(--color-sage-800);">KEY TAKEAWAYS</p>
+        <h2 class="slide-content__title" style="color: var(--color-text-inverse);">What We Learned in Q1</h2>
+      </div>
+      <div class="slide-content__body slide-content__body--single">
+        <ul class="slide-content__list">
+          <li style="color: var(--color-text-inverse);">Medically tailored meals reduce readmissions more effectively than generic meal delivery</li>
+          <li style="color: var(--color-text-inverse);">Clinical integration through EHR is the key differentiator for payer adoption</li>
+          <li style="color: var(--color-text-inverse);">Patient retention exceeds 90% when cultural preferences are incorporated</li>
+        </ul>
+      </div>
+      <div class="slide-content__footer">
+        <p class="slide-content__footnote" style="color: var(--color-warm-600);">Internal analysis, Q1 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="progressive-reveal">
+  <h2 class="pl-section-title">Progressive Reveal</h2>
+  <p class="pl-section-description">List items appear one at a time with staggered transitions. Click "Reveal next" to trigger each item.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-content" id="reveal-demo">
+      <div class="slide-content__header">
+        <p class="slide-content__overline">CLINICAL IMPACT</p>
+        <h2 class="slide-content__title">Key Findings</h2>
+      </div>
+      <div class="slide-content__body slide-content__body--single">
+        <ul class="slide-content__list">
+          <li class="slide-content__reveal-item">Average HbA1c reduction of 1.4 points across enrolled diabetic patients</li>
+          <li class="slide-content__reveal-item">30-day hospital readmission rates dropped 23% vs. control group</li>
+          <li class="slide-content__reveal-item">Patient satisfaction scores averaged 4.8 / 5.0 across all cohorts</li>
+          <li class="slide-content__reveal-item">847 patients actively enrolled and receiving weekly meal deliveries</li>
+        </ul>
+      </div>
+      <div class="slide-content__footer">
+        <p class="slide-content__footnote">Data sourced from pilot program, n=847, Jan–Mar 2026</p>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--space-4); text-align: center; display: flex; gap: var(--space-3); justify-content: center;">
+      <button class="btn btn--secondary btn--sm" id="reveal-next">Reveal next</button>
+      <button class="btn btn--ghost btn--sm" id="reveal-reset">Reset</button>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="with-stat-block">
+  <h2 class="pl-section-title">With Stat Block</h2>
+  <p class="pl-section-description">A content slide with an embedded stat block in the body zone.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-content">
+      <div class="slide-content__header">
+        <p class="slide-content__overline">CLINICAL IMPACT</p>
+        <h2 class="slide-content__title">Readmission Reduction</h2>
+      </div>
+      <div class="slide-content__body slide-content__body--asym">
+        <div class="slide-content__primary">
+          <p class="slide-content__text">Our medically tailored meal program demonstrated a significant reduction in 30-day hospital readmission rates compared to the control group receiving standard discharge nutrition counseling.</p>
+          <p class="slide-content__text">The effect was most pronounced among patients with diabetes and congestive heart failure, where readmission rates dropped by over 30%.</p>
+        </div>
+        <div class="slide-content__visual">
+          <div class="stat-block">
+            <p class="stat-block__overline">READMISSIONS</p>
+            <p class="stat-block__number">23%</p>
+            <p class="stat-block__label">reduction in 30-day readmission rates</p>
+            <p class="stat-block__source">Pilot program, n=847</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-content__footer">
+        <p class="slide-content__footnote">Data sourced from pilot program, n=847, Jan–Mar 2026</p>
+        <span class="slide-content__page-number">8</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  var nextBtn = document.getElementById('reveal-next');
+  var resetBtn = document.getElementById('reveal-reset');
+  var demo = document.getElementById('reveal-demo');
+  if (!nextBtn || !resetBtn || !demo) return;
+
+  var items = demo.querySelectorAll('.slide-content__reveal-item');
+  var currentIndex = 0;
+
+  nextBtn.addEventListener('click', function() {
+    if (currentIndex < items.length) {
+      items[currentIndex].classList.add('slide-content__reveal-item--visible');
+      currentIndex++;
+    }
+  });
+
+  resetBtn.addEventListener('click', function() {
+    for (var i = 0; i < items.length; i++) {
+      items[i].classList.remove('slide-content__reveal-item--visible');
+    }
+    currentIndex = 0;
+  });
+})();
+</script>

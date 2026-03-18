@@ -1,0 +1,130 @@
+<!--
+  @component-meta
+  name: Cover Slide
+  category: Slides
+  file: slide-cover.html
+  classes: slide-cover, slide-cover__texture, slide-cover__logo, slide-cover__content, slide-cover__title, slide-cover__subtitle, slide-cover__presenter, slide-cover--dark, slide-cover__event, slide-cover--animate, slide-cover--stagger
+  spec: components/slides/cover-slide.md
+  css: src/css/slides/cover-slide.css
+  when-to-use: Opening slide for pitch decks, investor updates, and conference presentations.
+  do-not-use-when: Mid-deck section breaks — use section divider slide instead.
+  @end-meta
+-->
+
+
+<section class="pl-section" data-pl-section="standard">
+  <h2 class="pl-section-title">Standard</h2>
+  <p class="pl-section-description">Warm white surface with logo zone (left 2 columns) and title block (right 4 columns). 16:9 aspect ratio.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-cover">
+      <div class="slide-cover__logo">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-label="Cena Health logo placeholder">
+          <rect width="80" height="80" rx="16" fill="var(--color-surface-teal)" />
+          <text x="40" y="46" text-anchor="middle" font-family="var(--font-display)" font-size="14" font-weight="700" fill="var(--color-brand-primary)">CENA</text>
+        </svg>
+      </div>
+      <div class="slide-cover__content">
+        <h1 class="slide-cover__title">Medically Tailored Meals at Scale</h1>
+        <p class="slide-cover__subtitle">A new model for food-as-medicine in managed care</p>
+        <p class="slide-cover__presenter">Aaron Sleeper, CEO · Q1 2026 Investor Update</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="dark">
+  <h2 class="pl-section-title">Dark Variant</h2>
+  <p class="pl-section-description">Near-black teal background with inverted text colors.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-cover slide-cover--dark">
+      <div class="slide-cover__logo">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-label="Cena Health logo placeholder">
+          <rect width="80" height="80" rx="16" fill="var(--color-teal-800)" />
+          <text x="40" y="46" text-anchor="middle" font-family="var(--font-display)" font-size="14" font-weight="700" fill="var(--color-brand-secondary)">CENA</text>
+        </svg>
+      </div>
+      <div class="slide-cover__content">
+        <h1 class="slide-cover__title">Medically Tailored Meals at Scale</h1>
+        <p class="slide-cover__subtitle">A new model for food-as-medicine in managed care</p>
+        <p class="slide-cover__presenter">Aaron Sleeper, CEO · Q1 2026 Investor Update</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="conference">
+  <h2 class="pl-section-title">Conference / Event</h2>
+  <p class="pl-section-description">Overline above the title for event context. Works on both standard and dark surfaces.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-cover">
+      <div class="slide-cover__logo">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-label="Cena Health logo placeholder">
+          <rect width="80" height="80" rx="16" fill="var(--color-surface-teal)" />
+          <text x="40" y="46" text-anchor="middle" font-family="var(--font-display)" font-size="14" font-weight="700" fill="var(--color-brand-primary)">CENA</text>
+        </svg>
+      </div>
+      <div class="slide-cover__content">
+        <p class="slide-cover__event">HLTH 2026 · Las Vegas, NV</p>
+        <h1 class="slide-cover__title">Medically Tailored Meals at Scale</h1>
+        <p class="slide-cover__subtitle">A new model for food-as-medicine in managed care</p>
+        <p class="slide-cover__presenter">Aaron Sleeper, CEO · Cena Health</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="stagger">
+  <h2 class="pl-section-title">Stagger Animation</h2>
+  <p class="pl-section-description">Elements enter sequentially: texture → logo → title → subtitle → presenter. Click Replay to restart.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-cover slide-cover--stagger" id="stagger-demo">
+      <div class="slide-cover__texture"></div>
+      <div class="slide-cover__logo">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-label="Cena Health logo placeholder">
+          <rect width="80" height="80" rx="16" fill="var(--color-surface-teal)" />
+          <text x="40" y="46" text-anchor="middle" font-family="var(--font-display)" font-size="14" font-weight="700" fill="var(--color-brand-primary)">CENA</text>
+        </svg>
+      </div>
+      <div class="slide-cover__content">
+        <h1 class="slide-cover__title">Medically Tailored Meals at Scale</h1>
+        <p class="slide-cover__subtitle">A new model for food-as-medicine in managed care</p>
+        <p class="slide-cover__presenter">Aaron Sleeper, CEO · Q1 2026 Investor Update</p>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--space-4); text-align: center;">
+      <button class="btn btn--secondary btn--sm" id="stagger-replay">Replay Animation</button>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  var replayBtn = document.getElementById('stagger-replay');
+  var demo = document.getElementById('stagger-demo');
+  if (!replayBtn || !demo) return;
+
+  replayBtn.addEventListener('click', function() {
+    demo.classList.remove('slide-cover--stagger');
+    /* Force reflow to restart animations */
+    void demo.offsetWidth;
+    demo.classList.add('slide-cover--stagger');
+  });
+})();
+</script>

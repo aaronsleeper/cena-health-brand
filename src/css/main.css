@@ -92,8 +92,9 @@
 @import "./components/tooltip.css";
 
 /* Slide templates */
-@import "./slides/cover-slide.css";
 @import "./slides/content-slide.css";
+@import "./slides/cover-slide.css";
+@import "./slides/data-slide.css";
 @import "./slides/quote-slide.css";
 @import "./slides/section-divider.css";
 @import "./slides/stat-callout.css";

@@ -1,0 +1,168 @@
+/* ==========================================================================
+   Cena Health — Data Slide Template
+   Source: components/slides/data-slide.md (roadmap B1)
+   16:9 aspect ratio, Chart.js chart as primary visual
+   ========================================================================== */
+
+@layer components {
+
+  /* --------------------------------------------------------------------------
+     Container
+     -------------------------------------------------------------------------- */
+
+  .slide-data {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: var(--color-surface-page);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-20);
+    gap: var(--space-4);
+  }
+
+  /* --------------------------------------------------------------------------
+     Surface Variants
+     -------------------------------------------------------------------------- */
+
+  .slide-data--teal {
+    background-color: var(--color-surface-teal);
+  }
+
+  /* Dark variant — one-off brand value, no corresponding token */
+  .slide-data--dark {
+    background-color: oklch(18.0% 0.010 183);
+  }
+
+  .slide-data--dark .slide-data__overline {
+    color: var(--color-brand-secondary);
+  }
+
+  .slide-data--dark .slide-data__headline {
+    color: var(--color-text-inverse);
+  }
+
+  .slide-data--dark .slide-data__subtitle {
+    color: var(--color-warm-600);
+  }
+
+  .slide-data--dark .slide-data__source {
+    color: var(--color-warm-600);
+  }
+
+  .slide-data--dark .slide-data__insight {
+    background-color: var(--color-teal-800);
+    color: var(--color-text-inverse);
+    box-shadow: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Header Zone
+     -------------------------------------------------------------------------- */
+
+  .slide-data__header {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .slide-data__overline {
+    font-family: var(--font-body);
+    font-size: var(--text-2xs);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-text-brand);
+    margin-bottom: var(--space-2);
+  }
+
+  .slide-data__headline {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    line-height: var(--leading-none);
+    letter-spacing: var(--tracking-tightest);
+    color: var(--color-brand-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .slide-data__subtitle {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--leading-body);
+    color: var(--color-text-secondary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Chart Zone
+     -------------------------------------------------------------------------- */
+
+  .slide-data__chart {
+    display: flex;
+    flex: 1;
+    position: relative;
+    min-height: 0;
+  }
+
+  .slide-data__chart canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* --------------------------------------------------------------------------
+     Insight Callout — optional floating annotation
+     -------------------------------------------------------------------------- */
+
+  .slide-data__insight {
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    background-color: var(--color-surface-page);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    color: var(--color-text-primary);
+    padding: var(--space-1-5) var(--space-3);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Footer
+     -------------------------------------------------------------------------- */
+
+  .slide-data__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+
+  .slide-data__source {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-tertiary);
+  }
+
+  .slide-data__wordmark {
+    opacity: 0.4;
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide-data__chart canvas {
+      animation: none;
+    }
+  }
+}

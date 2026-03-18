@@ -1,0 +1,351 @@
+<!--
+  @component-meta
+  name: Data Slide
+  category: Slides
+  file: slide-data.html
+  classes: slide-data, slide-data--teal, slide-data--dark, slide-data__header, slide-data__overline, slide-data__headline, slide-data__subtitle, slide-data__chart, slide-data__insight, slide-data__footer, slide-data__source, slide-data__wordmark
+  spec: components/slides/data-slide.md
+  css: src/css/slides/data-slide.css
+  when-to-use: Presenting chart-driven data with headline stat and source citation in pitch decks.
+  do-not-use-when: Showing a single stat without a chart — use stat callout slide instead.
+  @end-meta
+-->
+
+
+<section class="pl-section" data-pl-section="hba1c-trend">
+  <h2 class="pl-section-title">HbA1c Trend (Line Chart)</h2>
+  <p class="pl-section-description">6-month HbA1c data for two patient cohorts with headline stat and source citation.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-data">
+      <div class="slide-data__header">
+        <p class="slide-data__overline">CLINICAL OUTCOMES</p>
+        <p class="slide-data__headline">−1.4%</p>
+        <p class="slide-data__subtitle">Average HbA1c reduction across enrolled patients over 6 months</p>
+      </div>
+      <div class="slide-data__chart">
+        <canvas id="chart-hba1c"></canvas>
+      </div>
+      <div class="slide-data__footer">
+        <p class="slide-data__source">Source: Cena Health pilot program, n=847, Oct 2025 – Mar 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="enrollment-bar">
+  <h2 class="pl-section-title">Enrollment Bar Chart</h2>
+  <p class="pl-section-description">Monthly enrollment counts as a vertical bar chart with headline enrollment number.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-data">
+      <div class="slide-data__header">
+        <p class="slide-data__overline">PROGRAM GROWTH</p>
+        <p class="slide-data__headline">847</p>
+        <p class="slide-data__subtitle">Patients enrolled in Q1 2026</p>
+      </div>
+      <div class="slide-data__chart">
+        <canvas id="chart-enrollment"></canvas>
+      </div>
+      <div class="slide-data__footer">
+        <p class="slide-data__source">Source: Cena Health enrollment records, Jan–Mar 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="insight-callout">
+  <h2 class="pl-section-title">With Insight Callout</h2>
+  <p class="pl-section-description">Line chart with a floating pill annotation highlighting a significant data point.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-data">
+      <div class="slide-data__header">
+        <p class="slide-data__overline">READMISSION RATES</p>
+        <p class="slide-data__headline">−23%</p>
+        <p class="slide-data__subtitle">30-day readmission rate reduction vs. control group</p>
+      </div>
+      <div class="slide-data__chart">
+        <canvas id="chart-readmission"></canvas>
+        <span class="slide-data__insight" style="top: 30%; right: 18%;">Intervention starts →</span>
+      </div>
+      <div class="slide-data__footer">
+        <p class="slide-data__source">Source: Claims analysis, pilot vs. control, n=1,694, Jan–Mar 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="teal-variant">
+  <h2 class="pl-section-title">Teal Surface Variant</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-data slide-data--teal">
+      <div class="slide-data__header">
+        <p class="slide-data__overline">PROGRAM GROWTH</p>
+        <p class="slide-data__headline">847</p>
+        <p class="slide-data__subtitle">Patients enrolled in Q1 2026</p>
+      </div>
+      <div class="slide-data__chart">
+        <canvas id="chart-enrollment-teal"></canvas>
+      </div>
+      <div class="slide-data__footer">
+        <p class="slide-data__source">Source: Cena Health enrollment records, Jan–Mar 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="dark-variant">
+  <h2 class="pl-section-title">Dark Variant</h2>
+  <p class="pl-section-description">Dark background with adjusted chart grid and text colors.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-secondary); padding: var(--space-4);">
+    <p class="pl-canvas-label">16:9 on surface-secondary (#E7E4DF)</p>
+
+    <div class="slide-data slide-data--dark">
+      <div class="slide-data__header">
+        <p class="slide-data__overline">CLINICAL OUTCOMES</p>
+        <p class="slide-data__headline" style="color: var(--color-brand-secondary);">−1.4%</p>
+        <p class="slide-data__subtitle">Average HbA1c reduction over 6 months</p>
+      </div>
+      <div class="slide-data__chart">
+        <canvas id="chart-hba1c-dark"></canvas>
+      </div>
+      <div class="slide-data__footer">
+        <p class="slide-data__source">Source: Cena Health pilot program, n=847, Oct 2025 – Mar 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  /* Cena brand color constants — identical to charts.html */
+  var CENA = {
+    primary:   '#1B685E',
+    secondary: '#3A8478',
+    sage:      '#81B983',
+    warm:      '#B3ADA4',
+    success:   '#3A8E64',
+    warning:   '#B58B20',
+    error:     '#C13C3B',
+    info:      '#287AA3',
+    gridColor: 'rgba(209, 205, 198, 0.5)',
+    textColor: '#5B544C'
+  };
+
+  var CENA_DARK = Object.assign({}, CENA, {
+    gridColor: 'rgba(255,255,255,0.08)',
+    textColor: 'rgba(255,255,255,0.6)'
+  });
+
+  if (typeof Chart === 'undefined') return;
+
+  var months6 = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
+  var monthsQ1 = ['Jan', 'Feb', 'Mar'];
+
+  function defaultScales(colors) {
+    return {
+      x: {
+        grid: { color: colors.gridColor },
+        ticks: { color: colors.textColor, font: { family: 'Source Sans 3', size: 12 } }
+      },
+      y: {
+        grid: { color: colors.gridColor },
+        ticks: { color: colors.textColor, font: { family: 'Source Sans 3', size: 12 } }
+      }
+    };
+  }
+
+  function defaultPlugins(colors) {
+    return {
+      legend: {
+        labels: { color: colors.textColor, font: { family: 'Source Sans 3', size: 12 }, usePointStyle: true, pointStyle: 'circle' }
+      }
+    };
+  }
+
+  /* 1. HbA1c Trend — line chart */
+  var hba1cCtx = document.getElementById('chart-hba1c');
+  if (hba1cCtx) {
+    new Chart(hba1cCtx, {
+      type: 'line',
+      data: {
+        labels: months6,
+        datasets: [
+          {
+            label: 'MTM Cohort',
+            data: [8.9, 8.6, 8.2, 7.9, 7.6, 7.5],
+            borderColor: CENA.primary,
+            backgroundColor: CENA.primary,
+            tension: 0.3,
+            pointRadius: 4,
+            pointHoverRadius: 6
+          },
+          {
+            label: 'Control Group',
+            data: [8.8, 8.7, 8.7, 8.6, 8.6, 8.5],
+            borderColor: CENA.warm,
+            backgroundColor: CENA.warm,
+            tension: 0.3,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            borderDash: [6, 3]
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: defaultScales(CENA),
+        plugins: defaultPlugins(CENA)
+      }
+    });
+  }
+
+  /* 2. Enrollment Bar */
+  var enrollCtx = document.getElementById('chart-enrollment');
+  if (enrollCtx) {
+    new Chart(enrollCtx, {
+      type: 'bar',
+      data: {
+        labels: monthsQ1,
+        datasets: [{
+          label: 'New Enrollments',
+          data: [245, 298, 304],
+          backgroundColor: CENA.primary,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: defaultScales(CENA),
+        plugins: defaultPlugins(CENA)
+      }
+    });
+  }
+
+  /* 3. Readmission with insight callout */
+  var readmitCtx = document.getElementById('chart-readmission');
+  if (readmitCtx) {
+    new Chart(readmitCtx, {
+      type: 'line',
+      data: {
+        labels: months6,
+        datasets: [
+          {
+            label: 'MTM Cohort',
+            data: [18.2, 17.8, 16.1, 15.3, 14.5, 14.0],
+            borderColor: CENA.primary,
+            backgroundColor: CENA.primary,
+            tension: 0.3,
+            pointRadius: 4,
+            pointHoverRadius: 6
+          },
+          {
+            label: 'Control Group',
+            data: [18.0, 18.1, 17.9, 17.8, 17.6, 17.5],
+            borderColor: CENA.warm,
+            backgroundColor: CENA.warm,
+            tension: 0.3,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            borderDash: [6, 3]
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: Object.assign({}, defaultScales(CENA), {
+          y: {
+            grid: { color: CENA.gridColor },
+            ticks: {
+              color: CENA.textColor,
+              font: { family: 'Source Sans 3', size: 12 },
+              callback: function(v) { return v + '%'; }
+            }
+          }
+        }),
+        plugins: defaultPlugins(CENA)
+      }
+    });
+  }
+
+  /* 4. Enrollment Bar — teal surface (same data, same colors) */
+  var enrollTealCtx = document.getElementById('chart-enrollment-teal');
+  if (enrollTealCtx) {
+    new Chart(enrollTealCtx, {
+      type: 'bar',
+      data: {
+        labels: monthsQ1,
+        datasets: [{
+          label: 'New Enrollments',
+          data: [245, 298, 304],
+          backgroundColor: CENA.primary,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: defaultScales(CENA),
+        plugins: defaultPlugins(CENA)
+      }
+    });
+  }
+
+  /* 5. HbA1c — dark variant */
+  var hba1cDarkCtx = document.getElementById('chart-hba1c-dark');
+  if (hba1cDarkCtx) {
+    new Chart(hba1cDarkCtx, {
+      type: 'line',
+      data: {
+        labels: months6,
+        datasets: [
+          {
+            label: 'MTM Cohort',
+            data: [8.9, 8.6, 8.2, 7.9, 7.6, 7.5],
+            borderColor: CENA.sage,
+            backgroundColor: CENA.sage,
+            tension: 0.3,
+            pointRadius: 4,
+            pointHoverRadius: 6
+          },
+          {
+            label: 'Control Group',
+            data: [8.8, 8.7, 8.7, 8.6, 8.6, 8.5],
+            borderColor: 'rgba(255,255,255,0.3)',
+            backgroundColor: 'rgba(255,255,255,0.3)',
+            tension: 0.3,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            borderDash: [6, 3]
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: defaultScales(CENA_DARK),
+        plugins: defaultPlugins(CENA_DARK)
+      }
+    });
+  }
+})();
+</script>
