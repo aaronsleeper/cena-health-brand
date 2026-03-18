@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Cena Health — Rating Component
+   Source: components/ui/rating.md
+   ========================================================================== */
+
+@layer components {
+
+  /* Base */
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: var(--space-0-5);
+  }
+
+  .rating-star {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    line-height: 1;
+  }
+
+  .rating-star svg {
+    width: var(--icon-lg);
+    height: var(--icon-lg);
+    transition: fill var(--duration-fast) var(--ease-transition),
+                stroke var(--duration-fast) var(--ease-transition);
+  }
+
+  /* States */
+  .rating-star-filled svg {
+    fill: var(--color-warning-base);
+    stroke: var(--color-warning-base);
+  }
+
+  .rating-star-empty svg {
+    fill: transparent;
+    stroke: var(--color-border-default);
+  }
+
+  .rating-star-half svg {
+    stroke: var(--color-warning-base);
+  }
+
+  /* Interactive variant */
+  .rating-input .rating-star {
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+  }
+
+  .rating-input .rating-star:hover svg,
+  .rating-input .rating-star.hovered svg {
+    fill: var(--color-warning-border);
+    stroke: var(--color-warning-border);
+  }
+
+  .rating-input .rating-star:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-page),
+      0 0 0 4px var(--color-border-focus);
+  }
+
+  /* Size variants */
+  .rating-sm .rating-star svg {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+  }
+
+  .rating-lg .rating-star svg {
+    width: var(--icon-xl);
+    height: var(--icon-xl);
+  }
+
+  /* Label */
+  .rating-label {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: var(--leading-snug);
+    color: var(--color-text-secondary);
+    margin-left: var(--space-2);
+  }
+
+  /* --------------------------------------------------------------------------
+     Reduced Motion
+     -------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .rating-star svg {
+      transition-duration: 0ms;
+    }
+  }
+}

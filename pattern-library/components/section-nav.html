@@ -6,7 +6,7 @@
   classes: section-nav, section-nav-item
   spec: components/ui/section-nav.md
   css: src/css/components/section-nav.css
-  when-to-use: In-page anchor navigation between sections on detail or settings pages.
+  when-to-use: In-page anchor navigation between sections on detail or settings pages. Supports scrollspy via IntersectionObserver.
   do-not-use-when: Switching between separate views — use tabs instead.
   @end-meta
 -->
@@ -49,6 +49,64 @@
 </section>
 
 
+<section class="pl-section" data-pl-section="scrollspy">
+  <h2 class="pl-section-title">Scrollspy</h2>
+  <p class="pl-section-description">
+    The active nav item updates automatically as you scroll through sections.
+    Uses <code>IntersectionObserver</code> — no scroll event listeners.
+  </p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">Scroll the content area below the nav</p>
+
+    <div style="max-width: 40rem;">
+      <!-- The nav -->
+      <nav class="section-nav" id="scrollspy-nav" aria-label="Section navigation">
+        <a href="#spy-overview"   class="section-nav-item active" data-spy-target="spy-overview">Overview</a>
+        <a href="#spy-clinical"   class="section-nav-item"        data-spy-target="spy-clinical">Clinical</a>
+        <a href="#spy-meals"      class="section-nav-item"        data-spy-target="spy-meals">Meals</a>
+        <a href="#spy-alerts"     class="section-nav-item"        data-spy-target="spy-alerts">Alerts</a>
+        <a href="#spy-notes"      class="section-nav-item"        data-spy-target="spy-notes">Notes</a>
+      </nav>
+
+      <!-- Scrollable content area -->
+      <div id="scrollspy-container" style="height: 20rem; overflow-y: auto; border: 1px solid var(--color-border-default); border-top: none; border-radius: 0 0 var(--radius-md) var(--radius-md);">
+        <div id="spy-overview"  data-spy-section style="padding: var(--space-6); min-height: 12rem; border-bottom: 1px solid var(--color-border-default);">
+          <p class="pl-col-label" style="text-align: left;">Overview</p>
+          <p style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">
+            Care plan overview, patient goals, and key metrics at a glance.
+          </p>
+        </div>
+        <div id="spy-clinical"  data-spy-section style="padding: var(--space-6); min-height: 12rem; border-bottom: 1px solid var(--color-border-default);">
+          <p class="pl-col-label" style="text-align: left;">Clinical</p>
+          <p style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">
+            Lab results, HbA1c trends, medication list, and clinical notes.
+          </p>
+        </div>
+        <div id="spy-meals"     data-spy-section style="padding: var(--space-6); min-height: 12rem; border-bottom: 1px solid var(--color-border-default);">
+          <p class="pl-col-label" style="text-align: left;">Meals</p>
+          <p style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">
+            Weekly meal plan, dietary restrictions, and delivery schedule.
+          </p>
+        </div>
+        <div id="spy-alerts"    data-spy-section style="padding: var(--space-6); min-height: 12rem; border-bottom: 1px solid var(--color-border-default);">
+          <p class="pl-col-label" style="text-align: left;">Alerts</p>
+          <p style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">
+            Active clinical alerts, flagged lab values, and pending actions.
+          </p>
+        </div>
+        <div id="spy-notes"     data-spy-section style="padding: var(--space-6); min-height: 12rem;">
+          <p class="pl-col-label" style="text-align: left;">Notes</p>
+          <p style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-secondary);">
+            Care team notes, session summaries, and communication history.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <script>
 (function() {
   var demo = document.getElementById('section-nav-demo');
@@ -60,5 +118,48 @@
     demo.querySelectorAll('.section-nav-item').forEach(function(i) { i.classList.remove('active'); });
     item.classList.add('active');
   });
+})();
+</script>
+
+<script>
+// Scrollspy demo — IntersectionObserver
+(function() {
+  var container = document.getElementById('scrollspy-container');
+  var nav = document.getElementById('scrollspy-nav');
+  if (!container || !nav) return;
+
+  var sections = container.querySelectorAll('[data-spy-section]');
+  var navItems = nav.querySelectorAll('.section-nav-item');
+
+  function setActive(id) {
+    navItems.forEach(function(item) {
+      var isActive = item.getAttribute('data-spy-target') === id;
+      item.classList.toggle('active', isActive);
+    });
+  }
+
+  // Click nav items to scroll to section
+  navItems.forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetId = item.getAttribute('data-spy-target');
+      var target = document.getElementById(targetId);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // IntersectionObserver — root is the scrollable container
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        setActive(entry.target.id);
+      }
+    });
+  }, {
+    root: container,
+    threshold: 0.4  // section must be 40% visible to become active
+  });
+
+  sections.forEach(function(section) { observer.observe(section); });
 })();
 </script>

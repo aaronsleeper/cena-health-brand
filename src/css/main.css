@@ -35,6 +35,7 @@
 @import "./components/activity-feed.css";
 @import "./components/alert.css";
 @import "./components/badge.css";
+@import "./components/blockquote.css";
 @import "./components/button.css";
 @import "./components/card.css";
 @import "./components/chat.css";
@@ -69,6 +70,7 @@
 @import "./components/prompt-input.css";
 @import "./components/radio.css";
 @import "./components/range-slider.css";
+@import "./components/rating.css";
 @import "./components/search-box.css";
 @import "./components/section-nav.css";
 @import "./components/segmented-control.css";

@@ -1,0 +1,117 @@
+<!--
+  @component-meta
+  name: Blockquote
+  category: Primitives
+  file: blockquote.html
+  classes: blockquote, blockquote-text, blockquote-attribution, blockquote-mark, blockquote-teal, blockquote-sage
+  spec: components/ui/blockquote.md
+  css: src/css/components/blockquote.css
+  when-to-use: Pull-quotes for patient testimonials, partner statements, and clinical citations.
+  do-not-use-when: Inline quoted text in body copy — use the .quote utility class instead.
+  @end-meta
+-->
+
+
+<section class="pl-section" data-pl-section="default">
+  <h2 class="pl-section-title">Default</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 36rem;">
+      <blockquote class="blockquote">
+        <p class="blockquote-text">"For the first time, I actually look forward to eating. The meals feel like they were made for my family, not just for my condition."</p>
+        <footer class="blockquote-attribution">— Maria Rivera, patient since January 2025</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="decorative-mark">
+  <h2 class="pl-section-title">With Decorative Mark</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 36rem;">
+      <blockquote class="blockquote">
+        <span class="blockquote-mark" aria-hidden="true">"</span>
+        <p class="blockquote-text">Cena's care coordination reduced our 30-day readmission rate by 18% in the first year of the program.</p>
+        <footer class="blockquote-attribution">— Dr. James Chen, Chief Medical Officer, Hartford Health Network</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="teal-surface">
+  <h2 class="pl-section-title">Teal Surface</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 36rem;">
+      <blockquote class="blockquote blockquote-teal">
+        <span class="blockquote-mark" aria-hidden="true">"</span>
+        <p class="blockquote-text">"For the first time, I actually look forward to eating. The meals feel like they were made for my family, not just for my condition."</p>
+        <footer class="blockquote-attribution">— Maria Rivera, patient since January 2025</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="sage-surface">
+  <h2 class="pl-section-title">Sage Surface</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 36rem;">
+      <blockquote class="blockquote blockquote-sage">
+        <span class="blockquote-mark" aria-hidden="true">"</span>
+        <p class="blockquote-text">Cena's care coordination reduced our 30-day readmission rate by 18% in the first year of the program.</p>
+        <footer class="blockquote-attribution">— Dr. James Chen, Chief Medical Officer, Hartford Health Network</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="clinical-citation">
+  <h2 class="pl-section-title">Clinical Citation</h2>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div style="max-width: 36rem;">
+      <blockquote class="blockquote">
+        <p class="blockquote-text">"Medically tailored meals significantly reduce healthcare costs and improve outcomes for patients with diet-sensitive chronic conditions."</p>
+        <footer class="blockquote-attribution">— Berkowitz et al., JAMA Internal Medicine, 2019. DOI: 10.1001/jamainternmed.2019.0198</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+
+<section class="pl-section" data-pl-section="in-context">
+  <h2 class="pl-section-title">Inline Context</h2>
+  <p class="pl-section-description">Blockquote inside a card body.</p>
+
+  <div class="pl-canvas" style="background: var(--color-surface-page);">
+    <p class="pl-canvas-label">surface-page (#FBFAF8)</p>
+
+    <div class="card" style="max-width: 36rem;">
+      <div class="card-header">
+        <h3 class="card-title">Patient Feedback</h3>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote">
+          <p class="blockquote-text">"For the first time, I actually look forward to eating. The meals feel like they were made for my family, not just for my condition."</p>
+          <footer class="blockquote-attribution">— Maria Rivera, patient since January 2025</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
