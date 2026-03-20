@@ -128,11 +128,141 @@ The brand serves both hospital CFOs and grandmothers managing chronic conditions
 
 ---
 
-### 1.4 Functional Colors — Feedback System
+### 1.4 Extended Palette Families
+
+The brand's three core families (teal, sage, warm neutral) cover identity and surface needs, but data visualization, categorical tags, multi-series charts, and badge systems require more hue variety. These four extended families fill the largest gaps in the hue wheel while following the same construction logic as the core families: OKLCH canonical, 11-step ramps, hue drifting warmer at lighter values, chroma peaking at mid-values and tapering at extremes.
+
+**Governance:** Extended families are supporting cast — teal and sage remain the identity families. Extended colors must never be used for status/alert semantics (that is the functional color system's role) and should not dominate over brand colors in any composition. No semantic tokens are defined here; those are created at the component level when specific use cases emerge.
+
+#### 1.4.1 Ochre — Warm Earth Family
+
+**Semantic role:** Warm earth, clay, food depiction, cultural specificity. This family promotes the illustration warm extension (previously recommended in §5 as a directional suggestion) into a first-class token family. It is the palette's most direct expression of the brand's food-and-culture promise.
+
+**Hue logic:** Centered on H≈50 (warm orange-brown, terra cotta territory). Hue drifts from H:45 at the darkest to H:65 at the lightest, migrating toward the warm neutral family's hue range at high lightness. This creates a seamless gradient between ochre tints and the warm cream surface system.
+
+**Chroma logic:** Peaks at C:0.095 at step 500 — comparable to teal's peak chroma but in the warm register. Tapers to C:0.012 at the lightest, where ochre becomes nearly indistinguishable from warm neutrals — an intentional convergence that prevents ochre tints from feeling foreign on warm surfaces.
+
+**Proximity note:** Ochre (H:50) sits 32° from warning (H:82). They are perceptually distinct — ochre reads as terra cotta/rust while warning reads as gold/yellow — but the semantic boundary must be enforced: ochre is categorical/decorative, warning is functional/status. Never use ochre for alerts or status indicators.
+
+| Step | OKLCH | Hex | Notes |
+|------|-------|-----|-------|
+| 50 | `oklch(15.0% 0.015 45)` | `#110906` | Near-black ochre. Deep warm dark. |
+| 100 | `oklch(22.0% 0.025 47)` | `#241711` | Very dark ochre. |
+| 200 | `oklch(30.0% 0.045 48)` | `#402719` | Dark ochre. Strong earth accent. |
+| 300 | `oklch(38.0% 0.065 49)` | `#5E3722` | Mid-dark ochre. |
+| 400 | `oklch(46.0% 0.085 50)` | `#7D4929` | Core ochre. Text-safe on all light surfaces (7.05:1 on surface-page). |
+| 500 | `oklch(55.0% 0.095 50)` | `#9E603C` | Mid ochre. Text-safe on surface-page (4.80:1). |
+| 600 | `oklch(64.0% 0.085 51)` | `#B67D5C` | Light ochre. Decorative, non-text on light; text-safe on dark surfaces. |
+| 700 | `oklch(73.0% 0.065 53)` | `#C99D82` | Pale ochre. Dark-mode text (8.0:1 on dark editor). |
+| 800 | `oklch(82.0% 0.040 55)` | `#D9BEAC` | Soft ochre. Tag/badge background (7.88:1 with teal-200 text). |
+| 900 | `oklch(90.0% 0.022 60)` | `#EADBD0` | Very light ochre. Surface tint. |
+| 950 | `oklch(95.0% 0.012 65)` | `#F4EDE6` | Near-white ochre wash. Lightest tinted surface. |
+
+#### 1.4.2 Rose — Warm Pink Family
+
+**Semantic role:** Community engagement, relational warmth, patient-facing categorical accent. Rose provides a warm chromatic option in the red-purple zone that is distinct from the functional error red (H:25). Where error red communicates failure, rose communicates human connection.
+
+**Hue logic:** Centered on H≈350 (warm pink, not cool magenta). Hue drifts from H:345 at the darkest to H:0 at the lightest, keeping the rose family firmly in warm territory. The 35° separation from error (H:25) provides reliable perceptual distance.
+
+**Chroma logic:** Peaks at C:0.100 at step 500 — the highest peak of the extended families, appropriate for rose's role as a warm, expressive accent. Tapers to C:0.013 at the lightest.
+
+| Step | OKLCH | Hex | Notes |
+|------|-------|-----|-------|
+| 50 | `oklch(15.0% 0.020 345)` | `#11080D` | Near-black rose. |
+| 100 | `oklch(22.0% 0.035 347)` | `#26141E` | Very dark rose. |
+| 200 | `oklch(30.0% 0.055 348)` | `#422233` | Dark rose. Strong accent. |
+| 300 | `oklch(38.0% 0.075 349)` | `#5F3049` | Mid-dark rose. |
+| 400 | `oklch(46.0% 0.095 350)` | `#7F405F` | Core rose. Text-safe on all light surfaces (7.19:1 on surface-page). |
+| 500 | `oklch(55.0% 0.100 350)` | `#9D587A` | Mid rose. Text-safe on surface-page (4.90:1). |
+| 600 | `oklch(64.0% 0.090 351)` | `#B67593` | Light rose. Decorative on light; text-safe on dark surfaces. |
+| 700 | `oklch(73.0% 0.070 352)` | `#CB96AC` | Pale rose. Dark-mode text (7.9:1 on dark editor). |
+| 800 | `oklch(82.0% 0.045 355)` | `#DDB9C5` | Soft rose. Tag/badge background (7.82:1 with teal-200 text). |
+| 900 | `oklch(90.0% 0.025 358)` | `#EDD8DE` | Very light rose. Surface tint. |
+| 950 | `oklch(95.0% 0.013 0)` | `#F7EBEE` | Near-white rose wash. |
+
+#### 1.4.3 Violet — Warm Purple Family
+
+**Semantic role:** Categorical accent, data series differentiation. Violet occupies the purple zone — the largest previously unoccupied sector of the hue wheel. It provides maximum hue distance from both the teal-sage identity colors and the warm ochre/rose families.
+
+**Hue logic:** Centered on H≈305 (warm purple, shifted away from cool blue-violet). Hue drifts from H:300 at the darkest to H:315 at the lightest, keeping the family in warm-purple territory rather than drifting toward cool magenta.
+
+**Chroma logic:** Peaks at C:0.100 at step 500, matching rose. Tapers to C:0.013 at the lightest. Violet's chroma is restrained relative to what the purple range can achieve in sRGB, preventing it from appearing garish alongside the brand's muted aesthetic.
+
+| Step | OKLCH | Hex | Notes |
+|------|-------|-----|-------|
+| 50 | `oklch(15.0% 0.020 300)` | `#0C0912` | Near-black violet. |
+| 100 | `oklch(22.0% 0.035 302)` | `#1E1728` | Very dark violet. |
+| 200 | `oklch(30.0% 0.055 303)` | `#332744` | Dark violet. |
+| 300 | `oklch(38.0% 0.075 304)` | `#4B3763` | Mid-dark violet. |
+| 400 | `oklch(46.0% 0.095 305)` | `#644982` | Core violet. Text-safe on all light surfaces (7.15:1 on surface-page). |
+| 500 | `oklch(55.0% 0.100 305)` | `#7F62A0` | Mid violet. Text-safe on surface-page (4.84:1). |
+| 600 | `oklch(64.0% 0.090 306)` | `#9A7EB8` | Light violet. Decorative on light; text-safe on dark surfaces. |
+| 700 | `oklch(73.0% 0.070 307)` | `#B39DCB` | Pale violet. Dark-mode text (8.0:1 on dark editor). |
+| 800 | `oklch(82.0% 0.045 310)` | `#CDBDDA` | Soft violet. Tag/badge background (7.87:1 with teal-200 text). |
+| 900 | `oklch(90.0% 0.025 313)` | `#E4DAEA` | Very light violet. Surface tint. |
+| 950 | `oklch(95.0% 0.013 315)` | `#F2ECF5` | Near-white violet wash. |
+
+#### 1.4.4 Indigo — Deep Blue Family
+
+**Semantic role:** Data series differentiation, analytical contexts. Indigo sits between the functional info blue (H:235) and violet (H:305), providing a deep cool accent that reads as more authoritative than info blue and less expressive than violet. It is the most natural complement to the ochre family across the hue wheel.
+
+**Hue logic:** Centered on H≈265 (blue-violet). Hue drifts from H:260 at the darkest to H:275 at the lightest. The 30° separation from info (H:235) ensures reliable differentiation in data contexts where both might appear.
+
+**Chroma logic:** Peaks at C:0.095 at step 500, slightly below rose and violet. Blue-violet at high chroma can appear electric; the restrained peak keeps indigo feeling native to the brand's muted register.
+
+| Step | OKLCH | Hex | Notes |
+|------|-------|-----|-------|
+| 50 | `oklch(15.0% 0.020 260)` | `#070B14` | Near-black indigo. |
+| 100 | `oklch(22.0% 0.035 262)` | `#121A2B` | Very dark indigo. |
+| 200 | `oklch(30.0% 0.055 263)` | `#1F2D49` | Dark indigo. |
+| 300 | `oklch(38.0% 0.070 264)` | `#2F4168` | Mid-dark indigo. |
+| 400 | `oklch(46.0% 0.090 265)` | `#3F568A` | Core indigo. Text-safe on all light surfaces (6.92:1 on surface-page). |
+| 500 | `oklch(55.0% 0.095 265)` | `#5670A9` | Mid indigo. Text-safe on surface-page (4.70:1). |
+| 600 | `oklch(64.0% 0.085 266)` | `#748BC0` | Light indigo. Decorative on light; text-safe on dark surfaces. |
+| 700 | `oklch(73.0% 0.065 267)` | `#95A7D2` | Pale indigo. Dark-mode text (8.1:1 on dark editor). |
+| 800 | `oklch(82.0% 0.040 270)` | `#BAC3DF` | Soft indigo. Tag/badge background (7.91:1 with teal-200 text). |
+| 900 | `oklch(90.0% 0.022 273)` | `#D9DDED` | Very light indigo. Surface tint. |
+| 950 | `oklch(95.0% 0.012 275)` | `#ECEEF7` | Near-white indigo wash. |
+
+#### Hue Distribution Summary
+
+With the extended families, the full palette covers the hue wheel with no gap exceeding 63°:
+
+```
+Error(25) → Ochre(50) → Warning(82) → Sage(145) → Success(160) → Teal(181) → Info(235) → Indigo(265) → Violet(305) → Rose(350) → Error(25)
+  25°          32°          63°           15°           21°           54°          30°           40°           45°          35°
+```
+
+#### Accessibility Summary — Extended Families
+
+**Light mode text (step 400 on light surfaces):**
+
+| Family | surface-page | surface-primary | surface-secondary | Meets AA? |
+|--------|-------------|----------------|------------------|-----------|
+| Ochre-400 | 7.05:1 | 6.52:1 | 5.80:1 | AA on all ✓ |
+| Rose-400 | 7.19:1 | 6.65:1 | 5.91:1 | AA on all ✓ |
+| Violet-400 | 7.15:1 | 6.61:1 | 5.88:1 | AA on all ✓ |
+| Indigo-400 | 6.92:1 | 6.40:1 | 5.69:1 | AA on all ✓ |
+
+**Dark mode text (step 700 on dark surfaces):**
+
+| Family | teal-dark editor | warm-dark editor | Meets AAA? |
+|--------|-----------------|-----------------|------------|
+| Ochre-700 | 8.0:1 | 8.0:1 | AAA ✓ |
+| Rose-700 | 7.9:1 | 7.9:1 | AAA ✓ |
+| Violet-700 | 8.0:1 | 8.0:1 | AAA ✓ |
+| Indigo-700 | 8.1:1 | 8.1:1 | AAA ✓ |
+
+**Tag/badge backgrounds (steps 800–950 with teal-200 text):**
+All pass AA (≥7.82:1). Suitable for categorical tag backgrounds in both light and dark contexts.
+
+---
+
+### 1.5 Functional Colors — Feedback System
 
 **Rationale for approach:** Healthcare interfaces must communicate status clearly and accessibly. Standard SaaS reds, yellows, greens, and blues would clash with the teal-sage palette and overwhelm the warm, organic character of the brand. Every functional color here is desaturated relative to industry defaults and hue-shifted to avoid direct conflict with the brand palette.
 
-#### 1.4.1 Error / Critical
+#### 1.5.1 Error / Critical
 
 **Hue:** H:25 (warm red-orange). Not pure red (H:0–10), which would clash violently with the teal palette. The warm shift creates a terracotta-adjacent red that feels serious without feeling alarming. Per logo analysis §6: "a standard red will clash violently with the teal palette. Consider warm, desaturated red-oranges instead."
 
@@ -143,7 +273,7 @@ The brand serves both hospital CFOs and grandmothers managing chronic conditions
 | error-base | `oklch(55.0% 0.170 25)` | `#C13C3B` | Primary error color (icons, badges) |
 | error-text | `oklch(45.0% 0.140 25)` | `#932B2A` | Error text on light backgrounds |
 
-#### 1.4.2 Warning / Caution
+#### 1.5.2 Warning / Caution
 
 **Hue:** H:80–85 (warm ochre-gold). Deliberately shifted away from pure yellow (H:100+) toward ochre, which relates naturally to the warm neutral family and the earthy, food-adjacent character of the brand.
 
@@ -154,7 +284,7 @@ The brand serves both hospital CFOs and grandmothers managing chronic conditions
 | warning-base | `oklch(60.0% 0.120 85)` | `#B58B20` | Primary warning color. Deeper amber achieves 3:1 non-text contrast on surface-page. _(Correction per accessibility-audit.md R4. Original #E7B643 failed SC 1.4.11 on all surfaces.)_ |
 | warning-text | `oklch(45.0% 0.100 75)` | `#754B00` | Warning text on light backgrounds |
 
-#### 1.4.3 Success / Confirmation
+#### 1.5.3 Success / Confirmation
 
 **Hue:** H:160 (desaturated green). Shifted 15° away from the sage family (H:145) to provide reliable perceptual distance in sage-dominant contexts — patient materials, nutrition content, and `surface-sage` backgrounds where sage and success would otherwise appear in close proximity.
 
@@ -169,7 +299,7 @@ _Note: Originally specified at H:155. Shifted to H:160 following Design System S
 
 > **Implementation note:** On sage-dominant surfaces (`surface-sage`, sage-tinted cards, patient nutrition contexts), success states must always pair the success color with a checkmark icon at `icon-sm` minimum and a text label. Never rely on color alone to communicate success on sage surfaces.
 
-#### 1.4.4 Info / Informational
+#### 1.5.4 Info / Informational
 
 **Hue:** H:235 (slate blue). The only blue in the system. It is desaturated enough to read as neutral-informational rather than as a competing brand color. Its coolness provides maximum differentiation from the warm error and warning families.
 
@@ -182,7 +312,7 @@ _Note: Originally specified at H:155. Shifted to H:160 following Design System S
 
 ---
 
-### 1.5 Surface / Background System
+### 1.6 Surface / Background System
 
 Surfaces are not a separate color family — they are specific applications of the warm neutral, teal, and sage families at their lightest values. This section defines the named surface tokens.
 
@@ -274,7 +404,7 @@ These lock the logo's exact values to named semantic roles.
 | `color-success-*` | `oklch(94% 0.025 160)` | `oklch(62% 0.09 160)` | `oklch(58% 0.10 160)` | `oklch(35% 0.06 160)` |
 | `color-info-*` | `oklch(94% 0.02 235)` | `oklch(62% 0.08 235)` | `oklch(55% 0.10 235)` | `oklch(40% 0.08 235)` |
 
-Full hex values for feedback tokens are specified in §1.4.
+Full hex values for feedback tokens are specified in §1.5.
 
 ---
 
@@ -357,7 +487,7 @@ The teal-sage palette occupies a narrow hue range (H:145–183). For users with 
 - **The warm neutral family is your path to depicting food and skin tones.** The logo provides no warm colors. The warm neutral scale (H:60–85) can be extended toward H:40–50 (terracotta/clay) for illustration purposes where food coloring, skin tones, or cultural artifacts need warm representation. These extended illustration colors should not become UI tokens — they live in the illustration layer only.
 - **Functional colors should not appear in illustrations.** Error-red, warning-gold, info-blue, and success-green are reserved for UI feedback. If an illustration needs to depict a warning or alert, use the narrative context (a character's expression, a visual indicator) rather than the functional color itself. This preserves the semantic meaning of functional colors for interactive contexts.
 
-> **Judgment call flag — illustration warm extension:** The suggestion that the warm neutral family be extended toward H:40–50 for illustration purposes goes beyond what the brief specifies. The brief requires "culturally specific" depiction of food and communities, which cannot be achieved with a teal-sage-cream palette alone. This extension is recommended but must be governed by the Visual Language Curator to prevent scope creep into the token layer. Illustration colors live in the illustration system, not in this color token file.
+> **Note — illustration warm extension (resolved):** The original recommendation to extend warm neutrals toward H:40–50 for illustration purposes has been promoted to a full token family: Ochre (§1.4.1, H:50). Illustrations depicting food, cultural artifacts, and skin tones should now draw from the ochre family's token steps rather than using ad-hoc illustration-only swatches. The Visual Language Curator governs when ochre steps vs. illustration-only warm swatches are appropriate.
 
 ---
 
@@ -413,6 +543,70 @@ All values in a single table for implementation reference.
 | 900 | `oklch(96.0% 0.005 84)` | `#F3F1EE` |
 | 950 | `oklch(98.5% 0.003 85)` | `#FBFAF8` |
 
+### Ochre Family
+
+| Step | OKLCH | Hex |
+|------|-------|-----|
+| 50 | `oklch(15.0% 0.015 45)` | `#110906` |
+| 100 | `oklch(22.0% 0.025 47)` | `#241711` |
+| 200 | `oklch(30.0% 0.045 48)` | `#402719` |
+| 300 | `oklch(38.0% 0.065 49)` | `#5E3722` |
+| 400 | `oklch(46.0% 0.085 50)` | `#7D4929` |
+| 500 | `oklch(55.0% 0.095 50)` | `#9E603C` |
+| 600 | `oklch(64.0% 0.085 51)` | `#B67D5C` |
+| 700 | `oklch(73.0% 0.065 53)` | `#C99D82` |
+| 800 | `oklch(82.0% 0.040 55)` | `#D9BEAC` |
+| 900 | `oklch(90.0% 0.022 60)` | `#EADBD0` |
+| 950 | `oklch(95.0% 0.012 65)` | `#F4EDE6` |
+
+### Rose Family
+
+| Step | OKLCH | Hex |
+|------|-------|-----|
+| 50 | `oklch(15.0% 0.020 345)` | `#11080D` |
+| 100 | `oklch(22.0% 0.035 347)` | `#26141E` |
+| 200 | `oklch(30.0% 0.055 348)` | `#422233` |
+| 300 | `oklch(38.0% 0.075 349)` | `#5F3049` |
+| 400 | `oklch(46.0% 0.095 350)` | `#7F405F` |
+| 500 | `oklch(55.0% 0.100 350)` | `#9D587A` |
+| 600 | `oklch(64.0% 0.090 351)` | `#B67593` |
+| 700 | `oklch(73.0% 0.070 352)` | `#CB96AC` |
+| 800 | `oklch(82.0% 0.045 355)` | `#DDB9C5` |
+| 900 | `oklch(90.0% 0.025 358)` | `#EDD8DE` |
+| 950 | `oklch(95.0% 0.013 0)` | `#F7EBEE` |
+
+### Violet Family
+
+| Step | OKLCH | Hex |
+|------|-------|-----|
+| 50 | `oklch(15.0% 0.020 300)` | `#0C0912` |
+| 100 | `oklch(22.0% 0.035 302)` | `#1E1728` |
+| 200 | `oklch(30.0% 0.055 303)` | `#332744` |
+| 300 | `oklch(38.0% 0.075 304)` | `#4B3763` |
+| 400 | `oklch(46.0% 0.095 305)` | `#644982` |
+| 500 | `oklch(55.0% 0.100 305)` | `#7F62A0` |
+| 600 | `oklch(64.0% 0.090 306)` | `#9A7EB8` |
+| 700 | `oklch(73.0% 0.070 307)` | `#B39DCB` |
+| 800 | `oklch(82.0% 0.045 310)` | `#CDBDDA` |
+| 900 | `oklch(90.0% 0.025 313)` | `#E4DAEA` |
+| 950 | `oklch(95.0% 0.013 315)` | `#F2ECF5` |
+
+### Indigo Family
+
+| Step | OKLCH | Hex |
+|------|-------|-----|
+| 50 | `oklch(15.0% 0.020 260)` | `#070B14` |
+| 100 | `oklch(22.0% 0.035 262)` | `#121A2B` |
+| 200 | `oklch(30.0% 0.055 263)` | `#1F2D49` |
+| 300 | `oklch(38.0% 0.070 264)` | `#2F4168` |
+| 400 | `oklch(46.0% 0.090 265)` | `#3F568A` |
+| 500 | `oklch(55.0% 0.095 265)` | `#5670A9` |
+| 600 | `oklch(64.0% 0.085 266)` | `#748BC0` |
+| 700 | `oklch(73.0% 0.065 267)` | `#95A7D2` |
+| 800 | `oklch(82.0% 0.040 270)` | `#BAC3DF` |
+| 900 | `oklch(90.0% 0.022 273)` | `#D9DDED` |
+| 950 | `oklch(95.0% 0.012 275)` | `#ECEEF7` |
+
 ### Functional Colors
 
 | Family | Token | OKLCH | Hex |
@@ -440,14 +634,16 @@ All values in a single table for implementation reference.
 
 Decisions that go beyond or extend the brief, flagged for review:
 
-1. **Warm off-white default surface** (§1.5): The brief requires warmth but does not specify surface color. This system uses `#FBFAF8` instead of `#FFFFFF`. Reversible without structural impact.
+1. **Warm off-white default surface** (§1.6): The brief requires warmth but does not specify surface color. This system uses `#FBFAF8` instead of `#FFFFFF`. Reversible without structural impact.
 
-2. **Success green hue shift** (§1.4.3): Success shifted from H:155 to H:160 following Design System Synthesizer review. The 15° separation from sage (H:145) provides reliable perceptual distance in sage-dominant contexts. Dual-cue confirmation (icon + label) required on all surfaces.
+2. **Success green hue shift** (§1.5.3): Success shifted from H:155 to H:160 following Design System Synthesizer review. The 15° separation from sage (H:145) provides reliable perceptual distance in sage-dominant contexts. Dual-cue confirmation (icon + label) required on all surfaces.
 
-3. **Illustration warm color extension** (§5, Visual Language Curator note): Suggested extending warm neutrals toward H:40–50 for food/cultural illustration. This is outside the token system's scope — the recommendation is directional, not prescriptive.
+3. **Illustration warm color extension → promoted to Ochre family** (§1.4.1): The directional recommendation to extend toward H:40–50 for food/cultural illustration is now a full token family (ochre, H:50). This goes beyond the original recommendation's scope (illustration-only) by making ochre available system-wide for tags, data viz, and categorical UI.
 
 4. **Dark mode deferral** (§3): The brief does not mention dark mode. This system recommends against launching with it. If stakeholders require dark mode, the sketch in §3 provides a starting point, but it needs full validation.
 
 5. **Teal-200 as primary text color** (§2.3): Using the logo's anchor dark as default body text is an extension of the wordmark's logic. It reads as near-black in practice. If this proves too chromatic for dense body text in clinical documentation, warm-100 (`#25211D`) is the fallback — less branded but more neutral.
 
 6. **`color-primary` separated from `color-brand-primary`** (§2.2): Interactive fill (teal-400) is now distinct from brand identity color (teal-500). This was required for WCAG AA compliance. Brand identity color remains teal-500 everywhere it is used decoratively; teal-400 is used for any interactive element that carries white-ish text on top of it.
+
+7. **Extended palette families** (§1.4): Four new chromatic families (ochre, rose, violet, indigo) added for data visualization, categorical tags, and multi-series charts. These are palette-layer additions with no semantic tokens — semantic mappings are deferred to component-level decisions. The ochre–warning proximity (32°) requires governance: ochre is categorical/decorative only, never for status/alerts.

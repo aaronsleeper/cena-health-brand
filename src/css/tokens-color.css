@@ -47,6 +47,58 @@
   --color-warm-900: #F3F1EE;
   --color-warm-950: #FBFAF8;
 
+  /* Ochre Family — Extended Palette */
+  --color-ochre-50:  #110906;
+  --color-ochre-100: #241711;
+  --color-ochre-200: #402719;
+  --color-ochre-300: #5E3722;
+  --color-ochre-400: #7D4929;
+  --color-ochre-500: #9E603C;
+  --color-ochre-600: #B67D5C;
+  --color-ochre-700: #C99D82;
+  --color-ochre-800: #D9BEAC;
+  --color-ochre-900: #EADBD0;
+  --color-ochre-950: #F4EDE6;
+
+  /* Rose Family — Extended Palette */
+  --color-rose-50:  #11080D;
+  --color-rose-100: #26141E;
+  --color-rose-200: #422233;
+  --color-rose-300: #5F3049;
+  --color-rose-400: #7F405F;
+  --color-rose-500: #9D587A;
+  --color-rose-600: #B67593;
+  --color-rose-700: #CB96AC;
+  --color-rose-800: #DDB9C5;
+  --color-rose-900: #EDD8DE;
+  --color-rose-950: #F7EBEE;
+
+  /* Violet Family — Extended Palette */
+  --color-violet-50:  #0C0912;
+  --color-violet-100: #1E1728;
+  --color-violet-200: #332744;
+  --color-violet-300: #4B3763;
+  --color-violet-400: #644982;
+  --color-violet-500: #7F62A0;
+  --color-violet-600: #9A7EB8;
+  --color-violet-700: #B39DCB;
+  --color-violet-800: #CDBDDA;
+  --color-violet-900: #E4DAEA;
+  --color-violet-950: #F2ECF5;
+
+  /* Indigo Family — Extended Palette */
+  --color-indigo-50:  #070B14;
+  --color-indigo-100: #121A2B;
+  --color-indigo-200: #1F2D49;
+  --color-indigo-300: #2F4168;
+  --color-indigo-400: #3F568A;
+  --color-indigo-500: #5670A9;
+  --color-indigo-600: #748BC0;
+  --color-indigo-700: #95A7D2;
+  --color-indigo-800: #BAC3DF;
+  --color-indigo-900: #D9DDED;
+  --color-indigo-950: #ECEEF7;
+
   /* Functional — Error */
   --color-error-bg:     #FCE5E3;
   --color-error-border: #D87972;
