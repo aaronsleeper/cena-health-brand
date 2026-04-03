@@ -86,25 +86,13 @@ This applies anywhere in `src/css/` — component files, base.css, and slides.
 }
 ```
 
-### Token namespace — use these exact names
+## References
 
-Spacing: `--space-px`, `--space-0-5`, `--space-1`, `--space-1-5`, `--space-2`, `--space-3`, `--space-4`, `--space-5`, `--space-6`, `--space-8`, `--space-10`, `--space-12`, `--space-16`, `--space-20`, `--space-24`
+**Token names:** See [.project-docs/token-namespace.md] — all spacing, radius, motion, typography, and color token names.
 
-Icon sizes (from `tokens-spacing.css`): `--icon-sm` (16px), `--icon-md` (20px), `--icon-lg` (24px), `--icon-xl` (32px)
+**CSS template:** See [.project-docs/component-css-template.md] — required structure for component CSS files.
 
-Border radius: `--radius-sm` (4px), `--radius-md` (8px), `--radius-lg` (12px), `--radius-xl` (20px), `--radius-full`
-
-Motion: `--duration-micro`, `--duration-fast`, `--duration-normal`, `--duration-slow`; `--ease-enter`, `--ease-exit`, `--ease-transition`
-
-Typography: `--font-display` (Plus Jakarta Sans), `--font-body` (Source Sans 3), `--font-mono` (Source Code Pro)
-
-Text sizes: `--text-3xs`, `--text-2xs`, `--text-xs`, `--text-sm`, `--text-base`, `--text-md`, `--text-lg`, `--text-xl`, `--text-2xl`, `--text-3xl`, `--text-display`
-
-Line heights: `--leading-none`, `--leading-tight`, `--leading-heading`, `--leading-snug`, `--leading-normal`, `--leading-relaxed`, `--leading-body-sm`, `--leading-body`, `--leading-loose`
-
-Letter spacing: `--tracking-tightest` through `--tracking-widest`
-
-Colors — see `src/css/tokens-color.css` for the full list. Key semantic tokens: `--color-text-primary`, `--color-text-secondary`, `--color-text-tertiary`, `--color-text-brand`, `--color-primary`, `--color-primary-hover`, `--color-surface-page`, `--color-surface-primary`, `--color-surface-secondary`, `--color-surface-teal`, `--color-surface-sage`, `--color-border-default`, `--color-border-strong`, `--color-border-focus`
+**Pattern library HTML:** See [.project-docs/pattern-library-conventions.md] — component and page HTML structure, nav sections.
 
 ---
 
@@ -137,101 +125,6 @@ Every new component requires all of these, in this order:
 7. `pattern-library/pages/index.html` — card in the index grid
 
 Do not skip any of these. An incomplete update leaves the pattern library out of sync with the CSS.
-
----
-
-## Component CSS file structure
-
-Follow `src/css/components/button.css` or `src/css/components/alert.css` as the model. Required structure:
-
-```css
-/* ==========================================================================
-   Cena Health — {Component Name} Component
-   Source: components/ui/{name}.md
-   ========================================================================== */
-
-@layer components {
-
-  /* Base */
-
-  /* Variants */
-
-  /* States (hover, focus, active, disabled) */
-
-  /* Density */
-
-  /* Motion */
-
-  /* Reduced motion */
-
-}
-```
-
-Every component that animates must have a `@media (prefers-reduced-motion: reduce)` block.
-
----
-
-## Pattern library component HTML conventions
-
-Follow `pattern-library/components/alert.html` as the model.
-
-- Open with `@component-meta` comment block: `name`, `category`, `classes`, `spec`, `css`, `when-to-use`, `do-not-use-when`
-- Each variant group is `<section class="pl-section" data-pl-section="...">` with `<h2 class="pl-section-title">`
-- Canvases: `<div class="pl-canvas" style="background: var(--color-surface-{name});">` with `<p class="pl-canvas-label">`
-- Component JS (if any) lives at the bottom of the component file inside `<script>(function() { ... })()</script>`
-- No external script files for component demos — inline IIFE only
-
----
-
-## Pattern library page HTML structure
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <load src="../partials/pl-head.html" />
-  <title>{Component} — Cena Health</title>
-</head>
-<body>
-  <div style="display: flex; min-height: 100vh;">
-    <load src="../partials/pl-nav.html" />
-    <main class="pl-main">
-      <header class="pl-page-header">
-        <h1 class="pl-page-title">{Component}</h1>
-        <p class="pl-page-description">...</p>
-      </header>
-      <load src="../components/{name}.html" />
-    </main>
-  </div>
-  <load src="../partials/pl-scripts.html" />
-</body>
-</html>
-```
-
----
-
-## Pattern library nav — active state
-
-`pl-scripts.html` contains a script that sets `active` class on the current page's nav link. The active state CSS is in `pl-head.html`:
-
-```css
-.pl-nav-link.active {
-  background: var(--color-teal-900);
-  color: var(--color-teal-400);
-  font-weight: 500;
-}
-```
-
-The script matches `window.location.pathname` filename against each `.pl-nav-link` href. **Do not remove this script.**
-
-Nav section conventions for new links:
-- **Foundations** — colors, typography, spacing, motion
-- **Primitives** — atomic interactive elements: buttons, inputs, alerts, badges, tags
-- **Layout** — structural containers: cards, panels, grids
-- **Navigation** — nav bars, sidebars, tabs, breadcrumbs
-- **Overlays** — modals, dropdowns, toasts, tooltips
-- **Data** — tables, empty states, pagination, skeletons
-- **Slides** — slide deck components
 
 ---
 
@@ -308,6 +201,12 @@ Then provide the git commands:
 git add -A
 git commit -m "{description of what was built}"
 ```
+
+---
+
+## Dummy copy — use the canonical registry
+
+All placeholder text comes from `.project-docs/dummy-copy.md`. Do not invent names, conditions, stats, or copy. Do not use Lorem ipsum. The canonical patient is **Maria Rivera** (68, MRN PT-2024-0847, Type 2 Diabetes). Known naming collision: "James Chen" appears as both patient and provider — use him only as a provider in new components.
 
 ---
 
