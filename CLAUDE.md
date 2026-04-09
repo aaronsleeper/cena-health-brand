@@ -106,7 +106,7 @@ Every component build task follows this sequence:
 4. **Run** `npm run build:css` — must pass before proceeding
 5. **Run QA** using `.agents/skills/pl-component-qa/SKILL.md` — produces a structured pass/fail report
 6. **Report to Aaron** with the QA report and a list of things to verify at localhost
-7. **Commit** only after Aaron confirms
+7. **Commit** only after Aaron confirms, then push to remote
 
 Do not skip steps 2, 4, or 5. The pre-build plan prevents class name errors. The QA report catches systematic errors before they reach Aaron.
 
