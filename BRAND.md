@@ -95,7 +95,7 @@ Elevation through surface color shifts and warm borders, not shadows. Shadows on
 
 | Role | Family | License |
 |------|--------|---------|
-| Display / headings | Plus Jakarta Sans | OFL |
+| Display / headings | Lora | OFL |
 | Body / UI | Source Sans 3 | OFL |
 | Monospace / code / data | Source Code Pro | OFL |
 
@@ -107,7 +107,7 @@ Major third (1.250) ratio, 16px base, 11 steps (all clean integers). CSS tokens:
 
 ### 5.3 Critical Rules
 
-- `--font-display` = Plus Jakarta Sans (headings, large callouts)
+- `--font-display` = Lora (headings, large callouts)
 - `--font-body` = Source Sans 3 (all UI text, labels, body copy)
 - `--font-mono` = Source Code Pro (code, numeric data, EHR IDs)
 - Density is set via `data-density` on parent containers — never per-component font-size overrides

@@ -36,8 +36,8 @@ Quote slides display patient or partner testimonials as large pull-quotes with a
 
 | Element | Font | Size | Weight | Color |
 |---------|------|------|--------|-------|
-| **Quote mark** | Plus Jakarta Sans | `text-display` | 700 | `color-brand-primary` @ 20% opacity |
-| **Quote text** | Plus Jakarta Sans | `text-xl` | 500 | `color-text-primary` |
+| **Quote mark** | Lora | `text-display` | 700 | `color-brand-primary` @ 20% opacity |
+| **Quote text** | Lora | `text-xl` | 500 | `color-text-primary` |
 | **Attribution name** | Source Sans 3 | `text-sm` | 600 | `color-text-primary` |
 | **Attribution role** | Source Sans 3 | `text-sm` | 400 | `color-text-secondary` |
 

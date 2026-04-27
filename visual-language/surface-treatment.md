@@ -83,7 +83,7 @@ Without repeating patterns, the brand's tactile quality comes from:
 1. **Warm surface colors** that read as natural material.
 2. **Organic line quality** in icons and illustrations — the variable weight and hand-drawn character create a felt texture even in vector form.
 3. **The warm shadow system** (spacing.md §5.3) — warm-tinted shadows feel like shadows cast by soft light on paper, not by a rendering engine.
-4. **Typography's humanist curves** — Plus Jakarta Sans's rounded terminals and Source Sans 3's open counters add a micro-level organic quality to every text-bearing surface.
+4. **Typography's humanist curves** — Lora's rounded terminals and Source Sans 3's open counters add a micro-level organic quality to every text-bearing surface.
 5. **Illustrated background textures** — the lightest, most ambient layer of the illustration system, applied at near-transparency.
 
 These five layers combine to create a surface quality that feels warm, organic, and material without any single decorative pattern being visible.
@@ -96,7 +96,7 @@ Brand moments are the high-impact surfaces where Cena Health expresses its visua
 
 ### 3.1 Hero Sections (Website, Landing Pages)
 
-**Treatment:** Full-width narrative illustration (illustration.md §5.2) on a `surface-sage` or `surface-teal` background that bleeds to the page edge. The hero heading (Plus Jakarta Sans, `display` size, `color-text-primary`) sits within the illustration's negative space — not overlaid on the illustration but composed alongside it. The illustration and the heading share the composition.
+**Treatment:** Full-width narrative illustration (illustration.md §5.2) on a `surface-sage` or `surface-teal` background that bleeds to the page edge. The hero heading (Lora, `display` size, `color-text-primary`) sits within the illustration's negative space — not overlaid on the illustration but composed alongside it. The illustration and the heading share the composition.
 
 **Spacing:** `space-24` (96px) vertical padding above and below the heading. The illustration extends beyond the padded content area, reaching to the section edge. Content within the hero aligns to the page grid; the illustration breaks the grid intentionally (per spacing.md §7, LP2: organic margins, structured content).
 
@@ -104,11 +104,11 @@ Brand moments are the high-impact surfaces where Cena Health expresses its visua
 
 ### 3.2 Slide Deck Covers
 
-**Treatment:** The Cena Health logo mark occupies the left third of the slide at approximately 40% of slide height — large enough to be a compositional presence, not just a logo placement. The title (Plus Jakarta Sans, `display` size) occupies the right two-thirds. Background is `surface-page` (`#FBFAF8`) with an illustrated background texture at 5% opacity.
+**Treatment:** The Cena Health logo mark occupies the left third of the slide at approximately 40% of slide height — large enough to be a compositional presence, not just a logo placement. The title (Lora, `display` size) occupies the right two-thirds. Background is `surface-page` (`#FBFAF8`) with an illustrated background texture at 5% opacity.
 
 **The logo mark at this scale reveals its concentric ring structure** as a visual element in its own right. The three colors (teal-500, teal-600, sage-700) become visible as distinct rings rather than blending into a single mark. This is intentional — the cover slide is the moment where the mark is most fully itself.
 
-**Subtitle** (Plus Jakarta Sans, `md` size, `color-brand-primary`) sits beneath the title with `space-4` gap. Presenter name and date in caption style (`xs`, `color-text-tertiary`).
+**Subtitle** (Lora, `md` size, `color-brand-primary`) sits beneath the title with `space-4` gap. Presenter name and date in caption style (`xs`, `color-text-tertiary`).
 
 ### 3.3 Section Dividers (Website, Slide Decks)
 
@@ -118,7 +118,7 @@ Brand moments are the high-impact surfaces where Cena Health expresses its visua
 
 ### 3.4 Empty States
 
-**Treatment:** Centered spot illustration (illustration.md §5.1) at `icon-2xl` (48px) or slightly larger (64–80px), with a heading (Plus Jakarta Sans, `lg`, `color-text-primary`) and body text (Source Sans 3, `base`, `color-text-secondary`) below. The composition is vertically stacked: illustration → `space-6` → heading → `space-3` → body text → `space-6` → action button.
+**Treatment:** Centered spot illustration (illustration.md §5.1) at `icon-2xl` (48px) or slightly larger (64–80px), with a heading (Lora, `lg`, `color-text-primary`) and body text (Source Sans 3, `base`, `color-text-secondary`) below. The composition is vertically stacked: illustration → `space-6` → heading → `space-3` → body text → `space-6` → action button.
 
 **The illustration is the emotional moment.** A care plan list with no entries shows an illustration of ingredients waiting on a counter — the potential, not the absence. A search with no results shows a gentle "looking" metaphor, not a frowning face. Empty states in Cena Health never communicate failure — they communicate readiness.
 
@@ -126,7 +126,7 @@ Brand moments are the high-impact surfaces where Cena Health expresses its visua
 
 ### 3.5 Stat Callout Panels
 
-**Treatment:** A panel on `surface-teal` background containing a stat display (Plus Jakarta Sans, `display`, `color-brand-primary`) with its supporting label (Source Sans 3, `base`, `color-text-primary`) and an optional data illustration (illustration.md §5.3) to the right. The panel uses `radius-xl` for its container and `inset-asym-xl` (`space-6` vertical, `space-8` horizontal) padding.
+**Treatment:** A panel on `surface-teal` background containing a stat display (Lora, `display`, `color-brand-primary`) with its supporting label (Source Sans 3, `base`, `color-text-primary`) and an optional data illustration (illustration.md §5.3) to the right. The panel uses `radius-xl` for its container and `inset-asym-xl` (`space-6` vertical, `space-8` horizontal) padding.
 
 **The stat count-up animation** (motion.md §3.10) fires when this panel enters the viewport. The illustration remains static while the number builds — the motion system specifies this figure/ground relationship (motion.md §5).
 

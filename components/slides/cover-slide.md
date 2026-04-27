@@ -64,7 +64,7 @@ At this scale, the mark's concentric ring structure becomes a visible compositio
 
 | Property | Value |
 |----------|-------|
-| **Typeface** | Plus Jakarta Sans |
+| **Typeface** | Lora |
 | **Size** | `display` (68pt deck) |
 | **Weight** | Bold (700) |
 | **Line height** | 1.05 |
@@ -77,7 +77,7 @@ This is the hero heading style from the type system applied to the deck surface.
 
 | Property | Value |
 |----------|-------|
-| **Typeface** | Plus Jakarta Sans |
+| **Typeface** | Lora |
 | **Size** | `md` (22pt deck) |
 | **Weight** | Regular (400) |
 | **Line height** | 1.50 |

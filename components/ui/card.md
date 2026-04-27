@@ -42,7 +42,7 @@ The workhorse container. Used for care plan summaries, list items, content panel
 ├─────────────────────────────────────┤
 │                                     │
 │  [Optional: Overline label]         │  ← overline style, color-text-brand
-│  Heading                            │  ← H3 style (Plus Jakarta Sans, lg, SemiBold 600)
+│  Heading                            │  ← H3 style (Lora, lg, SemiBold 600)
 │  Body text or metadata              │  ← body-sm style (Source Sans 3, sm, Regular 400)
 │                                     │
 │  [Optional: Action row]             │  ← buttons or links
@@ -178,7 +178,7 @@ The brand's most impactful data presentation component. Reserved for core claims
 | Element | Style |
 |---------|-------|
 | **Overline** | Source Sans 3, `text-2xs` (10px), SemiBold 600, uppercase, 0.08em tracking, `color-text-brand` (#1B685E) |
-| **Stat number** | Plus Jakarta Sans, `text-display` (61px), Bold 700, −0.02em tracking, `color-brand-primary` (#3A8478) |
+| **Stat number** | Lora, `text-display` (61px), Bold 700, −0.02em tracking, `color-brand-primary` (#3A8478) |
 | **Stat label** | Source Sans 3, `text-base` (16px), Regular 400, `color-text-primary` (#0D322D) |
 | **Source citation** | Source Sans 3, `text-xs` (13px), Regular 400, `color-text-tertiary` (#6B645C) |
 

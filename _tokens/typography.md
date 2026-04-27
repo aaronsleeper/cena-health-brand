@@ -2,6 +2,9 @@
 
 _Design token specification for the Cena Health type system. Every decision traces to the brand brief, logo analysis, or color system._
 
+> [!note] @Aaron
+> The heading face was changed from Plus Jakarta Sans to **Lora** per directive (2026-04-27). The mechanical rename touched every canonical declaration. The §1.1 rationale (Display / Heading) was rewritten to argue for Lora as a transitional serif rather than a humanist sans-serif — the prior prose was load-bearing for Plus Jakarta specifically and could not be left in place. Other sections that referenced the heading face's character (Principle 5; §1.5; §3 hierarchy rationale) had narrower edits but warrant a pass for tone coherence. The "two-tone wordmark" logic in §4 still composes — Lora's italic and weight axis support the same hierarchy moves — but the visual effect is editorial-serif rather than humanist-sans, which is a different brand register. Audit when ready.
+
 ---
 
 ## 0. Typographic Principles
@@ -36,7 +39,7 @@ The brand serves hospital CFOs and grandmothers from the same typographic system
 
 At body and UI sizes, typography should be invisible — the reader should absorb content, not notice the typeface. At display sizes (hero text, slide titles, stat callouts), the heading face's character becomes visible and expressive. The type system earns the right to be noticed only at scale.
 
-**Application:** Body and UI text use Source Sans 3, which is designed to disappear into content. Display text uses Plus Jakarta Sans, whose rounded terminals and warm proportions become legible personality at 32px+. Below 24px, the two faces converge in character; above 32px, they diverge.
+**Application:** Body and UI text use Source Sans 3, which is designed to disappear into content. Display text uses Lora, whose moderate stroke contrast and bracketed serifs read as quiet structure at body-adjacent sizes and resolve into editorial authority at 32px+. Below 24px, the serif/sans pairing reads as ordinary; above 32px, Lora's letterform character carries the brand voice.
 
 ### Principle 6: Structure Serves Scanning
 
@@ -48,33 +51,25 @@ Healthcare audiences scan before they read — the CFO scans for ROI figures, th
 
 ## 1. Typeface Selection
 
-### 1.1 Display / Heading — Plus Jakarta Sans
+### 1.1 Display / Heading — Lora
 
-**Foundry:** Glyph Studio (Tokotype)
-**Classification:** Humanist sans-serif
+**Foundry:** Olga Karpushina, Cyreal
+**Classification:** Transitional serif (screen-optimized)
 **License:** SIL Open Font License 1.1 — free for all uses, including commercial and embedding.
-**Variable axes:** Weight (ExtraLight 200 – ExtraBold 800)
+**Variable axes:** Weight (Regular 400 – Bold 700), Italic
 
-**Why Plus Jakarta Sans is specifically right for Cena Health:**
+**Why Lora is specifically right for Cena Health:**
 
-The logo wordmark establishes that Cena Health's typographic identity is a humanist sans-serif with generous counters, subtly rounded stroke endings, and a warm tonal character that avoids clinical coldness (logo analysis §5, "Compatible Typographic Moods"). Plus Jakarta Sans matches this description precisely — its stroke terminals carry a soft rounding that echoes the icon mark's organic curves without becoming overtly rounded or playful.
+Cena Health pairs a humanist sans-serif body face with a serif display face — a pairing that signals editorial authority and clinical credibility, the typographic register of the New England Journal of Medicine and major health-system publications. Lora was designed for screen reading: its moderate stroke contrast, calibrated x-height, and bracketed serifs render cleanly at display sizes without the fragility of a print-first transitional serif.
 
-The brand must be "credible before charismatic" (brand brief §1). Plus Jakarta Sans is professional enough for an investor deck but warm enough that a patient-facing flyer does not feel institutional. Its moderate x-height keeps it from feeling either compressed (clinical) or bubbly (consumer wellness). The generous counter forms — particularly in `a`, `e`, `g`, and `s` — support readability at large display sizes and maintain clarity when viewed at a distance on slides.
+The brand must be "credible before charismatic" (brand brief §1). A serif heading face delivers credibility before a single word is read; the warmth comes from Lora's letterform shaping — generous counters, slightly rounded stroke endings on the lowercase, and an italic that is a true cursive rather than a slanted roman. Set against Source Sans 3's quiet body, Lora's headings frame each section as something authored — a clinical paper, a care plan, a brief — rather than chrome around an interface.
 
-The weight axis runs from ExtraLight to ExtraBold, providing the full range needed for the two-weight hierarchy the wordmark demands: Bold or SemiBold for primary headings (the "Cena" role — authoritative, anchored) and Regular or Light for supporting text (the "health" role — open, qualifying).
+Lora's true italic (not an oblique) carries clinical and patient-facing requirements at once: italicized medication names, Latin terms, and species names render correctly in clinical documentation; pulled quotes and patient testimonials in italic read as voice rather than emphasis.
 
 **What it expresses that the brand requires:**
-- Organic precision: warm curves rendered with controlled consistency — matching the logo's "organic forms executed with intentional control" (brand brief §5, Principle 5)
-- Accessible authority: clear enough for low-literacy readers at large sizes, professional enough for institutional audiences
-- Modern without trend: it reads as contemporary infrastructure, not as a startup performing personality
-
-**Alternatives considered and rejected:**
-
-- **Nunito Sans:** More aggressively rounded terminals. At display sizes, it reads as consumer-friendly rather than clinically credible. The rounded terminals that are charming at 14px become cartoonish at 48px. Rejected: too soft for the "credible before charismatic" requirement.
-- **DM Sans:** Geometric classification despite humanist influences. Counter forms are more closed, reducing readability for low-literacy audiences. The geometric structure contradicts the logo analysis's explicit preference for humanist over geometric (logo analysis §5). Rejected: geometry conflicts with organic brand language.
-- **Figtree:** Warm and accessible, but limited weight range (300–700) cannot support the full two-weight hierarchy. The Light weight is not light enough to create the "health" register, and there is no ExtraBold for maximum emphasis. Rejected: insufficient range.
-- **Commissioner:** Strong humanist sans with variable width axis. Technically excellent, but its character at display sizes reads more editorial/journalistic than healthcare infrastructure. The Slavic design heritage gives it a slightly different curve logic than the logo wordmark's Latin-centric forms. Rejected: tonal mismatch at display.
-- **Outfit:** Clean and modern, but sits at the geometric-humanist boundary. Lacks the curve warmth that Plus Jakarta Sans carries in its stroke transitions. At display sizes it reads as tech rather than health. Rejected: too geometric-leaning.
+- Editorial authority: the typographic register of healthcare publications and clinical research, signaling that the content is authored, sourced, and accountable
+- Warmth through letterform shape: bracketed serifs and generous counters carry warmth without resorting to decorative or rounded faces — humanist character in a serif lineage
+- Reliable italic: a true cursive italic that handles medical terminology, drug names, and emphasis correctly across clinical and patient contexts
 
 ---
 
@@ -153,7 +148,7 @@ Rather than introducing a separate condensed typeface (which would add a third s
 
 A secondary expressive face for patient-facing materials is not justified. The brand brief explicitly rejects the idea that patient materials should look softer or less professional than institutional materials — the system must be "fully credible AND fully warm" without "compromise in positioning" (brand brief §3, "Cross-audience tension"). Introducing a separate patient-facing display face would create exactly the split the brief prohibits.
 
-Plus Jakarta Sans at larger sizes with increased line height and generous spacing already produces the warm, accessible character needed for patient materials. The warmth comes from composition (sizing, spacing, color) — not from switching fonts.
+Lora at larger sizes with increased line height and generous spacing already produces the warm, authored character needed for patient materials. The warmth comes from composition (sizing, spacing, color) — not from switching fonts.
 
 ---
 
@@ -205,21 +200,21 @@ Each step specifies its multiplier from base, a recommended pixel size for web U
 | Property | Value |
 |----------|-------|
 | **Role** | Top-level page title or slide header. One per page/slide. |
-| **Typeface** | Plus Jakarta Sans |
+| **Typeface** | Lora |
 | **Scale step** | `2xl` (39px web / 44pt deck) |
 | **Weight** | Bold (700) |
 | **Line height** | 1.15 |
 | **Letter spacing** | −0.01em |
 | **Color** | `color-text-primary` (`#0D322D`) |
 
-**Rationale:** The heaviest weight at the largest standard heading size anchors the page. The slight negative tracking at this size tightens the visual rhythm without reducing legibility — Plus Jakarta Sans's generous default spacing tolerates it. The line height of 1.15 keeps multi-line titles compact and authoritative.
+**Rationale:** The heaviest weight at the largest standard heading size anchors the page. The slight negative tracking at this size tightens the visual rhythm without reducing legibility — Lora's generous default spacing tolerates it. The line height of 1.15 keeps multi-line titles compact and authoritative.
 
 #### Section Heading (H2)
 
 | Property | Value |
 |----------|-------|
 | **Role** | Major section divisions within a page or document. |
-| **Typeface** | Plus Jakarta Sans |
+| **Typeface** | Lora |
 | **Scale step** | `xl` (31px web / 35pt deck) |
 | **Weight** | SemiBold (600) |
 | **Line height** | 1.20 |
@@ -233,7 +228,7 @@ Each step specifies its multiplier from base, a recommended pixel size for web U
 | Property | Value |
 |----------|-------|
 | **Role** | Subsections within a major section. Card titles, grouped content headers. |
-| **Typeface** | Plus Jakarta Sans |
+| **Typeface** | Lora |
 | **Scale step** | `lg` (25px web / 28pt deck) |
 | **Weight** | SemiBold (600) |
 | **Line height** | 1.25 |
@@ -331,14 +326,14 @@ Each step specifies its multiplier from base, a recommended pixel size for web U
 | Property | Value |
 |----------|-------|
 | **Role** | Hero statistics (e.g., "30% reduction"), key metrics on dashboards, large numerical callouts in slides. |
-| **Typeface** | Plus Jakarta Sans |
+| **Typeface** | Lora |
 | **Scale step** | `display` (61px web / 68pt deck) or `3xl` depending on context |
 | **Weight** | Bold (700) |
 | **Line height** | 1.00 |
 | **Letter spacing** | −0.02em |
 | **Color** | `color-brand-primary` (`#3A8478`) |
 
-**Rationale:** This is a brand moment. The stat display uses the primary brand teal — the color of "health" in the wordmark — to signal that this number is a system outcome, not a decorative element. The tight letter spacing and 1.0 line height create a dense, impactful block. Bold weight in Plus Jakarta Sans at display size is the most visually commanding treatment in the system — reserved for the metrics that define the brand's credibility: "30% hospitalization reduction, 25% fewer ER visits" (brand brief §1).
+**Rationale:** This is a brand moment. The stat display uses the primary brand teal — the color of "health" in the wordmark — to signal that this number is a system outcome, not a decorative element. The tight letter spacing and 1.0 line height create a dense, impactful block. Bold weight in Lora at display size is the most visually commanding treatment in the system — reserved for the metrics that define the brand's credibility: "30% hospitalization reduction, 25% fewer ER visits" (brand brief §1).
 
 The brand brief is explicit: "lead with business fundamentals. Metrics first, narrative second." This style exists to make that concrete.
 
@@ -347,21 +342,21 @@ The brand brief is explicit: "lead with business fundamentals. Metrics first, na
 | Property | Value |
 |----------|-------|
 | **Role** | Pull quotes, patient testimonials, highlighted brand statements. |
-| **Typeface** | Plus Jakarta Sans |
+| **Typeface** | Lora |
 | **Scale step** | `md` (20px web / 22pt deck) |
 | **Weight** | Regular (400) |
 | **Line height** | 1.50 |
 | **Letter spacing** | 0 (default) |
 | **Color** | `color-brand-primary` (`#3A8478`) |
 
-**Rationale:** Quotes use the heading typeface at body-adjacent size but at Regular weight — the inverse of heading treatment (heading = large + bold; quote = moderate + regular). This creates distinction without hierarchical confusion. The brand teal color differentiates it from body text while linking it to the system's voice. The Regular weight in Plus Jakarta Sans at 20px is warm and readable — appropriate for patient voices and testimonials, which should feel human, not institutional.
+**Rationale:** Quotes use the heading typeface at body-adjacent size but at Regular weight — the inverse of heading treatment (heading = large + bold; quote = moderate + regular). This creates distinction without hierarchical confusion. The brand teal color differentiates it from body text while linking it to the system's voice. The Regular weight in Lora at 20px is warm and readable — appropriate for patient voices and testimonials, which should feel human, not institutional.
 
 #### Hero Heading
 
 | Property | Value |
 |----------|-------|
 | **Role** | Maximum-impact brand statements. Website hero, conference slides, campaign headlines. |
-| **Typeface** | Plus Jakarta Sans |
+| **Typeface** | Lora |
 | **Scale step** | `display` (61px web / 68pt deck) |
 | **Weight** | Bold (700) |
 | **Line height** | 1.05 |
@@ -405,7 +400,7 @@ The logo's "Cena" / "health" color split uses `color-text-primary` (`#0D322D`) f
 
 | Face | Weights to Load | Format | Variable? |
 |------|-----------------|--------|-----------|
-| Plus Jakarta Sans | 400, 600, 700 | WOFF2 | Yes — single variable file covers all weights |
+| Lora | 400, 600, 700 | WOFF2 | Yes — single variable file covers all weights |
 | Source Sans 3 | 400, 500, 600 | WOFF2 | Yes — single variable file covers all weights |
 | Source Sans 3 Italic | 400 | WOFF2 | Yes — single variable file |
 | Source Code Pro | 400, 500 | WOFF2 | Yes — single variable file |
@@ -414,16 +409,16 @@ The logo's "Cena" / "health" color split uses `color-text-primary` (`#0D322D`) f
 
 ### Loading Strategy
 
-1. **Preload** Plus Jakarta Sans variable (display face appears above the fold in most layouts).
+1. **Preload** Lora variable (display face appears above the fold in most layouts).
 2. **Preload** Source Sans 3 variable (body text is immediately visible).
 3. **Lazy-load** Source Sans 3 Italic and Source Code Pro (used in specific contexts, not required on first paint).
-4. **Fallback stack:** `system-ui, -apple-system, 'Segoe UI', sans-serif` for both heading and body. The fallback should approximate the metrics of Source Sans 3 to minimize layout shift.
+4. **Fallback stacks:** `Georgia, 'Times New Roman', serif` for headings (Lora) — Georgia is the closest screen-tuned serif on every platform. `system-ui, -apple-system, 'Segoe UI', sans-serif` for body (Source Sans 3). The fallbacks should approximate the metrics of each loaded face to minimize layout shift.
 5. **`font-display: swap`** for all faces — content visibility takes priority over font fidelity. The system's meaning should never be blocked by font loading.
 
 ### CSS Custom Properties
 
 ```
---font-display: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+--font-display: 'Lora', Georgia, 'Times New Roman', serif;
 --font-body: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
 --font-mono: 'Source Code Pro', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
 ```
@@ -435,14 +430,14 @@ The logo's "Cena" / "health" color split uses `color-text-primary` (`#0D322D`) f
 ### For the Space Architect
 
 - **Line heights are specified as unitless multipliers**, not pixel values. Your spacing system can use these directly. The body text at 16px / 1.55 line height produces a 24.8px line — round to 24px or 25px when calculating vertical rhythm if your spacing grid requires integer values. A 4px base grid will work (16px body, 24px line = 6 grid units; 20px md text at 1.45 line height = ~29px ≈ 7 grid units approximated to 28px).
-- **The heading face (Plus Jakarta Sans) has slightly different metrics than the body face (Source Sans 3).** When headings and body text appear in adjacent layout blocks (e.g., a sidebar heading next to a main-content paragraph), the baseline grids will not align automatically. Do not force baseline alignment between the two faces — the visual weight difference already creates sufficient grouping. Align to a consistent spacing grid (the space between elements) rather than to baselines.
+- **The heading face (Lora) has slightly different metrics than the body face (Source Sans 3).** When headings and body text appear in adjacent layout blocks (e.g., a sidebar heading next to a main-content paragraph), the baseline grids will not align automatically. Do not force baseline alignment between the two faces — the visual weight difference already creates sufficient grouping. Align to a consistent spacing grid (the space between elements) rather than to baselines.
 - **Minimum touch targets for labels:** UI labels at `sm` (14px) must sit within touch targets of at least 44×44px (WCAG 2.5.8). Your component spacing must account for the small text size requiring a generous interactive zone around it.
 - **Condensed text in data tables** uses Source Sans 3 at narrower variable width, not a separate font. The horizontal density gain is approximately 15–20%, which your table column sizing should factor in.
 
 ### For the Visual Language Curator
 
 - **Illustrations should never contain typeset text** (brand brief §6, Q6 addresses this). When UI screens appear within illustrated scenes, any text on those screens should be suggested through shape and color (gray bars for text, teal rectangles for buttons) rather than rendered as actual type. This prevents typographic inconsistency between the illustration layer and the live UI.
-- **The heading face (Plus Jakarta Sans) may appear in brand collateral illustrations** — for example, as part of a photographed or illustrated poster, banner, or presentation within a scene. When this happens, use the actual typeface at an appropriate hierarchy level; do not approximate it with hand-drawn lettering. The type system is the bridge between illustration and interface.
+- **The heading face (Lora) may appear in brand collateral illustrations** — for example, as part of a photographed or illustrated poster, banner, or presentation within a scene. When this happens, use the actual typeface at an appropriate hierarchy level; do not approximate it with hand-drawn lettering. The type system is the bridge between illustration and interface.
 - **Color pairing rules apply within typography-adjacent illustration.** If illustrated content includes chart labels, diagram annotations, or contextual text (outside the "no text in illustrations" rule, which applies to thematic illustrations), use `color-text-primary` on warm neutral grounds and `color-text-inverse` on dark teal grounds. Never place teal text on sage backgrounds or vice versa — the hue proximity creates vibration.
 - **The stat display style** (`display` size in `color-brand-primary`) is the typographic element most likely to appear in illustrated/designed compositions (infographics, annual report pages, impact summaries). Its visual behavior — large, bold, teal — should be treated as a compositional element like the icon mark: it has mass, it needs space around it, it anchors a region.
 
@@ -452,17 +447,17 @@ The logo's "Cena" / "health" color split uses `color-text-primary` (`#0D322D`) f
 
 | Style | Face | Step | Weight | Line Height | Tracking | Color Token |
 |-------|------|------|--------|-------------|----------|-------------|
-| Hero heading | Plus Jakarta Sans | `display` | 700 | 1.05 | −0.02em | `color-text-primary` |
-| H1 | Plus Jakarta Sans | `2xl` | 700 | 1.15 | −0.01em | `color-text-primary` |
-| H2 | Plus Jakarta Sans | `xl` | 600 | 1.20 | −0.005em | `color-text-primary` |
-| H3 | Plus Jakarta Sans | `lg` | 600 | 1.25 | 0 | `color-text-primary` |
+| Hero heading | Lora | `display` | 700 | 1.05 | −0.02em | `color-text-primary` |
+| H1 | Lora | `2xl` | 700 | 1.15 | −0.01em | `color-text-primary` |
+| H2 | Lora | `xl` | 600 | 1.20 | −0.005em | `color-text-primary` |
+| H3 | Lora | `lg` | 600 | 1.25 | 0 | `color-text-primary` |
 | Overline | Source Sans 3 | `2xs` | 600 | 1.20 | 0.08em | `color-text-brand` |
 | Body | Source Sans 3 | `base` | 400 | 1.55 | 0 | `color-text-primary` |
 | Body small | Source Sans 3 | `sm` | 400 | 1.50 | 0.005em | `color-text-secondary` |
 | UI label | Source Sans 3 | `sm` | 500 | 1.20 | 0.01em | `color-text-primary` |
 | Caption | Source Sans 3 | `xs` | 400 | 1.45 | 0.01em | `color-text-tertiary` |
-| Stat display | Plus Jakarta Sans | `display` | 700 | 1.00 | −0.02em | `color-brand-primary` |
-| Quote | Plus Jakarta Sans | `md` | 400 | 1.50 | 0 | `color-brand-primary` |
+| Stat display | Lora | `display` | 700 | 1.00 | −0.02em | `color-brand-primary` |
+| Quote | Lora | `md` | 400 | 1.50 | 0 | `color-brand-primary` |
 | Mono inline | Source Code Pro | `sm` | 400 | inherit | 0 | inherit |
 | Mono block | Source Code Pro | `sm` | 400 | 1.55 | 0 | `color-text-primary` |
 
@@ -472,7 +467,7 @@ The logo's "Cena" / "health" color split uses `color-text-primary` (`#0D322D`) f
 
 Decisions that extend beyond or interpret the brief, flagged for review:
 
-1. **Plus Jakarta Sans over more established alternatives** (§1.1): This is a relatively young typeface (released 2021). Its open-source license and variable font support are strong, but it lacks the decades of battle-testing that faces like Source Sans or Fira have. If brand longevity is a concern, Source Sans 3 could serve as both heading and body face — losing some display personality but gaining maximum consistency and proven reliability.
+1. **Serif heading face for a healthcare technology brand** (§1.1): Pairing a serif display face with a humanist-sans body is the editorial register (medical journals, health-system publications) rather than the SaaS register (software startups). The decision argues that Cena Health is closer to a clinical publication than a consumer app, and the typography should signal that. If user testing with institutional buyers reveals the serif reads as old-fashioned rather than authoritative, an all-sans system using Source Sans 3 at heading sizes is the fallback.
 
 2. **Major third ratio** (§2.1): The 1.250 ratio is a judgment call balancing slide/display needs against UI density. If testing reveals that the jump from `base` (16px) to `md` (20px) is too large for UI contexts, a 1.200 minor third with a manually enlarged display step would be the alternative.
 
@@ -480,6 +475,6 @@ Decisions that extend beyond or interpret the brief, flagged for review:
 
 4. **Two-tone treatment rules** (§4): The decision to extend the wordmark's two-tone logic beyond the logo is interpretive. The brand brief asks the Typographer to decide; the color system suggests it can work but should be "used sparingly." The rules defined here attempt to be specific enough to prevent misuse while allowing the brand's most distinctive typographic gesture to appear where it serves the narrative. If this creates inconsistency in practice, the safe fallback is to isolate two-tone treatment to the logo only.
 
-5. **No secondary display face** (§1.5): This rejects the option of a warmer/softer face for patient materials. The reasoning follows the brief's "cross-audience tension" resolution: one system, not two. If user testing with patient populations reveals that Plus Jakarta Sans at large sizes reads as too institutional, this decision should be revisited — but the first attempt should be compositional adjustment (larger sizes, more spacing, sage/warm color palette) before introducing a new typeface.
+5. **No secondary display face** (§1.5): This rejects the option of a warmer/softer face for patient materials. The reasoning follows the brief's "cross-audience tension" resolution: one system, not two. If user testing with patient populations reveals that Lora at large sizes reads as too institutional, this decision should be revisited — but the first attempt should be compositional adjustment (larger sizes, more spacing, sage/warm color palette) before introducing a new typeface.
 
 6. **Condensed as variable width, not separate family** (§1.4): This keeps the system at two font families plus one monospace. If Source Sans 3's variable width axis proves insufficient for extreme density requirements (e.g., multi-column data tables on narrow mobile views), a dedicated condensed family could be introduced — but only after the variable width approach has been tested and found inadequate.

@@ -8,9 +8,18 @@
    -------------------------------------------------------------------------- */
 
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Variable.woff2') format('woff2');
-  font-weight: 200 800;
+  font-family: 'Lora';
+  src: url('/fonts/Lora-Variable.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/Lora-Italic-Variable.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -42,7 +51,7 @@
    -------------------------------------------------------------------------- */
 
 :root {
-  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Lora', Georgia, 'Times New Roman', serif;
   --font-body:    'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono:    'Source Code Pro', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
 }

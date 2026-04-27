@@ -60,7 +60,7 @@ The system's visual elements — icon curves, illustration strokes, border radii
 
 The system's default state is quiet. Body text disappears into content. Surfaces separate through color shift, not shadow. Motion confirms interaction, not decorates. Icons are stroke-based monochrome. Photography is documentary. The system's most expressive elements — stat count-ups, two-tone typography, the Emphasis easing curve, `gradient-brand`, logo-as-watermark, narrative scene illustrations — are all explicitly governed by usage caps and context rules.
 
-**Cross-domain resolution:** When designing a feature page, the default mode is: Source Sans 3 on warm cream with chromatic dark, Plus Jakarta Sans headings in semibold, cards separated by surface color with warm borders, icons in monochrome. This quiet surface is where most time is spent. Brand moments — a hero illustration, a stat callout with count-up, a two-tone heading — are placed deliberately, surrounded by `space-16` or `space-24`, and limited to a few per page. If every section is a brand moment, none of them are.
+**Cross-domain resolution:** When designing a feature page, the default mode is: Source Sans 3 on warm cream with chromatic dark, Lora headings in semibold, cards separated by surface color with warm borders, icons in monochrome. This quiet surface is where most time is spent. Brand moments — a hero illustration, a stat callout with count-up, a two-tone heading — are placed deliberately, surrounded by `space-16` or `space-24`, and limited to a few per page. If every section is a brand moment, none of them are.
 
 ### Principle 7: Evidence and Expression Stay in Their Lanes
 

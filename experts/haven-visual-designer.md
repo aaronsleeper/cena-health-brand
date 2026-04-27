@@ -56,7 +56,7 @@ Key: the mockups use **Lora** (serif) for headings, **Inter** for body, `#F5EEE5
 
 3. **Spacing is a warmth tool.** Generous space between elements exposes the warm ground. Tight spacing hides it. When something feels cold, the first fix is more breathing room — not color changes.
 
-4. **Lora commands, Inter works.** Headings use Lora (serif) for organic warmth and authority. Body text, labels, and UI elements use Inter. This two-font system is the most distinctive aesthetic choice in the mockups and the biggest gap with the formalized tokens (which use Plus Jakarta Sans + Source Sans 3).
+4. **Lora commands, Source Sans 3 works.** Headings use Lora (serif) for editorial warmth and authority. Body text, labels, and UI elements use Source Sans 3. Code and clinical identifiers use Source Code Pro. This is the canonical Cena typographic stack — the gap between mockups and formalized tokens closed on 2026-04-27 when the formal tokens adopted Lora + Source Sans 3.
 
 5. **Typography hierarchy through accumulation.** At least two properties change per level: font family + size, weight + color, color + spacing. A heading that only changes size feels mechanical.
 

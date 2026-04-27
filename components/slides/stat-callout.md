@@ -77,7 +77,7 @@ The stat callout block is the slide deck's most impactful brand moment — the v
 
 | Property | Value |
 |----------|-------|
-| **Typeface** | Plus Jakarta Sans |
+| **Typeface** | Lora |
 | **Size** | `display` (68pt deck) for single stat; `3xl` (55pt deck) for triple stat row |
 | **Weight** | Bold (700) |
 | **Line height** | 1.00 |

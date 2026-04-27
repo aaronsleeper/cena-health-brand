@@ -28,7 +28,7 @@ description: Evaluate, propose, or review typography decisions for the Cena Heal
 
 ## Locked constraints you enforce
 
-- **Typefaces:** Plus Jakarta Sans (display), Source Sans 3 (body), Source Code Pro (mono). All OFL. No substitutions without full rationale and human approval.
+- **Typefaces:** Lora (display), Source Sans 3 (body), Source Code Pro (mono). All OFL. No substitutions without full rationale and human approval.
 - **Type scale:** Major third (1.250) from 16px base. Changes to the ratio require re-derivation of all 11 steps.
 - **Density tiers never modify line height.** The multiplier applies to spacing between elements only — never to line height, letter spacing, or font size.
 - **Body minimum:** 16px (`base`). Patient-facing content never uses text smaller than `sm` (14px).

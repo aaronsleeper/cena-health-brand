@@ -19,7 +19,7 @@ Styled pull-quote element for patient testimonials, partner statements, and clin
 
 - Padding: `var(--space-6) var(--space-8)`
 - Left border: 4px solid `var(--color-border-brand)`
-- Quote text: Plus Jakarta Sans, `var(--text-md)`, weight 400, `var(--color-brand-primary)`
+- Quote text: Lora, `var(--text-md)`, weight 400, `var(--color-brand-primary)`
 - Attribution: Source Sans 3, `var(--text-sm)`, `var(--color-text-secondary)`
 - Decorative mark: `var(--text-3xl)`, `var(--color-border-brand)`, line-height 1
 

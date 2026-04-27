@@ -278,7 +278,7 @@ Ongoing:   E1, F1, F2 — hardening and governance
 - Warm/teal/sage scales are inverted (50=darkest, 950=lightest). `cena.css` remaps these for Tailwind utility compatibility.
 
 **Typography:**
-- Plus Jakarta Sans + Source Sans 3 + Source Code Pro. All OFL.
+- Lora + Source Sans 3 + Source Code Pro. All OFL.
 - Major third (1.250), 16px base, 11 steps — all clean integers.
 - Density tiers never touch line height.
 
@@ -330,3 +330,4 @@ npm run build      # full Vite build
 | 2026-03-16 | INFRA-03: @apply migration (7 files), A1–A8: sidebar, empty-state, skeleton, pagination, toolbar, filter-pill, segmented-control (specs, CSS, PL pages) |
 | 2026-03-17 | A9–A18: page-header, tag-group, section-nav, accordion, kv-table, activity-feed, timeline, prompt-input, chat, pipeline-bar; B2–B3: quote slide, section divider slide; E1: Tailwind config hardening |
 | 2026-03-17 | INFRA-03: @apply migration (4 CSS files updated, 3 already clean); 13 PL layout utility classes added to pl-head.html; inline styles replaced in badge, dropdown, modal, toast, nav, form-group HTML files. Drawer PL z-index fix (left drawer offset). |
+| 2026-03-18 | Dummy copy audit: canonical name registry created at `.project-docs/dummy-copy.md`. Four inconsistencies identified (Maria Santos → Maria Rivera in kv-table + slide-quote; Dr. Michael Chen → Dr. James Chen in timeline; Lorem ipsum → Cena Health copy in input.html). Fix task written to `next-task.md` as COPY-01. Copy guidance added to `CLAUDE.md` and `pl-component-builder/SKILL.md`. |

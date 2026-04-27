@@ -92,7 +92,7 @@ Max-height: `calc(100vh - space-12)`. Body scrolls when content exceeds availabl
 |----------|-------|
 | **Padding** | `space-5` horizontal, `space-4` vertical |
 | **Border bottom** | 1px `color-border-default` |
-| **Title** | Plus Jakarta Sans, `text-lg` (25px), SemiBold 600, `color-text-primary` |
+| **Title** | Lora, `text-lg` (25px), SemiBold 600, `color-text-primary` |
 | **Description** | Source Sans 3, `text-sm` (14px), Regular 400, `color-text-secondary` |
 | **Title-to-description gap** | `space-1` |
 

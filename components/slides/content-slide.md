@@ -68,7 +68,7 @@ The overline labels the section or category of the slide: "CLINICAL OUTCOMES", "
 
 | Property | Value |
 |----------|-------|
-| **Typeface** | Plus Jakarta Sans |
+| **Typeface** | Lora |
 | **Size** | `2xl` (44pt deck) |
 | **Weight** | Bold (700) |
 | **Line height** | 1.15 |
@@ -111,7 +111,7 @@ Equal columns for comparisons, before/after, pros/cons.
 |----------|-------|
 | **Column span** | 3 columns each |
 | **Gutter** | `space-6` (18pt) between columns |
-| **Column heading** | Plus Jakarta Sans, `lg` (28pt deck), SemiBold 600, `color-text-primary` |
+| **Column heading** | Lora, `lg` (28pt deck), SemiBold 600, `color-text-primary` |
 | **Column body** | Source Sans 3, `base` (18pt deck), Regular 400, `color-text-primary` |
 
 ### 4.3 Asymmetric (4 + 2 or 2 + 4)

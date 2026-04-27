@@ -10,7 +10,7 @@ Border radius: `--radius-sm` (4px), `--radius-md` (8px), `--radius-lg` (12px), `
 
 Motion: `--duration-micro`, `--duration-fast`, `--duration-normal`, `--duration-slow`; `--ease-enter`, `--ease-exit`, `--ease-transition`
 
-Typography: `--font-display` (Plus Jakarta Sans), `--font-body` (Source Sans 3), `--font-mono` (Source Code Pro)
+Typography: `--font-display` (Lora), `--font-body` (Source Sans 3), `--font-mono` (Source Code Pro)
 
 Text sizes: `--text-3xs`, `--text-2xs`, `--text-xs`, `--text-sm`, `--text-base`, `--text-md`, `--text-lg`, `--text-xl`, `--text-2xl`, `--text-3xl`, `--text-display`
 

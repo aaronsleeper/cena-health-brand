@@ -37,7 +37,7 @@ Section divider slides mark transitions between major sections of a presentation
 | Element | Font | Size | Weight | Color |
 |---------|------|------|--------|-------|
 | **Section number** | Source Sans 3 | `text-2xs` | 600, uppercase | `color-text-brand` |
-| **Section title** | Plus Jakarta Sans | `text-2xl` | 600 | `color-text-primary` |
+| **Section title** | Lora | `text-2xl` | 600 | `color-text-primary` |
 | **Section subtitle** | Source Sans 3 | `text-base` | 400 | `color-text-secondary` |
 
 ---

@@ -432,7 +432,7 @@ Each pattern specifies the full motion behavior for a specific interaction. All 
 
 ### 3.10 Stat / Metric Count-Up
 
-**What the viewer sees:** A key metric — "30% reduction in hospitalizations," "25% fewer ER visits," "$17B in preventable costs" — counts up from zero (or from a baseline) to its final value. The number itself is rendered in the stat display type style (Plus Jakarta Sans, `display` size, `color-brand-primary`). The count-up is a narrative device: the number earns its value.
+**What the viewer sees:** A key metric — "30% reduction in hospitalizations," "25% fewer ER visits," "$17B in preventable costs" — counts up from zero (or from a baseline) to its final value. The number itself is rendered in the stat display type style (Lora, `display` size, `color-brand-primary`). The count-up is a narrative device: the number earns its value.
 
 | Property | Value |
 |----------|-------|
@@ -518,7 +518,7 @@ The logo's concentric ring structure might invite animation — rings pulsing ou
 
 ### Stat display as a compositional element
 
-The stat count-up (§3.10) is the motion system's most visible intersection with the Visual Language Curator's work. In infographics, impact summaries, and illustrated data compositions, the stat display type style (Plus Jakarta Sans, `display` size, `color-brand-primary`) will often sit alongside illustrated elements. The count-up animation should be the only moving element in these compositions — the illustrated surroundings remain static while the number builds. This creates a figure/ground relationship between the animated data (the foreground claim) and the illustrated context (the supporting scene), mirroring the brand's hierarchy: metrics first, narrative second.
+The stat count-up (§3.10) is the motion system's most visible intersection with the Visual Language Curator's work. In infographics, impact summaries, and illustrated data compositions, the stat display type style (Lora, `display` size, `color-brand-primary`) will often sit alongside illustrated elements. The count-up animation should be the only moving element in these compositions — the illustrated surroundings remain static while the number builds. This creates a figure/ground relationship between the animated data (the foreground claim) and the illustrated context (the supporting scene), mirroring the brand's hierarchy: metrics first, narrative second.
 
 ### Color transitions and illustration adjacency
 

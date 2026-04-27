@@ -65,7 +65,7 @@ _Web-specific mapping layer for the typographic token system. All canonical valu
 
 ```css
 :root {
-  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Lora', Georgia, 'Times New Roman', serif;
   --font-body:    'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono:    'Source Code Pro', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
 }
@@ -284,7 +284,7 @@ If strict 4px grid alignment is required for vertical rhythm, set line heights i
 ### 7.1 HTML Preload Tags
 
 ```html
-<link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Lora-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/SourceSans3-Variable.woff2" as="font" type="font/woff2" crossorigin>
 ```
 
@@ -292,9 +292,18 @@ If strict 4px grid alignment is required for vertical rhythm, set line heights i
 
 ```css
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Variable.woff2') format('woff2');
-  font-weight: 200 800;
+  font-family: 'Lora';
+  src: url('/fonts/Lora-Variable.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/Lora-Italic-Variable.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: italic;
   font-display: swap;
 }
 

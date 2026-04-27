@@ -184,7 +184,7 @@
   --breakpoint-xl: 1280px;
 
   /* Font families */
-  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Lora', Georgia, 'Times New Roman', serif;
   --font-body:    'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono:    'Source Code Pro', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
 
