@@ -1,0 +1,49 @@
+{
+  "$schema": "Cena Color System v2 — generator source spec",
+  "$doc": "Mirror of _tokens/color-system-v2.md §3 + §3b. Spec is human-canonical; this file is machine-canonical. Keep in sync when spec values change. Generator reads this file, not the markdown.",
+  "$version": "2026-05-11",
+  "$direction": "tailwind",
+  "$comment": "Scale direction: 50 = lightest, 950 = darkest (Tailwind canonical, per spec §1.2).",
+
+  "interpolation": {
+    "model": "linear",
+    "comment": "Linear-in-L per spec §1.4. Each numerical stop sits at equal L-delta from neighbors."
+  },
+
+  "logo_identity": {
+    "comment": "Hex-frozen logo identity tokens per spec §5. Generator does NOT compute these; they pass through as fixed hex.",
+    "primary":          { "hex": "#3A8478", "oklch": "oklch(56.3% 0.0762 181.3)", "role": "logo primary teal (outer ring, \"health\" wordmark)" },
+    "secondary":        { "hex": "#52A395", "oklch": "oklch(66% 0.0827 181)",     "role": "logo secondary teal (middle ring)" },
+    "anchor-dark":      { "hex": "#0D322D", "oklch": "oklch(28.9% 0.0426 182.8)", "role": "logo anchor-dark teal (\"Cena\" wordmark)" },
+    "sage":             { "hex": "#81B983", "oklch": "oklch(73.3% 0.0967 145.4)", "role": "logo sage green (inner ring)" }
+  },
+
+  "families": {
+    "teal":    { "root": "oklch(56.3% 0.0762 181.3)", "max": "oklch(96% 0.013 181)",  "min": "oklch(15% 0.025 183)", "role": "brand primary" },
+    "sage":    { "root": "oklch(55% 0.085 145.5)",    "max": "oklch(95% 0.018 148)",  "min": "oklch(15% 0.020 148)", "role": "paired counterpart (Cena-canonical 18th family)" },
+    "sand":    { "root": "oklch(65% 0.016 75)",       "max": "oklch(98.5% 0.003 85)", "min": "oklch(15% 0.008 60)",  "role": "warm neutral (single neutral)" },
+    "red":     { "root": "oklch(55% 0.170 25)",       "max": "oklch(96% 0.020 30)",   "min": "oklch(20% 0.075 23)",  "role": "error / critical" },
+    "amber":   { "root": "oklch(63% 0.108 82)",       "max": "oklch(96% 0.020 85)",   "min": "oklch(22% 0.060 78)",  "role": "warning / caution" },
+    "green":   { "root": "oklch(55% 0.105 160)",      "max": "oklch(96% 0.025 155)",  "min": "oklch(20% 0.060 165)", "role": "success / confirmation" },
+    "cyan":    { "root": "oklch(50% 0.090 235)",      "max": "oklch(94% 0.035 215)",  "min": "oklch(20% 0.060 240)", "role": "info / informational" },
+
+    "orange":  { "root": "oklch(58% 0.115 35)",       "max": "oklch(96% 0.025 45)",   "min": "oklch(20% 0.065 30)",  "role": "terracotta / earth accent" },
+    "yellow":  { "root": "oklch(72% 0.115 95)",       "max": "oklch(96% 0.025 90)",   "min": "oklch(28% 0.060 100)", "role": "illumination accent" },
+    "lime":    { "root": "oklch(65% 0.110 115)",      "max": "oklch(95% 0.025 125)",  "min": "oklch(25% 0.060 110)", "role": "sage-adjacent accent" },
+    "emerald": { "root": "oklch(56% 0.115 170)",      "max": "oklch(96% 0.025 165)",  "min": "oklch(20% 0.065 175)", "role": "alt saturated green" },
+    "blue":    { "root": "oklch(48% 0.090 245)",      "max": "oklch(95% 0.025 240)",  "min": "oklch(18% 0.060 250)", "role": "deep slate (post sky-drop)" },
+    "indigo":  { "root": "oklch(55% 0.095 265)",      "max": "oklch(95% 0.030 270)",  "min": "oklch(22% 0.060 260)", "role": "external systems / partners" },
+    "violet":  { "root": "oklch(55% 0.100 300)",      "max": "oklch(95% 0.030 315)",  "min": "oklch(22% 0.065 295)", "role": "data / AI / inference" },
+    "purple":  { "root": "oklch(52% 0.105 285)",      "max": "oklch(95% 0.030 295)",  "min": "oklch(20% 0.070 280)", "role": "alt violet" },
+    "fuchsia": { "root": "oklch(58% 0.130 325)",      "max": "oklch(95% 0.030 335)",  "min": "oklch(22% 0.075 320)", "role": "vivid magenta accent" },
+    "pink":    { "root": "oklch(60% 0.100 340)",      "max": "oklch(95% 0.025 348)",  "min": "oklch(22% 0.060 335)", "role": "warm-shifted pink" },
+    "rose":    { "root": "oklch(55% 0.100 355)",      "max": "oklch(95% 0.025 0)",    "min": "oklch(22% 0.065 350)", "role": "community / relational" }
+  },
+
+  "dropped": {
+    "sky": {
+      "reason": "Phase-0 #1 fallback executed 2026-05-11 after distinguishability failure. Sky H:215 sandwiched between teal H:181 and cyan H:235; under warm-restraint chroma, sky/blue/cyan family-50 stops read near-identical. Sky's token namespace reserved but not generated.",
+      "if_revived": "Use oklch(58% 0.080 215) as root."
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@cena-health/color-generator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Build-time generator for Cena Color System v2. Reads family root/max/min triplets from family-source.json, emits OKLCH-in-P3 CSS with sRGB hex fallback.",
+  "scripts": {
+    "build": "node generate.mjs",
+    "diff": "node diff-against-preview.mjs"
+  },
+  "dependencies": {
+    "culori": "^4.0.1"
+  }
+}
