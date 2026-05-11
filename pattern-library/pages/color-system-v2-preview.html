@@ -17,9 +17,10 @@
       <strong>How to read this page:</strong>
       <ul>
         <li>Each family shows three anchor swatches (max / root / min) followed by the 11 computed stops (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950).</li>
-        <li>For teal and sage, a small row of logo-identity swatches appears below the family stops — these are the hex-exact logo colors. The family palette stops at the equivalent positions will drift slightly; that's expected per spec §1.5.</li>
-        <li>Each family also includes a "contrast pill" showing the canonical formula: fill 950 / border 800 (or 500 for sand) / heading text 500 / body text 200. This is the visual contrast test for each family.</li>
-        <li>The final section is cross-family pill alignment — same pill formula across all 7 families, side-by-side, for visual parity check.</li>
+        <li>Stops marked with <code>↑ logo</code> below the cell correspond to a hex-exact logo identity color held in the separate logo-token namespace. The family palette stop at that position will drift slightly from the logo hex; that's expected per spec §1.5.</li>
+        <li>Interpolation is linear-in-L (k=1) — switched from cubic ease 2026-05-11 after preview feedback. Linear gives uniform perceptual stepping; cubic was clustering values at the extremes and starving the middle.</li>
+        <li>Each family also includes a "contrast pill" showing the canonical formula: fill 50 / border 200 (or 500 for sand lightness-compression) / heading text 500 / body text 800.</li>
+        <li>Final section: cross-family pill alignment — same pill formula across all 7 families, side-by-side, for visual parity check.</li>
       </ul>
     </div>
   </header>
@@ -42,21 +43,21 @@
       <div class="stop-cell stop-100"><span class="stop-color"></span><span class="stop-label">100</span></div>
       <div class="stop-cell stop-200"><span class="stop-color"></span><span class="stop-label">200</span></div>
       <div class="stop-cell stop-300"><span class="stop-color"></span><span class="stop-label">300</span></div>
-      <div class="stop-cell stop-400 locked"><span class="stop-color"></span><span class="stop-label">400 ◆</span></div>
-      <div class="stop-cell stop-500 locked"><span class="stop-color"></span><span class="stop-label">500 ◆</span></div>
+      <div class="stop-cell stop-400 locked"><span class="stop-color"></span><span class="stop-label">400</span></div>
+      <div class="stop-cell stop-500 locked"><span class="stop-color"></span><span class="stop-label">500</span></div>
       <div class="stop-cell stop-600"><span class="stop-color"></span><span class="stop-label">600</span></div>
       <div class="stop-cell stop-700"><span class="stop-color"></span><span class="stop-label">700</span></div>
-      <div class="stop-cell stop-800 locked"><span class="stop-color"></span><span class="stop-label">800 ◆</span></div>
+      <div class="stop-cell stop-800 locked"><span class="stop-color"></span><span class="stop-label">800</span></div>
       <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
       <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
     </div>
-    <span class="section-label">◆ Logo identity comparison (hex-exact)</span>
+    <span class="section-label">Logo identity comparison (hex-exact)</span>
     <div class="logo-row">
       <div class="logo-pair primary"><span class="swatch"></span><span>--logo-primary #3A8478 (vs computed 500)</span></div>
       <div class="logo-pair secondary"><span class="swatch"></span><span>--logo-secondary #52A395 (vs computed 400)</span></div>
       <div class="logo-pair anchor-dark"><span class="swatch"></span><span>--logo-anchor-dark #0D322D (vs computed 800)</span></div>
     </div>
-    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <span class="section-label">Contrast pill — fill 50 / border 200 / heading 500 / body 800</span>
     <div class="contrast-row">
       <div class="contrast-pill">
         <span class="label">HEADING</span>
@@ -82,7 +83,7 @@
       <div class="stop-cell stop-50"><span class="stop-color"></span><span class="stop-label">50</span></div>
       <div class="stop-cell stop-100"><span class="stop-color"></span><span class="stop-label">100</span></div>
       <div class="stop-cell stop-200"><span class="stop-color"></span><span class="stop-label">200</span></div>
-      <div class="stop-cell stop-300 locked"><span class="stop-color"></span><span class="stop-label">300 ◆</span></div>
+      <div class="stop-cell stop-300 locked"><span class="stop-color"></span><span class="stop-label">300</span></div>
       <div class="stop-cell stop-400"><span class="stop-color"></span><span class="stop-label">400</span></div>
       <div class="stop-cell stop-500"><span class="stop-color"></span><span class="stop-label">500</span></div>
       <div class="stop-cell stop-600"><span class="stop-color"></span><span class="stop-label">600</span></div>
@@ -91,11 +92,11 @@
       <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
       <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
     </div>
-    <span class="section-label">◆ Logo identity comparison (hex-exact)</span>
+    <span class="section-label">Logo identity comparison (hex-exact)</span>
     <div class="logo-row">
       <div class="logo-pair sage"><span class="swatch"></span><span>--logo-sage #81B983 (vs computed 300)</span></div>
     </div>
-    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <span class="section-label">Contrast pill — fill 50 / border 200 / heading 500 / body 800</span>
     <div class="contrast-row">
       <div class="contrast-pill">
         <span class="label">HEADING</span>
@@ -130,7 +131,7 @@
       <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
       <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
     </div>
-    <span class="section-label">Contrast pill — fill 950 / border 500 (lightness-compression caveat) / heading 500 / body 200</span>
+    <span class="section-label">Contrast pill — fill 50 / border 500 (lightness-compression caveat) / heading 500 / body 800</span>
     <div class="contrast-row">
       <div class="contrast-pill">
         <span class="label">DEFAULT</span>
@@ -165,7 +166,7 @@
       <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
       <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
     </div>
-    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <span class="section-label">Contrast pill — fill 50 / border 200 / heading 500 / body 800</span>
     <div class="contrast-row">
       <div class="contrast-pill">
         <span class="label">ERROR</span>
@@ -200,7 +201,7 @@
       <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
       <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
     </div>
-    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <span class="section-label">Contrast pill — fill 50 / border 200 / heading 500 / body 800</span>
     <div class="contrast-row">
       <div class="contrast-pill">
         <span class="label">WARNING</span>
@@ -235,7 +236,7 @@
       <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
       <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
     </div>
-    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <span class="section-label">Contrast pill — fill 50 / border 200 / heading 500 / body 800</span>
     <div class="contrast-row">
       <div class="contrast-pill">
         <span class="label">SUCCESS</span>
@@ -270,7 +271,7 @@
       <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
       <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
     </div>
-    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <span class="section-label">Contrast pill — fill 50 / border 200 / heading 500 / body 800</span>
     <div class="contrast-row">
       <div class="contrast-pill">
         <span class="label">INFO</span>

@@ -47,103 +47,106 @@
   --cyan-max:   oklch(94%  0.035  215);
   --cyan-min:   oklch(20%  0.060  240);
 
-  /* Cubic-ease weights for k=2.4 — anchor-side weight per stop position.
-     Position 1: 40.0%   stop 400 (toward max) / stop 600 (toward min)
-     Position 2: 68.5%   stop 300 / stop 700
-     Position 3: 86.9%   stop 200 / stop 800
-     Position 4: 97.4%   stop 100 / stop 900
-     Position 5: 100%    stop 50  / stop 950
+  /* Linear-in-L weights — anchor-side weight per stop position (k=1, default v2).
+     Position 1: 20%    stop 400 (toward max) / stop 600 (toward min)
+     Position 2: 40%    stop 300 / stop 700
+     Position 3: 60%    stop 200 / stop 800
+     Position 4: 80%    stop 100 / stop 900
+     Position 5: 100%   stop 50  / stop 950
+
+     Switched from cubic ease k=2.4 (2026-05-11) after preview feedback:
+     cubic compressed middle stops, leaving few distinct values around root.
   */
 
   /* teal stops */
   --color-teal-50:  var(--teal-max);
-  --color-teal-100: color-mix(in oklch, var(--teal-max) 97.4%, var(--teal-root));
-  --color-teal-200: color-mix(in oklch, var(--teal-max) 86.9%, var(--teal-root));
-  --color-teal-300: color-mix(in oklch, var(--teal-max) 68.5%, var(--teal-root));
-  --color-teal-400: color-mix(in oklch, var(--teal-max) 40%,   var(--teal-root));
+  --color-teal-100: color-mix(in oklch, var(--teal-max) 80%, var(--teal-root));
+  --color-teal-200: color-mix(in oklch, var(--teal-max) 60%, var(--teal-root));
+  --color-teal-300: color-mix(in oklch, var(--teal-max) 40%, var(--teal-root));
+  --color-teal-400: color-mix(in oklch, var(--teal-max) 20%,   var(--teal-root));
   --color-teal-500: var(--teal-root);
-  --color-teal-600: color-mix(in oklch, var(--teal-min) 40%,   var(--teal-root));
-  --color-teal-700: color-mix(in oklch, var(--teal-min) 68.5%, var(--teal-root));
-  --color-teal-800: color-mix(in oklch, var(--teal-min) 86.9%, var(--teal-root));
-  --color-teal-900: color-mix(in oklch, var(--teal-min) 97.4%, var(--teal-root));
+  --color-teal-600: color-mix(in oklch, var(--teal-min) 20%,   var(--teal-root));
+  --color-teal-700: color-mix(in oklch, var(--teal-min) 40%, var(--teal-root));
+  --color-teal-800: color-mix(in oklch, var(--teal-min) 60%, var(--teal-root));
+  --color-teal-900: color-mix(in oklch, var(--teal-min) 80%, var(--teal-root));
   --color-teal-950: var(--teal-min);
 
   /* sage stops */
   --color-sage-50:  var(--sage-max);
-  --color-sage-100: color-mix(in oklch, var(--sage-max) 97.4%, var(--sage-root));
-  --color-sage-200: color-mix(in oklch, var(--sage-max) 86.9%, var(--sage-root));
-  --color-sage-300: color-mix(in oklch, var(--sage-max) 68.5%, var(--sage-root));
-  --color-sage-400: color-mix(in oklch, var(--sage-max) 40%,   var(--sage-root));
+  --color-sage-100: color-mix(in oklch, var(--sage-max) 80%, var(--sage-root));
+  --color-sage-200: color-mix(in oklch, var(--sage-max) 60%, var(--sage-root));
+  --color-sage-300: color-mix(in oklch, var(--sage-max) 40%, var(--sage-root));
+  --color-sage-400: color-mix(in oklch, var(--sage-max) 20%,   var(--sage-root));
   --color-sage-500: var(--sage-root);
-  --color-sage-600: color-mix(in oklch, var(--sage-min) 40%,   var(--sage-root));
-  --color-sage-700: color-mix(in oklch, var(--sage-min) 68.5%, var(--sage-root));
-  --color-sage-800: color-mix(in oklch, var(--sage-min) 86.9%, var(--sage-root));
-  --color-sage-900: color-mix(in oklch, var(--sage-min) 97.4%, var(--sage-root));
+  --color-sage-600: color-mix(in oklch, var(--sage-min) 20%,   var(--sage-root));
+  --color-sage-700: color-mix(in oklch, var(--sage-min) 40%, var(--sage-root));
+  --color-sage-800: color-mix(in oklch, var(--sage-min) 60%, var(--sage-root));
+  --color-sage-900: color-mix(in oklch, var(--sage-min) 80%, var(--sage-root));
   --color-sage-950: var(--sage-min);
 
   /* sand stops */
   --color-sand-50:  var(--sand-max);
-  --color-sand-100: color-mix(in oklch, var(--sand-max) 97.4%, var(--sand-root));
-  --color-sand-200: color-mix(in oklch, var(--sand-max) 86.9%, var(--sand-root));
-  --color-sand-300: color-mix(in oklch, var(--sand-max) 68.5%, var(--sand-root));
-  --color-sand-400: color-mix(in oklch, var(--sand-max) 40%,   var(--sand-root));
+  --color-sand-100: color-mix(in oklch, var(--sand-max) 80%, var(--sand-root));
+  --color-sand-200: color-mix(in oklch, var(--sand-max) 60%, var(--sand-root));
+  --color-sand-300: color-mix(in oklch, var(--sand-max) 40%, var(--sand-root));
+  --color-sand-400: color-mix(in oklch, var(--sand-max) 20%,   var(--sand-root));
   --color-sand-500: var(--sand-root);
-  --color-sand-600: color-mix(in oklch, var(--sand-min) 40%,   var(--sand-root));
-  --color-sand-700: color-mix(in oklch, var(--sand-min) 68.5%, var(--sand-root));
-  --color-sand-800: color-mix(in oklch, var(--sand-min) 86.9%, var(--sand-root));
-  --color-sand-900: color-mix(in oklch, var(--sand-min) 97.4%, var(--sand-root));
+  --color-sand-600: color-mix(in oklch, var(--sand-min) 20%,   var(--sand-root));
+  --color-sand-700: color-mix(in oklch, var(--sand-min) 40%, var(--sand-root));
+  --color-sand-800: color-mix(in oklch, var(--sand-min) 60%, var(--sand-root));
+  --color-sand-900: color-mix(in oklch, var(--sand-min) 80%, var(--sand-root));
   --color-sand-950: var(--sand-min);
 
   /* red stops */
   --color-red-50:  var(--red-max);
-  --color-red-100: color-mix(in oklch, var(--red-max) 97.4%, var(--red-root));
-  --color-red-200: color-mix(in oklch, var(--red-max) 86.9%, var(--red-root));
-  --color-red-300: color-mix(in oklch, var(--red-max) 68.5%, var(--red-root));
-  --color-red-400: color-mix(in oklch, var(--red-max) 40%,   var(--red-root));
+  --color-red-100: color-mix(in oklch, var(--red-max) 80%, var(--red-root));
+  --color-red-200: color-mix(in oklch, var(--red-max) 60%, var(--red-root));
+  --color-red-300: color-mix(in oklch, var(--red-max) 40%, var(--red-root));
+  --color-red-400: color-mix(in oklch, var(--red-max) 20%,   var(--red-root));
   --color-red-500: var(--red-root);
-  --color-red-600: color-mix(in oklch, var(--red-min) 40%,   var(--red-root));
-  --color-red-700: color-mix(in oklch, var(--red-min) 68.5%, var(--red-root));
-  --color-red-800: color-mix(in oklch, var(--red-min) 86.9%, var(--red-root));
-  --color-red-900: color-mix(in oklch, var(--red-min) 97.4%, var(--red-root));
+  --color-red-600: color-mix(in oklch, var(--red-min) 20%,   var(--red-root));
+  --color-red-700: color-mix(in oklch, var(--red-min) 40%, var(--red-root));
+  --color-red-800: color-mix(in oklch, var(--red-min) 60%, var(--red-root));
+  --color-red-900: color-mix(in oklch, var(--red-min) 80%, var(--red-root));
   --color-red-950: var(--red-min);
 
   /* amber stops */
   --color-amber-50:  var(--amber-max);
-  --color-amber-100: color-mix(in oklch, var(--amber-max) 97.4%, var(--amber-root));
-  --color-amber-200: color-mix(in oklch, var(--amber-max) 86.9%, var(--amber-root));
-  --color-amber-300: color-mix(in oklch, var(--amber-max) 68.5%, var(--amber-root));
-  --color-amber-400: color-mix(in oklch, var(--amber-max) 40%,   var(--amber-root));
+  --color-amber-100: color-mix(in oklch, var(--amber-max) 80%, var(--amber-root));
+  --color-amber-200: color-mix(in oklch, var(--amber-max) 60%, var(--amber-root));
+  --color-amber-300: color-mix(in oklch, var(--amber-max) 40%, var(--amber-root));
+  --color-amber-400: color-mix(in oklch, var(--amber-max) 20%,   var(--amber-root));
   --color-amber-500: var(--amber-root);
-  --color-amber-600: color-mix(in oklch, var(--amber-min) 40%,   var(--amber-root));
-  --color-amber-700: color-mix(in oklch, var(--amber-min) 68.5%, var(--amber-root));
-  --color-amber-800: color-mix(in oklch, var(--amber-min) 86.9%, var(--amber-root));
-  --color-amber-900: color-mix(in oklch, var(--amber-min) 97.4%, var(--amber-root));
+  --color-amber-600: color-mix(in oklch, var(--amber-min) 20%,   var(--amber-root));
+  --color-amber-700: color-mix(in oklch, var(--amber-min) 40%, var(--amber-root));
+  --color-amber-800: color-mix(in oklch, var(--amber-min) 60%, var(--amber-root));
+  --color-amber-900: color-mix(in oklch, var(--amber-min) 80%, var(--amber-root));
   --color-amber-950: var(--amber-min);
 
   /* green stops */
   --color-green-50:  var(--green-max);
-  --color-green-100: color-mix(in oklch, var(--green-max) 97.4%, var(--green-root));
-  --color-green-200: color-mix(in oklch, var(--green-max) 86.9%, var(--green-root));
-  --color-green-300: color-mix(in oklch, var(--green-max) 68.5%, var(--green-root));
-  --color-green-400: color-mix(in oklch, var(--green-max) 40%,   var(--green-root));
+  --color-green-100: color-mix(in oklch, var(--green-max) 80%, var(--green-root));
+  --color-green-200: color-mix(in oklch, var(--green-max) 60%, var(--green-root));
+  --color-green-300: color-mix(in oklch, var(--green-max) 40%, var(--green-root));
+  --color-green-400: color-mix(in oklch, var(--green-max) 20%,   var(--green-root));
   --color-green-500: var(--green-root);
-  --color-green-600: color-mix(in oklch, var(--green-min) 40%,   var(--green-root));
-  --color-green-700: color-mix(in oklch, var(--green-min) 68.5%, var(--green-root));
-  --color-green-800: color-mix(in oklch, var(--green-min) 86.9%, var(--green-root));
-  --color-green-900: color-mix(in oklch, var(--green-min) 97.4%, var(--green-root));
+  --color-green-600: color-mix(in oklch, var(--green-min) 20%,   var(--green-root));
+  --color-green-700: color-mix(in oklch, var(--green-min) 40%, var(--green-root));
+  --color-green-800: color-mix(in oklch, var(--green-min) 60%, var(--green-root));
+  --color-green-900: color-mix(in oklch, var(--green-min) 80%, var(--green-root));
   --color-green-950: var(--green-min);
 
   /* cyan stops */
   --color-cyan-50:  var(--cyan-max);
-  --color-cyan-100: color-mix(in oklch, var(--cyan-max) 97.4%, var(--cyan-root));
-  --color-cyan-200: color-mix(in oklch, var(--cyan-max) 86.9%, var(--cyan-root));
-  --color-cyan-300: color-mix(in oklch, var(--cyan-max) 68.5%, var(--cyan-root));
-  --color-cyan-400: color-mix(in oklch, var(--cyan-max) 40%,   var(--cyan-root));
+  --color-cyan-100: color-mix(in oklch, var(--cyan-max) 80%, var(--cyan-root));
+  --color-cyan-200: color-mix(in oklch, var(--cyan-max) 60%, var(--cyan-root));
+  --color-cyan-300: color-mix(in oklch, var(--cyan-max) 40%, var(--cyan-root));
+  --color-cyan-400: color-mix(in oklch, var(--cyan-max) 20%,   var(--cyan-root));
   --color-cyan-500: var(--cyan-root);
-  --color-cyan-600: color-mix(in oklch, var(--cyan-min) 40%,   var(--cyan-root));
-  --color-cyan-700: color-mix(in oklch, var(--cyan-min) 68.5%, var(--cyan-root));
-  --color-cyan-800: color-mix(in oklch, var(--cyan-min) 86.9%, var(--cyan-root));
-  --color-cyan-900: color-mix(in oklch, var(--cyan-min) 97.4%, var(--cyan-root));
+  --color-cyan-600: color-mix(in oklch, var(--cyan-min) 20%,   var(--cyan-root));
+  --color-cyan-700: color-mix(in oklch, var(--cyan-min) 40%, var(--cyan-root));
+  --color-cyan-800: color-mix(in oklch, var(--cyan-min) 60%, var(--cyan-root));
+  --color-cyan-900: color-mix(in oklch, var(--cyan-min) 80%, var(--cyan-root));
   --color-cyan-950: var(--cyan-min);
 
   --page-bg: #FBFAF8;
@@ -315,15 +318,6 @@ body {
   border-bottom: none;
 }
 
-.stop-cell.locked .stop-color {
-  border: 2px solid #C13C3B;
-  border-bottom: none;
-}
-
-.stop-cell.locked.matches .stop-color {
-  border-color: #3A8E64;
-}
-
 .stop-label {
   display: block;
   font-size: 11px;
@@ -337,9 +331,23 @@ body {
   color: var(--text-main);
 }
 
-.stop-cell.locked .stop-label {
-  background: #FCE5E3;
-  border-color: #C13C3B;
+/* Lock indicator: neutral arrow below cell pointing up at the swatch.
+   No border-color or label-color override — preserves visual comparison
+   of adjacent swatches. */
+.stop-cell.locked {
+  position: relative;
+}
+
+.stop-cell.locked::after {
+  content: "↑ logo";
+  display: block;
+  text-align: center;
+  font-size: 9px;
+  font-family: var(--font-mono);
+  color: var(--text-mute);
+  letter-spacing: 0.02em;
+  margin-top: 4px;
+  white-space: nowrap;
 }
 
 /* Per-family scope: declare --current-* tokens so generic .stop-color rules consume them */
@@ -515,21 +523,26 @@ body {
   line-height: 1.3;
 }
 
-.family-teal .contrast-pill  { background: var(--color-teal-950);  border-color: var(--color-teal-800);  color: var(--color-teal-500); }
-.family-sage .contrast-pill  { background: var(--color-sage-950);  border-color: var(--color-sage-800);  color: var(--color-sage-500); }
-.family-sand .contrast-pill  { background: var(--color-sand-950);  border-color: var(--color-sand-500);  color: var(--color-sand-500); }
-.family-red  .contrast-pill  { background: var(--color-red-950);   border-color: var(--color-red-800);   color: var(--color-red-500); }
-.family-amber .contrast-pill { background: var(--color-amber-950); border-color: var(--color-amber-800); color: var(--color-amber-500); }
-.family-green .contrast-pill { background: var(--color-green-950); border-color: var(--color-green-800); color: var(--color-green-500); }
-.family-cyan .contrast-pill  { background: var(--color-cyan-950);  border-color: var(--color-cyan-800);  color: var(--color-cyan-500); }
+/* Pill formula in Tailwind direction (50=lightest, 950=darkest):
+   fill = family-50 (light tint) / border = family-200 (or family-500 for sand
+   lightness-compression case) / heading = family-500 / body = family-800.
+   Earlier draft used 950/800/500/200 — that was v1 direction and produced
+   the "dark surfaces lose hue identity" issue Aaron flagged 2026-05-11. */
+.family-teal .contrast-pill  { background: var(--color-teal-50);  border-color: var(--color-teal-200);  color: var(--color-teal-500); }
+.family-sage .contrast-pill  { background: var(--color-sage-50);  border-color: var(--color-sage-200);  color: var(--color-sage-500); }
+.family-sand .contrast-pill  { background: var(--color-sand-50);  border-color: var(--color-sand-500);  color: var(--color-sand-500); }
+.family-red  .contrast-pill  { background: var(--color-red-50);   border-color: var(--color-red-200);   color: var(--color-red-500); }
+.family-amber .contrast-pill { background: var(--color-amber-50); border-color: var(--color-amber-200); color: var(--color-amber-500); }
+.family-green .contrast-pill { background: var(--color-green-50); border-color: var(--color-green-200); color: var(--color-green-500); }
+.family-cyan .contrast-pill  { background: var(--color-cyan-50);  border-color: var(--color-cyan-200);  color: var(--color-cyan-500); }
 
-.family-teal  .contrast-pill .body { color: var(--color-teal-200); }
-.family-sage  .contrast-pill .body { color: var(--color-sage-200); }
-.family-sand  .contrast-pill .body { color: var(--color-sand-200); }
-.family-red   .contrast-pill .body { color: var(--color-red-200); }
-.family-amber .contrast-pill .body { color: var(--color-amber-200); }
-.family-green .contrast-pill .body { color: var(--color-green-200); }
-.family-cyan  .contrast-pill .body { color: var(--color-cyan-200); }
+.family-teal  .contrast-pill .body { color: var(--color-teal-800); }
+.family-sage  .contrast-pill .body { color: var(--color-sage-800); }
+.family-sand  .contrast-pill .body { color: var(--color-sand-800); }
+.family-red   .contrast-pill .body { color: var(--color-red-800); }
+.family-amber .contrast-pill .body { color: var(--color-amber-800); }
+.family-green .contrast-pill .body { color: var(--color-green-800); }
+.family-cyan  .contrast-pill .body { color: var(--color-cyan-800); }
 
 /* Cross-family pill comparison */
 
@@ -549,13 +562,13 @@ body {
   min-width: 160px;
 }
 
-.cross-pill.cp-teal  { background: var(--color-teal-950);  border-color: var(--color-teal-800);  color: var(--color-teal-500); }
-.cross-pill.cp-sage  { background: var(--color-sage-950);  border-color: var(--color-sage-800);  color: var(--color-sage-500); }
-.cross-pill.cp-sand  { background: var(--color-sand-950);  border-color: var(--color-sand-500);  color: var(--color-sand-500); }
-.cross-pill.cp-red   { background: var(--color-red-950);   border-color: var(--color-red-800);   color: var(--color-red-500); }
-.cross-pill.cp-amber { background: var(--color-amber-950); border-color: var(--color-amber-800); color: var(--color-amber-500); }
-.cross-pill.cp-green { background: var(--color-green-950); border-color: var(--color-green-800); color: var(--color-green-500); }
-.cross-pill.cp-cyan  { background: var(--color-cyan-950);  border-color: var(--color-cyan-800);  color: var(--color-cyan-500); }
+.cross-pill.cp-teal  { background: var(--color-teal-50);  border-color: var(--color-teal-200);  color: var(--color-teal-500); }
+.cross-pill.cp-sage  { background: var(--color-sage-50);  border-color: var(--color-sage-200);  color: var(--color-sage-500); }
+.cross-pill.cp-sand  { background: var(--color-sand-50);  border-color: var(--color-sand-500);  color: var(--color-sand-500); }
+.cross-pill.cp-red   { background: var(--color-red-50);   border-color: var(--color-red-200);   color: var(--color-red-500); }
+.cross-pill.cp-amber { background: var(--color-amber-50); border-color: var(--color-amber-200); color: var(--color-amber-500); }
+.cross-pill.cp-green { background: var(--color-green-50); border-color: var(--color-green-200); color: var(--color-green-500); }
+.cross-pill.cp-cyan  { background: var(--color-cyan-50);  border-color: var(--color-cyan-200);  color: var(--color-cyan-500); }
 
 .cross-pill .label {
   display: block;
@@ -565,13 +578,13 @@ body {
   font-weight: 700;
 }
 
-.cross-pill.cp-teal  .body { color: var(--color-teal-200); }
-.cross-pill.cp-sage  .body { color: var(--color-sage-200); }
-.cross-pill.cp-sand  .body { color: var(--color-sand-200); }
-.cross-pill.cp-red   .body { color: var(--color-red-200); }
-.cross-pill.cp-amber .body { color: var(--color-amber-200); }
-.cross-pill.cp-green .body { color: var(--color-green-200); }
-.cross-pill.cp-cyan  .body { color: var(--color-cyan-200); }
+.cross-pill.cp-teal  .body { color: var(--color-teal-800); }
+.cross-pill.cp-sage  .body { color: var(--color-sage-800); }
+.cross-pill.cp-sand  .body { color: var(--color-sand-800); }
+.cross-pill.cp-red   .body { color: var(--color-red-800); }
+.cross-pill.cp-amber .body { color: var(--color-amber-800); }
+.cross-pill.cp-green .body { color: var(--color-green-800); }
+.cross-pill.cp-cyan  .body { color: var(--color-cyan-800); }
 
 .cross-pill .body {
   display: block;

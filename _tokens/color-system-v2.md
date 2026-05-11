@@ -84,9 +84,10 @@ The mapping mirrors Tailwind's stop-number convention so haven-ui's Tailwind uti
 
 ### 1.4 Interpolation curve
 
-OKLCH lightness (L) varies along the gradient via a tunable curve. **The same default curve applies to every family. No per-family curve tuning.**
+OKLCH lightness (L) varies along the gradient via a uniform curve. **The same curve applies to every family. No per-family curve tuning.**
 
-- **Default curve:** cubic ease — `L(p) = L_root + (1 - (1 - p/5)^k) * (L_anchor - L_root)`, where `p` is position (1 to 5), `L_anchor` is `L_max` or `L_min` depending on gradient direction, and `k` is the curve parameter. Default `k = 2.4` chosen so mid stops compress and extreme stops expand, matching Tailwind/Material visual cadence.
+- **Default curve: linear-in-L.** `L(p) = L_root + (p/5) * (L_anchor - L_root)`, where `p` is position (1 to 5) and `L_anchor` is `L_max` or `L_min` depending on gradient direction. Each numerical stop sits at an equal L-delta from its neighbors. Linear gives uniform perceptual stepping across the 11 stops, which matches Tailwind v4's actual L-distribution and produces distinct values at every stop number.
+- **Why not cubic ease.** An earlier draft (pre-2026-05-11) specified cubic ease with k=2.4. Preview feedback (Aaron 2026-05-11): cubic clustered values at the extremes (stops 50/100 visually similar, stops 400/500 perceptually far apart) and produced too few distinct mid-tones. Linear inverts that — perceptually distinct stops across the full range, no clustering at extremes.
 - **Chroma (C) and Hue (H) interpolation:** linear in OKLCH coordinates from root → max and root → min. Chroma typically peaks at root (high saturation at the perceptual middle) and tapers to lower values at both extremes. Hue drift is typically small (a few degrees) and usually warmer at lighter values.
 
 ### 1.5 Logo identity vs family palette — separate concerns
@@ -330,22 +331,46 @@ The build-time generator enforces these rules per family; build fails on violati
 ### 6.2 Lightness ordering
 - L must be strictly monotonic across the 11 stops: L(50) > L(100) > ... > L(950). Reason: scale-direction convention requires light → dark.
 
-### 6.3 Contrast ratios — internal element formula
-- Per the canonical layer formula (data-visualization.md §5):
-  - Text on family-fill (heading/body): text uses family-200; fill uses family-950. Target: ≥7:1 (WCAG AAA).
-  - Text on family-fill (overline/sublabel): text uses family-500. Target: ≥4.5:1 (WCAG AA).
-  - Border on family-fill: border uses family-800. Target: visible (no specific ratio).
+### 6.3 Contrast ratios — internal element formula (Tailwind direction: 50=lightest, 950=darkest)
+- Canonical light-pill formula (the common case):
+  - Fill: family-50 (lightest tint)
+  - Border: family-200 (light saturated — provides canvas separation against sand-50 page bg)
+  - Heading text on fill: family-500 (saturated mid). Target: ≥4.5:1 (WCAG AA on body text).
+  - Body text on fill: family-800 (dark saturated, not extreme). Target: ≥7:1 (WCAG AAA).
+- Canonical dark-anchor variant (used sparingly — at most one per diagram per data-visualization.md):
+  - Fill: family-800 (NOT family-950 — see §6.7 hue-identity caveat below)
+  - Text inverse: warm-neutral-50 (sand-50). Target: ≥7:1.
 - Generator emits a contrast report per family; ratios below target fail the build for actively-used families (Phase A active). Phase C families warn but don't fail.
 
 ### 6.4 Cross-canvas separation
-- Family-950 (lightest) vs `color-surface-page` (sand-50): L delta ≥1.5%. Reason: pills/badges using family-950 fill must visually separate from page background.
-- If a family fails this rule, the family is unsuitable as a light substrate without an explicit border (matches data-visualization.md §5 "external contrast" rule).
+- Family-50 (lightest tint) vs `color-surface-page` (sand-50): perceptual delta detectable from 24px away. For low-chroma family-50 values that read as the same near-white as the page bg, the family is unsuitable as a light substrate without an explicit family-200 border.
+- This matches data-visualization.md §5 "external contrast" rule.
 
-### 6.5 Family-200 to family-950 contrast
-- Within a family, the canonical fill-950 vs text-200 ratio must be ≥7:1. Otherwise, text-on-fill use case fails AAA and the family is restricted to non-text-pill use only.
+### 6.5 Family-800 to family-50 contrast
+- Within a family, the canonical body-text-on-fill ratio (text family-800 over fill family-50) must be ≥7:1. Otherwise the family fails the canonical light-pill formula and is restricted to non-text-pill use only.
 
 ### 6.6 Cool-exclusion principle
 - Hue centers in (H:185°, H:235°) range are flagged for review. Hue centers in (H:160°-180°) and (H:235°-265°) are allowed (Cena's slate-blue exception territory). Pure cool blue (H:200-230 at standard saturation) is excluded except where explicitly tagged in §2.1 (sky/blue's warm-shifted cool territory).
+
+### 6.7 Hue identity at extremes — usage guidance
+
+**Observation (Aaron 2026-05-11):** at the lightness extremes (stops 50–100 near max; stops 900–950 near min), chroma is necessarily low — the stops approach near-white and near-black respectively. Hue identity is weak at these stops: dark teal (stop 950) and dark sage (stop 950) read as very similar near-black with subtle tint; light teal (stop 50) and light sage (stop 50) read as very similar near-white. This is not a desaturation problem; it's the perceptual reality of any color system at the extremes.
+
+**Implication for usage:**
+- **When hue must communicate** (color-differentiated chips, chart series with categorical meaning, semantic indicators where "this is the teal one" matters) — use **mid-saturation stops** (roughly 200–700). These stops carry clear hue identity.
+- **When hue identity is incidental** (text shadow, very subtle borders, large surfaces that fade behind content) — extreme stops (50–100, 900–950) are fine. The hue is felt rather than seen.
+
+**This is a usage guideline, not a generator rule.** The system still emits all 11 stops for every family. The guideline lives at the consumption layer: surface authors choose stops appropriate to their communication intent.
+
+**Component-author rule of thumb:**
+| Use case | Stop range |
+|---|---|
+| Categorical chip / badge fill where hue identifies the category | family-200 fill + family-500 text |
+| Categorical chip border alone | family-300 to family-500 |
+| Large colored surface where the hue is the message | family-300 to family-700 |
+| Pill background (light pill formula) | family-50 fill — accept that this reads as "very pale tint" not "clearly the teal one" |
+| Body text on surface | family-700 or family-800 |
+| Subtle accent or shadow | family-100 or family-900 (hue weak by design) |
 
 ---
 
