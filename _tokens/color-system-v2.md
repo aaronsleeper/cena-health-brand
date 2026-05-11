@@ -172,9 +172,11 @@ Cool gray, cool slate, cool blue-gray are explicitly excluded from the system. C
 
 Cena's brand requires a hue between Tailwind's `lime` (H:120) and `green` (H:160) that Tailwind doesn't name: warm yellow-green at H:145, sage. The logo's inner-ring identity hue (`#81B983`) lives in this gap. Sage is treated as the 18th hue family — it follows the same root/max/min architecture as the 17 Tailwind families but keeps its `--color-sage-*` token name (not aliased to a Tailwind family).
 
-**System total:** 17 Tailwind hue families + sage (Cena-canonical) + sand (neutral) = **19 families**.
+**System total (after sky drop 2026-05-11):** 16 Tailwind hue families + sage (Cena-canonical) + sand (neutral) = **18 families**.
 
-**Implication for future ports:** any port that assumes "Tailwind 17 names" needs to add sage explicitly. The build-time generator emits sage alongside the Tailwind families with no special-casing — it is a family with a name that happens to not be in Tailwind's namespace.
+Sky (Tailwind name) was dropped 2026-05-11 per Phase-0 #1's distinguishability fallback. Sky H:215 was sandwiched between teal (H:181) and cyan (H:235); under Cena's warm-restraint chroma profile, sky/blue/cyan family-50 stops read near-identical in Aaron's visual review (preview iteration 2026-05-11). Sky's token namespace is reserved but not generated; surfaces that need slate-blue-like accents use either teal-pale stops or cyan-pale stops depending on direction.
+
+**Implication for future ports:** any port that assumes "Tailwind 17 names" needs to add sage and accept sky's omission. The build-time generator emits sage alongside the 16 active Tailwind families with no special-casing.
 
 ---
 
@@ -226,11 +228,13 @@ min:    oklch(20%    0.075   23)       // dark red
 
 ```
 root:   oklch(63%    0.108   82)       // ~#B58B20  ← haven-ui amber-500 hand-tuned
-max:    oklch(94%    0.030   85)       // #F4EAD5  ← stop 50
+max:    oklch(96%    0.020   85)       // pale ochre tint ← stop 50 (retuned 2026-05-11)
 min:    oklch(22%    0.060   78)       // dark amber
 ```
 
 **Hue note:** H:82 (warm ochre-gold) — shifted away from pure yellow (H:60-65) toward the brand's warm-earth territory.
+
+**Tuning note (2026-05-11):** original max at oklch(94% 0.030 85) read more saturated than peer family-50 stops in Aaron's visual review. Bumped L 94→96 and reduced chroma 0.030→0.020 to bring amber-50 in line with peers (most families use L_max=95-96 and C_max=0.015-0.025 at the lightest tint).
 
 ### 3.6 green — success / confirmation (no locks; rebrand of v1 success-base)
 
@@ -298,25 +302,23 @@ min:    oklch(20%    0.065   175)       // dark emerald
 
 **Hue note:** H:170 between green (H:160) and teal (H:181). More saturated than success-green. Available for chart series differentiation or secondary success states.
 
-### 3b.5 sky — warm-shifted slate
+### 3b.5 sky — DROPPED 2026-05-11
+
+Sky was provisionally placed at H:215 (between teal H:181 and cyan H:235). In Phase C visual review (2026-05-11), the sky/blue/cyan family-50 stops read near-identical because Cena's warm-restraint chroma profile (low C at light tints) doesn't support the 10-20° hue distinctions needed to differentiate three families packed into a 20° hue band. Per Phase-0 #1's fallback, sky was dropped.
+
+Sky's token namespace (`--color-sky-*`) is **reserved but not generated.** Any future surface that needs a sky-like slate-blue uses either teal-pale stops (warmer direction) or cyan-pale stops (cooler direction). If a strong use case for sky surfaces in the future, revisit.
+
+### 3b.6 blue — deep slate (post-sky-drop)
 
 ```
-root:   oklch(58%    0.080   215)       // warm slate-blue
-max:    oklch(95%    0.030   210)       // pale sky wash
-min:    oklch(22%    0.055   220)       // dark sky-slate
+root:   oklch(48%    0.090   245)       // deep slate-blue
+max:    oklch(95%    0.025   240)       // pale blue wash
+min:    oklch(18%    0.060   250)       // dark blue-slate
 ```
 
-**Hue note:** H:215 between teal (H:181) and cyan (H:235). Warm-shifted per Phase-0 #1. Restrained chroma keeps sky from competing with brand teal in adjacency.
+**Hue note:** H:245 adjusted from initial H:225 on 2026-05-11. After sky was dropped, blue moved deeper into the cool zone to give ~20° spread from cyan (H:235) and ~20° from indigo (H:265). Blue now anchors the "deep slate" position, distinct from cyan's "info slate-blue" identity at H:235.
 
-### 3b.6 blue — warm-shifted deep slate
-
-```
-root:   oklch(48%    0.090   225)       // deep warm slate-blue
-max:    oklch(94%    0.030   220)       // pale blue wash
-min:    oklch(18%    0.060   230)       // dark blue-slate
-```
-
-**Hue note:** H:225 between sky (H:215) and cyan (H:235). The three-family cluster (sky/blue/cyan at 215/225/235) tests Phase-0 #1's distinguishability constraint. If indistinguishable to Aaron's eye in Phase C review, drop one (likely sky) and retreat to 14 of 17.
+**Distinguishability check needed:** blue at H:245 sits close to indigo at H:265. Phase C review verifies the blue→indigo hue step is sufficient. If they merge, blue is also a drop candidate, leaving only cyan (info) + indigo (partner) in the cool zone.
 
 ### 3b.7 indigo — external systems / partners (extended)
 
