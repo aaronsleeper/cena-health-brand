@@ -167,10 +167,10 @@
   --color-orange-900: color-mix(in oklch, var(--orange-min) 80%, var(--orange-root));
   --color-orange-950: var(--orange-min);
 
-  /* yellow */
-  --yellow-root: oklch(72% 0.115 85);
-  --yellow-max:  oklch(96% 0.025 80);
-  --yellow-min:  oklch(28% 0.060 90);
+  /* yellow — H shifted 85→95 (2026-05-11) for 10° separation from amber */
+  --yellow-root: oklch(72% 0.115 95);
+  --yellow-max:  oklch(96% 0.025 90);
+  --yellow-min:  oklch(28% 0.060 100);
   --color-yellow-50:  var(--yellow-max);
   --color-yellow-100: color-mix(in oklch, var(--yellow-max) 80%, var(--yellow-root));
   --color-yellow-200: color-mix(in oklch, var(--yellow-max) 60%, var(--yellow-root));

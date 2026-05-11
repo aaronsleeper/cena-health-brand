@@ -275,12 +275,14 @@ min:    oklch(20%    0.065   30)        // dark terracotta
 ### 3b.2 yellow — illumination accent
 
 ```
-root:   oklch(72%    0.115   85)        // saturated golden yellow
-max:    oklch(96%    0.025   80)        // pale cream-yellow
-min:    oklch(28%    0.060   90)        // dark olive-yellow
+root:   oklch(72%    0.115   95)        // saturated golden yellow
+max:    oklch(96%    0.025   90)        // pale cream-yellow
+min:    oklch(28%    0.060   100)       // dark olive-yellow
 ```
 
-**Hue note:** Higher L_root (~72%) than other families because yellow reads bright at saturation; lower L_root would read muddy. Restrained chroma vs Tailwind yellow defaults.
+**Hue note:** H:95 (10° from amber H:82, 20° from lime H:115). Higher L_root (~72%) than other families because yellow reads bright at saturation; lower L_root would read muddy. Restrained chroma vs Tailwind yellow defaults.
+
+**Tuning note (2026-05-11):** original placement at H:85 was only 3° from amber — Aaron's adjacent-square review confirmed they read as near-twins. Moved to H:95 to give yellow its own hue identity.
 
 ### 3b.3 lime — sage-adjacent accent
 
