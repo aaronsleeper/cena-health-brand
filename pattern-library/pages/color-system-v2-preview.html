@@ -284,7 +284,7 @@
   <section class="family-row cross-family-section">
     <div class="family-header">
       <h2>Cross-family parity — pill comparison</h2>
-      <span class="meta">Same canonical formula (fill 950 / border 800 (or 500 for sand) / heading 500 / body 200) applied across all 7 active families. Use this section to spot perceptual-weight asymmetries between families.</span>
+      <span class="meta">Same canonical formula (fill 50 / border 200 / heading 500 / body 800 — sand uses border 500 per lightness-compression caveat) applied across all 7 active families. Use this section to spot perceptual-weight asymmetries between families.</span>
     </div>
     <div class="cross-family-row">
       <div class="cross-pill cp-teal"><span class="label">TEAL</span><span class="body">The quick brown fox jumps.</span></div>
@@ -294,6 +294,28 @@
       <div class="cross-pill cp-amber"><span class="label">AMBER</span><span class="body">The quick brown fox jumps.</span></div>
       <div class="cross-pill cp-green"><span class="label">GREEN</span><span class="body">The quick brown fox jumps.</span></div>
       <div class="cross-pill cp-cyan"><span class="label">CYAN</span><span class="body">The quick brown fox jumps.</span></div>
+    </div>
+  </section>
+
+  <!-- SAND PILL IN SURFACE CONTEXTS -->
+  <section class="family-row cross-family-section">
+    <div class="family-header">
+      <h2>Sand pill across surface contexts — the degenerate case</h2>
+      <span class="meta">Sand pill (fill = sand-50) rendered in three surface contexts. Demonstrates that the "outline-only" treatment is a degenerate case unique to <strong>sand pill on sand-50 page bg</strong>. On any non-page surface, distinction is naturally provided by L delta. Per spec §6.4 degenerate-case note.</span>
+    </div>
+    <div class="surface-context-row">
+      <div class="surface-context bg-page">
+        <span class="surface-label">PAGE BG (sand-50) — degenerate: outline only</span>
+        <div class="demo-pill"><span class="label">SAND</span><span class="body">Pill fill matches page bg; border carries the boundary.</span></div>
+      </div>
+      <div class="surface-context bg-primary">
+        <span class="surface-label">CARD (sand-100) — natural L delta</span>
+        <div class="demo-pill"><span class="label">SAND</span><span class="body">Pill reads lighter than the card surface.</span></div>
+      </div>
+      <div class="surface-context bg-secondary">
+        <span class="surface-label">SUBSTRATE (sand-200) — natural L delta</span>
+        <div class="demo-pill"><span class="label">SAND</span><span class="body">Pill clearly lighter than the substrate.</span></div>
+      </div>
     </div>
   </section>
 </body>

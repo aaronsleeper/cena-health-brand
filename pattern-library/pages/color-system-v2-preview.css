@@ -591,6 +591,64 @@ body {
   font-size: 14px;
 }
 
+/* Sand pill across surface contexts — demonstrates the degenerate case
+   (sand on sand-50 page = outline-only) vs the natural-distinction cases
+   (sand on sand-100/sand-200 surfaces). */
+
+.surface-context-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.surface-context {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+  border-radius: 6px;
+  min-width: 240px;
+  gap: 10px;
+}
+
+.surface-context.bg-page         { background: var(--color-sand-50);  border: 1px solid var(--color-sand-200); }
+.surface-context.bg-primary      { background: var(--color-sand-100); border: 1px solid var(--color-sand-200); }
+.surface-context.bg-secondary    { background: var(--color-sand-200); border: 1px solid var(--color-sand-300); }
+
+.surface-label {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--text-mute);
+}
+
+.surface-context .demo-pill {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 10px 14px;
+  gap: 4px;
+  background: var(--color-sand-50);
+  border: 1px solid var(--color-sand-500);
+  border-radius: 6px;
+  color: var(--color-sand-500);
+}
+
+.surface-context .demo-pill .label {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.surface-context .demo-pill .body {
+  display: block;
+  font-size: 14px;
+  color: var(--color-sand-800);
+}
+
 /* Section labels */
 
 .section-label {

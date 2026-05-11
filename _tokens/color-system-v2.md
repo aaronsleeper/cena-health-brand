@@ -346,6 +346,22 @@ The build-time generator enforces these rules per family; build fails on violati
 - Family-50 (lightest tint) vs `color-surface-page` (sand-50): perceptual delta detectable from 24px away. For low-chroma family-50 values that read as the same near-white as the page bg, the family is unsuitable as a light substrate without an explicit family-200 border.
 - This matches data-visualization.md §5 "external contrast" rule.
 
+#### Degenerate case — same-family same-surface
+
+When a pill's family equals the surface family AND the surface is the page background, fill-vs-bg distinction collapses by construction:
+
+| Pill family | Surface | Pill fill (family-50) | Surface fill | Distinction |
+|---|---|---|---|---|
+| sand | sand-50 page bg | sand-50 | sand-50 | **outline only** (border carries the boundary) |
+| sand | sand-100 card | sand-50 | sand-100 | natural L delta — pill reads lighter than card |
+| sand | sand-200 substrate | sand-50 | sand-200 | natural L delta — pill clearly lighter |
+| teal | sand-50 page bg | teal-50 | sand-50 | hue tint + L tint — distinct |
+| teal | sand-100 card | teal-50 | sand-100 | hue tint, slight L tint — distinct |
+
+**The single problematic combination — sand pill on sand-50 page bg — is by design.** Sand IS the surface family; sand-50 IS the page-bg color. A sand-50 fill on a sand-50 surface "is of the page" and the border explicitly frames it as a contained element. This is consistent with Cena's surface-tier principle ("Cards sit on surface-primary on surface-page. Add border for more separation.") — sand pills on the page bg use border for separation by design.
+
+**When a sand element needs strong visual lift on the page bg**, promote it to card-tier: use sand-100 fill (one surface step in) instead of sand-50. This is a separate component variant, not a fix to the pill formula.
+
 ### 6.5 Family-800 to family-50 contrast
 - Within a family, the canonical body-text-on-fill ratio (text family-800 over fill family-50) must be ≥7:1. Otherwise the family fails the canonical light-pill formula and is restricted to non-text-pill use only.
 
