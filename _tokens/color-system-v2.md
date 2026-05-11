@@ -84,25 +84,25 @@ The mapping mirrors Tailwind's stop-number convention so haven-ui's Tailwind uti
 
 ### 1.4 Interpolation curve
 
-OKLCH lightness (L) varies along the gradient via a tunable curve:
+OKLCH lightness (L) varies along the gradient via a tunable curve. **The same default curve applies to every family. No per-family curve tuning.**
 
-- **Default curve:** cubic ease — `L(p) = L_root + (1 - (1 - p/5)^k) * (L_anchor - L_root)`, where `p` is position (1 to 5), `L_anchor` is `L_max` or `L_min` depending on gradient direction, and `k` is the curve parameter. Default `k = 2.4` (chosen so mid stops compress and extreme stops expand, matching Tailwind/Material visual cadence).
-- **Per-family override:** when a family has multiple locked stops and the default curve can't pass through all of them, the family declares its own `k` (and optionally a different curve family — bezier, sigmoid, piecewise-linear). This is the escape hatch; default is preferred.
-- **Chroma (C) and Hue (H) interpolation:** linear in OKLCH coordinates from root → max (C and H may both drift) and root → min (similarly). Chroma typically peaks at root (high saturation at the perceptual middle) and tapers to lower values at both extremes (extremes are nearly neutral). Hue drift is typically small (a few degrees) and usually warmer at lighter values.
+- **Default curve:** cubic ease — `L(p) = L_root + (1 - (1 - p/5)^k) * (L_anchor - L_root)`, where `p` is position (1 to 5), `L_anchor` is `L_max` or `L_min` depending on gradient direction, and `k` is the curve parameter. Default `k = 2.4` chosen so mid stops compress and extreme stops expand, matching Tailwind/Material visual cadence.
+- **Chroma (C) and Hue (H) interpolation:** linear in OKLCH coordinates from root → max and root → min. Chroma typically peaks at root (high saturation at the perceptual middle) and tapers to lower values at both extremes. Hue drift is typically small (a few degrees) and usually warmer at lighter values.
 
-### 1.5 Locked-stop constraint handling
+### 1.5 Logo identity vs family palette — separate concerns
 
-When a family has logo-derived locked stops (e.g., teal-400 = `#52A395`, teal-800 = `#0D322D`), the family's max and min are **fit to the locks**, not freely chosen. The build-time generator solves:
+Originally the family palette was going to "constrain to logo" so logo hex landed on clean stop numbers. **This is revised 2026-05-11 (Aaron).** Logo identity and family palette are now **decoupled**:
 
-> Given root R, locked stop (s, L_s), and curve parameter k, find max so that L(s) = L_s.
+- **Logo identity tokens** (§5) hold exact hex values for the four logo-derived colors. These are referenced by logo SVG, wordmarks, and any surface that must render the logo identity at brand-canonical hex.
+- **Family palette stops** (`--color-teal-*`, `--color-sage-*`, etc.) are computed by the default interpolation curve from root/max/min. They may drift slightly from the logo's exact hex at the equivalent stop number. That drift is acceptable at this stage of the brand's life; Aaron can adjust later if needed.
 
-For teal (locked at stop 400 with L=66, stop 800 with L=28.9):
+This decoupling lets the family palette stay clean (default curve, no per-family tuning, mechanical generation) while logo identity remains hex-exact and load-bearing.
 
-- Solve max so curve(stop 400, root_L=56.3, max_L=?, k) = 66
-- Solve min so curve(stop 800, root_L=56.3, min_L=?, k) = 28.9
-- If solving with default k fails (e.g., max_L > 100), tune k upward and resolve
+Surfaces choose which token namespace to consume:
+- Logo SVG paths, wordmark text fill, anchor surfaces requiring identity fidelity → `var(--logo-primary)`, `var(--logo-secondary)`, `var(--logo-anchor-dark)`, `var(--logo-sage)`
+- Everything else (buttons, badges, alerts, text, borders, fills) → `var(--color-teal-500)` etc. from the family palette
 
-When a family has no locked stops (sand, feedback hues, extended families without logo derivation), max and min are chosen for the family's intended range, default `k = 2.4` applies.
+The two namespaces will hex-drift slightly but visually relate (a button using `--color-teal-500` and a logo using `--logo-primary` will both read as "Cena teal," just not pixel-equivalent hex). Where pixel-exact match matters within a single context, surface authors reference the logo token explicitly.
 
 ### 1.6 Output format
 
@@ -171,34 +171,27 @@ Cool gray, cool slate, cool blue-gray are explicitly excluded from the system. C
 
 ## 3. Phase A Family Targets — root, max, min for the seven active families
 
-These are **initial target inputs** for the Phase B build-time generator. Final values are determined by the generator's constraint-fitting run; values here may shift slightly to satisfy logo-locked-stop constraints.
+These are **target inputs** for the Phase B build-time generator. The default cubic-ease curve (§1.4) applies to all families uniformly; logo identity tokens (§5) hold exact logo hex separately. Family palette stops may drift slightly from logo hex at the equivalent stop number — accepted per §1.5.
 
-### 3.1 teal — brand primary (locked stops at 400, 500, 800)
-
-```
-root:   oklch(56.3%  0.0762  181.3)    // #3A8478  ← logo primary, stop 500
-max:    oklch(96%    0.013   181)      // #E9F5F2  ← stop 50, near-white teal
-min:    oklch(15%    0.025   183)      // #010F0C  ← stop 950, near-black teal
-
-locked-stops:
-  stop 400: oklch(66%   0.0827  181.0)  // #52A395  ← logo secondary
-  stop 800: oklch(28.9% 0.0426  182.8)  // #0D322D  ← logo anchor-dark
-```
-
-**Curve note:** the default cubic ease with k=2.4 may not pass through both locked stops cleanly given root's L=56.3. Phase B's fit will likely tune k upward (to ~3.0) or use a custom curve to absorb the constraint. If the fit produces unacceptable mid-stop drift (e.g., teal-200 reads visibly different from the expected light teal), the alternative is to relax the stop-400 lock to stop-450 (a non-standard but valid Tailwind addition) — surface to Aaron before doing so.
-
-### 3.2 sage — paired counterpart (locked stop at 300)
+### 3.1 teal — brand primary
 
 ```
-root:   oklch(55%    0.085   145.5)    // computed target — perceptual middle, hue per cena Principle 1
-max:    oklch(95%    0.018   148)      // #E7F2E8  ← stop 50
-min:    oklch(15%    0.020   148)      // #060D07  ← stop 950
-
-locked-stops:
-  stop 300: oklch(73.3% 0.0967 145.4)  // #81B983  ← logo sage green
+root:   oklch(56.3%  0.0762  181.3)    // #3A8478  ← stop 500 (perceptual middle, aligned to logo primary)
+max:    oklch(96%    0.013   181)      // ~#E9F5F2 ← stop 50, near-white teal
+min:    oklch(15%    0.025   183)      // ~#010F0C ← stop 950, near-black teal
 ```
 
-**Curve note:** sage has only one locked stop and it's relatively close to root (position 2 of 5 toward max). Default k=2.4 should fit. The hue drift from H:148 at light end to H:145.4 at the locked stop to H:145.5 at root is intentional (analogous-warmer-at-lighter, per cena Principle 1).
+**Notes:** root chosen to align with logo primary so brand-anchor surfaces at stop 500 read as "Cena teal" without drift. Stops 400 and 800 will drift slightly from logo secondary (#52A395) and logo anchor-dark (#0D322D); logo-exact values remain available via `--logo-secondary` and `--logo-anchor-dark` (§5).
+
+### 3.2 sage — paired counterpart
+
+```
+root:   oklch(55%    0.085   145.5)    // perceptual middle, hue per cena Principle 1
+max:    oklch(95%    0.018   148)      // ~#E7F2E8 ← stop 50
+min:    oklch(15%    0.020   148)      // ~#060D07 ← stop 950
+```
+
+**Notes:** sage-root is a free choice (logo sage `#81B983` is a light value, not a midpoint). Hue drifts from H:148 at light end to H:145.5 at root (analogous-warmer-at-lighter, per cena Principle 1). Logo sage will drift slightly from computed stop 300; `--logo-sage` holds the exact `#81B983`.
 
 ### 3.3 sand — warm neutral (no locks)
 
@@ -257,11 +250,17 @@ min:    oklch(20%    0.060   240)      // dark cyan
 The 17 Tailwind family tokens at the base layer (`--color-teal-500`, `--color-amber-300`, etc.) are referenced by **semantic alias tokens** at the consumption layer:
 
 ```css
-/* Brand */
+/* Brand — family palette aliases (systematic, may drift slightly from logo hex) */
 --color-brand-primary:        var(--color-teal-500);
 --color-brand-secondary:      var(--color-teal-400);
 --color-brand-anchor:         var(--color-teal-800);
 --color-brand-sage:           var(--color-sage-300);
+
+/* Brand — logo identity aliases (hex-exact, for logo SVG and wordmark surfaces) */
+--color-logo-primary:         var(--logo-primary);
+--color-logo-secondary:       var(--logo-secondary);
+--color-logo-anchor-dark:     var(--logo-anchor-dark);
+--color-logo-sage:            var(--logo-sage);
 
 /* Surface */
 --color-surface-page:         var(--color-sand-50);
@@ -298,20 +297,25 @@ This is the same two-layer model haven-ui already uses today; v2 keeps it intact
 
 ---
 
-## 5. Locked-stop registry
+## 5. Logo identity tokens
 
-Authoritative list of every hex value that cannot drift. The build-time generator validates that emitted stops match the registry; any mismatch fails the build.
+Logo identity is a **separate token namespace** from the family palette (per §1.5). These tokens hold the exact hex values for the four logo-derived colors. They are referenced directly by logo SVG, wordmarks, and any surface where the logo identity must render at brand-canonical hex without drift.
 
-| Family | Stop | Hex | OKLCH | Source |
-|---|---|---|---|---|
-| teal | 400 | `#52A395` | `oklch(66% 0.0827 181)` | Logo secondary teal (middle ring) |
-| teal | 500 | `#3A8478` | `oklch(56.3% 0.0762 181.3)` | Logo primary teal (outer ring, "health" wordmark) |
-| teal | 800 | `#0D322D` | `oklch(28.9% 0.0426 182.8)` | Logo anchor-dark teal ("Cena" wordmark) |
-| sage | 300 | `#81B983` | `oklch(73.3% 0.0967 145.4)` | Logo sage green (inner ring) |
+```css
+--logo-primary:          #3A8478;   /* oklch(56.3% 0.0762 181.3) — outer ring + "health" wordmark */
+--logo-secondary:        #52A395;   /* oklch(66%   0.0827 181)   — middle ring */
+--logo-anchor-dark:      #0D322D;   /* oklch(28.9% 0.0426 182.8) — "Cena" wordmark */
+--logo-sage:             #81B983;   /* oklch(73.3% 0.0967 145.4) — inner ring */
+```
 
-No other family has locked stops at Phase A. Phase C may add locks if brand-anchor decisions emerge for other families.
+**Why separate from family palette:**
 
-**Adding a lock:** updates to the registry require Aaron's review. The generator re-fits the affected family on the next build.
+- Family palette stops (`--color-teal-*`, `--color-sage-*`) are computed by the default interpolation curve. They are systematic, generative, mechanical. They may drift slightly from the logo hex at the equivalent stop number — that's a feature, not a bug, because the family palette serves a different purpose (a parametrized color ramp for components, charts, surfaces) than the logo identity (one specific brand mark with hex-exact requirements).
+- Logo identity tokens are hex-frozen. They never go through the generator. They are not computed from anything; they are the brand's identity.
+
+**Authoring rule:** when a surface must render the logo identity (logo SVG, wordmark text), it references the logo tokens. When a surface uses the family palette systematically (a button using teal, a badge using sage), it references the family palette. The drift between `--color-teal-500` and `--logo-primary` is acceptable in surfaces that mix the two — the family palette stop reads as "Cena teal" by hue, just not pixel-identical to the logo.
+
+**Updates to logo identity** require Aaron's review and a new logo decision. Adding new logo-derived hex values to this namespace is a brand-identity change, not a palette change.
 
 ---
 
@@ -319,8 +323,9 @@ No other family has locked stops at Phase A. Phase C may add locks if brand-anch
 
 The build-time generator enforces these rules per family; build fails on violation:
 
-### 6.1 Locked-stop fidelity
-- Every entry in the locked-stop registry (§5) must match the emitted stop within ε ≈ 0.5 in any sRGB channel (or 0.2% in OKLCH L). Reason: logo identity colors are brand-load-bearing.
+### 6.1 Logo identity preservation
+- Logo identity tokens (§5) are hex-frozen at the values stated. The generator does not compute them; they are not validated against family palette stops. Per §1.5, family palette stops may drift slightly from logo hex at the equivalent stop number.
+- If a surface needs the logo identity, it references `--logo-*` directly. The family palette's drift from logo hex is not a build failure.
 
 ### 6.2 Lightness ordering
 - L must be strictly monotonic across the 11 stops: L(50) > L(100) > ... > L(950). Reason: scale-direction convention requires light → dark.

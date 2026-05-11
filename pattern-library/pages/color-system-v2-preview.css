@@ -1,0 +1,591 @@
+/* Cena Color System v2 — visual preview
+   Runtime-interpolated via CSS color-mix(in oklch, ...).
+   Lives next to color-system-v2.md spec; for Aaron review of color values.
+   Not integrated with main.css cascade — standalone review artifact. */
+
+:root {
+  /* Logo identity tokens (hex-exact, never computed) */
+  --logo-primary:     #3A8478;
+  --logo-secondary:   #52A395;
+  --logo-anchor-dark: #0D322D;
+  --logo-sage:        #81B983;
+
+  /* Family roots/max/min per spec §3 */
+
+  /* teal */
+  --teal-root: oklch(56.3% 0.0762 181.3);
+  --teal-max:  oklch(96%   0.013  181);
+  --teal-min:  oklch(15%   0.025  183);
+
+  /* sage */
+  --sage-root: oklch(55%   0.085  145.5);
+  --sage-max:  oklch(95%   0.018  148);
+  --sage-min:  oklch(15%   0.020  148);
+
+  /* sand */
+  --sand-root: oklch(65%   0.016  75);
+  --sand-max:  oklch(98.5% 0.003  85);
+  --sand-min:  oklch(15%   0.008  60);
+
+  /* red */
+  --red-root:  oklch(55%   0.170  25);
+  --red-max:   oklch(96%   0.020  30);
+  --red-min:   oklch(20%   0.075  23);
+
+  /* amber */
+  --amber-root: oklch(63%  0.108  82);
+  --amber-max:  oklch(94%  0.030  85);
+  --amber-min:  oklch(22%  0.060  78);
+
+  /* green */
+  --green-root: oklch(55%  0.105  160);
+  --green-max:  oklch(96%  0.025  155);
+  --green-min:  oklch(20%  0.060  165);
+
+  /* cyan */
+  --cyan-root:  oklch(50%  0.090  235);
+  --cyan-max:   oklch(94%  0.035  215);
+  --cyan-min:   oklch(20%  0.060  240);
+
+  /* Cubic-ease weights for k=2.4 — anchor-side weight per stop position.
+     Position 1: 40.0%   stop 400 (toward max) / stop 600 (toward min)
+     Position 2: 68.5%   stop 300 / stop 700
+     Position 3: 86.9%   stop 200 / stop 800
+     Position 4: 97.4%   stop 100 / stop 900
+     Position 5: 100%    stop 50  / stop 950
+  */
+
+  /* teal stops */
+  --color-teal-50:  var(--teal-max);
+  --color-teal-100: color-mix(in oklch, var(--teal-max) 97.4%, var(--teal-root));
+  --color-teal-200: color-mix(in oklch, var(--teal-max) 86.9%, var(--teal-root));
+  --color-teal-300: color-mix(in oklch, var(--teal-max) 68.5%, var(--teal-root));
+  --color-teal-400: color-mix(in oklch, var(--teal-max) 40%,   var(--teal-root));
+  --color-teal-500: var(--teal-root);
+  --color-teal-600: color-mix(in oklch, var(--teal-min) 40%,   var(--teal-root));
+  --color-teal-700: color-mix(in oklch, var(--teal-min) 68.5%, var(--teal-root));
+  --color-teal-800: color-mix(in oklch, var(--teal-min) 86.9%, var(--teal-root));
+  --color-teal-900: color-mix(in oklch, var(--teal-min) 97.4%, var(--teal-root));
+  --color-teal-950: var(--teal-min);
+
+  /* sage stops */
+  --color-sage-50:  var(--sage-max);
+  --color-sage-100: color-mix(in oklch, var(--sage-max) 97.4%, var(--sage-root));
+  --color-sage-200: color-mix(in oklch, var(--sage-max) 86.9%, var(--sage-root));
+  --color-sage-300: color-mix(in oklch, var(--sage-max) 68.5%, var(--sage-root));
+  --color-sage-400: color-mix(in oklch, var(--sage-max) 40%,   var(--sage-root));
+  --color-sage-500: var(--sage-root);
+  --color-sage-600: color-mix(in oklch, var(--sage-min) 40%,   var(--sage-root));
+  --color-sage-700: color-mix(in oklch, var(--sage-min) 68.5%, var(--sage-root));
+  --color-sage-800: color-mix(in oklch, var(--sage-min) 86.9%, var(--sage-root));
+  --color-sage-900: color-mix(in oklch, var(--sage-min) 97.4%, var(--sage-root));
+  --color-sage-950: var(--sage-min);
+
+  /* sand stops */
+  --color-sand-50:  var(--sand-max);
+  --color-sand-100: color-mix(in oklch, var(--sand-max) 97.4%, var(--sand-root));
+  --color-sand-200: color-mix(in oklch, var(--sand-max) 86.9%, var(--sand-root));
+  --color-sand-300: color-mix(in oklch, var(--sand-max) 68.5%, var(--sand-root));
+  --color-sand-400: color-mix(in oklch, var(--sand-max) 40%,   var(--sand-root));
+  --color-sand-500: var(--sand-root);
+  --color-sand-600: color-mix(in oklch, var(--sand-min) 40%,   var(--sand-root));
+  --color-sand-700: color-mix(in oklch, var(--sand-min) 68.5%, var(--sand-root));
+  --color-sand-800: color-mix(in oklch, var(--sand-min) 86.9%, var(--sand-root));
+  --color-sand-900: color-mix(in oklch, var(--sand-min) 97.4%, var(--sand-root));
+  --color-sand-950: var(--sand-min);
+
+  /* red stops */
+  --color-red-50:  var(--red-max);
+  --color-red-100: color-mix(in oklch, var(--red-max) 97.4%, var(--red-root));
+  --color-red-200: color-mix(in oklch, var(--red-max) 86.9%, var(--red-root));
+  --color-red-300: color-mix(in oklch, var(--red-max) 68.5%, var(--red-root));
+  --color-red-400: color-mix(in oklch, var(--red-max) 40%,   var(--red-root));
+  --color-red-500: var(--red-root);
+  --color-red-600: color-mix(in oklch, var(--red-min) 40%,   var(--red-root));
+  --color-red-700: color-mix(in oklch, var(--red-min) 68.5%, var(--red-root));
+  --color-red-800: color-mix(in oklch, var(--red-min) 86.9%, var(--red-root));
+  --color-red-900: color-mix(in oklch, var(--red-min) 97.4%, var(--red-root));
+  --color-red-950: var(--red-min);
+
+  /* amber stops */
+  --color-amber-50:  var(--amber-max);
+  --color-amber-100: color-mix(in oklch, var(--amber-max) 97.4%, var(--amber-root));
+  --color-amber-200: color-mix(in oklch, var(--amber-max) 86.9%, var(--amber-root));
+  --color-amber-300: color-mix(in oklch, var(--amber-max) 68.5%, var(--amber-root));
+  --color-amber-400: color-mix(in oklch, var(--amber-max) 40%,   var(--amber-root));
+  --color-amber-500: var(--amber-root);
+  --color-amber-600: color-mix(in oklch, var(--amber-min) 40%,   var(--amber-root));
+  --color-amber-700: color-mix(in oklch, var(--amber-min) 68.5%, var(--amber-root));
+  --color-amber-800: color-mix(in oklch, var(--amber-min) 86.9%, var(--amber-root));
+  --color-amber-900: color-mix(in oklch, var(--amber-min) 97.4%, var(--amber-root));
+  --color-amber-950: var(--amber-min);
+
+  /* green stops */
+  --color-green-50:  var(--green-max);
+  --color-green-100: color-mix(in oklch, var(--green-max) 97.4%, var(--green-root));
+  --color-green-200: color-mix(in oklch, var(--green-max) 86.9%, var(--green-root));
+  --color-green-300: color-mix(in oklch, var(--green-max) 68.5%, var(--green-root));
+  --color-green-400: color-mix(in oklch, var(--green-max) 40%,   var(--green-root));
+  --color-green-500: var(--green-root);
+  --color-green-600: color-mix(in oklch, var(--green-min) 40%,   var(--green-root));
+  --color-green-700: color-mix(in oklch, var(--green-min) 68.5%, var(--green-root));
+  --color-green-800: color-mix(in oklch, var(--green-min) 86.9%, var(--green-root));
+  --color-green-900: color-mix(in oklch, var(--green-min) 97.4%, var(--green-root));
+  --color-green-950: var(--green-min);
+
+  /* cyan stops */
+  --color-cyan-50:  var(--cyan-max);
+  --color-cyan-100: color-mix(in oklch, var(--cyan-max) 97.4%, var(--cyan-root));
+  --color-cyan-200: color-mix(in oklch, var(--cyan-max) 86.9%, var(--cyan-root));
+  --color-cyan-300: color-mix(in oklch, var(--cyan-max) 68.5%, var(--cyan-root));
+  --color-cyan-400: color-mix(in oklch, var(--cyan-max) 40%,   var(--cyan-root));
+  --color-cyan-500: var(--cyan-root);
+  --color-cyan-600: color-mix(in oklch, var(--cyan-min) 40%,   var(--cyan-root));
+  --color-cyan-700: color-mix(in oklch, var(--cyan-min) 68.5%, var(--cyan-root));
+  --color-cyan-800: color-mix(in oklch, var(--cyan-min) 86.9%, var(--cyan-root));
+  --color-cyan-900: color-mix(in oklch, var(--cyan-min) 97.4%, var(--cyan-root));
+  --color-cyan-950: var(--cyan-min);
+
+  --page-bg: #FBFAF8;
+  --text-main: #25211D;
+  --text-mute: #5B544C;
+  --rule:      #D1CDC6;
+  --font-body: 'Source Sans 3', system-ui, sans-serif;
+  --font-mono: 'Source Code Pro', 'SF Mono', Menlo, monospace;
+  --font-display: 'Lora', Georgia, serif;
+}
+
+/* ---------- Layout ---------- */
+
+body {
+  display: block;
+  margin: 0;
+  padding: 32px 40px 80px;
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background: var(--page-bg);
+  line-height: 1.45;
+}
+
+.page-header {
+  display: block;
+  max-width: 1280px;
+  margin-bottom: 40px;
+}
+
+.page-header h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 32px;
+  margin: 0 0 8px;
+  color: #0D322D;
+}
+
+.page-header .subtitle {
+  display: block;
+  font-size: 14px;
+  color: var(--text-mute);
+  margin-bottom: 18px;
+}
+
+.page-header .notes {
+  display: block;
+  font-size: 13px;
+  color: var(--text-mute);
+  background: #F3F1EE;
+  border-left: 3px solid #3A8478;
+  padding: 14px 18px;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 0;
+  max-width: 920px;
+}
+
+.page-header .notes ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+}
+
+.page-header .notes li {
+  margin: 4px 0;
+}
+
+/* ---------- Family rows ---------- */
+
+.family-row {
+  display: block;
+  max-width: 1280px;
+  margin-bottom: 56px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.family-row:last-of-type {
+  border-bottom: none;
+}
+
+.family-row.cross-family-section {
+  border-top: 2px solid #0D322D;
+  padding-top: 24px;
+  margin-top: 24px;
+}
+
+.family-header {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.family-header h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  margin: 0 0 4px;
+  color: #0D322D;
+}
+
+.family-header .meta {
+  display: block;
+  font-size: 13px;
+  color: var(--text-mute);
+}
+
+.family-header .role {
+  display: inline;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Anchor swatches: root/max/min in their own small row */
+
+.anchor-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  align-items: stretch;
+}
+
+.anchor-swatch {
+  display: flex;
+  flex-direction: column;
+  width: 110px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+}
+
+.anchor-swatch .color-block {
+  display: block;
+  height: 44px;
+}
+
+.anchor-swatch .label {
+  display: block;
+  padding: 6px 8px;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-main);
+  background: #F3F1EE;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.anchor-swatch.swatch-max .color-block  { background: var(--current-max); }
+.anchor-swatch.swatch-root .color-block { background: var(--current-root); }
+.anchor-swatch.swatch-min .color-block  { background: var(--current-min); }
+
+/* Stops row: 11 stops in a horizontal strip */
+
+.stops-row {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.stop-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.stop-color {
+  display: block;
+  height: 64px;
+  border-radius: 3px 3px 0 0;
+  border: 1px solid var(--rule);
+  border-bottom: none;
+}
+
+.stop-cell.locked .stop-color {
+  border: 2px solid #C13C3B;
+  border-bottom: none;
+}
+
+.stop-cell.locked.matches .stop-color {
+  border-color: #3A8E64;
+}
+
+.stop-label {
+  display: block;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  text-align: center;
+  padding: 4px 0;
+  background: #F3F1EE;
+  border: 1px solid var(--rule);
+  border-top: none;
+  border-radius: 0 0 3px 3px;
+  color: var(--text-main);
+}
+
+.stop-cell.locked .stop-label {
+  background: #FCE5E3;
+  border-color: #C13C3B;
+}
+
+/* Per-family scope: declare --current-* tokens so generic .stop-color rules consume them */
+
+.family-teal {
+  --current-max: var(--teal-max); --current-root: var(--teal-root); --current-min: var(--teal-min);
+}
+.family-sage {
+  --current-max: var(--sage-max); --current-root: var(--sage-root); --current-min: var(--sage-min);
+}
+.family-sand {
+  --current-max: var(--sand-max); --current-root: var(--sand-root); --current-min: var(--sand-min);
+}
+.family-red {
+  --current-max: var(--red-max); --current-root: var(--red-root); --current-min: var(--red-min);
+}
+.family-amber {
+  --current-max: var(--amber-max); --current-root: var(--amber-root); --current-min: var(--amber-min);
+}
+.family-green {
+  --current-max: var(--green-max); --current-root: var(--green-root); --current-min: var(--green-min);
+}
+.family-cyan {
+  --current-max: var(--cyan-max); --current-root: var(--cyan-root); --current-min: var(--cyan-min);
+}
+
+/* Per-family stop overrides — different family scope shows different stop colors */
+.family-teal  .stop-50  .stop-color { background: var(--color-teal-50);  }
+.family-teal  .stop-100 .stop-color { background: var(--color-teal-100); }
+.family-teal  .stop-200 .stop-color { background: var(--color-teal-200); }
+.family-teal  .stop-300 .stop-color { background: var(--color-teal-300); }
+.family-teal  .stop-400 .stop-color { background: var(--color-teal-400); }
+.family-teal  .stop-500 .stop-color { background: var(--color-teal-500); }
+.family-teal  .stop-600 .stop-color { background: var(--color-teal-600); }
+.family-teal  .stop-700 .stop-color { background: var(--color-teal-700); }
+.family-teal  .stop-800 .stop-color { background: var(--color-teal-800); }
+.family-teal  .stop-900 .stop-color { background: var(--color-teal-900); }
+.family-teal  .stop-950 .stop-color { background: var(--color-teal-950); }
+
+.family-sage  .stop-50  .stop-color { background: var(--color-sage-50);  }
+.family-sage  .stop-100 .stop-color { background: var(--color-sage-100); }
+.family-sage  .stop-200 .stop-color { background: var(--color-sage-200); }
+.family-sage  .stop-300 .stop-color { background: var(--color-sage-300); }
+.family-sage  .stop-400 .stop-color { background: var(--color-sage-400); }
+.family-sage  .stop-500 .stop-color { background: var(--color-sage-500); }
+.family-sage  .stop-600 .stop-color { background: var(--color-sage-600); }
+.family-sage  .stop-700 .stop-color { background: var(--color-sage-700); }
+.family-sage  .stop-800 .stop-color { background: var(--color-sage-800); }
+.family-sage  .stop-900 .stop-color { background: var(--color-sage-900); }
+.family-sage  .stop-950 .stop-color { background: var(--color-sage-950); }
+
+.family-sand  .stop-50  .stop-color { background: var(--color-sand-50);  }
+.family-sand  .stop-100 .stop-color { background: var(--color-sand-100); }
+.family-sand  .stop-200 .stop-color { background: var(--color-sand-200); }
+.family-sand  .stop-300 .stop-color { background: var(--color-sand-300); }
+.family-sand  .stop-400 .stop-color { background: var(--color-sand-400); }
+.family-sand  .stop-500 .stop-color { background: var(--color-sand-500); }
+.family-sand  .stop-600 .stop-color { background: var(--color-sand-600); }
+.family-sand  .stop-700 .stop-color { background: var(--color-sand-700); }
+.family-sand  .stop-800 .stop-color { background: var(--color-sand-800); }
+.family-sand  .stop-900 .stop-color { background: var(--color-sand-900); }
+.family-sand  .stop-950 .stop-color { background: var(--color-sand-950); }
+
+.family-red   .stop-50  .stop-color { background: var(--color-red-50);  }
+.family-red   .stop-100 .stop-color { background: var(--color-red-100); }
+.family-red   .stop-200 .stop-color { background: var(--color-red-200); }
+.family-red   .stop-300 .stop-color { background: var(--color-red-300); }
+.family-red   .stop-400 .stop-color { background: var(--color-red-400); }
+.family-red   .stop-500 .stop-color { background: var(--color-red-500); }
+.family-red   .stop-600 .stop-color { background: var(--color-red-600); }
+.family-red   .stop-700 .stop-color { background: var(--color-red-700); }
+.family-red   .stop-800 .stop-color { background: var(--color-red-800); }
+.family-red   .stop-900 .stop-color { background: var(--color-red-900); }
+.family-red   .stop-950 .stop-color { background: var(--color-red-950); }
+
+.family-amber .stop-50  .stop-color { background: var(--color-amber-50);  }
+.family-amber .stop-100 .stop-color { background: var(--color-amber-100); }
+.family-amber .stop-200 .stop-color { background: var(--color-amber-200); }
+.family-amber .stop-300 .stop-color { background: var(--color-amber-300); }
+.family-amber .stop-400 .stop-color { background: var(--color-amber-400); }
+.family-amber .stop-500 .stop-color { background: var(--color-amber-500); }
+.family-amber .stop-600 .stop-color { background: var(--color-amber-600); }
+.family-amber .stop-700 .stop-color { background: var(--color-amber-700); }
+.family-amber .stop-800 .stop-color { background: var(--color-amber-800); }
+.family-amber .stop-900 .stop-color { background: var(--color-amber-900); }
+.family-amber .stop-950 .stop-color { background: var(--color-amber-950); }
+
+.family-green .stop-50  .stop-color { background: var(--color-green-50);  }
+.family-green .stop-100 .stop-color { background: var(--color-green-100); }
+.family-green .stop-200 .stop-color { background: var(--color-green-200); }
+.family-green .stop-300 .stop-color { background: var(--color-green-300); }
+.family-green .stop-400 .stop-color { background: var(--color-green-400); }
+.family-green .stop-500 .stop-color { background: var(--color-green-500); }
+.family-green .stop-600 .stop-color { background: var(--color-green-600); }
+.family-green .stop-700 .stop-color { background: var(--color-green-700); }
+.family-green .stop-800 .stop-color { background: var(--color-green-800); }
+.family-green .stop-900 .stop-color { background: var(--color-green-900); }
+.family-green .stop-950 .stop-color { background: var(--color-green-950); }
+
+.family-cyan  .stop-50  .stop-color { background: var(--color-cyan-50);  }
+.family-cyan  .stop-100 .stop-color { background: var(--color-cyan-100); }
+.family-cyan  .stop-200 .stop-color { background: var(--color-cyan-200); }
+.family-cyan  .stop-300 .stop-color { background: var(--color-cyan-300); }
+.family-cyan  .stop-400 .stop-color { background: var(--color-cyan-400); }
+.family-cyan  .stop-500 .stop-color { background: var(--color-cyan-500); }
+.family-cyan  .stop-600 .stop-color { background: var(--color-cyan-600); }
+.family-cyan  .stop-700 .stop-color { background: var(--color-cyan-700); }
+.family-cyan  .stop-800 .stop-color { background: var(--color-cyan-800); }
+.family-cyan  .stop-900 .stop-color { background: var(--color-cyan-900); }
+.family-cyan  .stop-950 .stop-color { background: var(--color-cyan-950); }
+
+/* Logo comparison row */
+
+.logo-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+}
+
+.logo-pair {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logo-pair .swatch {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid var(--rule);
+}
+
+.logo-pair.primary       .swatch { background: var(--logo-primary); }
+.logo-pair.secondary     .swatch { background: var(--logo-secondary); }
+.logo-pair.anchor-dark   .swatch { background: var(--logo-anchor-dark); }
+.logo-pair.sage          .swatch { background: var(--logo-sage); }
+
+/* Contrast pill — fill 950 / border 800 / text 500 + body 200 */
+
+.contrast-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.contrast-pill {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid;
+  font-family: var(--font-body);
+  min-width: 200px;
+}
+
+.contrast-pill .label {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.contrast-pill .body {
+  display: block;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.family-teal .contrast-pill  { background: var(--color-teal-950);  border-color: var(--color-teal-800);  color: var(--color-teal-500); }
+.family-sage .contrast-pill  { background: var(--color-sage-950);  border-color: var(--color-sage-800);  color: var(--color-sage-500); }
+.family-sand .contrast-pill  { background: var(--color-sand-950);  border-color: var(--color-sand-500);  color: var(--color-sand-500); }
+.family-red  .contrast-pill  { background: var(--color-red-950);   border-color: var(--color-red-800);   color: var(--color-red-500); }
+.family-amber .contrast-pill { background: var(--color-amber-950); border-color: var(--color-amber-800); color: var(--color-amber-500); }
+.family-green .contrast-pill { background: var(--color-green-950); border-color: var(--color-green-800); color: var(--color-green-500); }
+.family-cyan .contrast-pill  { background: var(--color-cyan-950);  border-color: var(--color-cyan-800);  color: var(--color-cyan-500); }
+
+.family-teal  .contrast-pill .body { color: var(--color-teal-200); }
+.family-sage  .contrast-pill .body { color: var(--color-sage-200); }
+.family-sand  .contrast-pill .body { color: var(--color-sand-200); }
+.family-red   .contrast-pill .body { color: var(--color-red-200); }
+.family-amber .contrast-pill .body { color: var(--color-amber-200); }
+.family-green .contrast-pill .body { color: var(--color-green-200); }
+.family-cyan  .contrast-pill .body { color: var(--color-cyan-200); }
+
+/* Cross-family pill comparison */
+
+.cross-family-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cross-pill {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid;
+  min-width: 160px;
+}
+
+.cross-pill.cp-teal  { background: var(--color-teal-950);  border-color: var(--color-teal-800);  color: var(--color-teal-500); }
+.cross-pill.cp-sage  { background: var(--color-sage-950);  border-color: var(--color-sage-800);  color: var(--color-sage-500); }
+.cross-pill.cp-sand  { background: var(--color-sand-950);  border-color: var(--color-sand-500);  color: var(--color-sand-500); }
+.cross-pill.cp-red   { background: var(--color-red-950);   border-color: var(--color-red-800);   color: var(--color-red-500); }
+.cross-pill.cp-amber { background: var(--color-amber-950); border-color: var(--color-amber-800); color: var(--color-amber-500); }
+.cross-pill.cp-green { background: var(--color-green-950); border-color: var(--color-green-800); color: var(--color-green-500); }
+.cross-pill.cp-cyan  { background: var(--color-cyan-950);  border-color: var(--color-cyan-800);  color: var(--color-cyan-500); }
+
+.cross-pill .label {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.cross-pill.cp-teal  .body { color: var(--color-teal-200); }
+.cross-pill.cp-sage  .body { color: var(--color-sage-200); }
+.cross-pill.cp-sand  .body { color: var(--color-sand-200); }
+.cross-pill.cp-red   .body { color: var(--color-red-200); }
+.cross-pill.cp-amber .body { color: var(--color-amber-200); }
+.cross-pill.cp-green .body { color: var(--color-green-200); }
+.cross-pill.cp-cyan  .body { color: var(--color-cyan-200); }
+
+.cross-pill .body {
+  display: block;
+  font-size: 14px;
+}
+
+/* Section labels */
+
+.section-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-mute);
+  margin: 12px 0 6px;
+  font-weight: 600;
+}

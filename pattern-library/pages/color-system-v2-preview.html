@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cena Color System v2 — Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Source+Code+Pro:wght@400;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./color-system-v2-preview.css" />
+</head>
+<body>
+  <header class="page-header">
+    <h1>Cena Color System v2 — Preview</h1>
+    <span class="subtitle">Runtime-interpolated via CSS color-mix(in oklch, …). Phase B1 review artifact for the 7 active families.</span>
+    <div class="notes">
+      <strong>How to read this page:</strong>
+      <ul>
+        <li>Each family shows three anchor swatches (max / root / min) followed by the 11 computed stops (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950).</li>
+        <li>For teal and sage, a small row of logo-identity swatches appears below the family stops — these are the hex-exact logo colors. The family palette stops at the equivalent positions will drift slightly; that's expected per spec §1.5.</li>
+        <li>Each family also includes a "contrast pill" showing the canonical formula: fill 950 / border 800 (or 500 for sand) / heading text 500 / body text 200. This is the visual contrast test for each family.</li>
+        <li>The final section is cross-family pill alignment — same pill formula across all 7 families, side-by-side, for visual parity check.</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- TEAL -->
+  <section class="family-row family-teal">
+    <div class="family-header">
+      <h2>Teal — brand primary</h2>
+      <span class="meta"><span class="role">Role:</span> brand identity, infrastructure, institutional. Hue center: H:181 (blue-green teal). Root = logo primary OKLCH.</span>
+    </div>
+    <span class="section-label">Anchors</span>
+    <div class="anchor-row">
+      <div class="anchor-swatch swatch-max"><span class="color-block"></span><span class="label">max — oklch(96% 0.013 181)</span></div>
+      <div class="anchor-swatch swatch-root"><span class="color-block"></span><span class="label">root — oklch(56.3% 0.0762 181.3)</span></div>
+      <div class="anchor-swatch swatch-min"><span class="color-block"></span><span class="label">min — oklch(15% 0.025 183)</span></div>
+    </div>
+    <span class="section-label">Computed stops</span>
+    <div class="stops-row">
+      <div class="stop-cell stop-50"><span class="stop-color"></span><span class="stop-label">50</span></div>
+      <div class="stop-cell stop-100"><span class="stop-color"></span><span class="stop-label">100</span></div>
+      <div class="stop-cell stop-200"><span class="stop-color"></span><span class="stop-label">200</span></div>
+      <div class="stop-cell stop-300"><span class="stop-color"></span><span class="stop-label">300</span></div>
+      <div class="stop-cell stop-400 locked"><span class="stop-color"></span><span class="stop-label">400 ◆</span></div>
+      <div class="stop-cell stop-500 locked"><span class="stop-color"></span><span class="stop-label">500 ◆</span></div>
+      <div class="stop-cell stop-600"><span class="stop-color"></span><span class="stop-label">600</span></div>
+      <div class="stop-cell stop-700"><span class="stop-color"></span><span class="stop-label">700</span></div>
+      <div class="stop-cell stop-800 locked"><span class="stop-color"></span><span class="stop-label">800 ◆</span></div>
+      <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
+      <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
+    </div>
+    <span class="section-label">◆ Logo identity comparison (hex-exact)</span>
+    <div class="logo-row">
+      <div class="logo-pair primary"><span class="swatch"></span><span>--logo-primary #3A8478 (vs computed 500)</span></div>
+      <div class="logo-pair secondary"><span class="swatch"></span><span>--logo-secondary #52A395 (vs computed 400)</span></div>
+      <div class="logo-pair anchor-dark"><span class="swatch"></span><span>--logo-anchor-dark #0D322D (vs computed 800)</span></div>
+    </div>
+    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <div class="contrast-row">
+      <div class="contrast-pill">
+        <span class="label">HEADING</span>
+        <span class="body">Body copy reading on the lightest tinted fill.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAGE -->
+  <section class="family-row family-sage">
+    <div class="family-header">
+      <h2>Sage — paired counterpart</h2>
+      <span class="meta"><span class="role">Role:</span> patient/nutrition register, paired counterpart to teal. Hue center: H:145.5 (warm yellow-green). Root chosen as perceptual middle.</span>
+    </div>
+    <span class="section-label">Anchors</span>
+    <div class="anchor-row">
+      <div class="anchor-swatch swatch-max"><span class="color-block"></span><span class="label">max — oklch(95% 0.018 148)</span></div>
+      <div class="anchor-swatch swatch-root"><span class="color-block"></span><span class="label">root — oklch(55% 0.085 145.5)</span></div>
+      <div class="anchor-swatch swatch-min"><span class="color-block"></span><span class="label">min — oklch(15% 0.020 148)</span></div>
+    </div>
+    <span class="section-label">Computed stops</span>
+    <div class="stops-row">
+      <div class="stop-cell stop-50"><span class="stop-color"></span><span class="stop-label">50</span></div>
+      <div class="stop-cell stop-100"><span class="stop-color"></span><span class="stop-label">100</span></div>
+      <div class="stop-cell stop-200"><span class="stop-color"></span><span class="stop-label">200</span></div>
+      <div class="stop-cell stop-300 locked"><span class="stop-color"></span><span class="stop-label">300 ◆</span></div>
+      <div class="stop-cell stop-400"><span class="stop-color"></span><span class="stop-label">400</span></div>
+      <div class="stop-cell stop-500"><span class="stop-color"></span><span class="stop-label">500</span></div>
+      <div class="stop-cell stop-600"><span class="stop-color"></span><span class="stop-label">600</span></div>
+      <div class="stop-cell stop-700"><span class="stop-color"></span><span class="stop-label">700</span></div>
+      <div class="stop-cell stop-800"><span class="stop-color"></span><span class="stop-label">800</span></div>
+      <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
+      <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
+    </div>
+    <span class="section-label">◆ Logo identity comparison (hex-exact)</span>
+    <div class="logo-row">
+      <div class="logo-pair sage"><span class="swatch"></span><span>--logo-sage #81B983 (vs computed 300)</span></div>
+    </div>
+    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <div class="contrast-row">
+      <div class="contrast-pill">
+        <span class="label">HEADING</span>
+        <span class="body">Body copy reading on the lightest tinted fill.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAND -->
+  <section class="family-row family-sand">
+    <div class="family-header">
+      <h2>Sand — warm neutral (single neutral)</h2>
+      <span class="meta"><span class="role">Role:</span> surfaces, backgrounds, body text, borders, dividers. Hue range: H:60-85 (warm yellow-brown). No locks — chroma tapered aggressively at extremes.</span>
+    </div>
+    <span class="section-label">Anchors</span>
+    <div class="anchor-row">
+      <div class="anchor-swatch swatch-max"><span class="color-block"></span><span class="label">max — oklch(98.5% 0.003 85)</span></div>
+      <div class="anchor-swatch swatch-root"><span class="color-block"></span><span class="label">root — oklch(65% 0.016 75)</span></div>
+      <div class="anchor-swatch swatch-min"><span class="color-block"></span><span class="label">min — oklch(15% 0.008 60)</span></div>
+    </div>
+    <span class="section-label">Computed stops</span>
+    <div class="stops-row">
+      <div class="stop-cell stop-50"><span class="stop-color"></span><span class="stop-label">50</span></div>
+      <div class="stop-cell stop-100"><span class="stop-color"></span><span class="stop-label">100</span></div>
+      <div class="stop-cell stop-200"><span class="stop-color"></span><span class="stop-label">200</span></div>
+      <div class="stop-cell stop-300"><span class="stop-color"></span><span class="stop-label">300</span></div>
+      <div class="stop-cell stop-400"><span class="stop-color"></span><span class="stop-label">400</span></div>
+      <div class="stop-cell stop-500"><span class="stop-color"></span><span class="stop-label">500</span></div>
+      <div class="stop-cell stop-600"><span class="stop-color"></span><span class="stop-label">600</span></div>
+      <div class="stop-cell stop-700"><span class="stop-color"></span><span class="stop-label">700</span></div>
+      <div class="stop-cell stop-800"><span class="stop-color"></span><span class="stop-label">800</span></div>
+      <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
+      <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
+    </div>
+    <span class="section-label">Contrast pill — fill 950 / border 500 (lightness-compression caveat) / heading 500 / body 200</span>
+    <div class="contrast-row">
+      <div class="contrast-pill">
+        <span class="label">DEFAULT</span>
+        <span class="body">Body copy on warm-neutral fill — uses border 500 (mid) per spec because 950→800 lightness gap is compressed.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RED -->
+  <section class="family-row family-red">
+    <div class="family-header">
+      <h2>Red — error / critical (feedback)</h2>
+      <span class="meta"><span class="role">Role:</span> error / critical status. Hue center: H:25 (warm red-orange, terra-cotta-adjacent). No logo locks.</span>
+    </div>
+    <span class="section-label">Anchors</span>
+    <div class="anchor-row">
+      <div class="anchor-swatch swatch-max"><span class="color-block"></span><span class="label">max — oklch(96% 0.020 30)</span></div>
+      <div class="anchor-swatch swatch-root"><span class="color-block"></span><span class="label">root — oklch(55% 0.170 25)</span></div>
+      <div class="anchor-swatch swatch-min"><span class="color-block"></span><span class="label">min — oklch(20% 0.075 23)</span></div>
+    </div>
+    <span class="section-label">Computed stops</span>
+    <div class="stops-row">
+      <div class="stop-cell stop-50"><span class="stop-color"></span><span class="stop-label">50</span></div>
+      <div class="stop-cell stop-100"><span class="stop-color"></span><span class="stop-label">100</span></div>
+      <div class="stop-cell stop-200"><span class="stop-color"></span><span class="stop-label">200</span></div>
+      <div class="stop-cell stop-300"><span class="stop-color"></span><span class="stop-label">300</span></div>
+      <div class="stop-cell stop-400"><span class="stop-color"></span><span class="stop-label">400</span></div>
+      <div class="stop-cell stop-500"><span class="stop-color"></span><span class="stop-label">500</span></div>
+      <div class="stop-cell stop-600"><span class="stop-color"></span><span class="stop-label">600</span></div>
+      <div class="stop-cell stop-700"><span class="stop-color"></span><span class="stop-label">700</span></div>
+      <div class="stop-cell stop-800"><span class="stop-color"></span><span class="stop-label">800</span></div>
+      <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
+      <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
+    </div>
+    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <div class="contrast-row">
+      <div class="contrast-pill">
+        <span class="label">ERROR</span>
+        <span class="body">Body copy reading on the lightest tinted error fill.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMBER -->
+  <section class="family-row family-amber">
+    <div class="family-header">
+      <h2>Amber — warning / caution (feedback)</h2>
+      <span class="meta"><span class="role">Role:</span> warning / caution status. Hue center: H:82 (warm ochre-gold). No logo locks.</span>
+    </div>
+    <span class="section-label">Anchors</span>
+    <div class="anchor-row">
+      <div class="anchor-swatch swatch-max"><span class="color-block"></span><span class="label">max — oklch(94% 0.030 85)</span></div>
+      <div class="anchor-swatch swatch-root"><span class="color-block"></span><span class="label">root — oklch(63% 0.108 82)</span></div>
+      <div class="anchor-swatch swatch-min"><span class="color-block"></span><span class="label">min — oklch(22% 0.060 78)</span></div>
+    </div>
+    <span class="section-label">Computed stops</span>
+    <div class="stops-row">
+      <div class="stop-cell stop-50"><span class="stop-color"></span><span class="stop-label">50</span></div>
+      <div class="stop-cell stop-100"><span class="stop-color"></span><span class="stop-label">100</span></div>
+      <div class="stop-cell stop-200"><span class="stop-color"></span><span class="stop-label">200</span></div>
+      <div class="stop-cell stop-300"><span class="stop-color"></span><span class="stop-label">300</span></div>
+      <div class="stop-cell stop-400"><span class="stop-color"></span><span class="stop-label">400</span></div>
+      <div class="stop-cell stop-500"><span class="stop-color"></span><span class="stop-label">500</span></div>
+      <div class="stop-cell stop-600"><span class="stop-color"></span><span class="stop-label">600</span></div>
+      <div class="stop-cell stop-700"><span class="stop-color"></span><span class="stop-label">700</span></div>
+      <div class="stop-cell stop-800"><span class="stop-color"></span><span class="stop-label">800</span></div>
+      <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
+      <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
+    </div>
+    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <div class="contrast-row">
+      <div class="contrast-pill">
+        <span class="label">WARNING</span>
+        <span class="body">Body copy reading on the lightest tinted warning fill.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GREEN -->
+  <section class="family-row family-green">
+    <div class="family-header">
+      <h2>Green — success / confirmation (feedback)</h2>
+      <span class="meta"><span class="role">Role:</span> success / confirmation status. Hue center: H:160 (desaturated green, distinct from sage H:145.5). No logo locks.</span>
+    </div>
+    <span class="section-label">Anchors</span>
+    <div class="anchor-row">
+      <div class="anchor-swatch swatch-max"><span class="color-block"></span><span class="label">max — oklch(96% 0.025 155)</span></div>
+      <div class="anchor-swatch swatch-root"><span class="color-block"></span><span class="label">root — oklch(55% 0.105 160)</span></div>
+      <div class="anchor-swatch swatch-min"><span class="color-block"></span><span class="label">min — oklch(20% 0.060 165)</span></div>
+    </div>
+    <span class="section-label">Computed stops</span>
+    <div class="stops-row">
+      <div class="stop-cell stop-50"><span class="stop-color"></span><span class="stop-label">50</span></div>
+      <div class="stop-cell stop-100"><span class="stop-color"></span><span class="stop-label">100</span></div>
+      <div class="stop-cell stop-200"><span class="stop-color"></span><span class="stop-label">200</span></div>
+      <div class="stop-cell stop-300"><span class="stop-color"></span><span class="stop-label">300</span></div>
+      <div class="stop-cell stop-400"><span class="stop-color"></span><span class="stop-label">400</span></div>
+      <div class="stop-cell stop-500"><span class="stop-color"></span><span class="stop-label">500</span></div>
+      <div class="stop-cell stop-600"><span class="stop-color"></span><span class="stop-label">600</span></div>
+      <div class="stop-cell stop-700"><span class="stop-color"></span><span class="stop-label">700</span></div>
+      <div class="stop-cell stop-800"><span class="stop-color"></span><span class="stop-label">800</span></div>
+      <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
+      <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
+    </div>
+    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <div class="contrast-row">
+      <div class="contrast-pill">
+        <span class="label">SUCCESS</span>
+        <span class="body">Body copy reading on the lightest tinted success fill.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CYAN -->
+  <section class="family-row family-cyan">
+    <div class="family-header">
+      <h2>Cyan — info / informational (feedback)</h2>
+      <span class="meta"><span class="role">Role:</span> info / informational status. Hue center: H:235 (slate-blue, Cena's only allowed cool family). No logo locks.</span>
+    </div>
+    <span class="section-label">Anchors</span>
+    <div class="anchor-row">
+      <div class="anchor-swatch swatch-max"><span class="color-block"></span><span class="label">max — oklch(94% 0.035 215)</span></div>
+      <div class="anchor-swatch swatch-root"><span class="color-block"></span><span class="label">root — oklch(50% 0.090 235)</span></div>
+      <div class="anchor-swatch swatch-min"><span class="color-block"></span><span class="label">min — oklch(20% 0.060 240)</span></div>
+    </div>
+    <span class="section-label">Computed stops</span>
+    <div class="stops-row">
+      <div class="stop-cell stop-50"><span class="stop-color"></span><span class="stop-label">50</span></div>
+      <div class="stop-cell stop-100"><span class="stop-color"></span><span class="stop-label">100</span></div>
+      <div class="stop-cell stop-200"><span class="stop-color"></span><span class="stop-label">200</span></div>
+      <div class="stop-cell stop-300"><span class="stop-color"></span><span class="stop-label">300</span></div>
+      <div class="stop-cell stop-400"><span class="stop-color"></span><span class="stop-label">400</span></div>
+      <div class="stop-cell stop-500"><span class="stop-color"></span><span class="stop-label">500</span></div>
+      <div class="stop-cell stop-600"><span class="stop-color"></span><span class="stop-label">600</span></div>
+      <div class="stop-cell stop-700"><span class="stop-color"></span><span class="stop-label">700</span></div>
+      <div class="stop-cell stop-800"><span class="stop-color"></span><span class="stop-label">800</span></div>
+      <div class="stop-cell stop-900"><span class="stop-color"></span><span class="stop-label">900</span></div>
+      <div class="stop-cell stop-950"><span class="stop-color"></span><span class="stop-label">950</span></div>
+    </div>
+    <span class="section-label">Contrast pill — fill 950 / border 800 / heading 500 / body 200</span>
+    <div class="contrast-row">
+      <div class="contrast-pill">
+        <span class="label">INFO</span>
+        <span class="body">Body copy reading on the lightest tinted info fill.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS-FAMILY PARITY -->
+  <section class="family-row cross-family-section">
+    <div class="family-header">
+      <h2>Cross-family parity — pill comparison</h2>
+      <span class="meta">Same canonical formula (fill 950 / border 800 (or 500 for sand) / heading 500 / body 200) applied across all 7 active families. Use this section to spot perceptual-weight asymmetries between families.</span>
+    </div>
+    <div class="cross-family-row">
+      <div class="cross-pill cp-teal"><span class="label">TEAL</span><span class="body">The quick brown fox jumps.</span></div>
+      <div class="cross-pill cp-sage"><span class="label">SAGE</span><span class="body">The quick brown fox jumps.</span></div>
+      <div class="cross-pill cp-sand"><span class="label">SAND</span><span class="body">The quick brown fox jumps.</span></div>
+      <div class="cross-pill cp-red"><span class="label">RED</span><span class="body">The quick brown fox jumps.</span></div>
+      <div class="cross-pill cp-amber"><span class="label">AMBER</span><span class="body">The quick brown fox jumps.</span></div>
+      <div class="cross-pill cp-green"><span class="label">GREEN</span><span class="body">The quick brown fox jumps.</span></div>
+      <div class="cross-pill cp-cyan"><span class="label">CYAN</span><span class="body">The quick brown fox jumps.</span></div>
+    </div>
+  </section>
+</body>
+</html>
