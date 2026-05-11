@@ -1,0 +1,406 @@
+# Cena Health — Color System v2
+
+_Generative root/max/min color architecture. 17 Tailwind hue families + 1 neutral, Cena-tuned. OKLCH-in-P3 canonical, sRGB hex as legacy fallback. Tailwind scale-direction (50=lightest, 950=darkest)._
+
+**Authority:** This document is the canonical color-system spec for Cena Health going forward. The earlier `color.md` and `color-web.md` are preserved as historical reference but no longer canonical once v2 is approved.
+
+**Status:** Phase A draft, 2026-05-11. Pending Aaron review + approval. Phase B (build-time generator) and Phase D (haven-ui integration) follow.
+
+**Relationship to other docs:**
+- `data-visualization.md` — applies the palette to diagrammatic content; v2's family set covers all five data-vis anchors (teal, sage, ochre, violet, indigo) and the warm-neutral baseline
+- `illustration.md` — applies the palette to illustrative content
+- `iconography.md` — applies the palette to icons
+- `surface-treatment.md` — references surface tokens which alias into the palette
+- `principles/design-principles.md` — Principle 1 (Hue Shift Is the Brand) + Principle 6 (Two Registers) shape which families are foreground vs supporting
+
+---
+
+## 0. Why v2 exists
+
+Three structural defects in v1 forced a system-level redesign:
+
+1. **Cross-family contrast asymmetry.** Hand-tuned 11-stop ladders + Tailwind-HSL passthrough fragments gave families uneven perceptual weight at the same nominal stop. Default warm-neutral pills read lighter than colored pills using the canonical fill-950/border-800/text-500 formula. The cross-family contrast issue was load-bearing — it surfaces on every multi-family surface (badges, alerts, substrates, diagram color anchors).
+2. **Scale-direction inversion.** v1's `color.md` uses 50=darkest, 950=lightest. haven-ui uses Tailwind convention (50=lightest, 950=darkest). Same hex appears at different stop numbers in each system. Hypothesis: this inversion is the source of recurring dark/light theme bugs — `.dark` overrides referencing inverted stops silently flip semantics.
+3. **Family-set arbitrariness.** Some families were brand-canonical hex; some Tailwind defaults; some missing (ochre). No principled answer to "what's the next family to add" or "what does that family's lightness curve look like."
+
+v2 addresses all three by construction: every family has the same architecture, the same number of derivation parameters, the same scale-direction. The 17 Tailwind family names provide ecosystem familiarity and future-proof chart/illustration/infographic needs while every value is Cena-tuned.
+
+---
+
+## 1. Architecture
+
+### 1.1 The generative model
+
+Each family is defined by exactly three OKLCH-in-P3 values plus zero or more locked-stop constraints:
+
+```
+family-name: {
+  root:   oklch(L_root  C_root  H_root)
+  max:    oklch(L_max   C_max   H_max)     // lightest extreme
+  min:    oklch(L_min   C_min   H_min)     // darkest extreme
+  locked: [                                 // optional, for logo / brand-anchor stops
+    { stop: 400, value: oklch(...) },
+    { stop: 800, value: oklch(...) }
+  ]
+}
+```
+
+The 11-stop ramp (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950) is computed by interpolation along the root↔max gradient (lighter half) and root↔min gradient (darker half).
+
+### 1.2 Scale direction
+
+**50 = lightest, 950 = darkest. Across all repos, all references, all consumers.**
+
+This is Tailwind convention. v1's inverted scale (50 = darkest in `color.md`) flips in v2. Hex values do not change; only the numerical labels move. Consumers who previously referenced `color-teal-200` for the dark-anchor wordmark color reference `color-teal-800` in v2.
+
+Migration table for the four currently-locked stops:
+
+| Color | Hex | v1 stop | v2 stop |
+|---|---|---|---|
+| Logo primary teal | `#3A8478` | teal-500 | teal-500 (palindrome, unchanged) |
+| Logo secondary teal | `#52A395` | teal-600 | teal-400 |
+| Logo anchor-dark teal | `#0D322D` | teal-200 | teal-800 |
+| Logo sage green | `#81B983` | sage-700 | sage-300 |
+
+### 1.3 Position mapping
+
+The 11 stops are NOT proportional to their stop numbers. They are 11 named positions on the root-to-max-and-min gradient:
+
+| Stop | Position from root | Gradient |
+|---|---|---|
+| 50 | 5/5 toward max | lighter |
+| 100 | 4/5 toward max | lighter |
+| 200 | 3/5 toward max | lighter |
+| 300 | 2/5 toward max | lighter |
+| 400 | 1/5 toward max | lighter |
+| **500** | **0 (= root)** | — |
+| 600 | 1/5 toward min | darker |
+| 700 | 2/5 toward min | darker |
+| 800 | 3/5 toward min | darker |
+| 900 | 4/5 toward min | darker |
+| 950 | 5/5 toward min | darker |
+
+The mapping mirrors Tailwind's stop-number convention so haven-ui's Tailwind utility classes (`bg-teal-500`, `text-sand-800`) work without translation.
+
+### 1.4 Interpolation curve
+
+OKLCH lightness (L) varies along the gradient via a tunable curve:
+
+- **Default curve:** cubic ease — `L(p) = L_root + (1 - (1 - p/5)^k) * (L_anchor - L_root)`, where `p` is position (1 to 5), `L_anchor` is `L_max` or `L_min` depending on gradient direction, and `k` is the curve parameter. Default `k = 2.4` (chosen so mid stops compress and extreme stops expand, matching Tailwind/Material visual cadence).
+- **Per-family override:** when a family has multiple locked stops and the default curve can't pass through all of them, the family declares its own `k` (and optionally a different curve family — bezier, sigmoid, piecewise-linear). This is the escape hatch; default is preferred.
+- **Chroma (C) and Hue (H) interpolation:** linear in OKLCH coordinates from root → max (C and H may both drift) and root → min (similarly). Chroma typically peaks at root (high saturation at the perceptual middle) and tapers to lower values at both extremes (extremes are nearly neutral). Hue drift is typically small (a few degrees) and usually warmer at lighter values.
+
+### 1.5 Locked-stop constraint handling
+
+When a family has logo-derived locked stops (e.g., teal-400 = `#52A395`, teal-800 = `#0D322D`), the family's max and min are **fit to the locks**, not freely chosen. The build-time generator solves:
+
+> Given root R, locked stop (s, L_s), and curve parameter k, find max so that L(s) = L_s.
+
+For teal (locked at stop 400 with L=66, stop 800 with L=28.9):
+
+- Solve max so curve(stop 400, root_L=56.3, max_L=?, k) = 66
+- Solve min so curve(stop 800, root_L=56.3, min_L=?, k) = 28.9
+- If solving with default k fails (e.g., max_L > 100), tune k upward and resolve
+
+When a family has no locked stops (sand, feedback hues, extended families without logo derivation), max and min are chosen for the family's intended range, default `k = 2.4` applies.
+
+### 1.6 Output format
+
+Build-time generator produces, per family, per stop:
+
+- **Canonical:** OKLCH-in-P3 declaration
+  ```css
+  --color-teal-500: oklch(56.3% 0.0762 181.3);
+  ```
+- **Legacy fallback:** sRGB hex for the same value
+  ```css
+  --color-teal-500-hex: #3A8478;  /* sRGB-clipped fallback */
+  ```
+  Surfaces that consume hex (static SVG export via librsvg, email rendering, very old browsers) reference the `-hex` variant. Default consumers reference the OKLCH variant.
+- **Optional CSS color-mix expression:** for runtime tuning use cases
+  ```css
+  --color-teal-500-mix: color-mix(in oklch, var(--color-teal-root) 0%, var(--color-teal-max) 0%);
+  ```
+  Not used in standard surfaces; available for advanced cases.
+
+The build-time generator is the single source of truth. No hand-edits to the emitted token files; all changes go through the family-definition source spec.
+
+---
+
+## 2. Family Set — 17 hues + 1 neutral
+
+### 2.1 The 17 hue families (all Cena-tuned, Tailwind-named)
+
+Names follow Tailwind convention. Hue centers, chroma profiles, and lightness curves are Cena-tuned, NOT Tailwind defaults.
+
+| # | Family | Hue center | Status | Cena role |
+|---|---|---|---|---|
+| 1 | **red** | H:25 (warm red-orange) | Phase A active | Error / critical (feedback) |
+| 2 | **orange** | H:35 (terra cotta) | Phase C | Reserved; ochre's hue space — could absorb ochre's data-vis role |
+| 3 | **amber** | H:82 (warm ochre-gold) | Phase A active | Warning (feedback) |
+| 4 | **yellow** | H:95 (warm yellow) | Phase C | Reserved; illumination/highlight |
+| 5 | **lime** | H:120 (sage-adjacent warm) | Phase C | Reserved |
+| 6 | **green** | H:160 (desaturated green) | Phase A active | Success (feedback) |
+| 7 | **emerald** | H:155 (saturated green) | Phase C | Reserved; alt success or chart accent |
+| 8 | **teal** | H:181 (brand primary) | Phase A active | Brand identity, infrastructure, institutional |
+| 9 | **cyan** | H:200 (warm-shifted) | Phase A active | Info (feedback) — warm-shifted to keep cool-exclusion |
+| 10 | **sky** | H:220 (warm-shifted) | Phase C | Reserved; slate-blue adjacent — warm-shifted per Phase-0 #1 |
+| 11 | **blue** | H:235 (slate-blue) | Phase C | Info-blue-adjacent — Cena's only allowed cool hue zone (warm-shifted toward slate) |
+| 12 | **indigo** | H:265 (warm blue-violet) | Phase C | Extended palette — partners/external systems (per data-vis spec) |
+| 13 | **violet** | H:305 (warm purple) | Phase C | Extended palette — data/AI/inference (per data-vis spec) |
+| 14 | **purple** | H:285 | Phase C | Reserved; alt violet |
+| 15 | **fuchsia** | H:325 | Phase C | Reserved |
+| 16 | **pink** | H:340 | Phase C | Reserved; warm-pink — alt rose |
+| 17 | **rose** | H:350 (warm pink) | Phase C | Extended palette — community/relational (not used as data-vis anchor per spec) |
+
+**Phase A active = currently in use by haven-ui components.** These get fitted root/max/min targets in §3. Phase C families get target values during the 17-family build-out.
+
+**Cool-exclusion principle preserved:** sky/blue are warm-shifted toward slate-blue, NOT toward Tailwind's cool defaults. Cyan is warm-shifted toward teal territory. The three close-positioned families (cyan/sky/blue) need Phase C distinguishability testing — if they fail, the system retreats to defining 14 families instead of 17.
+
+### 2.2 The single neutral
+
+| Family | Hue range | Cena role |
+|---|---|---|
+| **sand** | H:60-85 (warm yellow-brown) | The only neutral. Surfaces, backgrounds, body text, borders, dividers. |
+
+Sand maps to Tailwind's `neutral` for utility-class compatibility. The five defensive aliases (`stone`, `slate`, `gray`, `zinc`, `neutral`) mirror sand identically — preserved from haven-ui's current pattern as a Tailwind-cascade-override defense.
+
+Cool gray, cool slate, cool blue-gray are explicitly excluded from the system. Cena identity is warm-ground; cool neutrals break the warmth mechanism.
+
+---
+
+## 3. Phase A Family Targets — root, max, min for the seven active families
+
+These are **initial target inputs** for the Phase B build-time generator. Final values are determined by the generator's constraint-fitting run; values here may shift slightly to satisfy logo-locked-stop constraints.
+
+### 3.1 teal — brand primary (locked stops at 400, 500, 800)
+
+```
+root:   oklch(56.3%  0.0762  181.3)    // #3A8478  ← logo primary, stop 500
+max:    oklch(96%    0.013   181)      // #E9F5F2  ← stop 50, near-white teal
+min:    oklch(15%    0.025   183)      // #010F0C  ← stop 950, near-black teal
+
+locked-stops:
+  stop 400: oklch(66%   0.0827  181.0)  // #52A395  ← logo secondary
+  stop 800: oklch(28.9% 0.0426  182.8)  // #0D322D  ← logo anchor-dark
+```
+
+**Curve note:** the default cubic ease with k=2.4 may not pass through both locked stops cleanly given root's L=56.3. Phase B's fit will likely tune k upward (to ~3.0) or use a custom curve to absorb the constraint. If the fit produces unacceptable mid-stop drift (e.g., teal-200 reads visibly different from the expected light teal), the alternative is to relax the stop-400 lock to stop-450 (a non-standard but valid Tailwind addition) — surface to Aaron before doing so.
+
+### 3.2 sage — paired counterpart (locked stop at 300)
+
+```
+root:   oklch(55%    0.085   145.5)    // computed target — perceptual middle, hue per cena Principle 1
+max:    oklch(95%    0.018   148)      // #E7F2E8  ← stop 50
+min:    oklch(15%    0.020   148)      // #060D07  ← stop 950
+
+locked-stops:
+  stop 300: oklch(73.3% 0.0967 145.4)  // #81B983  ← logo sage green
+```
+
+**Curve note:** sage has only one locked stop and it's relatively close to root (position 2 of 5 toward max). Default k=2.4 should fit. The hue drift from H:148 at light end to H:145.4 at the locked stop to H:145.5 at root is intentional (analogous-warmer-at-lighter, per cena Principle 1).
+
+### 3.3 sand — warm neutral (no locks)
+
+```
+root:   oklch(65%    0.016   75)       // #958E85  ← Tailwind-direction stop 500
+max:    oklch(98.5%  0.003   85)       // #FBFAF8  ← stop 50, page background canonical
+min:    oklch(15%    0.008   60)       // #0E0A08  ← stop 950
+```
+
+**Curve note:** sand has no locks; default k=2.4 with chroma tapering aggressively at extremes (warm neutral should approach achromatic at both ends). The lightness-compression Aaron flagged in data-vis iter step 18 — sand-50→100→200 small L deltas — is preserved by design; warm-neutral surfaces are designed to vary subtly at the light end.
+
+### 3.4 red — error / critical (no locks; rebrand of v1 error-base)
+
+```
+root:   oklch(55%    0.170   25)       // #C13C3B  ← v1 error-base
+max:    oklch(96%    0.020   30)       // ~#FCE5E3 ← stop 50
+min:    oklch(20%    0.075   23)       // dark red
+```
+
+**Hue note:** H:25 keeps red warm-shifted (toward terracotta) per cena Principle 4 — no pure-red (H:0) which clashes with teal.
+
+### 3.5 amber — warning / caution (no locks; rebrand of v1 warning-base)
+
+```
+root:   oklch(63%    0.108   82)       // ~#B58B20  ← haven-ui amber-500 hand-tuned
+max:    oklch(94%    0.030   85)       // #F4EAD5  ← stop 50
+min:    oklch(22%    0.060   78)       // dark amber
+```
+
+**Hue note:** H:82 (warm ochre-gold) — shifted away from pure yellow (H:60-65) toward the brand's warm-earth territory.
+
+### 3.6 green — success / confirmation (no locks; rebrand of v1 success-base)
+
+```
+root:   oklch(55%    0.105   160)      // ~#3A8E64  ← haven-ui green-500 hand-tuned
+max:    oklch(96%    0.025   155)      // #DCF0E5  ← stop 50
+min:    oklch(20%    0.060   165)      // dark green
+```
+
+**Hue note:** H:160 desaturated green — distinct from sage's H:145 (the brand's hue-shift family). Success is utility/feedback; sage is identity.
+
+### 3.7 cyan — info / informational (no locks; rebrand of v1 info-base; warm-shifted per Phase-0 #1)
+
+```
+root:   oklch(50%    0.090   235)      // ~#287AA3  ← haven-ui cyan-500 hand-tuned
+max:    oklch(94%    0.035   215)      // #DFEEF7  ← stop 50
+min:    oklch(20%    0.060   240)      // dark cyan
+```
+
+**Hue note:** H:235 slate-blue — Cena's only allowed cool family. Sufficiently distinct from teal (H:181) for info-vs-brand differentiation. The Phase-0 #1 decision warm-shifts the family as a whole; this hue value will be revisited in Phase C if sky/blue's distinguishability test forces a re-position.
+
+---
+
+## 4. Semantic naming layer
+
+The 17 Tailwind family tokens at the base layer (`--color-teal-500`, `--color-amber-300`, etc.) are referenced by **semantic alias tokens** at the consumption layer:
+
+```css
+/* Brand */
+--color-brand-primary:        var(--color-teal-500);
+--color-brand-secondary:      var(--color-teal-400);
+--color-brand-anchor:         var(--color-teal-800);
+--color-brand-sage:           var(--color-sage-300);
+
+/* Surface */
+--color-surface-page:         var(--color-sand-50);
+--color-surface-primary:      var(--color-sand-100);
+--color-surface-secondary:    var(--color-sand-200);
+
+/* Text */
+--color-text-primary:         var(--color-teal-800);
+--color-text-secondary:       var(--color-sand-700);
+--color-text-inverse:         var(--color-sand-50);
+
+/* Feedback */
+--color-error-bg:             var(--color-red-50);
+--color-error-border:         var(--color-red-400);
+--color-error-base:           var(--color-red-500);
+--color-error-text:           var(--color-red-700);
+--color-warning-bg:           var(--color-amber-50);
+--color-warning-border:       var(--color-amber-400);
+--color-warning-base:         var(--color-amber-500);
+--color-warning-text:         var(--color-amber-700);
+--color-success-bg:           var(--color-green-50);
+--color-success-border:       var(--color-green-400);
+--color-success-base:         var(--color-green-500);
+--color-success-text:         var(--color-green-800);
+--color-info-bg:              var(--color-cyan-50);
+--color-info-border:          var(--color-cyan-400);
+--color-info-base:            var(--color-cyan-500);
+--color-info-text:            var(--color-cyan-700);
+```
+
+Two layers: family tokens at the base (hex-named), semantic tokens at the alias (role-named). Components and surfaces reference semantic tokens. The family token layer changes propagate through the alias layer automatically.
+
+This is the same two-layer model haven-ui already uses today; v2 keeps it intact and clarifies the family ↔ semantic relationship.
+
+---
+
+## 5. Locked-stop registry
+
+Authoritative list of every hex value that cannot drift. The build-time generator validates that emitted stops match the registry; any mismatch fails the build.
+
+| Family | Stop | Hex | OKLCH | Source |
+|---|---|---|---|---|
+| teal | 400 | `#52A395` | `oklch(66% 0.0827 181)` | Logo secondary teal (middle ring) |
+| teal | 500 | `#3A8478` | `oklch(56.3% 0.0762 181.3)` | Logo primary teal (outer ring, "health" wordmark) |
+| teal | 800 | `#0D322D` | `oklch(28.9% 0.0426 182.8)` | Logo anchor-dark teal ("Cena" wordmark) |
+| sage | 300 | `#81B983` | `oklch(73.3% 0.0967 145.4)` | Logo sage green (inner ring) |
+
+No other family has locked stops at Phase A. Phase C may add locks if brand-anchor decisions emerge for other families.
+
+**Adding a lock:** updates to the registry require Aaron's review. The generator re-fits the affected family on the next build.
+
+---
+
+## 6. Validation rules
+
+The build-time generator enforces these rules per family; build fails on violation:
+
+### 6.1 Locked-stop fidelity
+- Every entry in the locked-stop registry (§5) must match the emitted stop within ε ≈ 0.5 in any sRGB channel (or 0.2% in OKLCH L). Reason: logo identity colors are brand-load-bearing.
+
+### 6.2 Lightness ordering
+- L must be strictly monotonic across the 11 stops: L(50) > L(100) > ... > L(950). Reason: scale-direction convention requires light → dark.
+
+### 6.3 Contrast ratios — internal element formula
+- Per the canonical layer formula (data-visualization.md §5):
+  - Text on family-fill (heading/body): text uses family-200; fill uses family-950. Target: ≥7:1 (WCAG AAA).
+  - Text on family-fill (overline/sublabel): text uses family-500. Target: ≥4.5:1 (WCAG AA).
+  - Border on family-fill: border uses family-800. Target: visible (no specific ratio).
+- Generator emits a contrast report per family; ratios below target fail the build for actively-used families (Phase A active). Phase C families warn but don't fail.
+
+### 6.4 Cross-canvas separation
+- Family-950 (lightest) vs `color-surface-page` (sand-50): L delta ≥1.5%. Reason: pills/badges using family-950 fill must visually separate from page background.
+- If a family fails this rule, the family is unsuitable as a light substrate without an explicit border (matches data-visualization.md §5 "external contrast" rule).
+
+### 6.5 Family-200 to family-950 contrast
+- Within a family, the canonical fill-950 vs text-200 ratio must be ≥7:1. Otherwise, text-on-fill use case fails AAA and the family is restricted to non-text-pill use only.
+
+### 6.6 Cool-exclusion principle
+- Hue centers in (H:185°, H:235°) range are flagged for review. Hue centers in (H:160°-180°) and (H:235°-265°) are allowed (Cena's slate-blue exception territory). Pure cool blue (H:200-230 at standard saturation) is excluded except where explicitly tagged in §2.1 (sky/blue's warm-shifted cool territory).
+
+---
+
+## 7. Validation gate — Aaron review
+
+This spec moves to LOCKED status after Aaron review covers:
+
+1. **Architecture model (§1)** — root/max/min + interpolation + locked-stop constraint approach reads as workable
+2. **Family set (§2)** — 17-family list + 1 neutral matches intent; cool-shift territory for sky/blue/cyan is acceptable
+3. **Phase A targets (§3)** — initial OKLCH triplets for the 7 active families are reasonable starting points (Phase B refines)
+4. **Semantic layer (§4)** — feedback family names (red/amber/green/cyan) replacing v1 role-named families (error/warning/success/info) at the base layer is OK; semantic aliases preserve role-based references
+5. **Locked-stop registry (§5)** — only four logo-derived locks at Phase A is correct
+6. **Validation rules (§6)** — gates and thresholds match brand intent
+
+Once locked, Phase B begins: build the generator, fit the families, emit the token files.
+
+---
+
+## 8. Migration plan (high level)
+
+Phase A (this doc): spec authored, awaiting Aaron review.
+
+Phase B: build-time generator implementation. Outputs the 17-family palette in OKLCH-in-P3 + hex fallback. Validates against §5 registry and §6 rules.
+
+Phase C: extend to all 17 families. Author root/max/min for the 10 not-yet-active families. Run sky/blue/cyan distinguishability test.
+
+Phase D: haven-ui integration. Replace `palette.css` with generated output. Re-map `semantic.css` `.dark` overrides post-scale-direction-flip (this is when the dark/light theme audit Aaron flagged happens). Rebaseline Playwright visual fixtures.
+
+Phase E: downstream propagation. Audit pattern-library + React-port + apps for hand-coded hex; replace with tokens.
+
+Phase F: data-vis spec lock. Return to `data-visualization.md` (Aaron's in-flight effort); verify the anchor set + restraint constraints work cleanly against the new family set; lock.
+
+Each phase has its own ambient plan or is captured under `~/.claude/plans/cena-color-system-v2.md`.
+
+---
+
+## 9. What v2 does NOT change
+
+- **Logo hex values** — preserved exactly (§5).
+- **Cena Health visual identity** — warm-ground / cool-figure, restraint, hue shift as brand signature, no pure white, no cool gray. v2 enforces these structurally rather than by convention.
+- **Existing semantic tokens** — `--color-brand-primary`, `--color-text-primary`, `--color-error-base`, etc. retain their names. Only the underlying family tokens shift.
+- **Tailwind scale direction in haven-ui** — already canonical there; cena-brand flips to match.
+- **Pattern library, components.css, React ports** — class names and structure preserved. Hex values shift slightly as the new palette generates.
+
+---
+
+## 10. Open considerations (not blocking Phase A approval)
+
+1. **Sage's role provisional flag** (per data-visualization.md §5) carries forward — v2 doesn't resolve sage's structural role debate; it just provides the palette infrastructure.
+2. **Rose family** is kept in v2 despite being dropped as a data-vis anchor (data-visualization.md, 2026-05-11). Rose is available for component categorical accents and chart use — the spec layer doesn't restrict it, the consumption-layer documentation does.
+3. **Distinguishability test for cyan/sky/blue** — Phase C must verify the three warm-shifted close-neighbor families remain perceptually distinguishable. If they fail, the system retreats to 14 of 17 (drop sky and cyan, keep blue at H:235 as the only cool family).
+4. **Build-time generator's exact runtime stack** — Node + custom script, or PostCSS plugin, or Style Dictionary, or something else — TBD in Phase B. The spec is implementation-agnostic; any tool that reads the family-definition source and emits OKLCH + hex tokens satisfies the contract.
+
+---
+
+## 11. Relationship to v1 (`color.md`, `color-web.md`)
+
+v1 documents remain in `_tokens/` for historical reference. After Aaron approves v2:
+
+- `color.md`: marked as "superseded by color-system-v2.md" in a frontmatter / preamble note. Content preserved for design-history reference.
+- `color-web.md`: same. The OKLCH browser-support table inside it (§1) remains useful supporting reference; the rest is v1-tied.
+
+v2 supersedes both as the canonical color-system spec. New consumers reference v2 only.
