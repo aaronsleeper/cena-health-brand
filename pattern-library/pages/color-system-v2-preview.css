@@ -149,6 +149,200 @@
   --color-cyan-900: color-mix(in oklch, var(--cyan-min) 80%, var(--cyan-root));
   --color-cyan-950: var(--cyan-min);
 
+  /* ---------- Phase C families (12 remaining Tailwind hues) ---------- */
+
+  /* orange (terracotta) */
+  --orange-root: oklch(58% 0.115 35);
+  --orange-max:  oklch(96% 0.025 45);
+  --orange-min:  oklch(20% 0.065 30);
+  --color-orange-50:  var(--orange-max);
+  --color-orange-100: color-mix(in oklch, var(--orange-max) 80%, var(--orange-root));
+  --color-orange-200: color-mix(in oklch, var(--orange-max) 60%, var(--orange-root));
+  --color-orange-300: color-mix(in oklch, var(--orange-max) 40%, var(--orange-root));
+  --color-orange-400: color-mix(in oklch, var(--orange-max) 20%, var(--orange-root));
+  --color-orange-500: var(--orange-root);
+  --color-orange-600: color-mix(in oklch, var(--orange-min) 20%, var(--orange-root));
+  --color-orange-700: color-mix(in oklch, var(--orange-min) 40%, var(--orange-root));
+  --color-orange-800: color-mix(in oklch, var(--orange-min) 60%, var(--orange-root));
+  --color-orange-900: color-mix(in oklch, var(--orange-min) 80%, var(--orange-root));
+  --color-orange-950: var(--orange-min);
+
+  /* yellow */
+  --yellow-root: oklch(72% 0.115 85);
+  --yellow-max:  oklch(96% 0.025 80);
+  --yellow-min:  oklch(28% 0.060 90);
+  --color-yellow-50:  var(--yellow-max);
+  --color-yellow-100: color-mix(in oklch, var(--yellow-max) 80%, var(--yellow-root));
+  --color-yellow-200: color-mix(in oklch, var(--yellow-max) 60%, var(--yellow-root));
+  --color-yellow-300: color-mix(in oklch, var(--yellow-max) 40%, var(--yellow-root));
+  --color-yellow-400: color-mix(in oklch, var(--yellow-max) 20%, var(--yellow-root));
+  --color-yellow-500: var(--yellow-root);
+  --color-yellow-600: color-mix(in oklch, var(--yellow-min) 20%, var(--yellow-root));
+  --color-yellow-700: color-mix(in oklch, var(--yellow-min) 40%, var(--yellow-root));
+  --color-yellow-800: color-mix(in oklch, var(--yellow-min) 60%, var(--yellow-root));
+  --color-yellow-900: color-mix(in oklch, var(--yellow-min) 80%, var(--yellow-root));
+  --color-yellow-950: var(--yellow-min);
+
+  /* lime */
+  --lime-root: oklch(65% 0.110 115);
+  --lime-max:  oklch(95% 0.025 125);
+  --lime-min:  oklch(25% 0.060 110);
+  --color-lime-50:  var(--lime-max);
+  --color-lime-100: color-mix(in oklch, var(--lime-max) 80%, var(--lime-root));
+  --color-lime-200: color-mix(in oklch, var(--lime-max) 60%, var(--lime-root));
+  --color-lime-300: color-mix(in oklch, var(--lime-max) 40%, var(--lime-root));
+  --color-lime-400: color-mix(in oklch, var(--lime-max) 20%, var(--lime-root));
+  --color-lime-500: var(--lime-root);
+  --color-lime-600: color-mix(in oklch, var(--lime-min) 20%, var(--lime-root));
+  --color-lime-700: color-mix(in oklch, var(--lime-min) 40%, var(--lime-root));
+  --color-lime-800: color-mix(in oklch, var(--lime-min) 60%, var(--lime-root));
+  --color-lime-900: color-mix(in oklch, var(--lime-min) 80%, var(--lime-root));
+  --color-lime-950: var(--lime-min);
+
+  /* emerald */
+  --emerald-root: oklch(56% 0.115 170);
+  --emerald-max:  oklch(96% 0.025 165);
+  --emerald-min:  oklch(20% 0.065 175);
+  --color-emerald-50:  var(--emerald-max);
+  --color-emerald-100: color-mix(in oklch, var(--emerald-max) 80%, var(--emerald-root));
+  --color-emerald-200: color-mix(in oklch, var(--emerald-max) 60%, var(--emerald-root));
+  --color-emerald-300: color-mix(in oklch, var(--emerald-max) 40%, var(--emerald-root));
+  --color-emerald-400: color-mix(in oklch, var(--emerald-max) 20%, var(--emerald-root));
+  --color-emerald-500: var(--emerald-root);
+  --color-emerald-600: color-mix(in oklch, var(--emerald-min) 20%, var(--emerald-root));
+  --color-emerald-700: color-mix(in oklch, var(--emerald-min) 40%, var(--emerald-root));
+  --color-emerald-800: color-mix(in oklch, var(--emerald-min) 60%, var(--emerald-root));
+  --color-emerald-900: color-mix(in oklch, var(--emerald-min) 80%, var(--emerald-root));
+  --color-emerald-950: var(--emerald-min);
+
+  /* sky */
+  --sky-root: oklch(58% 0.080 215);
+  --sky-max:  oklch(95% 0.030 210);
+  --sky-min:  oklch(22% 0.055 220);
+  --color-sky-50:  var(--sky-max);
+  --color-sky-100: color-mix(in oklch, var(--sky-max) 80%, var(--sky-root));
+  --color-sky-200: color-mix(in oklch, var(--sky-max) 60%, var(--sky-root));
+  --color-sky-300: color-mix(in oklch, var(--sky-max) 40%, var(--sky-root));
+  --color-sky-400: color-mix(in oklch, var(--sky-max) 20%, var(--sky-root));
+  --color-sky-500: var(--sky-root);
+  --color-sky-600: color-mix(in oklch, var(--sky-min) 20%, var(--sky-root));
+  --color-sky-700: color-mix(in oklch, var(--sky-min) 40%, var(--sky-root));
+  --color-sky-800: color-mix(in oklch, var(--sky-min) 60%, var(--sky-root));
+  --color-sky-900: color-mix(in oklch, var(--sky-min) 80%, var(--sky-root));
+  --color-sky-950: var(--sky-min);
+
+  /* blue */
+  --blue-root: oklch(48% 0.090 225);
+  --blue-max:  oklch(94% 0.030 220);
+  --blue-min:  oklch(18% 0.060 230);
+  --color-blue-50:  var(--blue-max);
+  --color-blue-100: color-mix(in oklch, var(--blue-max) 80%, var(--blue-root));
+  --color-blue-200: color-mix(in oklch, var(--blue-max) 60%, var(--blue-root));
+  --color-blue-300: color-mix(in oklch, var(--blue-max) 40%, var(--blue-root));
+  --color-blue-400: color-mix(in oklch, var(--blue-max) 20%, var(--blue-root));
+  --color-blue-500: var(--blue-root);
+  --color-blue-600: color-mix(in oklch, var(--blue-min) 20%, var(--blue-root));
+  --color-blue-700: color-mix(in oklch, var(--blue-min) 40%, var(--blue-root));
+  --color-blue-800: color-mix(in oklch, var(--blue-min) 60%, var(--blue-root));
+  --color-blue-900: color-mix(in oklch, var(--blue-min) 80%, var(--blue-root));
+  --color-blue-950: var(--blue-min);
+
+  /* indigo */
+  --indigo-root: oklch(55% 0.095 265);
+  --indigo-max:  oklch(95% 0.030 270);
+  --indigo-min:  oklch(22% 0.060 260);
+  --color-indigo-50:  var(--indigo-max);
+  --color-indigo-100: color-mix(in oklch, var(--indigo-max) 80%, var(--indigo-root));
+  --color-indigo-200: color-mix(in oklch, var(--indigo-max) 60%, var(--indigo-root));
+  --color-indigo-300: color-mix(in oklch, var(--indigo-max) 40%, var(--indigo-root));
+  --color-indigo-400: color-mix(in oklch, var(--indigo-max) 20%, var(--indigo-root));
+  --color-indigo-500: var(--indigo-root);
+  --color-indigo-600: color-mix(in oklch, var(--indigo-min) 20%, var(--indigo-root));
+  --color-indigo-700: color-mix(in oklch, var(--indigo-min) 40%, var(--indigo-root));
+  --color-indigo-800: color-mix(in oklch, var(--indigo-min) 60%, var(--indigo-root));
+  --color-indigo-900: color-mix(in oklch, var(--indigo-min) 80%, var(--indigo-root));
+  --color-indigo-950: var(--indigo-min);
+
+  /* violet */
+  --violet-root: oklch(55% 0.100 300);
+  --violet-max:  oklch(95% 0.030 315);
+  --violet-min:  oklch(22% 0.065 295);
+  --color-violet-50:  var(--violet-max);
+  --color-violet-100: color-mix(in oklch, var(--violet-max) 80%, var(--violet-root));
+  --color-violet-200: color-mix(in oklch, var(--violet-max) 60%, var(--violet-root));
+  --color-violet-300: color-mix(in oklch, var(--violet-max) 40%, var(--violet-root));
+  --color-violet-400: color-mix(in oklch, var(--violet-max) 20%, var(--violet-root));
+  --color-violet-500: var(--violet-root);
+  --color-violet-600: color-mix(in oklch, var(--violet-min) 20%, var(--violet-root));
+  --color-violet-700: color-mix(in oklch, var(--violet-min) 40%, var(--violet-root));
+  --color-violet-800: color-mix(in oklch, var(--violet-min) 60%, var(--violet-root));
+  --color-violet-900: color-mix(in oklch, var(--violet-min) 80%, var(--violet-root));
+  --color-violet-950: var(--violet-min);
+
+  /* purple */
+  --purple-root: oklch(52% 0.105 285);
+  --purple-max:  oklch(95% 0.030 295);
+  --purple-min:  oklch(20% 0.070 280);
+  --color-purple-50:  var(--purple-max);
+  --color-purple-100: color-mix(in oklch, var(--purple-max) 80%, var(--purple-root));
+  --color-purple-200: color-mix(in oklch, var(--purple-max) 60%, var(--purple-root));
+  --color-purple-300: color-mix(in oklch, var(--purple-max) 40%, var(--purple-root));
+  --color-purple-400: color-mix(in oklch, var(--purple-max) 20%, var(--purple-root));
+  --color-purple-500: var(--purple-root);
+  --color-purple-600: color-mix(in oklch, var(--purple-min) 20%, var(--purple-root));
+  --color-purple-700: color-mix(in oklch, var(--purple-min) 40%, var(--purple-root));
+  --color-purple-800: color-mix(in oklch, var(--purple-min) 60%, var(--purple-root));
+  --color-purple-900: color-mix(in oklch, var(--purple-min) 80%, var(--purple-root));
+  --color-purple-950: var(--purple-min);
+
+  /* fuchsia */
+  --fuchsia-root: oklch(58% 0.130 325);
+  --fuchsia-max:  oklch(95% 0.030 335);
+  --fuchsia-min:  oklch(22% 0.075 320);
+  --color-fuchsia-50:  var(--fuchsia-max);
+  --color-fuchsia-100: color-mix(in oklch, var(--fuchsia-max) 80%, var(--fuchsia-root));
+  --color-fuchsia-200: color-mix(in oklch, var(--fuchsia-max) 60%, var(--fuchsia-root));
+  --color-fuchsia-300: color-mix(in oklch, var(--fuchsia-max) 40%, var(--fuchsia-root));
+  --color-fuchsia-400: color-mix(in oklch, var(--fuchsia-max) 20%, var(--fuchsia-root));
+  --color-fuchsia-500: var(--fuchsia-root);
+  --color-fuchsia-600: color-mix(in oklch, var(--fuchsia-min) 20%, var(--fuchsia-root));
+  --color-fuchsia-700: color-mix(in oklch, var(--fuchsia-min) 40%, var(--fuchsia-root));
+  --color-fuchsia-800: color-mix(in oklch, var(--fuchsia-min) 60%, var(--fuchsia-root));
+  --color-fuchsia-900: color-mix(in oklch, var(--fuchsia-min) 80%, var(--fuchsia-root));
+  --color-fuchsia-950: var(--fuchsia-min);
+
+  /* pink */
+  --pink-root: oklch(60% 0.100 340);
+  --pink-max:  oklch(95% 0.025 348);
+  --pink-min:  oklch(22% 0.060 335);
+  --color-pink-50:  var(--pink-max);
+  --color-pink-100: color-mix(in oklch, var(--pink-max) 80%, var(--pink-root));
+  --color-pink-200: color-mix(in oklch, var(--pink-max) 60%, var(--pink-root));
+  --color-pink-300: color-mix(in oklch, var(--pink-max) 40%, var(--pink-root));
+  --color-pink-400: color-mix(in oklch, var(--pink-max) 20%, var(--pink-root));
+  --color-pink-500: var(--pink-root);
+  --color-pink-600: color-mix(in oklch, var(--pink-min) 20%, var(--pink-root));
+  --color-pink-700: color-mix(in oklch, var(--pink-min) 40%, var(--pink-root));
+  --color-pink-800: color-mix(in oklch, var(--pink-min) 60%, var(--pink-root));
+  --color-pink-900: color-mix(in oklch, var(--pink-min) 80%, var(--pink-root));
+  --color-pink-950: var(--pink-min);
+
+  /* rose */
+  --rose-root: oklch(55% 0.100 355);
+  --rose-max:  oklch(95% 0.025 0);
+  --rose-min:  oklch(22% 0.065 350);
+  --color-rose-50:  var(--rose-max);
+  --color-rose-100: color-mix(in oklch, var(--rose-max) 80%, var(--rose-root));
+  --color-rose-200: color-mix(in oklch, var(--rose-max) 60%, var(--rose-root));
+  --color-rose-300: color-mix(in oklch, var(--rose-max) 40%, var(--rose-root));
+  --color-rose-400: color-mix(in oklch, var(--rose-max) 20%, var(--rose-root));
+  --color-rose-500: var(--rose-root);
+  --color-rose-600: color-mix(in oklch, var(--rose-min) 20%, var(--rose-root));
+  --color-rose-700: color-mix(in oklch, var(--rose-min) 40%, var(--rose-root));
+  --color-rose-800: color-mix(in oklch, var(--rose-min) 60%, var(--rose-root));
+  --color-rose-900: color-mix(in oklch, var(--rose-min) 80%, var(--rose-root));
+  --color-rose-950: var(--rose-min);
+
   --page-bg: #FBFAF8;
   --text-main: #25211D;
   --text-mute: #5B544C;
@@ -459,6 +653,34 @@ body {
 .family-cyan  .stop-900 .stop-color { background: var(--color-cyan-900); }
 .family-cyan  .stop-950 .stop-color { background: var(--color-cyan-950); }
 
+/* ---------- Phase C family scopes + stops ---------- */
+
+.family-orange  { --current-max: var(--orange-max);  --current-root: var(--orange-root);  --current-min: var(--orange-min); }
+.family-yellow  { --current-max: var(--yellow-max);  --current-root: var(--yellow-root);  --current-min: var(--yellow-min); }
+.family-lime    { --current-max: var(--lime-max);    --current-root: var(--lime-root);    --current-min: var(--lime-min); }
+.family-emerald { --current-max: var(--emerald-max); --current-root: var(--emerald-root); --current-min: var(--emerald-min); }
+.family-sky     { --current-max: var(--sky-max);     --current-root: var(--sky-root);     --current-min: var(--sky-min); }
+.family-blue    { --current-max: var(--blue-max);    --current-root: var(--blue-root);    --current-min: var(--blue-min); }
+.family-indigo  { --current-max: var(--indigo-max);  --current-root: var(--indigo-root);  --current-min: var(--indigo-min); }
+.family-violet  { --current-max: var(--violet-max);  --current-root: var(--violet-root);  --current-min: var(--violet-min); }
+.family-purple  { --current-max: var(--purple-max);  --current-root: var(--purple-root);  --current-min: var(--purple-min); }
+.family-fuchsia { --current-max: var(--fuchsia-max); --current-root: var(--fuchsia-root); --current-min: var(--fuchsia-min); }
+.family-pink    { --current-max: var(--pink-max);    --current-root: var(--pink-root);    --current-min: var(--pink-min); }
+.family-rose    { --current-max: var(--rose-max);    --current-root: var(--rose-root);    --current-min: var(--rose-min); }
+
+.family-orange  .stop-50 .stop-color { background: var(--color-orange-50);  } .family-orange  .stop-100 .stop-color { background: var(--color-orange-100); } .family-orange  .stop-200 .stop-color { background: var(--color-orange-200); } .family-orange  .stop-300 .stop-color { background: var(--color-orange-300); } .family-orange  .stop-400 .stop-color { background: var(--color-orange-400); } .family-orange  .stop-500 .stop-color { background: var(--color-orange-500); } .family-orange  .stop-600 .stop-color { background: var(--color-orange-600); } .family-orange  .stop-700 .stop-color { background: var(--color-orange-700); } .family-orange  .stop-800 .stop-color { background: var(--color-orange-800); } .family-orange  .stop-900 .stop-color { background: var(--color-orange-900); } .family-orange  .stop-950 .stop-color { background: var(--color-orange-950); }
+.family-yellow  .stop-50 .stop-color { background: var(--color-yellow-50);  } .family-yellow  .stop-100 .stop-color { background: var(--color-yellow-100); } .family-yellow  .stop-200 .stop-color { background: var(--color-yellow-200); } .family-yellow  .stop-300 .stop-color { background: var(--color-yellow-300); } .family-yellow  .stop-400 .stop-color { background: var(--color-yellow-400); } .family-yellow  .stop-500 .stop-color { background: var(--color-yellow-500); } .family-yellow  .stop-600 .stop-color { background: var(--color-yellow-600); } .family-yellow  .stop-700 .stop-color { background: var(--color-yellow-700); } .family-yellow  .stop-800 .stop-color { background: var(--color-yellow-800); } .family-yellow  .stop-900 .stop-color { background: var(--color-yellow-900); } .family-yellow  .stop-950 .stop-color { background: var(--color-yellow-950); }
+.family-lime    .stop-50 .stop-color { background: var(--color-lime-50);    } .family-lime    .stop-100 .stop-color { background: var(--color-lime-100);   } .family-lime    .stop-200 .stop-color { background: var(--color-lime-200);   } .family-lime    .stop-300 .stop-color { background: var(--color-lime-300);   } .family-lime    .stop-400 .stop-color { background: var(--color-lime-400);   } .family-lime    .stop-500 .stop-color { background: var(--color-lime-500);   } .family-lime    .stop-600 .stop-color { background: var(--color-lime-600);   } .family-lime    .stop-700 .stop-color { background: var(--color-lime-700);   } .family-lime    .stop-800 .stop-color { background: var(--color-lime-800);   } .family-lime    .stop-900 .stop-color { background: var(--color-lime-900);   } .family-lime    .stop-950 .stop-color { background: var(--color-lime-950);   }
+.family-emerald .stop-50 .stop-color { background: var(--color-emerald-50); } .family-emerald .stop-100 .stop-color { background: var(--color-emerald-100);} .family-emerald .stop-200 .stop-color { background: var(--color-emerald-200);} .family-emerald .stop-300 .stop-color { background: var(--color-emerald-300);} .family-emerald .stop-400 .stop-color { background: var(--color-emerald-400);} .family-emerald .stop-500 .stop-color { background: var(--color-emerald-500);} .family-emerald .stop-600 .stop-color { background: var(--color-emerald-600);} .family-emerald .stop-700 .stop-color { background: var(--color-emerald-700);} .family-emerald .stop-800 .stop-color { background: var(--color-emerald-800);} .family-emerald .stop-900 .stop-color { background: var(--color-emerald-900);} .family-emerald .stop-950 .stop-color { background: var(--color-emerald-950);}
+.family-sky     .stop-50 .stop-color { background: var(--color-sky-50);     } .family-sky     .stop-100 .stop-color { background: var(--color-sky-100);    } .family-sky     .stop-200 .stop-color { background: var(--color-sky-200);    } .family-sky     .stop-300 .stop-color { background: var(--color-sky-300);    } .family-sky     .stop-400 .stop-color { background: var(--color-sky-400);    } .family-sky     .stop-500 .stop-color { background: var(--color-sky-500);    } .family-sky     .stop-600 .stop-color { background: var(--color-sky-600);    } .family-sky     .stop-700 .stop-color { background: var(--color-sky-700);    } .family-sky     .stop-800 .stop-color { background: var(--color-sky-800);    } .family-sky     .stop-900 .stop-color { background: var(--color-sky-900);    } .family-sky     .stop-950 .stop-color { background: var(--color-sky-950);    }
+.family-blue    .stop-50 .stop-color { background: var(--color-blue-50);    } .family-blue    .stop-100 .stop-color { background: var(--color-blue-100);   } .family-blue    .stop-200 .stop-color { background: var(--color-blue-200);   } .family-blue    .stop-300 .stop-color { background: var(--color-blue-300);   } .family-blue    .stop-400 .stop-color { background: var(--color-blue-400);   } .family-blue    .stop-500 .stop-color { background: var(--color-blue-500);   } .family-blue    .stop-600 .stop-color { background: var(--color-blue-600);   } .family-blue    .stop-700 .stop-color { background: var(--color-blue-700);   } .family-blue    .stop-800 .stop-color { background: var(--color-blue-800);   } .family-blue    .stop-900 .stop-color { background: var(--color-blue-900);   } .family-blue    .stop-950 .stop-color { background: var(--color-blue-950);   }
+.family-indigo  .stop-50 .stop-color { background: var(--color-indigo-50);  } .family-indigo  .stop-100 .stop-color { background: var(--color-indigo-100); } .family-indigo  .stop-200 .stop-color { background: var(--color-indigo-200); } .family-indigo  .stop-300 .stop-color { background: var(--color-indigo-300); } .family-indigo  .stop-400 .stop-color { background: var(--color-indigo-400); } .family-indigo  .stop-500 .stop-color { background: var(--color-indigo-500); } .family-indigo  .stop-600 .stop-color { background: var(--color-indigo-600); } .family-indigo  .stop-700 .stop-color { background: var(--color-indigo-700); } .family-indigo  .stop-800 .stop-color { background: var(--color-indigo-800); } .family-indigo  .stop-900 .stop-color { background: var(--color-indigo-900); } .family-indigo  .stop-950 .stop-color { background: var(--color-indigo-950); }
+.family-violet  .stop-50 .stop-color { background: var(--color-violet-50);  } .family-violet  .stop-100 .stop-color { background: var(--color-violet-100); } .family-violet  .stop-200 .stop-color { background: var(--color-violet-200); } .family-violet  .stop-300 .stop-color { background: var(--color-violet-300); } .family-violet  .stop-400 .stop-color { background: var(--color-violet-400); } .family-violet  .stop-500 .stop-color { background: var(--color-violet-500); } .family-violet  .stop-600 .stop-color { background: var(--color-violet-600); } .family-violet  .stop-700 .stop-color { background: var(--color-violet-700); } .family-violet  .stop-800 .stop-color { background: var(--color-violet-800); } .family-violet  .stop-900 .stop-color { background: var(--color-violet-900); } .family-violet  .stop-950 .stop-color { background: var(--color-violet-950); }
+.family-purple  .stop-50 .stop-color { background: var(--color-purple-50);  } .family-purple  .stop-100 .stop-color { background: var(--color-purple-100); } .family-purple  .stop-200 .stop-color { background: var(--color-purple-200); } .family-purple  .stop-300 .stop-color { background: var(--color-purple-300); } .family-purple  .stop-400 .stop-color { background: var(--color-purple-400); } .family-purple  .stop-500 .stop-color { background: var(--color-purple-500); } .family-purple  .stop-600 .stop-color { background: var(--color-purple-600); } .family-purple  .stop-700 .stop-color { background: var(--color-purple-700); } .family-purple  .stop-800 .stop-color { background: var(--color-purple-800); } .family-purple  .stop-900 .stop-color { background: var(--color-purple-900); } .family-purple  .stop-950 .stop-color { background: var(--color-purple-950); }
+.family-fuchsia .stop-50 .stop-color { background: var(--color-fuchsia-50); } .family-fuchsia .stop-100 .stop-color { background: var(--color-fuchsia-100);} .family-fuchsia .stop-200 .stop-color { background: var(--color-fuchsia-200);} .family-fuchsia .stop-300 .stop-color { background: var(--color-fuchsia-300);} .family-fuchsia .stop-400 .stop-color { background: var(--color-fuchsia-400);} .family-fuchsia .stop-500 .stop-color { background: var(--color-fuchsia-500);} .family-fuchsia .stop-600 .stop-color { background: var(--color-fuchsia-600);} .family-fuchsia .stop-700 .stop-color { background: var(--color-fuchsia-700);} .family-fuchsia .stop-800 .stop-color { background: var(--color-fuchsia-800);} .family-fuchsia .stop-900 .stop-color { background: var(--color-fuchsia-900);} .family-fuchsia .stop-950 .stop-color { background: var(--color-fuchsia-950);}
+.family-pink    .stop-50 .stop-color { background: var(--color-pink-50);    } .family-pink    .stop-100 .stop-color { background: var(--color-pink-100);   } .family-pink    .stop-200 .stop-color { background: var(--color-pink-200);   } .family-pink    .stop-300 .stop-color { background: var(--color-pink-300);   } .family-pink    .stop-400 .stop-color { background: var(--color-pink-400);   } .family-pink    .stop-500 .stop-color { background: var(--color-pink-500);   } .family-pink    .stop-600 .stop-color { background: var(--color-pink-600);   } .family-pink    .stop-700 .stop-color { background: var(--color-pink-700);   } .family-pink    .stop-800 .stop-color { background: var(--color-pink-800);   } .family-pink    .stop-900 .stop-color { background: var(--color-pink-900);   } .family-pink    .stop-950 .stop-color { background: var(--color-pink-950);   }
+.family-rose    .stop-50 .stop-color { background: var(--color-rose-50);    } .family-rose    .stop-100 .stop-color { background: var(--color-rose-100);   } .family-rose    .stop-200 .stop-color { background: var(--color-rose-200);   } .family-rose    .stop-300 .stop-color { background: var(--color-rose-300);   } .family-rose    .stop-400 .stop-color { background: var(--color-rose-400);   } .family-rose    .stop-500 .stop-color { background: var(--color-rose-500);   } .family-rose    .stop-600 .stop-color { background: var(--color-rose-600);   } .family-rose    .stop-700 .stop-color { background: var(--color-rose-700);   } .family-rose    .stop-800 .stop-color { background: var(--color-rose-800);   } .family-rose    .stop-900 .stop-color { background: var(--color-rose-900);   } .family-rose    .stop-950 .stop-color { background: var(--color-rose-950);   }
+
 /* Logo comparison row */
 
 .logo-row {
@@ -544,6 +766,33 @@ body {
 .family-green .contrast-pill .body { color: var(--color-green-800); }
 .family-cyan  .contrast-pill .body { color: var(--color-cyan-800); }
 
+/* Phase C contrast pills */
+.family-orange  .contrast-pill { background: var(--color-orange-50);  border-color: var(--color-orange-200);  color: var(--color-orange-500); }
+.family-yellow  .contrast-pill { background: var(--color-yellow-50);  border-color: var(--color-yellow-200);  color: var(--color-yellow-500); }
+.family-lime    .contrast-pill { background: var(--color-lime-50);    border-color: var(--color-lime-200);    color: var(--color-lime-500); }
+.family-emerald .contrast-pill { background: var(--color-emerald-50); border-color: var(--color-emerald-200); color: var(--color-emerald-500); }
+.family-sky     .contrast-pill { background: var(--color-sky-50);     border-color: var(--color-sky-200);     color: var(--color-sky-500); }
+.family-blue    .contrast-pill { background: var(--color-blue-50);    border-color: var(--color-blue-200);    color: var(--color-blue-500); }
+.family-indigo  .contrast-pill { background: var(--color-indigo-50);  border-color: var(--color-indigo-200);  color: var(--color-indigo-500); }
+.family-violet  .contrast-pill { background: var(--color-violet-50);  border-color: var(--color-violet-200);  color: var(--color-violet-500); }
+.family-purple  .contrast-pill { background: var(--color-purple-50);  border-color: var(--color-purple-200);  color: var(--color-purple-500); }
+.family-fuchsia .contrast-pill { background: var(--color-fuchsia-50); border-color: var(--color-fuchsia-200); color: var(--color-fuchsia-500); }
+.family-pink    .contrast-pill { background: var(--color-pink-50);    border-color: var(--color-pink-200);    color: var(--color-pink-500); }
+.family-rose    .contrast-pill { background: var(--color-rose-50);    border-color: var(--color-rose-200);    color: var(--color-rose-500); }
+
+.family-orange  .contrast-pill .body { color: var(--color-orange-800); }
+.family-yellow  .contrast-pill .body { color: var(--color-yellow-800); }
+.family-lime    .contrast-pill .body { color: var(--color-lime-800); }
+.family-emerald .contrast-pill .body { color: var(--color-emerald-800); }
+.family-sky     .contrast-pill .body { color: var(--color-sky-800); }
+.family-blue    .contrast-pill .body { color: var(--color-blue-800); }
+.family-indigo  .contrast-pill .body { color: var(--color-indigo-800); }
+.family-violet  .contrast-pill .body { color: var(--color-violet-800); }
+.family-purple  .contrast-pill .body { color: var(--color-purple-800); }
+.family-fuchsia .contrast-pill .body { color: var(--color-fuchsia-800); }
+.family-pink    .contrast-pill .body { color: var(--color-pink-800); }
+.family-rose    .contrast-pill .body { color: var(--color-rose-800); }
+
 /* Cross-family pill comparison */
 
 .cross-family-row {
@@ -569,6 +818,18 @@ body {
 .cross-pill.cp-amber { background: var(--color-amber-50); border-color: var(--color-amber-200); color: var(--color-amber-500); }
 .cross-pill.cp-green { background: var(--color-green-50); border-color: var(--color-green-200); color: var(--color-green-500); }
 .cross-pill.cp-cyan  { background: var(--color-cyan-50);  border-color: var(--color-cyan-200);  color: var(--color-cyan-500); }
+.cross-pill.cp-orange  { background: var(--color-orange-50);  border-color: var(--color-orange-200);  color: var(--color-orange-500); }
+.cross-pill.cp-yellow  { background: var(--color-yellow-50);  border-color: var(--color-yellow-200);  color: var(--color-yellow-500); }
+.cross-pill.cp-lime    { background: var(--color-lime-50);    border-color: var(--color-lime-200);    color: var(--color-lime-500); }
+.cross-pill.cp-emerald { background: var(--color-emerald-50); border-color: var(--color-emerald-200); color: var(--color-emerald-500); }
+.cross-pill.cp-sky     { background: var(--color-sky-50);     border-color: var(--color-sky-200);     color: var(--color-sky-500); }
+.cross-pill.cp-blue    { background: var(--color-blue-50);    border-color: var(--color-blue-200);    color: var(--color-blue-500); }
+.cross-pill.cp-indigo  { background: var(--color-indigo-50);  border-color: var(--color-indigo-200);  color: var(--color-indigo-500); }
+.cross-pill.cp-violet  { background: var(--color-violet-50);  border-color: var(--color-violet-200);  color: var(--color-violet-500); }
+.cross-pill.cp-purple  { background: var(--color-purple-50);  border-color: var(--color-purple-200);  color: var(--color-purple-500); }
+.cross-pill.cp-fuchsia { background: var(--color-fuchsia-50); border-color: var(--color-fuchsia-200); color: var(--color-fuchsia-500); }
+.cross-pill.cp-pink    { background: var(--color-pink-50);    border-color: var(--color-pink-200);    color: var(--color-pink-500); }
+.cross-pill.cp-rose    { background: var(--color-rose-50);    border-color: var(--color-rose-200);    color: var(--color-rose-500); }
 
 .cross-pill .label {
   display: block;
@@ -585,6 +846,18 @@ body {
 .cross-pill.cp-amber .body { color: var(--color-amber-800); }
 .cross-pill.cp-green .body { color: var(--color-green-800); }
 .cross-pill.cp-cyan  .body { color: var(--color-cyan-800); }
+.cross-pill.cp-orange  .body { color: var(--color-orange-800); }
+.cross-pill.cp-yellow  .body { color: var(--color-yellow-800); }
+.cross-pill.cp-lime    .body { color: var(--color-lime-800); }
+.cross-pill.cp-emerald .body { color: var(--color-emerald-800); }
+.cross-pill.cp-sky     .body { color: var(--color-sky-800); }
+.cross-pill.cp-blue    .body { color: var(--color-blue-800); }
+.cross-pill.cp-indigo  .body { color: var(--color-indigo-800); }
+.cross-pill.cp-violet  .body { color: var(--color-violet-800); }
+.cross-pill.cp-purple  .body { color: var(--color-purple-800); }
+.cross-pill.cp-fuchsia .body { color: var(--color-fuchsia-800); }
+.cross-pill.cp-pink    .body { color: var(--color-pink-800); }
+.cross-pill.cp-rose    .body { color: var(--color-rose-800); }
 
 .cross-pill .body {
   display: block;

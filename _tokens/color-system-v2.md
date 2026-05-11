@@ -168,6 +168,14 @@ Sand maps to Tailwind's `neutral` for utility-class compatibility. The five defe
 
 Cool gray, cool slate, cool blue-gray are explicitly excluded from the system. Cena identity is warm-ground; cool neutrals break the warmth mechanism.
 
+### 2.3 Cena-canonical 18th family — sage
+
+Cena's brand requires a hue between Tailwind's `lime` (H:120) and `green` (H:160) that Tailwind doesn't name: warm yellow-green at H:145, sage. The logo's inner-ring identity hue (`#81B983`) lives in this gap. Sage is treated as the 18th hue family — it follows the same root/max/min architecture as the 17 Tailwind families but keeps its `--color-sage-*` token name (not aliased to a Tailwind family).
+
+**System total:** 17 Tailwind hue families + sage (Cena-canonical) + sand (neutral) = **19 families**.
+
+**Implication for future ports:** any port that assumes "Tailwind 17 names" needs to add sage explicitly. The build-time generator emits sage alongside the Tailwind families with no special-casing — it is a family with a name that happens to not be in Tailwind's namespace.
+
 ---
 
 ## 3. Phase A Family Targets — root, max, min for the seven active families
@@ -241,6 +249,134 @@ root:   oklch(50%    0.090   235)      // ~#287AA3  ← haven-ui cyan-500 hand-t
 max:    oklch(94%    0.035   215)      // #DFEEF7  ← stop 50
 min:    oklch(20%    0.060   240)      // dark cyan
 ```
+
+**Hue note:** H:235 slate-blue — Cena's only allowed cool family. Sufficiently distinct from teal (H:181) for info-vs-brand differentiation. Phase-0 #1 warm-shifts; Phase C distinguishability test against sky and blue (close hue neighbors) gates whether this position holds.
+
+---
+
+## 3b. Phase C Family Targets — root, max, min for the remaining 12 families
+
+Initial targets for the build-time generator. Same architecture as Phase A; minor adjustments expected after the generator's first run + Aaron's visual review.
+
+### 3b.1 orange — terracotta accent
+
+```
+root:   oklch(58%    0.115   35)        // terracotta mid
+max:    oklch(96%    0.025   45)        // pale terracotta wash
+min:    oklch(20%    0.065   30)        // dark terracotta
+```
+
+**Hue note:** H:35 places orange between red (H:25) and amber (H:82). Absorbs the ochre/earth role from cena-brand v1 §1.4.1. Categorical use: warm-earth, food, material contexts.
+
+### 3b.2 yellow — illumination accent
+
+```
+root:   oklch(72%    0.115   85)        // saturated golden yellow
+max:    oklch(96%    0.025   80)        // pale cream-yellow
+min:    oklch(28%    0.060   90)        // dark olive-yellow
+```
+
+**Hue note:** Higher L_root (~72%) than other families because yellow reads bright at saturation; lower L_root would read muddy. Restrained chroma vs Tailwind yellow defaults.
+
+### 3b.3 lime — sage-adjacent accent
+
+```
+root:   oklch(65%    0.110   115)       // warm yellow-green
+max:    oklch(95%    0.025   125)       // pale lime wash
+min:    oklch(25%    0.060   110)       // dark lime
+```
+
+**Hue note:** H:115 between yellow (H:85) and sage (H:145). Sage-adjacent on the warm side; distinct enough from sage to read as a different family.
+
+### 3b.4 emerald — alt saturated green
+
+```
+root:   oklch(56%    0.115   170)       // saturated green
+max:    oklch(96%    0.025   165)       // pale emerald wash
+min:    oklch(20%    0.065   175)       // dark emerald
+```
+
+**Hue note:** H:170 between green (H:160) and teal (H:181). More saturated than success-green. Available for chart series differentiation or secondary success states.
+
+### 3b.5 sky — warm-shifted slate
+
+```
+root:   oklch(58%    0.080   215)       // warm slate-blue
+max:    oklch(95%    0.030   210)       // pale sky wash
+min:    oklch(22%    0.055   220)       // dark sky-slate
+```
+
+**Hue note:** H:215 between teal (H:181) and cyan (H:235). Warm-shifted per Phase-0 #1. Restrained chroma keeps sky from competing with brand teal in adjacency.
+
+### 3b.6 blue — warm-shifted deep slate
+
+```
+root:   oklch(48%    0.090   225)       // deep warm slate-blue
+max:    oklch(94%    0.030   220)       // pale blue wash
+min:    oklch(18%    0.060   230)       // dark blue-slate
+```
+
+**Hue note:** H:225 between sky (H:215) and cyan (H:235). The three-family cluster (sky/blue/cyan at 215/225/235) tests Phase-0 #1's distinguishability constraint. If indistinguishable to Aaron's eye in Phase C review, drop one (likely sky) and retreat to 14 of 17.
+
+### 3b.7 indigo — external systems / partners (extended)
+
+```
+root:   oklch(55%    0.095   265)       // warm blue-violet (Cena §1.4.4)
+max:    oklch(95%    0.030   270)       // pale indigo wash
+min:    oklch(22%    0.060   260)       // dark indigo
+```
+
+**Hue note:** H:265 from cena-brand v1 §1.4.4. Already warm-shifted. Data-vis spec role: partner clinics, vendor integrations, third-party systems.
+
+### 3b.8 violet — data / AI / inference (extended)
+
+```
+root:   oklch(55%    0.100   300)       // warm purple (cena-brand §1.4.3)
+max:    oklch(95%    0.030   315)       // pale violet wash
+min:    oklch(22%    0.065   295)       // dark violet
+```
+
+**Hue note:** H:300 from cena-brand v1 §1.4.3. Data-vis spec role: AI inference, ML pipelines, analytical signals.
+
+### 3b.9 purple — alt violet
+
+```
+root:   oklch(52%    0.105   285)       // saturated purple
+max:    oklch(95%    0.030   295)       // pale purple wash
+min:    oklch(20%    0.070   280)       // dark purple
+```
+
+**Hue note:** H:285 between violet (H:300) and fuchsia (H:325). Chart accent reserve; no current data-vis role.
+
+### 3b.10 fuchsia — vivid magenta accent
+
+```
+root:   oklch(58%    0.130   325)       // saturated magenta
+max:    oklch(95%    0.030   335)       // pale fuchsia wash
+min:    oklch(22%    0.075   320)       // dark fuchsia
+```
+
+**Hue note:** Higher chroma (0.130) for vivid accent — useful for chart series that need to stand out. Use sparingly; conflicts with Cena restraint at large scale.
+
+### 3b.11 pink — warm-shifted pink
+
+```
+root:   oklch(60%    0.100   340)       // warm pink
+max:    oklch(95%    0.025   348)       // pale pink wash
+min:    oklch(22%    0.060   335)       // dark pink
+```
+
+**Hue note:** H:340 between fuchsia (H:325) and rose (H:355). Distinct from rose by hue; lighter L_root since pink reads pastel-bright.
+
+### 3b.12 rose — community / relational (extended)
+
+```
+root:   oklch(55%    0.100   355)       // warm pink-red (cena-brand §1.4.2)
+max:    oklch(95%    0.025   0)         // pale rose wash (hue wraps to H:0)
+min:    oklch(22%    0.065   350)       // dark rose
+```
+
+**Hue note:** H:355 from cena-brand v1 §1.4.2. The 30° separation from red (H:25) preserves perceptual distance between rose-as-relational and red-as-error. Component categorical use only; not a data-vis anchor (dropped 2026-05-11).
 
 **Hue note:** H:235 slate-blue — Cena's only allowed cool family. Sufficiently distinct from teal (H:181) for info-vs-brand differentiation. The Phase-0 #1 decision warm-shifts the family as a whole; this hue value will be revisited in Phase C if sky/blue's distinguishability test forces a re-position.
 
